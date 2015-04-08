@@ -1,0 +1,11 @@
+US05 Rekam Medis
+Feature    : Dokter dapat melihat Rekam Medis pasien
+Skenario C : Dokter melihat Rekam Medis pasien dan pasien tidak memiliki Rekam Medis
+Given	Pasien Melakukan pemeriksaan
+And	Dokter Telah melakukan login
+And	Dokter telah berada pada home page Muchy Clinic
+When	Dokter Memilih menu Rekam Medis
+Then	Dokter seharusnya berada pada Menu Rekam Medis
+When	Dokter menginputkan Id pasien
+And	Pasien Tidak memiliki Rekam Medis
+Then	Dokter menerima pemberitahuan bahwa Id pasien belum memiliki Rekam Medis
