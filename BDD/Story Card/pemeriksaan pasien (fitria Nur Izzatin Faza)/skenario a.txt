@@ -1,0 +1,10 @@
+Feature : Pemeriksaan pasien
+Skenario A : input hasil pemeriksaan pasien
+Given : Dokter telah login ke sistem
+When : input hasil pemeriksaan pasien
+		And 
+		Input detail pemeriksaan pasien
+Then : Menyimpan hasil pemeriksaan pasien pada tebel rekam medis
+		And
+		Sistem konfirmasi 'data telah disimpan'
+	

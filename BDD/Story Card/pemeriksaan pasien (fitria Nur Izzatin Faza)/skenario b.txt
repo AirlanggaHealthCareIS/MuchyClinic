@@ -1,0 +1,10 @@
+Feature : Pemeriksaan pasien
+Skenario B : pasien melakukan rawat inap
+Given : Dokter telah login ke sistem
+When : dokter memilih fitur rawat inap 
+		And 
+		Mengisi form rawat inap
+Then : ID pasien yang rawat inap tersimpan 
+AND 
+pemberitahuan jika sudah tersimpan.
+	
