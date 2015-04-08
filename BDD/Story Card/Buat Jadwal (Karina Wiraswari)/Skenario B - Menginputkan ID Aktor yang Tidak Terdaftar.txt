@@ -1,0 +1,12 @@
+Feature : User (Owner) dapat menginputkan jadwal karyawan, dokter, dan apoteker
+Skenario B: Menginputkan ID aktor yang tidak terdaftar
+
+Given saya telah melakukan login sebagai owner
+When saya memilih menu jadwal
+And saya memilih submenu Buat Jadwal
+Then saya seharusnya ada di halaman Buat Jadwal
+When saya memilih menu aktor
+And saya menginputkan ID aktor yang tidak terdaftar
+And saya memilih hari dan jam
+Then saya mendapatkan peringatan bahwa ID aktor yang diinputkan tidak sesuai
+And saya menginputkan ID aktor kembali

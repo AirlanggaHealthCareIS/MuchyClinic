@@ -1,0 +1,14 @@
+Feature : User (Owner) dapat menginputkan jadwal karyawan, dokter, dan apoteker
+Skenario A : Menginputkan jadwal
+
+Given saya telah melakukan login sebagai owner
+When saya memilih menu jadwal
+And saya memilih submenu Buat Jadwal
+Then saya seharusnya ada di halaman Buat Jadwal
+When saya memilih menu aktor
+And saya menginputkan ID aktor
+And saya memilih hari dan jam 
+And saya menekan tombol Add
+Then data jadwal tersimpan dalam database table Jadwal
+And saya dapat melihat jadwal seluruh karyawan
+And masing-masing aktor dapat melihat jadwalnya masing-masing
