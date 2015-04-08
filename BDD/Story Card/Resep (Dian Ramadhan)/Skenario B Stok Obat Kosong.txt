@@ -1,0 +1,16 @@
+Feature		: Aktor (dokter membuat resep dan nantinya akan diterima oleh apoteker
+Skenario B	: Menginput resep dengan stok obat kosong
+
+Given	dokter berada pada home page Muchy Clinic
+And	dokter sudah melakukan Log In
+And	dokter sudah melakukan pemeriksaan pasien
+And	obat “amoxicilin” kosong
+When	dokter memilih menu Resep
+Then	dokter seharusnya berada pada menu Resep
+When	dokter memilih id pemeriksaan “0011”
+And	dokter menginput obat “amoxicilin”
+Then	dokter seharusnya menerima konfirmasi bahwa obat kosong
+And	dokter seharusnya menginput ulang obat pengganti
+And	dokter menginput keterangan “2x1 setelah makan”
+Then	data resep seharusnya sudah tersimpan pada tabel resep
+And	apoteker seharusnya sudah menerima obat resep

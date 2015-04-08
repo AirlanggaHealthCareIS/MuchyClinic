@@ -1,0 +1,13 @@
+Feature		: Aktor (dokter membuat resep dan nantinya akan diterima oleh apoteker
+Skenario A	: Menginput resep dan stok obat tersedia
+
+Given	dokter berada pada home page Muchy Clinic
+And	dokter sudah melakukan Log In
+And	dokter sudah melakukan pemeriksaan pasien
+When	dokter memilih menu Resep
+Then 	dokter seharusnya berada pada menu Resep
+When	dokter memilih id pemeriksaan “0011”
+And	dokter menginput obat “amoxicilin”
+And	dokter menginput keterangan “2x1 setelah makan”
+Then	data resep seharusnya sudah tersimpan pada tabel rsep
+And	apoteker seharusnya sudah menerima obat resep
