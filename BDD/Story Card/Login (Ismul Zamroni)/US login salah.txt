@@ -1,0 +1,9 @@
+Skenario :	melakukan login dengan salah.
+	Given 	saya membuka fitur utama
+	When 	saya memilih menu login
+	And 	saya mendapat tampilan form login
+	When 	saya menginputkan username dan password salah
+	And 	saya menunggu validasi login
+	And 	saya mendapat konfirmasi telah login salah
+	Then 	saya seharusnya berada di dalam sistem
+	And	saya harus login lagi dengan benar

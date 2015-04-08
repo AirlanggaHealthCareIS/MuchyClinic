@@ -1,0 +1,10 @@
+US01 Login
+Feature   :	Dokter, karyawan, apoteker, dan owner melakukan login.
+Skenario  : 	melakukan login dengan benar.
+	Given 	saya membuka fitur utama
+	When 	saya memilih menu login
+	And 	saya mendapat tampilan form login
+	When 	saya menginputkan username dan password benar	
+	And 	saya menunggu validasi login
+	And 	saya mendapat konfirmasi telah login benar
+	Then 	saya berada di dalam sistem	
