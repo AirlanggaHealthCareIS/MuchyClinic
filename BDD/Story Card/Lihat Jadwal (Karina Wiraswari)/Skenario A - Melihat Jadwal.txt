@@ -1,0 +1,7 @@
+Feature: User (Dokter, Apoteker, dan Karyawan) dapat melihat jadwal kerjanya masing-masing
+Skenario A: Melihat jadwal
+
+Given saya telah melakukan login
+When saya memilih menu jadwal
+Then saya seharusnya ada di halaman Jadwal
+And saya dapat melihat jadwal kerja saya per harinya
