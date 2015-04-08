@@ -1,0 +1,7 @@
+US07 Backup and Restore
+Skenario :  	 melakukan restore data
+	Given	Saya telah melakukan login
+	And	Saya memilih menu restore data
+	And	Saya melakukan restore data 
+	When	Saya memilih data yang akan di restore
+	Then 	Saya berhasil merestore data.

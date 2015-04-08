@@ -1,0 +1,8 @@
+US07 Backup and Restore
+Feature  :	owner melakukan backup dan restore data
+Skenario :  	melakukan backup data
+	Given	Saya telah melakukan login
+	And	saya memilih menu backup data
+	And	Saya melakukan backup data 
+	When	Saya menginput data yang di backup
+	Then 	Saya berhasil membackup data.
