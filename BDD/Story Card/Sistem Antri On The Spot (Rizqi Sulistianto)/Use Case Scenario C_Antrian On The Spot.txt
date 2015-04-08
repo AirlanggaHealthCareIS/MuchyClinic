@@ -1,0 +1,7 @@
+Feature : Fitur ini dapat mengatur antrian pasien saat akan masuk ke ruang pemeriksaan
+Scenario C : Pasien yang telah mendaftar dan admin salah menginputkan ID pasien
+
+Given 	: Pasien telah mendapatkan ID pasien
+When 	: Admin melakukan kesalahan input ID pasiens
+Then 	: Admin menerima pemberitahuan bahwa “ID pasien salah”
+When 	: Admin kembali menginputkan ID pasien

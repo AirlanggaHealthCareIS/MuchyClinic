@@ -1,0 +1,8 @@
+Feature : Fitur ini dapat mengatur antrian pasien saat akan masuk ke ruang pemeriksaan
+Scenario B : Pasien yang belum mendaftar
+
+Given 	: Pasien belum mendapatkan ID pasien
+When 	: Pasien melakukan pendaftaran pasien
+Then 	: Pasien mendapatkan ID Pasien
+When	: Admin menginputkan ID Pasien
+Then	: Pasien mendapatkan nomor antrian
