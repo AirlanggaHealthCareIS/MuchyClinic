@@ -1,0 +1,25 @@
+Feature : Obat keluar 
+Skenario B : paseien membeli obat tanpa resep
+Given : kondisi apoteker sudah masuk kedalam sistem
+		AND 
+		halaman fitur obat keluar
+When : apoteker memilih menu obat 
+Then : memunculkan halaman menu obat 
+	AND 
+	Form obat keluar
+When : input nama obat
+Then : sistem mencari nama obat pada database
+When : mengambil obat 
+		AND 
+		Input data item yang sudah diambil
+Then : Sistem melakukan pentotal jumlah yang dibayar 
+		AND
+		Menyimpan database obat keluar
+		AND
+		Menyimpan database ke pembayaran
+		AND 
+		memunculkan pesan jika proses berhasil dan memunculkan tombol 'print'
+		
+When : Apoteker menekan tomobol 'print' mencetak struk pembayaran
+Then : sistem mencetak struk pembayaran 
+

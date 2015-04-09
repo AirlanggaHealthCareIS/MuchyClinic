@@ -1,0 +1,26 @@
+Feature  :Kelola Obat Keluar 
+Skenario :Dokter memberikan resep obat setelah pemeriksaan
+Given : Apoteker telah berhasil login ke sistem 
+When : apoteker memilih menu obat 
+Then : memunculkan halaman menu obat 
+	AND 
+	Form obat keluar
+When : Apoteker input ID pasien
+Then : Load resep  pasien berdasarkan apa yang diberikan dokter
+	AND 
+	menampilkan resep obat
+When : Apoteker mengerjakan resep obat. 
+	AND 
+	input keterangan
+	AND 
+	klik tombol input
+	And 
+	Klik Tombol 'selesai'
+Then :Menyimpan data ke database ke obat keluar 
+	AND
+	Menyimpan data ke database pembayaran
+	AND
+	Muncul pesan berhasil di simpan
+
+
+
