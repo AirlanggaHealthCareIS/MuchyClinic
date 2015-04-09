@@ -1,0 +1,6 @@
+Feature : Laporan Obat
+
+> Scenario b : Obat kosong pada inventory obat
+	Given : User telah masuk pada halaman admin
+	When : User memilih menu laporan obat
+	Then : Menampilkan notifikasi stock obat di gudang telah mencapai batas limit / kosong 

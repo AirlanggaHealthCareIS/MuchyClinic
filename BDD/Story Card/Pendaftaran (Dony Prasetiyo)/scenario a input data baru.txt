@@ -1,0 +1,6 @@
+Feature : Pendaftaran Pasien oleh Karyawan
+
+> Scenario : Karyawan menginputkan data pasien pada halaman form pendaftaran 
+	Given 	: User telah masuk pada halaman admin 
+	When 	: User menginputkan data pada form pendaftaran pasien
+	Then 	: User menyimpan form pendaftaran pasien pada database pendaftaran pasien 
