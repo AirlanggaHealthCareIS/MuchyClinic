@@ -1,0 +1,8 @@
+				User Story
+Feature		: Apoteker dapat mencari dan melihat stok obat yang tersedia dan habis
+Skenario A	: Mencari dan melihat stok obat
+Given		: User (apoteker) telah melakukan login
+When		: User memilih menu Inventory obat
+Then		: User seharusnya berada pada halaman Inventory obat
+When		: User mencari nama obat
+Then		: User dapat melihat obat yang dicari dan stok obat yang tersedia

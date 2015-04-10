@@ -1,0 +1,9 @@
+				User Story
+Feature		: Apoteker dapat mencari dan melihat stok obat yang tersedia dan habis
+Skenario C	: Mencari stok obat yang kritis atau habis
+Given		: User (apoteker) telah melakukan login
+When		: User memilih menu Inventory obat
+Then		: User seharusnya berada pada halaman Inventory obat
+When		: User menemukan tombol stok kritis
+Then		: Muncul data stok obat dengan stok kritis
+
