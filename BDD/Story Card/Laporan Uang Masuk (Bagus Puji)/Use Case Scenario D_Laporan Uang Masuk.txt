@@ -1,10 +1,11 @@
 US11 Laporan Uang Masuk
 Feature    : Owner dapat mengetahui laporan uang masuk (pendapatan kotor) clinik
-Skenario C : Owner mengetahui laporan uang masuk dan periode laporan tersebut belum tersedia
+Skenario D : Owner mengetahui laporan uang masuk dan fild ID pasien kosong
 Given	Owner telah melakukan login
 And	Owner telah berada pada home page Muchy Clinic
 When	Owner memilih menu Laporan Uang Masuk
 Then	Owner seharusnya berada pada Menu Laporan Uang Masuk
 When	Owner menginputkan periode laporan
-Then	Owner menerima pemberitahuan bahwa periode laporan belum tersedia.
+And	Fild ID Pasien kosong
+Then	Owner menerima pemberitahuan bahwa Fild Laporan Uang Masuk belum terisi
 And	Owner kembali menginputkan periode laopran.

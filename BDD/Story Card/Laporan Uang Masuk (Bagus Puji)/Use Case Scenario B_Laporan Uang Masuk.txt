@@ -6,5 +6,5 @@ And	Owner telah berada pada home page Muchy Clinic
 When	Owner memilih menu Laporan Uang Masuk
 Then	Owner seharusnya berada pada Menu Laporan Uang Masuk
 When	Owner menginputkan periode laporan
-And	Owner menerima pemberitahuan bahwa periode laporan salah
-Then	Owner kembali menginputkan periode laopran.
+Then	Owner menerima pemberitahuan bahwa periode laporan salah
+And	Owner kembali menginputkan periode laopran.
