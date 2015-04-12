@@ -9,8 +9,8 @@ class Cabsensi extends CI_Controller {
 	
 	public function panggil()
 	{
-		$this->load->view('v_header');
-		$this->load->view('absensi/v_absensi');
+		/*$this->load->view('v_header');
+		$this->load->view('absensi/v_absensi');*/
 	}
 	public function validasi()
 	{
