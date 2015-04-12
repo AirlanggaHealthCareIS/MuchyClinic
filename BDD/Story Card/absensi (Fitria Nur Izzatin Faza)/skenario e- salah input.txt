@@ -1,0 +1,9 @@
+Feature : Absensi 
+Skenario E : Field hanya berisi angka 
+Given : user menuju halaman depan
+When : user memasukkan input ID yang tidak sesuai dengan syarat (contoh berisi tanda seru)
+And
+klik button 'absen'
+Then : Sistem melakukan konfirmasi jika field absen salah
+when : meng-klik 'ok' u/ kembali ke sistem
+Then :Kembali ke sistem semula
