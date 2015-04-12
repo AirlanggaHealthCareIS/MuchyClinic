@@ -1,0 +1,9 @@
+Feature 	: Kasir dapat mencatat seluruh transaksi pembayaran pasien.
+
+Scenario 2: Mencatat pembayaran pasien dan Kasir tidak menginputkan ID Pasien
+
+Give	: Kasir telah berada pada menu kasir
+When	: Kasir tidak melakukan input ID Pasien
+Then	: Kasir menerima pemberitahuan bahwa “field ID Pasien harus diisi terlebih dahulu”
+When	: Kasir kembali menginputkan ID Pasien
+
