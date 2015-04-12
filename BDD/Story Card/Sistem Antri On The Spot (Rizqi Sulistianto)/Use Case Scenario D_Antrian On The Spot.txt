@@ -1,0 +1,7 @@
+Feature : Fitur ini dapat mengatur antrian pasien saat akan masuk ke ruang pemeriksaan
+
+Scenario D : Pasien yang telah mendaftar dan admin tidak menginputkan ID pasien, field kosong
+
+Given 	: Pasien telah mendapatkan ID pasien
+When 	: Admin tidak melakukan input ID pasien, field kosong
+Then 	: Admin menerima pemberitahuan bahwa ÒMaaf field kosong! Silahkan input ID pasien kembaliÓ
