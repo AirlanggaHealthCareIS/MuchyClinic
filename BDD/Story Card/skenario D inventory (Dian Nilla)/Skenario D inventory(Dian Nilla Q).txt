@@ -1,0 +1,9 @@
+					User Skenario
+Feature		: Apoteker dapat mencari dan melihat stok obat yang tersedia dan habis
+Skenario D	: Mencari tetapi tidak menginput nama obat
+Given		: User (apoteker) telah melakukan login
+When		: User memilih menu Inventory obat
+Then		: User seharusnya berada pada halaman Inventory obat
+When		: User mencari nama obat tetapi text field nama obat tidak diisi
+Then		: Muncul pesan bahwa nama obat yang akan dicari belum terisi.
+
