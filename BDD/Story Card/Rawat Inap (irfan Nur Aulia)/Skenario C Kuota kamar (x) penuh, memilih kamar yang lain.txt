@@ -11,6 +11,4 @@ Skenario C	: Kuota kamar (x) penuh, memilih kamar yang lain.
 	And	: Admin memilih dokter yang menangani pasien tersebut.
 	And 	: Admin memasukkan tanggal masuk dan keluar pasien.
 	Then	: Konfirmasi bahwa kamar penuh.
-	When	: Admin diharuskan memilih kamar yang lain. 
-	And 	: Admin memilih kamar lain
-	Then	: Konfirmasi data sudah masuk ke database.
+	And	: Admin diharuskan memilih kamar yang lain. 
