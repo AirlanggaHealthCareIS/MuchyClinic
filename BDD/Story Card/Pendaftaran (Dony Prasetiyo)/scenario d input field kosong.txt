@@ -1,0 +1,7 @@
+Feature : Pendaftaran Pasien oleh Karyawan
+
+> Scenario : Karyawan menginputkan field kosong dan mengklik tombol pada form pendaftaran
+	Given 	: User mengklik tombol saat file kosng 
+	And 	: User tidak mengisi field pada kolom pendaftaran
+	When 	: User tidak menginputkan isi field pada form pendaftaran
+	Then 	: User mendapat notifikasi error field belum terisi 
