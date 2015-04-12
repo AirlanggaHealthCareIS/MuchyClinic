@@ -1,0 +1,12 @@
+Feature : Obat keluar (Resep)
+Skenario C: Field IP Pasien tidak terinput
+Aktor : Apoteker
+
+Given saya telah melakukan login sebagai apoteker
+When saya memilih menu obat keluar
+And saya memilih submenu resep
+Then saya seharusnya ada di halaman resep
+When saya menginput ID Pasien
+And saya menekan tombol cari resep
+Then muncul peringatan bahwa ada field yang belum terisi
+And saya menginputkan field yang belum terisi yaitu ID Pasien
