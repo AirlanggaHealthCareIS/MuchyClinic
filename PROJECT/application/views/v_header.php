@@ -13,5 +13,5 @@
   </head>
   <body>
     <div class="container-fluid text-center" style="background-color: #606062">
-      <img src="<?php echo base_url(); ?>assets/image/header1.png" class="" alt="Responsive image">
+      <img src="<?php echo base_url(); ?>assets/images/header1.png" class="" alt="Responsive image">
     </div>
