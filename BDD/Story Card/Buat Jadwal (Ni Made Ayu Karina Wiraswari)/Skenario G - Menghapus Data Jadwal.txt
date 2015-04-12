@@ -1,0 +1,15 @@
+Feature : User (Owner) dapat menginputkan jadwal karyawan, dokter, dan apoteker
+Skenario G: User menghapus data jadwal
+
+Given saya telah melakukan login
+And Data jadwal sudah masuk ke dalam tabel jadwal dalam database
+When saya memilih menu jadwal
+And saya memilih submenu Buat Jadwal
+Then saya seharusnya berada di halaman Buat Jadwal
+And saya dapat melihat jadwal kerja masing-masing per harinya
+When saya menekan tombol hapus untuk menghapus salah satu jadwal
+Then seharusnya saya mendapatkan peringatan bahwa apakah saya yakin akan menghapus data tersebut
+When saya memilih tombol iya
+Then data tersebut akan terhapus
+And saya mendapatkan jadwal baru tanpa data yang sudah dihapus sebelumnya
+

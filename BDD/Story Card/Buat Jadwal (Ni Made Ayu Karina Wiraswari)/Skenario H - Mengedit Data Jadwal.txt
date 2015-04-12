@@ -1,0 +1,13 @@
+Feature: User (Dokter, Apoteker, dan Karyawan) dapat melihat jadwal kerjanya masing-masing
+Skenario H: Mengedit data jadwal
+
+Given saya telah melakukan login
+And Data jadwal sudah masuk ke dalam tabel jadwal dalam database
+When saya memilih menu jadwal
+And saya memilih submenu Buat Jadwal
+Then saya seharusnya berada di halaman Buat Jadwal
+And saya dapat melihat jadwal kerja masing-masing per harinya
+When saya memilih jadwal dari salah satu anggota aktor 
+And saya mengubah data jadwal anggota aktor tersebut
+And saya menekan tombol edit
+Then data jadwal anggota aktor tersebut akan terupdate 

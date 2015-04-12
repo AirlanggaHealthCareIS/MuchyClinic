@@ -1,0 +1,11 @@
+Feature : User (Owner) dapat menginputkan jadwal karyawan, dokter, dan apoteker
+Skenario E: Field yang diinputkan tidak lengkap
+
+Given saya telah melakukan login sebagai owner
+When saya memilih menu jadwal
+And saya memilih submenu Buat Jadwal
+Then saya seharusnya ada di halaman Buat Jadwal
+When saya memilih menu aktor
+And saya menekan tombol Add
+Then muncul peringatan bahwa ada field yang belum terisi
+And saya menginputkan field yang belum terisi
