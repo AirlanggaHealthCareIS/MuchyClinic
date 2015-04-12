@@ -1,0 +1,6 @@
+Feature : Pendaftaran Pasien oleh Karyawan
+
+> Scenario : Karyawan tidak melengkapi form yang ada 
+	Given 	: Form belum diisi
+	When 	: User mengklik tombol simpan
+	Then 	: Menampilkan notifikasi error kolom tidak boleh kosong
