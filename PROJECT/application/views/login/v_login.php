@@ -8,7 +8,7 @@
     <title>Login</title>
 
     <!-- Bootstrap -->
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,11 +33,11 @@
             <?php endif ?>
             
 
-              <form class="form-horizontal"action="<?php echo base_url(); ?>welcome/validasi " method="post">
+              <form class="form-horizontal" action="<?php echo base_url(); ?>clogin/validasi " method="post">
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Username</label>
                   <div class="col-sm-10">
-                    <input type="Username" class="form-control" id="inputUsername" name="username" placeholder="Username">
+                    <input type="normal" class="form-control" id="inputUsername" name="username" placeholder="Username">
                   </div>
                 </div>
                 <div class="form-group">
