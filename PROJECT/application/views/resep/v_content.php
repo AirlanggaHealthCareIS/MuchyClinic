@@ -6,17 +6,32 @@
 					<div class = "col-md-3" >
 						<?php if ($this->input->get('error')=="null"): ?>
 							<div class="alert alert-danger" role="alert">
-							Maaf field anda masih kosong
+							Maaf syarat input belum terpenuhi
+							</div>	
+						<?php endif ?>
+						<?php if ($this->input->get('cmbx')=="null"): ?>
+							<div class="alert alert-danger" role="alert">
+							Maaf ID Pemeriksaan belum terpilih
+							</div>	
+						<?php endif ?>
+						<?php if ($this->input->get('errorobat')=="null"): ?>
+							<div class="alert alert-danger" role="alert">
+							Maaf Field Obat masih kosong
+							</div>	
+						<?php endif ?>
+						<?php if ($this->input->get('errorketerangan')=="null"): ?>
+							<div class="alert alert-danger" role="alert">
+							Maaf Field Keterangan masih kosong
 							</div>	
 						<?php endif ?>
 						
 						<div class="form-group">
-							<select class="form-control" style="margin-top: 20px;">
-			  				<option>ID Pemeriksaan</option>
-			  				<option>2</option>
-			  				<option>3</option>
-			  				<option>4</option>
-			  				<option>5</option>
+							<select id="inputIDPemeriksaan" name="idpemeriksaan" class="form-control" style="margin-top: 20px;">
+							<option value="">ID Pemeriksaan</option>
+			  				<option value="001">001</option>
+			  				<option value="002">002</option>
+			  				<option value="003">003</option>
+			  				<option value="004">004</option>
 							</select> 
 						</div>
 					</div>
