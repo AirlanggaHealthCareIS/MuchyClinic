@@ -11,29 +11,8 @@ class Kasir extends CI_Controller {
 
 		// $this->load->database();
 		// $call = $this->getcariid(p001);
-		// echo $call;
-
-
-	
+		// echo $call;	
 	}
-	// public function validation(){
-	// 	$this->load->helper(array('form', 'url'));
-
- //        $this->load->library('form_validation');
-
-	// 	$id = $this->input->post("idpasien");
-	// 	if ($id==null || $id=="") {
-	// 		redirect(base_url().'kasir?error=null');
-			
-			
-	// 		//echo "Error";
-	// 	} else {
-	// 		if (preg_match('/[^a-z_\(\)\.\&\ \-0-9]/i', $id)) {
-	// 			redirect(base_url().'kasir?error=simbol');
-	// 		} else{
-	// 			echo "Sukses";
-	// 		}
-	// 	}
 
 		public function validation(){
 		$this->load->helper(array('form', 'url'));
@@ -41,7 +20,7 @@ class Kasir extends CI_Controller {
         $this->load->library('form_validation');
 
 		$id = $this->input->post("idpasien");
-		if (preg_match('/[^a-z_\(\)\.\&\ \-0-9]/i', $id)) {
+		if (preg_match('/[^a-z\-0-9]/i', $id)) {
 			redirect(base_url().'kasir?error=simbol');
 			//echo "Error";
 		} else {
