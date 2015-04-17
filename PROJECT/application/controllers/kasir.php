@@ -14,49 +14,20 @@ class Kasir extends CI_Controller {
 		// echo $call;	
 	}
 
-		public function validation(){
+	public function validation(){
 		$this->load->helper(array('form', 'url'));
-
         $this->load->library('form_validation');
 
 		$id = $this->input->post("idpasien");
-		if (preg_match('/[^a-z\-0-9]/i', $id)) {
-			redirect(base_url().'kasir?error=simbol');
-			//echo "Error";
+		if ($id==null || $id=="") {
+			redirect(base_url().'kasir?error=null');
 		} else {
-			if ($id==null || $id=="") {
-				redirect(base_url().'kasir?error=null');
+			if (preg_match('/[^a-z0-9]/', $id)) {
+				redirect(base_url().'kasir?error=simbol');
 			} else{
 				echo "Sukses";
 			}
 		}
-		
-
-
-		// if ($id==null || $id=="") {
-		// 	redirect(base_url().'kasir?error=null');
-		// } else {
-	        
-	  //       $this->form_validation->set_rules('idpasien', 'idpasien', array('required', 'min_length[5]'));
-	       
-	  //       if ($this->form_validation->run() == FALSE)
-			// {
-	  //       	echo "error".$id;
-	  //           // redirect(base_url("kasir?error=simbol"), 'refresh');
-	  //           //redirect(base_url().'kasir?error=null');
-	  //       } else {
-	  //           //$this->registration();
-	  //           echo "lanjutkan";
-	  //           echo $this->form_validation->run();
-	  //       }
-
-		// }
-		
-	}
-
-
-
-	
 
 
 	// private function cariid ($id) {
@@ -65,7 +36,6 @@ class Kasir extends CI_Controller {
 
 	// 	//return $row;
 	// 	return $query;
-
 	// }
 
 	// public function tampilid() {
