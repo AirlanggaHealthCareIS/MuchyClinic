@@ -1,0 +1,9 @@
+Feature 	: Kasir dapat mencatat seluruh transaksi pembayaran pasien.
+
+Scenario 2: Mencatat pembayaran pasien dan Kasir menginputkan ID Pasien (berupa simbol !@#$%^&*()_+)
+
+Give	: Kasir telah berada pada menu kasir
+When	: Kasir melakukan input ID Pasien (berupa simbol !@#$%^&*()_+)
+Then	: Kasir menerima pemberitahuan bahwa “field ID Pasien tidak boleh diisi dengan simbol”
+When	: Kasir kembali menginputkan ID Pasien
+
