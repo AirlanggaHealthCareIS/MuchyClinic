@@ -11,39 +11,35 @@
             </div>
             <?php endif ?>
 
-            
-
             <form class="form-inline" action = "<?php echo base_url()?>rekammedis/validasi" method = "post">
               <div class="form-group">
                 <label class="sr-only" for="exampleInputId">ID Pasien</label>
-                <input type="normal" name = "id_pasien" class="form-control" id="exampleInputId" placeholder="ID Pasien">
+                <input type="normal" name = "id_pasien" maxlength = "7" class="form-control" id="exampleInputId" placeholder="ID Pasien" style = "width:250px">
               </div>
-              <button type="submit" class="btn btn-default">Search</button>
+              <button type="submit" class="btn btn-info" style = "width:100px">Search</button>
               <br></br>
 
-              <table class="" style="border: 0px currentColor; border-image: none;">
-
+              <div>
+              <table class="table" style="border: 0px currentColor; border-image: none;">
               <tr>
-              <td style="width:43%">Nama Pasien</td>
-              <td>DonyPrasetiyo</td>
+                  <td class="info">Id Pasien</td>
+                  <td class="info"><?php echo $id_pasien; ?></td>
               </tr>
-
               <tr>
-              <td>TTL</td>
-              <td>Samarinda, 30 Februari 1880</td>
+              <td class="">Nama Pasien</td>
+              <td class=""><?php echo $nama; ?></td>
               </tr>
-
               <tr>
-              <td>Jenis Kelamin</td>
-              <td>Laki-Laki</td>
+              <td class="info">Golongan Darah</td>
+              <td class="info"><?php echo $golongan_darah; ?></td>
               </tr>
-
               <tr>
-              <td>Golongan Darah</td>
-              <td>AB</td>
+              <td class="">Jenis Kelamin</td>
+              <td class=""><?php echo $jenis_kelamin; ?></td>
               </tr>
-
             </table>
+            </div>
+
             <br>
             </form>
             <br></br>
@@ -58,23 +54,13 @@
 
         <table class="table table-bordered">
           <tr style="background-color: rgb(226, 246, 245);">
-            <td >No</td>
-            <td >ID Periksa</td>
-            <td >Tanggal Periksa</td>
-            <td >Dokter</td>
-            <td >Diagnosa</td>
-            <td >Obat</td>
+            <td ><center>ID Periksa</center></td>
+            <td ><center>Tanggal Periksa</center></td>
+            <td ><center>Dokter</center></td>
+            <td ><center>Diagnosa</center></td>
+            <td ><center>Obat</center></td>
           </tr>
           <tr>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-          </tr>
-          <tr>
-            <td >...</td>
             <td >...</td>
             <td >...</td>
             <td >...</td>
@@ -87,10 +73,15 @@
             <td >...</td>
             <td >...</td>
             <td >...</td>
-            <td >...</td>
           </tr>
           <tr>
             <td >...</td>
+            <td >...</td>
+            <td >...</td>
+            <td >...</td>
+            <td >...</td>
+          </tr>
+          <tr>
             <td >...</td>
             <td >...</td>
             <td >...</td>
@@ -98,7 +89,7 @@
             <td >...</td>
           </tr>
         </table>
-        <button type="reset" class="btn btn-default">Back</button>
+        <button type="reset" class="btn btn-info" style = "width:100px">Back</button>
 
       </div>
     </div>
