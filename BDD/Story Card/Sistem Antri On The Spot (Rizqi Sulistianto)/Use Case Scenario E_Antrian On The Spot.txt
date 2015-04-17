@@ -1,0 +1,8 @@
+Feature : Fitur ini dapat mengatur antrian pasien saat akan masuk ke ruang pemeriksaan
+
+Scenario E : Pasien yang telah mendaftar dan admin salah menginputkan ID pasien (menginputkan simbol)
+
+Given 	: Pasien telah mendapatkan ID pasien
+When 	: Admin melakukan kesalahan input ID pasien, admin menginputkan simbol
+Then 	: Admin menerima pemberitahuan bahwa ÒID pasien hanya berisi angka dan hurufÓ
+When 	: Admin kembali menginputkan ID pasien
