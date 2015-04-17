@@ -2,70 +2,112 @@
     <div class="container-fluid">
       <div class="container">
         
+        <h1 class="text-center"> Sistem Antri On The Spot</h1>
+        <br>
 
-          <h1 class="text-center"> Sistem Antri On The Spot</h1>
+        <div class="row">
+          <div class="col-md-6 text-center">
+            <!-- tanggal -->
+             <script language="javascript"> 
+              var tanggallengkap = new String(); 
+              var namahari = ("Minggu Senin Selasa Rabu Kamis Jumat Sabtu"); 
+              namahari = namahari.split(" "); 
+              var namabulan = ("Januari Februari Maret April Mei Juni Juli Agustus September Oktober Nopember Desember"); 
+              namabulan = namabulan.split(" "); 
+              var tgl = new Date(); 
+              var hari = tgl.getDay(); 
+              var tanggal = tgl.getDate(); 
+              var bulan = tgl.getMonth(); 
+              var tahun = tgl.getFullYear(); 
+              tanggallengkap = namahari[hari] + ", " +tanggal + " " + namabulan[bulan] + " " + tahun; 
+              document.write(tanggallengkap); 
+            </script> 
+            </font>
+            <!-- tanggal -->
+          </div>
 
-            <br>
-            <div class="row">
-              <div class="col-md-6 text-center">
-                <br>
+          <div class="col-md-6 text-center">
+            <!-- jam -->
+            <style>
+                .jam {
+                 font-family : tahoma;
+                 font-weight : ;
+                 font-size : 11px;
+                 position : relative;
+                 top : 0px;
+                 left : 0px;
+                 }
+                </style>
+                <script language="javascript">
+                <!--
+                function tampilkanjam()
+                 {
+                 var waktu = new Date();
+                 var jam = waktu.getHours();
+                 var menit = waktu.getMinutes();
+                 var detik = waktu.getSeconds();
+                 var teksjam = new String();
+                 if ( menit <= 9 )
+                 menit = "0" + menit;
+                 if ( detik <= 9 )
+                 detik = "0" + detik;
+                 teksjam = jam + ":" + menit + ":" + detik;
+                 tempatjam.innerHTML = teksjam;
+                 setTimeout ("tampilkanjam()",1000);
+                 }
+                 window.onload = tampilkanjam
+                 //-->
+                </script>
+                 </font>
+                 <body>
+                <font color=#660066>
+                <div id="tempatjam" ></div>
+                </font>
+                </body>
+                <!-- jam -->
+          </div>
+        </div>
 
-                <table border="0" cellspacing="0" cellpadding="0"><tr><td align="center"><script type="text/javascript" 
-                src="http://www.worldtimeserver.com/clocks/embed.js"></script><script type="text/javascript" language="JavaScript">objUSNY=new Object;objUSNY.wtsclock="wtsclock001.swf";objUSNY.color="87CEEB";objUSNY.wtsid="US-NY";
-                objUSNY.width=200;objUSNY.height=200;objUSNY.wmode="transparent";showClock(objUSNY);</script></td></tr><tr><td 
-                align="center"><h2>Surabaya</h2></td></tr></table>
-              </div>
 
-              <div class="col-md-6 text-center">
-                <br>
+          <br>
+          <br>
+            <div class="text-center">
                 <h1> Nomor Antrian Saat Ini</h1>
-                <h1 style"font-size:="" 150px;"="" style="font-size: 150px;">001</h1>
-              </div>
+                <h1 style"font-size:="" 150px;"="" style="font-size: 100px;">001</h1>
+              <!-- no antri -->
             </div>
-
-
-            <br>
-            <br>
-            <br>
+          <br>
+          <br>
+          <br>
 
           <?php if ($this->input->get('error')=='null'): ?>
             <div class ="alert alert-danger" role="alert">
-            Maaf Fild Kosong! Silahkan Input Id Pasien Kembali.
+            Maaf field kosong! Silahkan input ID pasien kembali
             </div>
           <?php endif ?>         
 
-          <form class="form-horizontal" action = "<?php echo base_url()?>antri/validasi" method = "post">
+
+          
+            <br>
+              <label for="inputEmail3" class="col-sm-2 control-label">Nama dokter :</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputdokter" placeholder="Dokter Rizqi" disabled>
+              </div>
+              <br>
+              <br>
+              <label for="inputEmail3"  class="col-sm-2 control-label">ID pasien :</label>
+              <div class="col-sm-10">
+                <input type="text" name="id_pasien" class="form-control" id="inputidpasien" placeholder="123">
+              </div>
+            </div>
+            <br>
+
+            <form class="form-horizontal" action = "<?php echo base_url()?>antri/validasi" method = "post">
             <div class="form-group">
               <div class="text-center">
                 <button type="submit" class="btn btn-default btn-lg">Input ID pasien</button>
               </div>
             </div>
-            <br>
-
-
-         
-
-
-            
-              <label for="inputEmail3" class="col-sm-2 control-label">Tanggal :</label>
-              <div class="col-sm-10">
-
-            
-
-                <input type="email" class="form-control" id="inputEmail3" placeholder="Senin, 12 April 2015" disabled>
-              </div>
-
-              <label for="inputEmail3" class="col-sm-2 control-label">Nama dokter :</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputdokter" placeholder="Dokter Dony" disabled>
-              </div>
-
-              <label for="inputEmail3"  class="col-sm-2 control-label">ID pasien :</label>
-              <div class="col-sm-10">
-                <input type="text" name="id_pasien" class="form-control" id="inputidpasien" placeholder="ABCDEF123">
-              </div>
-            </div>
-            <br>
             <br>
               
             
