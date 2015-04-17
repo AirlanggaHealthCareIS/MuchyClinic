@@ -36,10 +36,17 @@
             <?php if ($this->input->get("error")=="null"): ?>
             <div class = "alert alert-danger" role = "alert">
               <p>Please enter a valid ID Pasien</p>
-            <!-- end pesan error -->
 
             </div>
             <?php endif ?>
+            <?php if ($this->input->get("error")=="simbol"): ?>
+            <div class = "alert alert-danger" role = "alert">
+              <p>Don't input symbol, Please enter a valid ID Pasien</p>
+            </div>  
+            <?php endif ?>
+            <!-- end pesan error -->
+
+
 
             <form class="form-inline" action="<?php echo base_url(); ?>kasir/validation" method="post">
               <div class="form-group">
@@ -98,6 +105,18 @@
             <td >Harga</td>
             <td >Total</td>
           </tr>
+          <?php 
+          // foreach ($query->result() as $row)
+          // {
+          //         echo $row->title;
+          //         echo $row->name;
+          //         echo $row->body;
+          // }
+
+
+
+
+           ?>
           <tr>
             <td >...</td>
             <td >...</td>
