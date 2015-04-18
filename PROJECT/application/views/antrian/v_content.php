@@ -80,11 +80,18 @@
           <br>
           <br>
 
-          <?php if ($this->input->get('error')=='null'): ?>
+          <!-- pesan eror -->
+          <?php if ($this->input->get('error')=="null"): ?>
             <div class ="alert alert-danger" role="alert">
             Maaf field kosong! Silahkan input ID pasien kembali
             </div>
-          <?php endif ?>         
+
+          <?php endif ?>
+            <?php if ($this->input->get("error")=="simbol"): ?>
+            <div class = "alert alert-danger" role = "alert">
+              <p>Don't input symbol, Please enter a valid ID Pasien</p>
+            </div>  
+            <?php endif ?>  
 
 
           
