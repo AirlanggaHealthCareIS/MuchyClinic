@@ -21,7 +21,7 @@
    <!-- dari sini  -->
 
 
-<form class="form-horizontal" action="<?php echo base_url(); ?>pendaftaran/validasi" method="post">
+<form class="form-horizontal" action="<?php echo base_url(); ?>pendaftaran/save" method="post">
 <div id="pendaftaran" class="pendaftaran" >
 	<div class="container-fluid" style="margin-bottom:50px;">
       <div class="container">
@@ -157,7 +157,7 @@
 		  				ID Pasien
 		  			</div>
 		  			<div class="col-md-3">
-						<input type="text" name="First_Name" maxlength="30" size="20" />
+						<input type="text" name="id_pasien" maxlength="30" size="20" />
 		  			</div>
 	  			</div>
 
@@ -168,8 +168,8 @@
 		  			</div>
 		
 		  			<div class="col-md-6">
-						<input type="radio" name="Gender" value="Pria" />  Laki laki 
-						<input type="radio" name="Gender" value="Wanita" />  Perempuan 
+						<input type="radio" name="laki" value="Pria" />  Laki laki 
+						<input type="radio" name="perempuan" value="Wanita" />  Perempuan 
 		  			</div>
 	  			</div>
 
@@ -179,7 +179,7 @@
 		  				Tempat Lahir
 		  			</div>
 		  			<div class="col-md-3">
-						<input type="text" name="First_Name" maxlength="30" size="20" />
+						<input type="text" name="tempat_lahir" maxlength="30" size="20" />
 		  			</div>
 	  			</div>
 
@@ -189,7 +189,7 @@
 		  				Alamat
 		  			</div>
 		  			<div class="col-md-3">
-						<textarea name="Address" rows="1" cols="74"></textarea>
+						<textarea name="alamat" rows="1" cols="74"></textarea>
 		  			</div>
 	  			</div>	  			
 
@@ -199,7 +199,7 @@
 		  				Rt/Rw
 		  			</div>
 		  			<div class="col-md-3">
-						<input type="text" name="First_Name" maxlength="30" size="5" />
+						<input type="text" name="rt_rw" maxlength="30" size="5" />
 		  			</div>
 	  			</div>
 
@@ -209,7 +209,7 @@
 		  				Kecamatan
 		  			</div>
 		  			<div class="col-md-3">
-						<input type="text" name="First_Name" maxlength="30" size="20" />
+						<input type="text" name="kecamatan" maxlength="30" size="20" />
 		  			</div>
 	  			</div>
 
@@ -221,12 +221,12 @@
 		  			<div class="col-md-3">
 						<select name="Agama" id="Agama">
 							<option value="-1">Agama</option>
-							<option value="1">Islam</option>
-							<option value="2">Kristen Katolik</option>
-							<option value="3">Kristen Protestan</option>
-							<option value="4">Hindu</option>
-							<option value="5">Bundha</option>
-							<option value="5">Lain lain</option>
+							<option value="Islam">Islam</option>
+							<option value="Kristen Katolik">Kristen Katolik</option>
+							<option value="Kristen Protestan">Kristen Protestan</option>
+							<option value="Hindu">Hindu</option>
+							<option value="Budha">Bundha</option>
+							<option value="Lain-lain">Lain lain</option>
 							</select>
 		  			</div>
 	  			</div>
@@ -237,7 +237,7 @@
 		  				Telepon
 		  			</div>
 		  			<div class="col-md-3">
-						<input type="text" name="First_Name" maxlength="30" size="20" />
+						<input type="text" name="telepon" maxlength="30" size="20" />
 		  			</div>
 	  			</div>
 
@@ -247,7 +247,7 @@
 		  				Penanggung
 		  			</div>
 		  			<div class="col-md-3">
-						<input type="text" name="First_Name" maxlength="30" size="20" />
+						<input type="text" name="penanggung" maxlength="30" size="20" />
 		  			</div>
 	  			</div>	  			
 
@@ -259,9 +259,9 @@
 		  			<div class="col-md-3">
 						<select name="Pembayaran" id="Pembayaran">
 							<option value="-1">Pembayaran</option>
-							<option value="1">Cash</option>
-							<option value="2">Kredit</option>
-							<option value="5">Lain lain</option>
+							<option value="Cash">Cash</option>
+							<option value="Kredit">Kredit</option>
+							<option value="Lain-lain">Lain lain</option>
 							</select>
 		  			</div>
 	  			</div>
@@ -272,7 +272,7 @@
 		  				Tanggal Pendaftaran
 		  			</div>
 		  			<div class="col-md-3">
-						<input type="text" name="First_Name" maxlength="30" size="20" />
+						<input type="text" name="tanggal_pendaftaran" maxlength="30" size="20" />
 		  			</div>
 	  			</div>
 
@@ -288,7 +288,7 @@
 		  				Nama Pasien
 		  			</div>
 		  			<div class="col-md-3">
-						<input type="text" name="First_Name" maxlength="30" size="20" />
+						<input type="text" name="nama_pasien" maxlength="30" size="20" />
 		  			</div>
 	  			</div>
 
@@ -299,7 +299,7 @@
 		  				Tanggal Lahir
 		  			</div>
 		  			<div class="col-md-3">
-						<input type="text" name="First_Name" maxlength="30" size="20" />
+						<input type="text" name="tanggal_lahir" maxlength="30" size="20" />
 		  			</div>
 	  			</div>
 
@@ -309,7 +309,7 @@
 		  				Kelurahan
 		  			</div>
 		  			<div class="col-md-3">
-						<input type="text" name="First_Name" maxlength="30" size="20" />
+						<input type="text" name="kelurahan" maxlength="30" size="20" />
 		  			</div>
 	  			</div>
 
@@ -319,7 +319,7 @@
 		  				Kota
 		  			</div>
 		  			<div class="col-md-3">
-						<input type="text" name="First_Name" maxlength="30" size="20" />
+						<input type="text" name="kota" maxlength="30" size="20" />
 		  			</div>
 	  			</div>
 
@@ -329,7 +329,7 @@
 		  				Pekerjaan
 		  			</div>
 		  			<div class="col-md-3">
-						<input type="text" name="First_Name" maxlength="30" size="20" />
+						<input type="text" name="pekerjaan" maxlength="30" size="20" />
 		  			</div>
 	  			</div>
 
@@ -339,7 +339,7 @@
 		  				Hp
 		  			</div>
 		  			<div class="col-md-3">
-						<input type="text" name="First_Name" maxlength="30" size="20" />
+						<input type="text" name="handphone" maxlength="30" size="20" />
 		  			</div>
 	  			</div>
 
@@ -349,7 +349,7 @@
 		  				Hubungan
 		  			</div>
 		  			<div class="col-md-3">
-						<input type="text" name="First_Name" maxlength="30" size="20" />
+						<input type="text" name="hubungan" maxlength="30" size="20" />
 		  			</div>
 	  			</div>
 
@@ -357,12 +357,12 @@
 	  			<div class="row">
 
 	  				<div class="col-md-4">
-	  					<input type="checkbox" name="Hobby_Drawing" value="Drawing" />
+	  					<input type="checkbox" name="tanggungan_ibu" value="tanggungan ibu" />
 		  				Tanggungan Ibu
 		  			</div>
 		  			
 		  			<div class="col-md-3">
-						<input type="text" name="First_Name" maxlength="30" size="20" />
+						<input type="text" name="tanggungan_ibu" maxlength="30" size="20" />
 		  			</div>
 	  			</div>
 
@@ -370,7 +370,7 @@
 	  			<div class="row">
 		  			
 		  			<div class="col-md-6">
-						<input type="text" name="First_Name" maxlength="30" size="40" />
+						<input type="text" name="keterangan" maxlength="30" size="40" />
 		  			</div>
 	  			</div>
 
@@ -414,4 +414,7 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
   </body>
+
+
+
 </html>
