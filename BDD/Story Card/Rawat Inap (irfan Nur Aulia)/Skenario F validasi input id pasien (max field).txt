@@ -1,10 +1,10 @@
 Fitur : Admin memasukkan data pasien untuk melakukan rawat inap
-Skenario F	: Ketika menekan tombol search, ternyata input ID_pasien melebihi max field
+Skenario F	: Ketika menekan tombol search, ternyata input ID_pasien terdapat simbol yang tidak di izinkan
 	Given	: Pasien diharuskan melakukan rawat inap.
 	And	: Admin telah melakukan login.
 	And 	: Admin berada home page “Muchy Clinic”.
 	When	: Admin memilih menu rawat inap.
 	Then	: Admin berada halaman rawat inap.
 	When	: Admin memasukkan ID pasien.
-	Then	: Admin menerima pemberitahuan bahwa inputan ID pasien melebihi field yang sudah ditentukan sehingga keluar notif (danger/warning).
+	Then	: Admin menerima pemberitahuan bahwa inputan ID pasien terdapat simbol-simbol yang tidak diizinkan sehingga keluar notif (danger/warning).
 	And	: Admin mengisi kembali Id Pasien.
