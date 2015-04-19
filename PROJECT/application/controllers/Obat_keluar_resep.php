@@ -14,7 +14,11 @@ class Obat_keluar_resep extends CI_Controller {
 		$id = $this->input->post('idpasien');
 		if ($id==null || $id=="") {
 			redirect(base_url()."obat_keluar_resep?error=null");
-		} else {
+		} 
+		else if (preg_match('/[^a-z0-9]/', $id)) {
++				redirect(base_url().'obat_keluar_resep?error=symbol');
+ 		} 
+ 		else {
 			echo "id pasien yang diiinputkan adalah ".$id;
 		}
 	}

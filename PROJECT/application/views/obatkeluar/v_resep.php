@@ -6,10 +6,15 @@
               <h3>Resep</h3>
               <br>
               <div class="row">
-                <div class="col-md-5 col-md-offset-1">
+                <div class="col-md-5 col-md-offset-1" style="text-align: left;">
                   <?php if ($this->input->get('error')=="null"): ?>
                     <div class="alert alert-danger">
                       Maaf Anda belum menginputkan id pasien
+                    </div>
+                  <?php endif ?>
+                  <?php if ($this->input->get('error')=="symbol"): ?>
+                    <div class="alert alert-danger">
+                      Maaf Anda tidak diizinkan menginputkan simbol yang tidak diizinkan
                     </div>
                   <?php endif ?>
                   <form class="form-inline" action="<?php echo base_url(); ?>obat_keluar_resep/validasi" method="post">
