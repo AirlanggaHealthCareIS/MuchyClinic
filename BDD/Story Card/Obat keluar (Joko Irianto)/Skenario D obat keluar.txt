@@ -1,0 +1,12 @@
+Feature : Obat keluar (Resep)
+Skenario D: Field ID Pasien terinput Simbol 
+Aktor : Apoteker
+
+Given saya telah melakukan login sebagai apoteker
+When saya memilih menu obat keluar
+And saya memilih submenu resep
+Then saya seharusnya ada di halaman resep
+When saya menginput ID Pasien dengan simbol yang tidak diizinkan (exp #$%(@#^?<)
+And saya menekan tombol cari resep
+Then muncul peringatan bahwa Maaf Anda tidak diizinkan menginputkan simbol yang tidak diizinkan
+And saya harus menginputkan field ID Pasien dengan benar
