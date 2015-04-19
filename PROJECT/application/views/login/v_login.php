@@ -8,7 +8,7 @@
     <title>Login</title>
 
     <!-- Bootstrap -->
-    <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -25,19 +25,31 @@
               <h2>SELAMAT DATANG DI MUCHY CLINIC!
               </h2>
               <br>
-              
+
               <?php if ($this->input->get("error")=="null"): ?>
             <div class = "alert alert-danger" role = "alert"> 
               <p>sepurane isien disek boss</p> 
             </div>  
             <?php endif ?>
+
+              <?php if ($this->input->get("error")=="nullusername"): ?>
+            <div class = "alert alert-danger" role = "alert"> 
+              <p>sepurane isien disek boss username mu</p> 
+            </div>  
+            <?php endif ?>
+
+            <?php if ($this->input->get("error")=="nullpassword"): ?>
+            <div class = "alert alert-danger" role = "alert"> 
+              <p>sepurane isien disek boss password mu</p> 
+            </div>  
+            <?php endif ?>
             
 
-              <form class="form-horizontal" action="<?php echo base_url(); ?>clogin/validasi " method="post">
+              <form class="form-horizontal"action="<?php echo base_url(); ?>welcome/validasi " method="post">
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Username</label>
                   <div class="col-sm-10">
-                    <input type="normal" class="form-control" id="inputUsername" name="username" placeholder="Username">
+                    <input type="Username" class="form-control" id="inputUsername" name="username" placeholder="Username">
                   </div>
                 </div>
                 <div class="form-group">
