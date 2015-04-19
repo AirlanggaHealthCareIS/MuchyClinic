@@ -7,16 +7,14 @@
         <div class="row">
           <div class="col-md-4">
             <?php if ($this->input->get('error')=='null'): ?>
-              
-           
-              <div class= "alert alert-danger" role="alert">
+               <div class= "alert alert-danger" role="alert">
                 maaf
               </div>
              <?php endif ?>
             <form class="form-inline" action="<?php echo base_url()?>inventory/validasi" method="post">
               <div class="form-group">
                 <label class="sr-only" for="exampleInputEmail3">Nama Obat</label>
-                <input type="normal" name= "id_obat" class="form-control" id="exampleInputEmail3" placeholder="Nama Obat">
+                <input type="normal" name= "nama_obat" class="form-control" id="exampleInputEmail3" placeholder="Nama Obat">
               </div>
               
               <button type="submit" class="btn btn-default">Search</button>
@@ -41,19 +39,19 @@
 
         <table class="table table-bordered">
           <tr>
-            <td >No</td>
-            <td >Nama Obat</td>
-            <td >Jenis</td>
-            <td >Stok</td>
-            <td >Harga</td>
+            <td class="info">Id obat</td>
+            <td class="info">Nama Obat</td>
+            <td class="info">Jenis</td>
+            <td class="info">takaran</td>
+            <td class="info">Harga</td>
             
           </tr>
           <tr>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
+            <td ><?php echo $ido ?></td>
+            <td ><?php echo $nama_obat ?></td>
+            <td ><?php echo $jenis ?></td>
+            <td ><?php echo $takaran ?></td>
+            <td ><?php echo $harga ?></td>
            
           </tr>
           <tr>
