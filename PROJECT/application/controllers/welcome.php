@@ -46,6 +46,13 @@ class Welcome extends CI_Controller {
 			echo "$password";
 		}
 		
+		if (preg_match('/[^a-z0-9]/',$username)) {
+			redirect(base_url().'Welcome?error=symbol');	
+		}
+		
+
+		
+		
 	}
 	private function getcoba_psi($ido){
 		$query = $this->db->query('SELECT * FROM `karyawan` WHERE `id` = '.$ido);
