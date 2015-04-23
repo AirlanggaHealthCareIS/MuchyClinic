@@ -9,9 +9,9 @@
 							Maaf syarat input belum terpenuhi
 							</div>	
 						<?php endif ?>
-						<?php if ($this->input->get('cmbx')=="null"): ?>
+						<?php if ($this->input->get('erroidpemeriksaan')=="null"): ?>
 							<div class="alert alert-danger" role="alert">
-							Maaf ID Pemeriksaan belum terpilih
+							Maaf ID Pemeriksaan belum terinput
 							</div>	
 						<?php endif ?>
 						<?php if ($this->input->get('errorobat')=="null"): ?>

@@ -35,7 +35,7 @@ class Resep extends CI_Controller {
 			//echo "Maaf field anda kosong";
 		}
 		elseif ($idpemeriksaan==null || $idpemeriksaan=="") {
-			redirect(base_url().'resep?cmbx=null');
+			redirect(base_url().'resep?erroidpemeriksaan=null');
 			//echo "Maaf field anda kosong";
 		}
 		else  {
