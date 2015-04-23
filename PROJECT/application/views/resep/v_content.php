@@ -1,12 +1,11 @@
 <div class="container-fluid" style=" width: 900px;">
 	<div class = "container" style="margin-top: 43px;">
 		<h1>Resep Muchy Clinic</h1>
-			<form class ="" action="<?php echo base_url(); ?>resep/validasi" method="post">
 				<div class = "row">
 					<div class = "col-md-3" >
 						<?php if ($this->input->get('error')=="null"): ?>
 							<div class="alert alert-danger" role="alert">
-							Maaf syarat input belum terpenuhi
+							Maaf Obat dan Keterangan Belum Terinput
 							</div>	
 						<?php endif ?>
 						<?php if ($this->input->get('erroidpemeriksaan')=="null"): ?>
@@ -25,19 +24,25 @@
 							</div>	
 						<?php endif ?>
 						
+						<form class ="" action="<?php echo base_url(); ?>resep/validasi" method="post">
 						<div class="form-group">
 							<label for="IDPemeriksaan" style =margin-top:30px;>ID Pemeriksaan</label>
 									<input type="normal" name="idpemeriksaan" class="form-control" id="IDPemeriksaan" placeholder="ID Pemeriksaan">
 									<button type="submit" class="btn btn-default">Search</button>
 							</div>
+						</form>	
 							<table class="table">
 								<tr>
 									<td class="info">ID Pemeriksaan</td>
-									<!-- <td class="info"><?php echo $ida ?></td> -->
+									<td class="info"><?php echo $idpemeriksaan ?></td>
 								</tr>
 								<tr>
 									<td class="info">Nama Pasien</td>
-									<!-- <td class="info"><?php echo $nama ?></td> -->
+									<td class="info"><?php echo $namapasien ?></td>
+								</tr>
+								<tr>
+									<td class="info">Nama Dokter</td>
+									<td class="info"><?php echo $namadokter ?></td>
 								</tr>
 							</table>
 							<div>
@@ -57,7 +62,7 @@
 			  				<option value="004">004</option>
 							</select> 
 						</div> -->
-					
+				<form class ="" action="<?php echo base_url(); ?>resep/validasi2" method="post">
 					<div class = "col-md-12">
 						<div class="row">
 							<div class="col-md-4">
@@ -75,7 +80,8 @@
 						</div>
 								<button type="submit" class="btn btn-default" style=" margin-left: 325px;margin-top: 40px;">Add</button>
 						
-				</div>
+					</div>
+				</form>
 					
 				</div>
 				<!-- <div class="col-md-4 col-md-offset-2"> -->
@@ -87,19 +93,19 @@
 					<td class="success">Keterangan</td>
 					</tr>
 					<tr>
-					<td class="active">1</td>
-					<td class="active">Amoxicilin</td>
-					<td class="active">3x1 sehari setelah makan</td>
+					<td class="active"></td>
+					<td class="active"></td>
+					<td class="active"></td>
 					</tr>
 					<tr>
-					<td class="active">2</td>
-					<td class="active">.......</td>
-					<td class="active">.......</td>
+					<td class="active"></td>
+					<td class="active"></td>
+					<td class="active"></td>
 					</tr>
 				</table>
 				<button type="submit" class="btn btn-default" style=" margin-left: 350px;margin-top: 40px;">Save</button>
  				</div>
- 				</form>	
+ 				<!-- </form>	 -->
 			</div>
 	</div>
 </div>
