@@ -1,0 +1,12 @@
+Feature		: Aktor (dokter membuat resep dan nantinya akan diterima oleh apoteker
+Skenario A	: Menginput karakter yang tidak sesuai pada text field
+
+Given	dokter berada pada home page Muchy Clinic
+And	dokter sudah melakukan Log In
+And	dokter sudah melakukan pemeriksaan pasien
+When	dokter memilih menu Resep
+Then 	dokter seharusnya berada pada menu Resep
+When	dokter memilih id pemeriksaan “0011”
+And	dokter menginput obat dengan karakter yang tidak sesuai seperti "$#@%*"
+Then	dokter seharusnya menerima konfirmasi bahwa data yang diinputkan tidak sesuai
+And	dokter menginput kembali obat dengan nama yang sesuai 
