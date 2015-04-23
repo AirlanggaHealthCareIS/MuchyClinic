@@ -26,6 +26,29 @@
 						<?php endif ?>
 						
 						<div class="form-group">
+							<label for="IDPemeriksaan" style =margin-top:30px;>ID Pemeriksaan</label>
+									<input type="normal" name="idpemeriksaan" class="form-control" id="IDPemeriksaan" placeholder="ID Pemeriksaan">
+									<button type="submit" class="btn btn-default">Search</button>
+							</div>
+							<table class="table">
+								<tr>
+									<td class="info">ID Pemeriksaan</td>
+									<!-- <td class="info"><?php echo $ida ?></td> -->
+								</tr>
+								<tr>
+									<td class="info">Nama Pasien</td>
+									<!-- <td class="info"><?php echo $nama ?></td> -->
+								</tr>
+							</table>
+							<div>
+							
+						</div>
+						</div>
+						</div>
+						
+
+
+						<!-- <div class="form-group">
 							<select id="inputIDPemeriksaan" name="idpemeriksaan" class="form-control" style="margin-top: 20px;">
 							<option value="">ID Pemeriksaan</option>
 			  				<option value="001">001</option>
@@ -33,8 +56,8 @@
 			  				<option value="003">003</option>
 			  				<option value="004">004</option>
 							</select> 
-						</div>
-					</div>
+						</div> -->
+					
 					<div class = "col-md-12">
 						<div class="row">
 							<div class="col-md-4">
@@ -55,7 +78,7 @@
 				</div>
 					
 				</div>
-				<div class="col-md-4 col-md-offset-2">
+				<!-- <div class="col-md-4 col-md-offset-2"> -->
 					<hr>
 					<table class="table table-bordered" style="margin-top: 45px;">
 					<tr>
@@ -74,7 +97,7 @@
 					<td class="active">.......</td>
 					</tr>
 				</table>
-				<button type="submit" class="btn btn-default" style=" margin-left: 125px;margin-top: 40px;">Save</button>
+				<button type="submit" class="btn btn-default" style=" margin-left: 350px;margin-top: 40px;">Save</button>
  				</div>
  				</form>	
 			</div>
