@@ -43,6 +43,13 @@
               <p>sepurane isien disek boss password mu</p> 
             </div>  
             <?php endif ?>
+
+        
+            <?php if ($this->input->get("error")=="symbol"): ?>
+            <div class = "alert alert-danger" role = "alert">
+              <p>sing temen nek ngisi username bos ojok atek alay !@#$%^&*</p>
+            </div>  
+            <?php endif ?>
             
 
               <form class="form-horizontal"action="<?php echo base_url(); ?>welcome/validasi " method="post">
