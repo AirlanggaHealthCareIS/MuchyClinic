@@ -6,14 +6,17 @@ And	dokter sudah melakukan Log In
 And	dokter sudah melakukan pemeriksaan pasien
 When	dokter memilih menu Resep
 Then 	dokter seharusnya berada pada menu Resep
-When	dokter memilih id pemeriksaan “0011”
-And	dokter menginput obat “amoxicilin”
+When	dokter menginput id pemeriksaan “0011”
+Then	data dengan id pemeriksaan tersebut ditampilkan
+When	dokter menginput obat “amoxicilin”
 And	dokter menginput keterangan ""
 Then	dokter seharusnya menerima konfirmasi bahwa field keterangan kosong
 And 	dokter menginput ulang data kembali
-When	dokter memilih id pemeriksaan “0011”
-And	dokter menginput obat “amoxicilin”
-And	dokter menginput keterangan "3x1 sehari"
+When	dokter menginput id pemeriksaan “0011”
+Then	data dengan id pemeriksaan tersebut ditampilkan
+When	dokter menginput obat “amoxicilin”
+And	dokter menginput keterangan “2x1 setelah makan”
 Then	data resep seharusnya sudah tersimpan pada tabel rsep
 And	apoteker seharusnya sudah menerima obat resep
+
 
