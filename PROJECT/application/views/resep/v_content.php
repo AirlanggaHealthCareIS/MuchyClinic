@@ -1,8 +1,10 @@
 <div class="container-fluid" style=" width: 900px;">
-	<div class = "container" style="margin-top: 43px;">
-		<h1>Resep Muchy Clinic</h1>
-				<div class = "row">
-					<div class = "col-md-3" >
+	<!-- <div class = "container" style="margin-top: 43px;"> -->
+		<h1 class = "text-center">Resep Muchy Clinic</h1>
+			<div class = "container-fluid text-center">
+            	<img src = "<?php echo base_url()?>assets/images/logo2.png" alt="Responsive image"> 
+            </div>
+				
 						<?php if ($this->input->get('error')=="null"): ?>
 							<div class="alert alert-danger" role="alert">
 							Maaf Obat dan Keterangan Belum Terinput
@@ -23,45 +25,97 @@
 							Maaf Field Keterangan masih kosong
 							</div>	
 						<?php endif ?>
-						
-						<form class ="" action="<?php echo base_url(); ?>resep/validasi" method="post">
-						<div class="form-group">
-							<label for="IDPemeriksaan" style =margin-top:30px;>ID Pemeriksaan</label>
-									<input type="normal" name="idpemeriksaan" class="form-control" id="IDPemeriksaan" placeholder="ID Pemeriksaan">
-									<button type="submit" class="btn btn-default">Search</button>
-							</div>
-						</form>	
-							<table class="table">
-								<tr>
-									<td class="info">ID Pemeriksaan</td>
-									<td class="info"><?php echo $idpemeriksaan ?></td>
-								</tr>
-								<tr>
-									<td class="info">Nama Pasien</td>
-									<td class="info"><?php echo $namapasien ?></td>
-								</tr>
-								<tr>
-									<td class="info">Nama Dokter</td>
-									<td class="info"><?php echo $namadokter ?></td>
-								</tr>
-							</table>
-							<div>
-							
-						</div>
-						</div>
-						</div>
-						
 
+	<div class = "row">
+		<div class = "col-md-4" >			
+			<form class ="form-inline" action="<?php echo base_url(); ?>resep/validasi" method="post">
+				<div class="form-group">
+					<input type="normal" name="idpemeriksaan" class="form-control" id="IDPemeriksaan" placeholder="ID Pemeriksaan">
+				</div>
+					<button type="submit" class="btn btn-primary">Search</button>
 
-						<!-- <div class="form-group">
-							<select id="inputIDPemeriksaan" name="idpemeriksaan" class="form-control" style="margin-top: 20px;">
-							<option value="">ID Pemeriksaan</option>
-			  				<option value="001">001</option>
-			  				<option value="002">002</option>
-			  				<option value="003">003</option>
-			  				<option value="004">004</option>
-							</select> 
-						</div> -->
+			<br></br>
+			<table class="table">
+				<tr>
+					<td class="info">ID Pemeriksaan</td>
+					<td class="info"><?php echo $idpemeriksaan ?></td>
+				</tr>
+				<tr>
+					<td class="active">ID Pasien</td>
+					<td class="active"><?php echo $idpasien ?></td>
+				</tr>
+				<tr>
+					<td class="info">Nama Pasien</td>
+					<td class="info"><?php echo $namapasien ?></td>
+				</tr>
+				<tr>
+					<td class="active">ID Dokter</td>
+					<td class="active"><?php echo $iddokter ?></td>
+				</tr>
+				<tr>
+					<td class="info">Nama Dokter</td>
+					<td class="info"><?php echo $namadokter ?></td>
+				</tr>
+			</table>
+			</form>	
+		</div>
+		<div class = "col-md-4" >
+				<form class ="form-inline" action="<?php echo base_url(); ?>resep/input" method="post">
+					<div class="form-group">
+						<label for="IDResep">ID Resep</label><br>
+						<input type="normal" name="idresep" class="form-control" id="IDResep" placeholder="ID Resep">
+					</div>	
+					<div class="form-group">
+						<label for="IDPemeriksaan">ID Pemeriksaan</label>
+						<input type="normal" disabled name="idpemeriksaan" class="form-control" id="IDPemeriksaan" placeholder="<?php echo $idpemeriksaan ?>">
+					</div>
+					<div class="form-group">
+						<label for="TglResep">Tanggal Resep</label>
+						<input type="normal" name="tglresep" class="form-control" id="TglResep" placeholder="dd-mm-yy">
+					</div>
+				</form>
+			</div>
+			<div class = "col-md-4">
+				<form class ="form-inline" action="<?php echo base_url(); ?>resep/input" method="post">
+						<label for="NamaPasien">ID Pasien</label><br>
+						<input type="normal" disabled name="namapasien" class="form-control" id="NamaPasien" placeholder="<?php echo $idpasien ?>">
+					<div class="form-group">
+						<label for="NamaDokter">ID Dokter</label><br>
+						<input type="normal" disabled name="namadokter" class="form-control" id="NamaDokter" placeholder="<?php echo $iddokter ?>">
+					</div>
+					<br></br>
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary">Save Data Resep</button>
+					</div>
+				</form>
+			</div>		
+				
+	</div>
+
+	<!-- <div class = "row">
+			<div class = "col-md-4" >
+				<form class ="form-inline" action="<?php echo base_url(); ?>resep/validasi" method="post">
+					<div class="form-group">
+						<label for="IDResep">ID Resep</label>
+						<input type="normal" name="idresep" class="form-control" id="IDResep" placeholder="ID Resep">
+					</div>	
+					<div class="form-group">
+						<label for="IDPemeriksaan">ID Pemeriksaan</label>
+						<input type="normal" disabled name="idpemeriksaan" class="form-control" id="IDPemeriksaan" placeholder="<?php echo $idpemeriksaan ?>">
+					</div>
+			</div>
+			<div class = "col-md-4">
+						<label for="NamaPasien">Nama Pasien</label>
+						<input type="normal" disabled name="namapasien" class="form-control" id="NamaPasien" placeholder="<?php echo $namapasien ?>">
+					<div class="form-group">
+						<label for="NamaDokter">Nama Dokter</label>
+						<input type="normal" disabled name="namadokter" class="form-control" id="NamaDokter" placeholder="<?php echo $namadokter ?>">
+					</div>
+			</div>		
+				</form>
+			
+	</div> -->
+
 				<form class ="" action="<?php echo base_url(); ?>resep/validasi2" method="post">
 					<div class = "col-md-12">
 						<div class="row">
