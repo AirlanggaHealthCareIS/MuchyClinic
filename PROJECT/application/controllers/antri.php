@@ -27,14 +27,13 @@ class Antri extends CI_Controller {
 			redirect(base_url().'antri?error=null');
 			//echo "Error";
 		} 
-		else {
-			if (preg_match('/[^a-z_\(\)\.\&\ \-0-9]/i', $id)) {
-				redirect(base_url().'antri?error=simbol');
-			} 
-			else{
-				echo "Sukses";
-			}
-			}
+		else if (preg_match('/[^a-z0-9]/', $id)) {
+			redirect(base_url().'antri?error=symbol');
+		} 
+		else{
+			echo "Sukses";
+			
+		}
 	}
 
 

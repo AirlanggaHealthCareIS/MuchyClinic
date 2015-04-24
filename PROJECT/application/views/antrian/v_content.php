@@ -87,7 +87,7 @@
             </div>
 
           <?php endif ?>
-            <?php if ($this->input->get("error")=="simbol"): ?>
+            <?php if ($this->input->get("error")=="symbol"): ?>
             <div class = "alert alert-danger" role = "alert">
               <p>Don't input symbol, Please enter a valid ID Pasien</p>
             </div>  
@@ -96,6 +96,7 @@
 
           
             <br>
+            <form class="form-horizontal" action = "<?php echo base_url()?>antri/validasi" method = "post">
               <label for="inputEmail3" class="col-sm-2 control-label">Nama dokter :</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control" id="inputdokter" placeholder="Dokter Rizqi" disabled>
@@ -109,7 +110,7 @@
             </div>
             <br>
 
-            <form class="form-horizontal" action = "<?php echo base_url()?>antri/validasi" method = "post">
+            
             <div class="form-group">
               <div class="text-center">
                 <button type="submit" class="btn btn-default btn-lg">Input ID pasien</button>
