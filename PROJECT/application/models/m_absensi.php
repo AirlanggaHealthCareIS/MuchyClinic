@@ -19,6 +19,9 @@ class m_absensi extends CI_Model {
                 $query = $this->db->query('INSERT INTO `absensi`(`id_karyawan`, `time`, `date`) VALUES ("'.$idk.'", "'.$timek.'","'.$datek.'")');
                 return $query;
         }
+        public function getAbsensiKaryawan($idkr, $timedkr, $datekr, $timepkr,$ketkr){
+                $query = $this->db->query('INSERT INTO `muchy`.`absensi` (`ID_ABSENSI`, `ID_APOTEKER`, `ID_DOKTER`, `ID_KARYAWAN`, `TGL_ABSENSI`, `JAM_DATANG`, `JAM_PULANG`, `LEMBUR`) VALUES (NULL, NULL, NULL, "'.$idkr.'", "'.$datekr.'", "'.$timepkr.'", "'.$timedkr.'", "'.$ketkr.'")');
+        }
 
        
 }

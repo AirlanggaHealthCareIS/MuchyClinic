@@ -6,7 +6,7 @@ class Cabsensi extends CI_Controller {
 		$this->load->view('v_header');
 		$this->load->view('absensi/v_absensi');
 		$this->load->view('v_footer');	
-		
+
 
 
 			
@@ -14,13 +14,26 @@ class Cabsensi extends CI_Controller {
 
 	}
 	
-	private function input()
+	/*private function input()
 	{
 		$idk = $this->input->post('id_karyawan');
 		$timek=$this->input->post('time_masuk');
 		$datek=$this->input->post('date_masuk');
 		$this->load->model("m_absensi");
 		$inputA = $this->m_absensi->getAbsensi($idk,$timek,$datek);
+
+	}*/
+	private function inputabsensikaryawan()
+	{
+
+		$idkr=$this->input->post('id_karyawan');
+		$datekr=$this->input->post('date_masuk');
+		$timedkr=$this->input->post('time_masuk');
+		$timepkr=$this->input->post('time_pulang');
+		$ketkr=$this->input->post('ket');
+		$this->load->model("m_absensi");
+		$inputX = $this->m_absensi->getAbsensiKaryawan($idkr,$timedkr,$datekr,$timepkr,$ketkr);
+
 	}
 	
 	public function panggil()
@@ -29,22 +42,34 @@ class Cabsensi extends CI_Controller {
 	}
 	public function validasi()
 	{
-		$id = $this->input->post('id_karyawan');
-		$time=$this->input->post('time_masuk');
-		$date=$this->input->post('date_masuk');
-		echo $id;
-		if($id==null|| $id==""){
+		$idkr=$this->input->post('id_karyawan');
+		$datekr=$this->input->post('date_masuk');
+		$timedkr=$this->input->post('time_masuk');
+		$timepkr=$this->input->post('time_pulang');
+		$ketkr=$this->input->post('ket');
+		
+		if($idkr==null|| $idkr==""){
 			//echo "kok kosong";
 			redirect(base_url().'cabsensi?error=null');
 		}
-		if($time==null| $time=""){
+		if($timedkr==null| $timedkr=""){
 			redirect(base_url().'cabsensi?error=null');
 		}
-		if($date==null| $date=""){
+		if($timepkr==null| $timepkr=""){
+			redirect(base_url().'cabsensi?error=null');
+		}
+		if($datekr==null| $datekr=""){
+			redirect(base_url().'cabsensi?error=null');
+		}
+		if($ketkr==null| $ketkr=""){
 			redirect(base_url().'cabsensi?error=null');
 		}
 		else{
-			$this->input($id);
+			//panggil metod insert db
+			$in = $this->inputabsensikaryawan();
+			redirect(base_url().'cabsensi?status=sukses');
 		}
 	}
+
+
 }
