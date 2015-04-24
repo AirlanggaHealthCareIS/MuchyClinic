@@ -39,20 +39,13 @@
               </tr>
             </table>
             </div>
-
-            <br>
             </form>
-            <br></br>
-
           </div>
-          <div class="col-md-4">
 
-          </div>
-          <div class="col-md-4">
-          </div>
-        </div>
 
-        <table class="table table-bordered">
+
+          <div class="col-md-8">
+            <table class="table table-bordered">
           <tr style="background-color: rgb(226, 246, 245);">
             <td ><center>ID Periksa</center></td>
             <td ><center>Tanggal Periksa</center></td>
@@ -60,36 +53,24 @@
             <td ><center>Diagnosa</center></td>
             <td ><center>Obat</center></td>
           </tr>
-          <tr>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-          </tr>
-          <tr>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-          </tr>
-          <tr>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-          </tr>
-          <tr>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-          </tr>
-        </table>
+
+              <?php if ($drekammedis!=null): ?>       
+                   <?php foreach($drekammedis->result() as $row) {?>
+                    
+                      <tr>
+                        <td ><?php echo $row->ID_PERIKSA ?></td>
+                        <td ><?php echo $row->TANGGAL_PERIKSA ?></td>
+                        <td ><?php echo $row->NAMA_DOKTER ?></td>
+                        <td ><?php echo $row->NAMA_PENYAKIT ?></td>
+                      </tr>
+
+                    <?php } ?>
+                    <?php endif ?>
+            </table>
         <button type="reset" class="btn btn-info" style = "width:100px">Back</button>
 
+          </div>
+      </div>
+      </div>
       </div>
     </div>

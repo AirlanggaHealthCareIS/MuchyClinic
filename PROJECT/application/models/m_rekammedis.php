@@ -8,12 +8,9 @@ class M_rekammedis extends CI_Model {
         }
 
         public function getRekamMedis($id){
-                $query = $this->db->query("SELECT * FROM `data_pasien` WHERE `id_pasien` = '".$id."'");
+                $query = $this->db->query("SELECT * FROM `pasien` WHERE `ID_PASIEN` = '".$id."'");
 
                  return $query;
-
-
-                // return $row;
         }
 
 }
