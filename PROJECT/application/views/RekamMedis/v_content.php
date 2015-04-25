@@ -52,16 +52,19 @@
             <td ><center>Dokter</center></td>
             <td ><center>Diagnosa</center></td>
             <td ><center>Obat</center></td>
+            <!-- <td ><center>Tindakan Medis</center></td> -->
           </tr>
 
               <?php if ($drekammedis!=null): ?>       
                    <?php foreach($drekammedis->result() as $row) {?>
                     
-                      <tr>
+                       <tr >
                         <td ><?php echo $row->ID_PERIKSA ?></td>
                         <td ><?php echo $row->TANGGAL_PERIKSA ?></td>
                         <td ><?php echo $row->NAMA_DOKTER ?></td>
                         <td ><?php echo $row->NAMA_PENYAKIT ?></td>
+                        <td ><?php echo $row->NAMA_OBAT ?></td>
+                        <!-- <td ><?php echo $row->NAMA_TINDAKAN ?></td> -->
                       </tr>
 
                     <?php } ?>
@@ -70,7 +73,7 @@
         <button type="reset" class="btn btn-info" style = "width:100px">Back</button>
 
           </div>
-      </div>
+   </div>
       </div>
       </div>
     </div>
