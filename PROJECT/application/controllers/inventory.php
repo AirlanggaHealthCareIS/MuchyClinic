@@ -4,7 +4,7 @@ class Inventory extends CI_Controller {
 
 	public function index()
 	{
-		$data = array("ido"=>"", "nama_obat"=>"", "jenis"=>" ", "takaran"=>" ", "harga"=>""); 
+		$data = array("idobat"=>"", "nama_obat"=>"", "kategori"=>" ", "harga"=>" ", "obat_kritis"=>"", "query2"=>null); 
 
       	$this->load->view('v_header');
 	    $this->load->view('inventory/v_conten', $data);
@@ -44,15 +44,14 @@ class Inventory extends CI_Controller {
 
 		$this->load->model("m_inventory");
 		$query = $this->m_inventory->getObat($nama_obat);
-		$ro = $query->row();
 
-		$data = array("ido"=>$ro->id_obat, "nama_obat"=>$ro->nama_obat, "jenis"=>$ro->jenis, "takaran"=>$ro->takaran, "harga"=>$ro->harga); 
+		// $data = array("idobat"=>$ro->ID_OBAT, "nama_obat"=>$ro->NAMA_OBAT, "kategori"=>$ro->KATEGORI_OBAT, "harga"=>$ro->HARGA, "obat_kritis"=>$ro->OBAT_KRITIS); 
+			$data = array('query2'=>$query);
 			$this->load->view('v_header');
 	   		$this->load->view('inventory/v_conten', $data);
 			$this->load->view('v_footer');
 
 	}
-
 	/*public function getObat($ido){
 		$query = $this->db->query('SELECT * FROM `obat_pasien` WHERE `nama_obat`= "'.$nobat.'"');
 		$row = $query->row();

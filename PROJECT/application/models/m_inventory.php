@@ -11,10 +11,10 @@ class M_inventory extends CI_Model {
         }
 
        public function getObat($nobat){
-                $query = $this->db->query("SELECT * FROM `obat_pasien` WHERE `nama_obat`= '".$nobat."'");
+                $query = $this->db->query("SELECT * FROM `obat` WHERE `NAMA_OBAT` LIKE '%".$nobat."%'");
                  // $row = $query->row();
-                 //$row=$query_>row();
 
+                 //$row=$query_>row();
                 return $query;
                
         }

@@ -41,43 +41,24 @@
           <tr>
             <td class="info">Id obat</td>
             <td class="info">Nama Obat</td>
-            <td class="info">Jenis</td>
-            <td class="info">takaran</td>
+            <td class="info">Kategori</td>
             <td class="info">Harga</td>
+            <td class="info">Obat Kritis</td>
             
           </tr>
+          <?php if($query2!=null): ?>
+          <?php foreach ($query2->result_array() as $row): ?>            
           <tr>
-            <td ><?php echo $ido ?></td>
-            <td ><?php echo $nama_obat ?></td>
-            <td ><?php echo $jenis ?></td>
-            <td ><?php echo $takaran ?></td>
-            <td ><?php echo $harga ?></td>
-           
+            <td ><?php echo $row['ID_OBAT']; ?></td>
+            <td ><?php echo $row['NAMA_OBAT']; ?></td>
+            <td ><?php echo $row['KATEGORI_OBAT']; ?></td>
+            <td ><?php echo $row['HARGA']; ?></td>
+            <td ><?php echo $row['OBAT_KRITIS']; ?></td>
           </tr>
-          <tr>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-           
-          </tr>
-          <tr>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-            
-          </tr>
-          <tr>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-           
-          </tr>
+          <?php endforeach ?>
+        <?php endif ?>
+          
+          
         </table>
 
       </div>
