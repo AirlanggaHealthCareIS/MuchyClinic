@@ -43,12 +43,6 @@
             <div class = "alert alert-danger" role = "alert">
               <p>Don't input symbol, Please enter a valid ID Pasien</p>
             </div>  
-            
-            <?php endif ?>
-            <?php if ($this->input->get("error")=="invalidid"): ?>
-            <div class = "alert alert-danger" role = "alert">
-              <p>ID Pasien Tidak di temukan dalam database, Please enter a valid ID Pasien</p>
-            </div>  
             <?php endif ?>
             <!-- end pesan error -->
 
@@ -112,6 +106,24 @@
 
             <td >Total</td>
           </tr>
+
+
+
+          <?php
+          
+                foreach($drawatinap as $row){
+        ?>
+            <tr>
+            <td><?php echo $row->ID_RAWAT_INAP ?></td>
+            <td><?php echo $row->ID_KAMAR_INAP ?></td>
+            <td><?php echo $row->ID_PASIEN ?></td>
+            <td><?php echo $row->ID_DOKTER ?></td>
+            <td><?php echo $row->TGL_MASK ?></td>
+            <td><?php echo $row->TGL_KELUAR ?></td>
+            <td><?php echo $row->TOTAL_BIAYA_RWT ?></td>
+            
+        </tr>
+           <?php } ?>
 
 
         </table>

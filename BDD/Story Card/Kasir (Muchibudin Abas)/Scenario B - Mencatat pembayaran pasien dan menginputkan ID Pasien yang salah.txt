@@ -1,8 +1,8 @@
 Feature 	: Kasir dapat mencatat seluruh transaksi pembayaran pasien.
 
-Scenario 2: Mencatat pembayaran pasien dan menginputkan ID Pasien yang 	salah
+Scenario 2: Mencatat pembayaran pasien dan menginputkan ID Pasien yang salah (ID Pasien tidak ditemukan dalam database)
 Give	: Kasir telah berada pada menu kasir
 When	: Kasir melakukan kesalahan saat menginputkan ID Pasien
-Then	: Kasir menerima pemberitahuan bahwa “ID Pasien salah”
+Then	: Kasir menerima pemberitahuan bahwa “ID Pasien tidak ditemukan dalam database”
 When	: Kasir kembali menginputkan ID Pasien
 
