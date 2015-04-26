@@ -1,0 +1,8 @@
+Feature : Pendaftaran Pasien oleh Karyawan
+
+> Scenario : Karyawan mengklik tombol batal pada fitur pendaftaran pasien
+	Given 	: User telah masuk pada halaman admin
+	And 	: User berada pada halaman pendaftaran pasien 
+	When 	: User menginputkan data pada form pendaftaran pasien
+	And 	: User mengklik tombol batal pada fitur ini 
+	Then 	: Sistem akan mereset ulang data input form pendaftaran dan user harus mengisi ulang 

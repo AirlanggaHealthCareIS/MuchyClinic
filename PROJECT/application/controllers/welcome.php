@@ -5,7 +5,7 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('header');
+		$this->load->view('v_header');
 		$this->load->view('login/v_login');
 		// $username = $this->getcoba_psi(1);
 		// echo $username;
@@ -19,7 +19,7 @@ class Welcome extends CI_Controller {
 	}
 	public function panggil()
 	{
-		$this->load->view('header');
+		$this->load->view('v_header');
 		$this->load->view('login/v_login');
 		$this->load->view('m_masuk');
 	}

@@ -1,0 +1,6 @@
+Feature : Pendaftaran Pasien oleh Karyawan
+
+> Scenario : Karyawan mencari nama pada database
+	Given 	: User telah masuk pada halaman database pendaftaran pasien
+	When 	: User menginputkan nama pasien pada tabel database pendaftaran pasien 
+	Then 	: User akan mendapatkan nama pasien yang dicari dan akan muncul pada  tabel database pasien
