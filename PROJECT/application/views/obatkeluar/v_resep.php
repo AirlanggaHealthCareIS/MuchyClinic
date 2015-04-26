@@ -20,6 +20,12 @@
                       Maaf Anda tidak diizinkan menginputkan simbol yang tidak diizinkan
                     </div>
                   <?php endif ?>
+                  <?php if ($this->input->get('act')=="notfound"): ?>
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      Maaf data resep dengan id dan tanggal tersebut tidak ditemukan
+                    </div>
+                  <?php endif ?>
                   <!-- end of messages -->
                   
                   <!-- untuk form input id dan tanggal -->
@@ -27,13 +33,13 @@
                     <div class="form-group">
                       <label for="tanggal" class="col-sm-2 control-label">Tanggal</label>
                       <div class="col-sm-10">
-                        <input type="date" name="tanggal" class="form-control" id="tanggal" placeholder="input tanggal">
+                        <input type="date" name="tanggal" value="21/04/2015<?php //echo $this->session->flashdata('tanggal'); ?>" class="form-control" id="tanggal" placeholder="input tanggal">
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="idpasien" class="col-sm-2 control-label">Id Pasien</label>
                       <div class="col-sm-10">
-                        <input type="normal" name="idpasien" class="form-control" id="idpasien" placeholder="input pasien id">
+                        <input type="normal" autofocus name="idpasien" value="<?php echo $this->session->flashdata('idpasien'); ?>" class="form-control" id="idpasien" placeholder="input pasien id">
                       </div>
                     </div>
                     <div class="form-group">
@@ -49,20 +55,20 @@
                   <div>
                     <table class="table">
                       <tr>
-                        <td class="info" width="30%">No Resep</td>
-                        <td class="info"></td>
+                        <td class="info" width="35%">No Resep</td>
+                        <td class="info">: <?php echo $this->session->flashdata('idr'); ?></td>
                       </tr>
                       <tr>
-                        <td class="info">Tanggal</td>
-                        <td class="info"></td>
+                        <td class="info">Tanggal Resep</td>
+                        <td class="info">: <?php echo $this->session->flashdata('tanggalr'); ?></td>
                       </tr>
                       <tr>
                         <td class="info">Nama Dokter</td>
-                        <td class="info"></td>
+                        <td class="info">: <?php echo $this->session->flashdata('dokterr'); ?></td>
                       </tr>
                       <tr>
                         <td class="info">Nama Pasien</td>
-                        <td class="info"></td>
+                        <td class="info">: <?php echo $this->session->flashdata('pasienr'); ?></td>
                       </tr>
                     </table>
                   </div>
@@ -80,23 +86,40 @@
               <!-- untuk tabel show detail resep -->
               <table class="table table-bordered table-hover">
                 <thead style="background-color: #337AB7;color: #FFF;">
+                  <td>No</td>
+                  <td>Id Obat</td>
                   <td>Nama Obat</td>
                   <td>Keterangan</td>
+                  <td>Kategori</td>
                   <td>Jumlah</td>
-                  <td>Keterangan</td>
+                  <td>Status</td>
                 </thead>
-                <tr>
-                  <td>Paramex</td>
-                  <td>3 x sehari</td>
-                  <td>12 kapsul</td>
-                  <td><input type="checkbox"> Ada</td>
-                </tr>
-                <tr>
-                  <td>Parasetamol</td>
-                  <td>3 x sehari</td>
-                  <td>15 kapsul</td>
-                  <td><input type="checkbox"> Ada</td>
-                </tr>
+                <?php if ($this->session->flashdata('detailr')!=null): ?> 
+                  <?php $r = $this->session->flashdata('detailr'); $i=0; ?>
+                  <?php foreach ($r as $row): ?>
+                    <?php $i = $i + 1; ?>
+                    <tr>
+                      <td><?php echo $i; ?></td>
+                      <td><?php echo $row->ID_OBAT; ?></td>
+                      <td><?php echo $row->NAMA_OBAT; ?></td>
+                      <td><?php echo $row->KET_RESEP; ?></td>
+                      <td><?php echo $row->KATEGORI_OBAT; ?></td>
+                      <td>QTY</td>
+                      <td><input type="checkbox"> Ada</td>
+                    </tr>
+                  <?php endforeach ?>
+                <?php endif ?>
+                <?php if ($this->session->flashdata('detailr')==null): ?>
+                  <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                  </tr>
+                <?php endif ?>
               </table>
               <!-- end of tabel detail resep -->
 
