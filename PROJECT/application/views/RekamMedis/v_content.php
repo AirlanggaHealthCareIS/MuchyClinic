@@ -1,6 +1,6 @@
 <div class ="container-fluid" style="margin-bottom:50px;">
       <div class="container">
-        <h1><center>Rekam Medis</center></h1>
+        <h1>Rekam Medis</h1>
         <br></br>
 
         <div class="row">
@@ -10,6 +10,16 @@
               Maaf Fild Kosong! Silahkan Input Id Pasien Kembali.
             </div>
             <?php endif ?>
+
+            <?php if ($this->input->get('error')=='notfound'): ?>
+              <div class ="alert alert-danger" role="alert">
+              Maaf Id Pasien Tidak Ditemukan! Silahkan Periksa Id Pasien Kembali.
+            </div>
+            <?php endif ?>
+
+
+
+
 
             <form class="form-inline" action = "<?php echo base_url()?>rekammedis/validasi" method = "post">
               <div class="form-group">
@@ -52,7 +62,7 @@
             <td ><center>Dokter</center></td>
             <td ><center>Diagnosa</center></td>
             <td ><center>Obat</center></td>
-            <!-- <td ><center>Tindakan Medis</center></td> -->
+            <td ><center>Tindakan Medis</center></td>
           </tr>
 
               <?php if ($drekammedis!=null): ?>       
@@ -64,7 +74,7 @@
                         <td ><?php echo $row->NAMA_DOKTER ?></td>
                         <td ><?php echo $row->NAMA_PENYAKIT ?></td>
                         <td ><?php echo $row->NAMA_OBAT ?></td>
-                        <!-- <td ><?php echo $row->NAMA_TINDAKAN ?></td> -->
+                        <td ><?php echo $row->NAMA_TINDAKAN ?></td>
                       </tr>
 
                     <?php } ?>

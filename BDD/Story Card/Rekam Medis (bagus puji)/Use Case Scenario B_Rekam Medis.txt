@@ -1,6 +1,6 @@
 US05 Rekam Medis
 Feature    : Dokter dapat melihat Rekam Medis pasien
-Skenario B : Dokter melihat Rekam Medis pasien dan Dokter menginputkan ID pasien salah
+Skenario B : Dokter melihat Rekam Medis pasien dan Dokter menginputkan ID pasien dengan inputan yang tidak diperbolehkan (Simbol)
 Given	Pasien Melakukan pemeriksaan
 And	Dokter Telah melakukan login
 And	Dokter telah berada pada home page Muchy Clinic

@@ -14,7 +14,6 @@ class Rekammedis extends CI_Controller {
 		$id = $this->input->post('id_pasien');
 		//echo $id;
 		if ($id==null || $id==""){
-			//echo "Maaf Fild Kosong! Silahkan Input Id Pasien Kembali.";
 			redirect(base_url().'rekammedis?error=null');
 		}
 		else {
@@ -32,18 +31,24 @@ class Rekammedis extends CI_Controller {
 
 
 		$query = $this->m_rekammedis->getRekamMedis($id); //ambil data
-        $ro = $query->row();
+		if ($query->num_rows() > 0) { //cek jika hasil ada
+	        $ro = $query->row();
 
-		$data = array(
-			"id_pasien"=>$ro->ID_PASIEN, 
-			"nama"=>$ro->NAMA_PASIEN, 
-			"golongan_darah"=>$ro->GOL_DARAH_PASIEN,
-			"jenis_kelamin"=>$ro->JENIS_KELAMIN_PASIEN,
-			"drekammedis"=>$this->m_ambildata->getrekammedis($id)); //tampil data di tabel dan ambil nilai
-		
-		$this->load->view("v_header");
-		$this->load->view("RekamMedis/v_content", $data);
-		$this->load->view("v_footer");	
+			$data = array(
+				"id_pasien"=>$ro->ID_PASIEN, 
+				"nama"=>$ro->NAMA_PASIEN, 
+				"golongan_darah"=>$ro->GOL_DARAH_PASIEN,
+				"jenis_kelamin"=>$ro->JENIS_KELAMIN_PASIEN,
+				"drekammedis"=>$this->m_ambildata->getrekammedis($id)); //tampil data di tabel dan ambil nilai
+			
+			$this->load->view("v_header");
+			$this->load->view("RekamMedis/v_content", $data);
+			$this->load->view("v_footer");	
+				
+		} else { // jika hasil tidak ada
+			redirect(base_url().'rekammedis?error=notfound');
+		}
+
 	}
 
 
