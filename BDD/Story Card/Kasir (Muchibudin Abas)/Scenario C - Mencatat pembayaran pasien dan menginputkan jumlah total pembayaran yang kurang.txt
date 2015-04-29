@@ -1,4 +1,4 @@
-Scenario 3 : Mencatat pembayaran pasien dan menginputkan jumlah 		total pembayaran yang kurang
+Scenario C : Mencatat pembayaran pasien dan menginputkan jumlah 		total pembayaran yang kurang
 Give	: Kasir telah berada pada menu kasir
 When	: Kasir menginputkan ID Pasien
 Then	: Kasir dapat melihat jumlah total pembayaran yang harus dibayar 		oleh pasien
