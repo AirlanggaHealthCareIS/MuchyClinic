@@ -1,0 +1,7 @@
+Fitur : Admin memasukkan data pasien untuk melakukan rawat inap
+Skenario d	: Id pasien tidak ada di database
+	Given	: Admin telah melakukan login
+	And	: Admin masuk halaman rawat inap
+	when 	: Admin memasukkan id pasien
+	And	: admin menekan tombol search
+	then	: keluar notifikasi action not found atau id pasien yang dimaksud tidak ada didatabase 

@@ -17,43 +17,9 @@ class Crawatinap extends CI_Controller {
 	{
 		redirect(base_url().'crawatinap?succesfully=succesfully');
 		$this->load->view('v_header');
-		$this->load->view('rawatinap/rawatinap', $data);
+		$this->load->view('rawatinap/rawatinap');
 		$this->load->view('v_footer');
 	}
-	public function daftarinap()
-	{
-		$this->load->database();
-		$this->load->model('mambildata');
-		$data['getkam'] = $this->mambildata->getkamar();
-
-		$data['drawatinap'] = $this->mambildata->getinap();
-
-		$this->load->view('v_header');
-		$this->load->view('rawatinap/daftarinap', $data);
-		$this->load->view('v_footer');
-	}
-	public function kamar()
-	{
-		$this->load->database();
-		$this->load->model('mambildata');
-		$data['getkam'] = $this->mambildata->getkamar();
-
-		$this->load->view('v_header');
-		$this->load->view('rawatinap/daftarinap', $data);
-		$this->load->view('v_footer');
-	}
-	
-	public function dokter()
-	{
-		$this->load->database();
-		$this->load->model('mambildata');
-		$data['getdok'] = $this->mambildata->getdokter();
-
-		$this->load->view('v_header');
-		$this->load->view('rawatinap/daftarinap', $data);
-		$this->load->view('v_footer');
-	}
-
 	public function validasi()
 	{
 		$this->load->helper(array('form', 'url'));
@@ -64,35 +30,40 @@ class Crawatinap extends CI_Controller {
 			// echo "kossoonngg!!!, isien disik";
 			redirect(base_url().'crawatinap?error=null 	');
 		}
+		else if (preg_match('/[^a-z0-9]/i', $id)) {
+				redirect(base_url().'crawatinap?error=symbol');
+ 		} 
 		else {
-			$this->tampilid($id);
+			$this->checkdb($id);
+		}
+	}
+	public function checkdb($id){
+		$this->session->set_userdata('idpasien3', $id);
+
+		$this->load->model('mambildata');
+		$query = $this->mambildata->getcariid($id);
+		if ($query->num_rows() > 0) { //cek jika hasil ada
+			$query = $query->row();
+		// 	//simpan data untuk di tampilkan
+			$this->storevalue($query->ID_PASIEN, $query->NAMA_PASIEN, $query->NO_TLP_PASIEN);
+			redirect(base_url().'crawatinap');
+		} else { // jika hasil tidak ada
+			redirect(base_url().'crawatinap?act=not_found');
 		}
 	}
 
-	public function tampilid($id){
-		$this->load->database();
-		
-		$id = $this->input->post('id_pasien');
-		$this->load->model('mambildata');
-		$kamar = $this->mambildata->getkamar();
-		$dokter = $this->mambildata->getdokter();
-		$query = $this->mambildata->getcariid($id);
-		$ro = $query->row();
-		$data = array("id_pasien"=> $ro->ID_PASIEN, "nama_pasien"=> $ro->NAMA_PASIEN, "no_telp_pas"=> $ro->NO_TLP_PAS_, "getkam"=>$kamar, "getdok"=>$dokter);
-		$this->session->idpasien = $ro->ID_PASIEN;
-
-		$this->load->view('v_header');
-		$this->load->view('rawatinap/rawatinap', $data);
-		$this->load->view('v_footer');
+	public function storevalue($idpas, $namapas, $telppas){
+		$this->session->set_flashdata('idpasien', $idpas);
+		$this->session->set_flashdata('namapas', $namapas);
+		$this->session->set_flashdata('telppas', $telppas);
 	}
-
 	public function insertinap(){
 		//echo "id_pasien = ".$this->session->idpasien;
 
 		$this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
 		$this->load->database();
-		$id_pas = $this->session->idpasien;
+		$id_pas = $this->session->userdata('idpasien3');
 		$kamar_r = $this->input->post('kamar');
 		$dokter_r = $this->input->post('dokter');
 		$tgl_masuk_r = $this->input->post('tgl_masuk');
@@ -104,13 +75,12 @@ class Crawatinap extends CI_Controller {
 		$day = $datetime1->diff($datetime2);
 		//echo "hari = ".$day->days;
 		$selisihday = $day->days;
-
-		if ($kamar_r == 'KMR01'){
-			$newharga = $selisihday*100000;
+		if ($kamar_r == 'KI001'){
+			$newharga = $selisihday*500000;
 			$this->insertinap2($id_pas, $kamar_r, $dokter_r, $tgl_masuk_r, $tgl_keluar_r, $newharga);
 		}
 		else {
-			$newharga = $selisihday*250000;
+			$newharga = $selisihday*300000;
 			$this->insertinap2($id_pas, $kamar_r, $dokter_r, $tgl_masuk_r, $tgl_keluar_r, $newharga);
 		}
 	}
@@ -121,22 +91,11 @@ class Crawatinap extends CI_Controller {
 		$this->load->database();
 		if ($id_pas == null || $kamar_r == null || $dokter_r == null || $tgl_masuk_r == null || $tgl_keluar_r == null || $newharga == null) {
 			redirect(base_url().'crawatinap?error=null 	');
+
 		} else {
 			$this->load->model('mambildata');
 			$insert_r = $this->mambildata->insertinap($id_pas, $kamar_r, $dokter_r, $tgl_masuk_r, $tgl_keluar_r, $newharga);
 			$this->index2();
 		}
-	}
-
-	public function lihatkamar(){
-		$this->load->database();
-
-		$kamar_r = $this->input->post('kamar');
-		$this->load->model('mambildata');
-		$data['drawatinap'] = $this->mambildata->getinap2($kamar_r);
-		$data['getkam'] = $this->mambildata->getkamar();
-		$this->load->view('v_header');
-		$this->load->view('rawatinap/daftarinap', $data);
-		$this->load->view('v_footer');
 	}
 }

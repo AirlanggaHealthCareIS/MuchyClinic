@@ -1,0 +1,7 @@
+Fitur : Admin memasukkan data pasien untuk melakukan rawat inap
+Skenario A	: Memasukkan ID pasien dengan benar
+	Given	: Admin telah melakukan login
+	And	: Admin masuk halaman rawat inap
+	when 	: Admin memasukkan id pasien
+	And	: admin menekan tombol search
+	then	: Admin melihat data-data pasien

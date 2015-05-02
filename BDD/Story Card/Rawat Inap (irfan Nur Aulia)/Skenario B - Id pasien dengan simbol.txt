@@ -1,0 +1,7 @@
+Fitur : Admin memasukkan data pasien untuk melakukan rawat inap
+Skenario B	: Memasukkan ID pasien dengan simbol
+	Given	: Admin telah melakukan login
+	And	: Admin masuk halaman rawat inap
+	when 	: Admin memasukkan id pasien dengan simbol ( mis : !\)
+	And	: admin menekan tombol search
+	then	: keluar notifikasi alert tidak boleh memasukkan simbol

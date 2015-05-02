@@ -1,0 +1,7 @@
+Fitur : Admin memasukkan data pasien untuk melakukan rawat inap
+Skenario c	: Id pasien kosong
+	Given	: Admin telah melakukan login
+	And	: Admin masuk halaman rawat inap
+	when 	: Admin belum memasukkan id pasien
+	And	: admin menekan tombol search
+	then	: keluar notifikasi check field

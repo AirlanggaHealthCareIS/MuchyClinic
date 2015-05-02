@@ -1,0 +1,11 @@
+Fitur : Admin memasukkan data pasien untuk melakukan rawat inap
+Skenario E	: insert rawat inap dengan kamar, dokter, tanggal masuk , tanggal keluar terisi semua
+	Given	: Admin telah melakukan login
+	And	: Admin masuk halaman rawat inap
+	And	: Admin sudah melihat id pasien, nama pasien, no telp pasien
+	when 	: Admin memilih dokter
+	And 	: Admin memilih kamar
+	And 	: Admin memilih tanggal masuk
+	And 	: Admin memilih tanggal keluar
+	And	: Admin menekan tombol submit
+	then	: keluar notifikasi input succesfully
