@@ -1,19 +1,21 @@
 <div class ="container-fluid" style="margin-bottom:50px;">
-      <div class="container">
+      <div class="">
         <h1>Rekam Medis</h1>
         <br></br>
 
         <div class="row">
           <div class="col-md-4">
             <?php if ($this->input->get('error')=='null'): ?>
-              <div class ="alert alert-danger" role="alert">
-              Maaf Fild Kosong! Silahkan Input Id Pasien Kembali.
+              <div class ="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              Sorry Fild is Empty! Please Input Id Pasien Again.
             </div>
             <?php endif ?>
 
             <?php if ($this->input->get('error')=='notfound'): ?>
-              <div class ="alert alert-danger" role="alert">
-              Maaf Id Pasien Tidak Ditemukan! Silahkan Periksa Id Pasien Kembali.
+              <div class ="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              Sorry Id Pasien Not Found! Please Check Id Pasien Again.
             </div>
             <?php endif ?>
 
@@ -24,7 +26,7 @@
             <form class="form-inline" action = "<?php echo base_url()?>rekammedis/validasi" method = "post">
               <div class="form-group">
                 <label class="sr-only" for="exampleInputId">ID Pasien</label>
-                <input type="normal" name = "id_pasien" maxlength = "7" class="form-control" id="exampleInputId" placeholder="ID Pasien" style = "width:250px">
+                <input type="normal" name = "id_pasien" maxlength = "7" class="form-control" id="exampleInputId" placeholder="ID Pasien" style = "width:210px">
               </div>
               <button type="submit" class="btn btn-info" style = "width:100px">Search</button>
               <br></br>
@@ -87,3 +89,25 @@
       </div>
       </div>
     </div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Rekam Medis Pasien Baru</h4>
+      </div>
+      <div class="modal-body">
+          Pasien Belum Memiliki Rekam Medis.
+      </div>      
+    </div>
+  </div>
+</div>
+
+
+
+
