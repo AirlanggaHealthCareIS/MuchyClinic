@@ -1,0 +1,6 @@
+Feature : Pendaftaran Pasien oleh Karyawan
+
+> Scenario : Karyawan melihat database detail pasien
+	Given 	: User telah masuk pada halaman database detail pendaftaran pasien
+	When 	: User membuka menu detail pendaftaran pasien 
+	Then 	: User akan dapat melihat daftar detail pasien pada menu ini.
