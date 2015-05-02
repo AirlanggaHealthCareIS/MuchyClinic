@@ -15,6 +15,9 @@ class Rekammedis extends CI_Controller {
 		//echo $id;
 		if ($id==null || $id==""){
 			redirect(base_url().'rekammedis?error=null');
+		}
+		else if (preg_match('/[^a-z0-9]/i', $id)) { //untuk symbol
+			redirect(base_url().'rekammedis?error=symbol');
 		}	
 		else {
 			$this->tampil($id);

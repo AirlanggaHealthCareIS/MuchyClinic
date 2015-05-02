@@ -19,6 +19,13 @@
             </div>
             <?php endif ?>
 
+            <?php if ($this->input->get("error")=="symbol"): ?>
+           <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              Don't input symbol, Please enter a valid ID Pasien
+            </div>  
+            <?php endif ?>
+
 
 
 
