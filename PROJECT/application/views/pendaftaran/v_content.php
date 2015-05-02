@@ -21,10 +21,10 @@
    <!-- dari sini  -->
 
 
-<form class="form-horizontal" action="<?php echo base_url(); ?>pendaftaran/save" method="post">
+
 <div id="pendaftaran" class="pendaftaran" >
 	<div class="container-fluid" style="margin-bottom:50px;">
-      <div class="container">
+     
         <!-- <img src="images/logo2.png"> -->
 
 		        <!-- <div class="container-fluid text-center" style="background-color: #606062"> -->
@@ -68,6 +68,7 @@
 
 		</div> -->
 
+
 		
 
 	<div class="row">
@@ -76,78 +77,25 @@
   		<div class="col-md-4">
 				
 				
-	<h4>Detail Pendaftaran pasien</h4>
-	<p>cari menggunakan nama atau id pasien</p>
-	<input type="text" name="carinama" maxlength="30" size="50" id="cari_nama" />
-    <br><br>
-        <table class="table table-bordered">
-          <tr>
-            <td >No</td>
-            <td >Nama Pasien</td>
-            <td >Id Pasien</td>
-            <td >Keterangan</td>
- 
-          </tr>
-          <tr>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-          </tr>
-          <tr>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-          </tr>
-          <tr>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-          </tr>
-          <tr>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-            <td >...</td>
-          </tr>
-        </table>  				
-
-
-  		<p>Jumlah Pasien = 22</p>
-  		<input type="radio" name="Gender" value="satu" />  Satu Per satu <br>
-		<input type="radio" name="Gender" value="semua" />  Cetak Semua
-
-		<br><br>
-		<button type="submit" class="btn btn-primary">Cetak</button>
-
-		<br><br><br><br><br><br><br><br>
-		<div class="row">
-
-			<div class="col-md-3">
-				 <button type="submit" class="btn btn-primary">Tambah</button>
-			</div>
-
-			<div class="col-md-2">
-				 <button type="submit" class="btn btn-primary">Ubah</button>
-			</div>
-
-			<div class="col-md-3">
-				 <button type="submit" class="btn btn-primary">Hapus</button>
-			</div>
-
+	
 		</div>
 
   		</div>
+  	</div>
+  				
 
+<form class="form-horizontal" action="<?php echo base_url(); ?>pendaftaran/validasi" method="post">  		
 
-  				<?php if ($this->input->get("error")=="null"): ?>
+<?php if ($this->input->get("error")=="null"): ?>
 				<div class="alert alert-danger" role="alert">
-				maaf anda harus melengkapi terlebih dahulu
+				Maaf Lengkapi Field Yang Kosong Terlebih Dahulu
 				</div>
 				<?php endif ?>
-  		
+				<?php if ($this->input->get("sukses")=="benar"): ?>
+				<div class="alert alert-success" role="alert">
+				Data Telah Berhasil Disimpan 
+				</div>
+				<?php endif ?>
   		<div class="row">
   		<div class="col-md-4">
 
@@ -168,8 +116,9 @@
 		  			</div>
 		
 		  			<div class="col-md-6">
-						<input type="radio" name="laki" value="Pria" />  Laki laki 
-						<input type="radio" name="perempuan" value="Wanita" />  Perempuan 
+						<!-- <input type="radio" name="laki" value="Pria" />  Laki laki  -->
+						<input type="text" name="jenis_kelamin" maxlength="30" size="20" />
+						<!-- <input type="radio" name="perempuan" value="Wanita" />  Perempuan  -->
 		  			</div>
 	  			</div>
 
@@ -189,29 +138,9 @@
 		  				Alamat
 		  			</div>
 		  			<div class="col-md-3">
-						<textarea name="alamat" rows="1" cols="74"></textarea>
+						<textarea name="alamat" rows="1" cols="73"></textarea>
 		  			</div>
 	  			</div>	  			
-
-	  			<br>
-	  			<div class="row">
-	  				<div class="col-md-5">
-		  				Rt/Rw
-		  			</div>
-		  			<div class="col-md-3">
-						<input type="text" name="rt_rw" maxlength="30" size="5" />
-		  			</div>
-	  			</div>
-
-	  			<br>
-	  			<div class="row">
-	  				<div class="col-md-5">
-		  				Kecamatan
-		  			</div>
-		  			<div class="col-md-3">
-						<input type="text" name="kecamatan" maxlength="30" size="20" />
-		  			</div>
-	  			</div>
 
 	  			<br>
 	  			<div class="row">
@@ -244,10 +173,10 @@
 	  			<br>
 	  			<div class="row">
 	  				<div class="col-md-5">
-		  				Penanggung
+		  				Gol Darah
 		  			</div>
 		  			<div class="col-md-3">
-						<input type="text" name="penanggung" maxlength="30" size="20" />
+						<input type="text" name="goldarah" maxlength="30" size="20" />
 		  			</div>
 	  			</div>	  			
 
@@ -306,26 +235,6 @@
 	  			<br><br><br><br>
 	  			<div class="row">
 	  				<div class="col-md-4">
-		  				Kelurahan
-		  			</div>
-		  			<div class="col-md-3">
-						<input type="text" name="kelurahan" maxlength="30" size="20" />
-		  			</div>
-	  			</div>
-
-	  			<br>
-	  			<div class="row">
-	  				<div class="col-md-4">
-		  				Kota
-		  			</div>
-		  			<div class="col-md-3">
-						<input type="text" name="kota" maxlength="30" size="20" />
-		  			</div>
-	  			</div>
-
-	  			<br>
-	  			<div class="row">
-	  				<div class="col-md-4">
 		  				Pekerjaan
 		  			</div>
 		  			<div class="col-md-3">
@@ -357,20 +266,10 @@
 	  			<div class="row">
 
 	  				<div class="col-md-4">
-	  					<input type="checkbox" name="tanggungan_ibu" value="tanggungan ibu" />
-		  				Tanggungan Ibu
+	  					Keluhan Penyakit
 		  			</div>
-		  			
 		  			<div class="col-md-3">
-						<input type="text" name="tanggungan_ibu" maxlength="30" size="20" />
-		  			</div>
-	  			</div>
-
-	  			<br>
-	  			<div class="row">
-		  			
-		  			<div class="col-md-6">
-						<input type="text" name="keterangan" maxlength="30" size="40" />
+						<textarea name="keluhan" rows="4" cols="22"></textarea>
 		  			</div>
 	  			</div>
 
@@ -378,21 +277,22 @@
 	  		<div class="row">
 
 			<div class="col-md-3">
-				 <button type="submit" class="btn btn-primary">Simpan</button>
+				 <!-- <button type="submit" class="btn btn-primary">Simpan</button> -->
 			</div>
 
-			<div class="col-md-2">
+			<div class="col-md-8">
+				 <button type="submit" class="btn btn-primary">Simpan</button>
+
+
 				 <button type="submit" class="btn btn-primary">Batal</button>
 			</div>
 
-			<div class="col-md-3">
-				 <button type="submit" class="btn btn-primary">Keluar</button>
-			</div>
 
 		</div>
 
 	  	</div>
 
+</form>
 
   	</div>
 
@@ -404,8 +304,8 @@
 </div>
 </div>
 </div>
-</div>
-</form>
+
+
 	<!-- sampe sini -->
 
 
