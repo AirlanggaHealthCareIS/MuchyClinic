@@ -6,10 +6,13 @@ class Cabsensi extends CI_Controller {
 		$this->load->view('v_header');
 		$this->load->view('absensi/v_absensi');
 		$this->load->view('v_footer');	
+		$this->load->helper('date');
+		$datestring = "Year: %Y Month: %m Day: %d - %h:%i %a";
+		$time = time();
 
-
-
-			
+		date_default_timezone_set('Asia/Jakarta');
+		echo mdate($datestring, $time);
+		
 
 
 	}
@@ -25,50 +28,41 @@ class Cabsensi extends CI_Controller {
 	}*/
 	private function inputabsensikaryawan()
 	{
-
+		date_default_timezone_set('Asia/Jakarta');
 		$idkr=$this->input->post('id_karyawan');
-		$datekr=$this->input->post('date_masuk');
-		$timedkr=$this->input->post('time_masuk');
-		$timepkr=$this->input->post('time_pulang');
-		$ketkr=$this->input->post('ket');
+
+		$datekr=date('Y-m-d');
+		$timedkr=date('H:i:s');
+		$timepkr=date('H:i:s');
+		if($timepkr>='16:00:00'){
+			$ketkr='lembur';
+		}
+		else{
+			$ketkr='tepat';
+		}
 		$this->load->model("m_absensi");
 		$inputX = $this->m_absensi->getAbsensiKaryawan($idkr,$timedkr,$datekr,$timepkr,$ketkr);
-
-	}
-	
-	public function panggil()
-	{
 		
+
 	}
 	public function validasi()
 	{
 		$idkr=$this->input->post('id_karyawan');
-		$datekr=$this->input->post('date_masuk');
-		$timedkr=$this->input->post('time_masuk');
-		$timepkr=$this->input->post('time_pulang');
-		$ketkr=$this->input->post('ket');
+		
 		
 		if($idkr==null|| $idkr==""){
 			//echo "kok kosong";
 			redirect(base_url().'cabsensi?error=null');
 		}
-		if($timedkr==null| $timedkr=""){
-			redirect(base_url().'cabsensi?error=null');
-		}
-		if($timepkr==null| $timepkr=""){
-			redirect(base_url().'cabsensi?error=null');
-		}
-		if($datekr==null| $datekr=""){
-			redirect(base_url().'cabsensi?error=null');
-		}
-		if($ketkr==null| $ketkr=""){
-			redirect(base_url().'cabsensi?error=null');
-		}
+		
 		else{
+
 			//panggil metod insert db
 			$in = $this->inputabsensikaryawan();
 			redirect(base_url().'cabsensi?status=sukses');
+		
 		}
+
 	}
 
 

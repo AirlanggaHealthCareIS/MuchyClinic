@@ -1,0 +1,7 @@
+Feature : Absensi 
+Skenario E : Field hanya menerima ID yang benar
+Given : user menuju halaman depan
+When : user memasukkan input ID yang salah tidak ada dalam database
+klik button 'absen'
+Then : Sistem melakukan konfirmasi jiika iD yang diisikan tidak ada dalam daftas
+

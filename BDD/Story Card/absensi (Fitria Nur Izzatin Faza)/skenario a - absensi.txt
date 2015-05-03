@@ -1,11 +1,11 @@
 Feature : Absensi 
 Skenario A : Absensi benar 
 Given : user menuju halaman depan
+AND
+memilih halaman absensi disesuaikan user
 When : user input ID kedalam text box
 And
-klik button 'absen'
-Then : Sistem melakukan konfirmasi waktu kedatangan 
-when : meng-klik 'ok' u/ menyetujui konfirmasi dari sistem
-Then : Sistem menyimpan ke dalam tabel absensi
-And 
-Menampilkan pesan bahwa absensi telah dikonfirmasi
+user menekan tombol 'submit'
+Then : Sistem memberikan pesan 'form sukses'
+AND 
+Sistem mengirimkan data ke tabel absesni.

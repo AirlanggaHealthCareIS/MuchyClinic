@@ -5,5 +5,5 @@ When : user tidak melakukan input ID
 And
 klik button 'absen'
 Then : Sistem melakukan konfirmasi jika field absen belum diisi
-when : meng-klik 'ok' u/ kembali ke sistem
-Then :Kembali ke sistem semula
+AND
+    Kembali ke sistem semula
