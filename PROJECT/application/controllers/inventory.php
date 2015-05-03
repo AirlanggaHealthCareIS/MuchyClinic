@@ -22,6 +22,26 @@ class Inventory extends CI_Controller {
 
 	}
 	
+	public function stokkritis()
+	{
+		$data = array("idobat"=>"", "nama_obat"=>"", "harga"=>" ", "obat_kritis"=>"", "query2"=>null); 
+
+      	$this->load->view('v_header');
+	    $this->load->view('inventory/v_contenkritis', $data);
+		$this->load->view('v_footer');
+
+		// $this->load->database();
+		// $this->load->model("m_inventory");
+
+		/*$call = $this->m_inventory->getObat("paramex");
+		$ro = $call->row();*/
+		//echo $ro->takaran;
+		//echo $ro->nama_obat;
+
+
+
+	}
+
 	public function validasi()
 	{
 	 $nama_obat = $this->input->post('nama_obat');	  
@@ -29,6 +49,9 @@ class Inventory extends CI_Controller {
  	if ($nama_obat == "" || $nama_obat == null){
  	//echo "belum mengisi nama obat";
  	redirect (base_url().'inventory?error=null');
+  	}
+  	else if (preg_match ('/[^_a-z0-9]/i', $nama_obat)){
+  		redirect(base_url().'inventory?error=symbol');
   	}
    else {
   	$this->tampil($nama_obat);

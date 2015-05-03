@@ -8,9 +8,18 @@
           <div class="col-md-4">
             <?php if ($this->input->get('error')=='null'): ?>
                <div class= "alert alert-danger" role="alert">
-                maaf
+                Maaf penulisan nama obat tidak lengkap
               </div>
              <?php endif ?>
+
+             <?php if ($this->input->get('error')=='symbol'):?>
+              <div class= "alert alert-danger" role="alert">
+               Mohon tidak menulis symbol ketika mencari nama obat
+              </div>
+             <?php endif ?>
+
+
+
             <form class="form-inline" action="<?php echo base_url()?>inventory/validasi" method="post">
               <div class="form-group">
                 <label class="sr-only" for="exampleInputEmail3">Nama Obat</label>

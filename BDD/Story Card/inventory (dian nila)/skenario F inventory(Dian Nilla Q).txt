@@ -1,0 +1,9 @@
+			User Story
+Feature		: Apoteker dapat mencari dan melihat stok obat yang tersedia dan habis
+Skenario F	: Mencari dan melihat stok obat
+Given		: User (apoteker) telah melakukan login
+When		: User memilih menu Inventory obat
+Then		: User seharusnya berada pada halaman Inventory obat
+When		: User mencari nama obat dengan mengetik nama obat diberi simbol (!@#%^*)
+Then		: User tidak dapat melihat obat yang dicari dan muncul validasi bahwa tidak boleh memasukkan simbol dalam pencarian nama obat.
+
