@@ -26,7 +26,7 @@
   <body>
 
     <div class="container-fluid" style="margin-bottom:50px;">
-      <div class="container">
+      <div class="">
 
         <h1>KASIR</h1>
 
@@ -67,16 +67,16 @@
 
                 <tr>
                 <td class="info">ID Pasien</td>
-                <td class="info"><?php echo $ID_PASIEN ?></td>
+                <td class="info"><?php echo $this->session->flashdata('idpasien'); ?></td>
                 </tr>
                 <tr>
                 <td class="">Nama Pasien</td>
-                <td class=""><?php echo $NAMA_PASIEN ?></td>
+                <td class=""><?php echo $this->session->flashdata('namapas'); ?></td>
                 </tr>
 
                 <tr>
                 <td class="info">Jenis Kelamin</td>
-                <td class="info"><?php echo $JENIS_KELAMIN_PASIEN?></td>
+                <td class="info"><?php echo $this->session->flashdata('jkpas'); ?></td>
                 </tr>
 
               </table>
@@ -101,20 +101,67 @@
         </div>
         <br>
 
-        <table class="table table-bordered">
+<!--         <table class="table table-bordered">
           <tr style="background-color: rgb(226, 246, 245);">
-            <td >Tanggal</td>
-            <td >Transaksi</td>
-            <td >Keterangan</td>
-            <td >Harga</td>
-            <td >QTY</td>
-            <td >Total</td>
-
+            <td >Nama Kamar</td>
+            <td >Tanggal Masuk</td>
+            <td >Tanggal Keluar</td>
             <td >Total</td>
           </tr>
 
 
+
+
+        </table> -->
+        <h3>Rawat Inap</h3>
+
+        <table class="table table-bordered table-hover">
+          <thead style="background-color: #337AB7;color: #FFF;">
+            <td>Nama Kamar</td>
+            <td>Tanggal Masuk</td>
+            <td>Tanggal Keluar</td>
+            <td>Total</td>
+
+          </thead>
+          <tbody>
+            <?php if ($this->session->flashdata('detailkamar')): ?>
+              <?php foreach ($this->session->flashdata('detailkamar') as $r): ?>
+              <tr>
+                <td><?php echo $r->NAMA_KAMAR_INAP; ?></td>
+                <td><?php echo $r->TGL_MASK; ?></td>
+                <td><?php echo $r->TGL_KELUAR; ?></td>
+                <td><?php echo $r->TOTAL_BIAYA_RWT; ?></td>
+              </tr>
+              <?php endforeach ?>
+            <?php endif ?>
+          </tbody>
         </table>
+
+
+        <h3>Pemeriksaan</h3>
+
+        <table class="table table-bordered table-hover">
+          <thead style="background-color: #337AB7;color: #FFF;">
+            <td>Nama Tindakan</td>
+            <td>Tanggal</td>
+            <td>Biaya</td>
+            
+          </thead>
+          <tbody>
+            <?php if ($this->session->flashdata('detailpemeriksaan')): ?>
+              <?php foreach ($this->session->flashdata('detailpemeriksaan') as $p): ?>
+              <tr>
+                <td><?php echo $p->NAMA_TINDAKAN; ?></td>
+                <td><?php echo $p->TANGGAL_PERIKSA; ?></td>
+                <td><?php echo $p->TARIF_TINDAKAN; ?></td>
+              </tr>
+              <?php endforeach ?>
+            <?php endif ?>
+          </tbody>
+        </table>
+
+
+
 
         <div class="row">
           <div class="col-md-4">

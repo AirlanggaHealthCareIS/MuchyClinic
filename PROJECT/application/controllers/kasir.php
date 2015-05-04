@@ -3,17 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Kasir extends CI_Controller {
 
-	public function index()
-	{
-		$data = array("ID_PASIEN"=> " ", "NAMA_PASIEN"=> " ", "JENIS_KELAMIN_PASIEN"=> " ");
+	public function index() {
 
+		$data = array("ID_PASIEN"=> " ", "NAMA_PASIEN"=> " ", "JENIS_KELAMIN_PASIEN"=> " ");
 		$this->load->view("v_header");
 		$this->load->view("kasir/v_contain",$data);
 		$this->load->view("v_footer");
 
-		// $this->load->database();
-		// $call = $this->getcariid(p001);
-		// echo $call;	
 	}
 
 	public function validation(){
@@ -24,32 +20,73 @@ class Kasir extends CI_Controller {
 		if ($id==null || $id=="") {
 			redirect(base_url().'kasir?error=null');
 		} else {
-			if (preg_match('/[^a-z0-9]/', $id)) {
+			if (preg_match('/[^a-z0-9]/i', $id)) {
 				redirect(base_url().'kasir?error=simbol');
 			} else{ 
-				//echo 'sukses';
-				//$this->getkasir($id);
-				$this->check_database();
+				$this->checkDatabase($id);
 			}
 		}
 	}
 
-	protected function check_database() {
-		$idpasien = $this->input->post("idpasien");
+	private function checkDatabase($id) {
+		echo $id;
+		$this->session->set_flashdata('idpasien', $id);
 
 		$this->load->model('m_kasir');
-		$result = $this->m_kasir->checkid($idpasien);
+		$getpasien = $this->m_kasir->getPasien($id);
+		$query = $this->m_kasir->checkid($id);
+		$query2 = $this->m_kasir->checkid($id);
+		if ($query==true) {
+			$dkamar = $this->m_kasir->getKamar($id); //get data detail kamar
+			$this->session->set_flashdata('detailkamar', $dkamar); //simpan variabel utk dikirim ke view
+			redirect(base_url().'kasir');
 
-		if ($result) {
-			//$this->getkasir($id);
-			$this->getkasir();
+		} else if ($query2==true) {
+			$dpemeriksaan = $this->m_kasir-getPemeriksaan($id);
+			$this->session->set_flashdata('detailpemeriksaan', $dpemeriksaan);
+			redirect(base_url().'kasir');
 
+			# code...
 		} else {
+			# code...
 			redirect(base_url().'kasir?error=invalidid');
-            return FALSE;
+            return FALSE;			
 		}
 		
 	}
+
+
+
+// 	private function checkDatabase($id) {
+// 	echo $id;
+// 	$this->session->set_flashdata('idpasien', $id);
+
+// 	$this->load->model('m_kasir');
+// 	$query = $this->m_kasir->checkid($id);
+// 	if ($query==true) {
+// 		//simpan data untuk di tampilkan
+// 		// $this->storeValueKamar($query->NAMA_KAMAR_INAP, $query->TGL_MASK, $query->TGL_KELUAR, $query->TOTAL_BIAYA_RWT);
+// 		// detail kamar
+// 		$dkamar = $this->m_kasir->getKamar($id); //get data detail resep
+// 		$this->session->set_flashdata('detailkamar', $dkamar); //simpan variabel utk dikirim ke view
+// 		redirect(base_url().'kasir');
+
+// 		$dpemeriksaan = $this->m_kasir-getPemeriksaan($id);
+// 		$this->session->set_flashdata('detailpemeriksaan', $dpemeriksaan);
+// 		redirect(base_url().'kasir');
+
+
+
+// 		//$this->getkasir($id);
+// 		//$this->getkasir();
+
+// 	} else {
+// 		redirect(base_url().'kasir?error=invalidid');
+//            return FALSE;
+// 	}
+
+// }
+
 
 	public function getkasir(){
 		$this->load->database();
@@ -95,20 +132,4 @@ class Kasir extends CI_Controller {
 	// 	$this->load->view('v_footer');
 	// }
 
-
-
-	// private function cariid ($id) {
-	// 	$query = $this->db->query("SELECT * FROM `pasien` WHERE `id_pasien`= '".$id."' ");
-	// 	//$row = $query->row();
-
-	// 	//return $row;
-	// 	return $query;
-	// }
-
-	// public function tampilid() {
-	// 	$this->load->database();
-	// 	$call = $this->cariid("p01");
-	// 	echo "Nama = ".$call->nama."<br>Keterangan = ".$call->keterangan;
-	// 	// echo "string";
-	// }
 }

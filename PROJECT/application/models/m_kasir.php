@@ -8,43 +8,42 @@ class M_kasir extends CI_Model {
 
         //cek id pasien dalam database
         public function checkid($idpasien){
-			$this->db->select('id_pasien');
-			$this->db->from('pasien');
-			$this->db->where('id_pasien', $idpasien);
-		
-			$this->db->limit(1);
+			$query = $this->db->query("SELECT * FROM RAWAT_INAP WHERE id_pasien='".$idpasien."'");
+			$query2 = $this->db->query("SELECT * FROM PEMERIKSAAN WHERE id_pasien='".$idpasien."'");
+			if ($query->num_rows()>0) {
+				return true;
+			} else if ($query2->num_rows()>0) {
+						return true;
+					} else {
+						return false;
+					}
 
-			$query = $this->db->get();
-			if ($query->num_rows()==1) {
-				$result = $query->result();
-				return $result;
-			} else {
-				return false;
-			}
 		}
 
+		// public function checkid($idpasien){
+		// 	$query = $this->db->query("SELECT * FROM RAWAT_INAP WHERE id_pasien='".$idpasien."'");
+		// 	if ($query->num_rows()>0) {
+		// 		return true;
+		// 	} else {
+		// 		return false;
+		// 	}
+		// }
 
 		//menampikan biodata dari id pasien yang di seacrh
-        public function getcariid ($id){
+        public function getPasien ($id){
 		// .$id untuk varchar
 		// '".$id."' untuk int
-		$query =  $this->db->query("SELECT * FROM `pasien` WHERE `ID_PASIEN` = '".$id."'");
-		return $query;
+		$query =  $this->db->query("SELECT ID_PASIEN, NAMA_PASIEN, JENIS_KELAMIN_PASIEN  FROM `pasien` WHERE `ID_PASIEN` = '".$id."'");
+		return $query->result();
 		}
-		
-		// public function getpemeriksaan() {
-		// 	$query = $this->db->query("SELECT * FROM PEMERIKSAAN");
-		// 	return $query->result();
-		// }
 
-		public function getrawatinap() {
-			$query = $this->db->query("SELECT * FROM RAWAT_INAP");
+		
+		public function getKamar($id) {
+			$query = $this->db->query("SELECT k.NAMA_KAMAR_INAP, r.TGL_MASK, r.TGL_KELUAR, r.TOTAL_BIAYA_RWT FROM rawat_inap AS r, kamar AS k WHERE r.ID_KAMAR_INAP=k.ID_KAMAR_INAP AND r.ID_PASIEN= '".$id."'");
 			return $query->result();
 		}
-
-		// public function getinap (){
-		// $query = $this->db->query("SELECT  K.`NAMA_KAMAR_INAP`, P.`NAMA_PASIEN`, D.`NAMA_DOKTER`, R.`TGL_MASK`, R.`TGL_KELUAR`, R.`TOTAL_BIAYA_RWT` FROM `RAWAT_INAP` AS R, `PASIEN` AS P, `KAMAR` AS K, `DOKTER` AS D WHERE P.`ID_PASIEN` = R.`ID_PASIEN` AND K.`ID_KAMAR_INAP` = R.`ID_KAMAR_INAP` AND D.`ID_DOKTER` = R.`ID_DOKTER`");
-		// return $query->result();
-		// }
-
+		public function getPemeriksaan($id) {
+			$query = $this->db->query("SELECT t.NAMA_TINDAKAN, p.TANGGAL_PERIKSA, t.TARIF_TINDAKAN FROM tindakan AS t, pemeriksaan AS p, detail_periksa AS dp WHERE p.ID_PERIKSA = dp.ID_PERIKSA AND dp.ID_TINDAKAN = t.ID_TINDAKAN AND p.ID_PASIEN = '".$id."'");
+			return $query->result();
+		}
 }
