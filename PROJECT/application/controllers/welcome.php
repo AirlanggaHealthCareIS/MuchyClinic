@@ -5,7 +5,7 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('v_header');
+		$this->load->view('header');
 		$this->load->view('login/v_login');
 		// $username = $this->getcoba_psi(1);
 		// echo $username;
@@ -19,7 +19,7 @@ class Welcome extends CI_Controller {
 	}
 	public function panggil()
 	{
-		$this->load->view('v_header');
+		$this->load->view('header');
 		$this->load->view('login/v_login');
 		$this->load->view('m_masuk');
 	}
@@ -30,35 +30,32 @@ class Welcome extends CI_Controller {
 		$password = $this->input->post('password');
 		if (($username==null || $username=="") && ($password==null || $password=="")) {
 			redirect(base_url().'Welcome?error=null');
-		} else {
-			echo "$username && $password";
-		}
+		} 
 		
 		if ($username==null || $username=="") {
 			redirect(base_url().'Welcome?error=nullusername');
-		} else {
-			echo "$username";
-		}
+		} 
 
 		if ($password==null || $password=="") {
 			redirect(base_url().'Welcome?error=nullpassword');
-		} else {
-			echo "$password";
-		}
+		} 
 		
 		if (preg_match('/[^a-z0-9]/',$username)) {
 			redirect(base_url().'Welcome?error=symbol');	
 		}
 		
+		$this->load->model('m_login');
+		$login = $this->m_login->getcoba_psi($username,$password);
+		if ($login==true) {
+			echo "awakmu wes melbu login boss";
+		} else {
 
-		
-		
+			redirect(base_url().'Welcome?error=m_login');
+		} 
+
 	}
-	private function getcoba_psi($ido){
-		$query = $this->db->query('SELECT * FROM `karyawan` WHERE `id` = '.$ido);
-		$row = $query->row();
-		return $row->username;
-	}
+
+	
 	
 
 }
