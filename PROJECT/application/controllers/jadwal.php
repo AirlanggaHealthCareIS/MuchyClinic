@@ -238,7 +238,7 @@ class Jadwal extends CI_Controller {
 
 		$this->load->model("m_jadwal");
 
-		$query = $this->m_jadwal->getIDDokter($iddokter);
+		$query = $this->m_jadwal->getDokter($iddokter);
 		
 		if($query->num_rows() > 0) {
 			$ro = $query->row();	

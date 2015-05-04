@@ -19,12 +19,6 @@ class M_jadwal extends CI_Model {
                 return $query;
         }
 
-        public function getIDDokter($iddok){
-                $query = $this->db->query("SELECT `ID_DOKTER` FROM `dokter` WHERE `ID_DOKTER` LIKE '%".$iddok."%'");
-
-                return $query;
-        }
-
         public function getKaryawan($idkar){
                 $query = $this->db->query("SELECT `ID_KARYAWAN`, `NAMA_K` FROM `karyawan` WHERE `ID_KARYAWAN` ='".$idkar."'");
 
