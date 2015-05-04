@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.9
+-- version 3.5.2.2
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2015 at 09:26 AM
--- Server version: 5.6.14
--- PHP Version: 5.5.6
+-- Generation Time: May 04, 2015 at 02:07 PM
+-- Server version: 5.5.27
+-- PHP Version: 5.4.7
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -255,6 +255,7 @@ CREATE TABLE IF NOT EXISTS `dokter` (
   `ID_DOKTER` varchar(5) NOT NULL,
   `ID_JENIS_DOKTER` varchar(5) NOT NULL,
   `NAMA_DOKTER` varchar(25) DEFAULT NULL,
+  `PASSWORD` varchar(15) NOT NULL,
   `TMPT_LAHIR_DOKTER` varchar(20) DEFAULT NULL,
   `TGL_LAHIR_DOKTER` date NOT NULL,
   `ALAMAT_DOKTER` varchar(50) DEFAULT NULL,
@@ -268,12 +269,12 @@ CREATE TABLE IF NOT EXISTS `dokter` (
 -- Dumping data for table `dokter`
 --
 
-INSERT INTO `dokter` (`ID_DOKTER`, `ID_JENIS_DOKTER`, `NAMA_DOKTER`, `TMPT_LAHIR_DOKTER`, `TGL_LAHIR_DOKTER`, `ALAMAT_DOKTER`, `NO_TELP_DOKTER`, `JNS_KELAMIN_DOKTER`) VALUES
-('D0001', 'JD001', 'Caca', 'Surabaya', '1990-05-09', 'Darmo', '081345672312', 'P'),
-('D0002', 'JD002', 'Irma', 'Padang', '1987-01-08', 'Surabaya', '081445267165', 'P'),
-('D0003', 'JD003', 'Wahyu', 'Lombok', '1988-08-15', 'Surabaya', '081211633098', 'L'),
-('D0004', 'JD012', 'Dani', 'Palu', '1982-12-10', 'Sidoarjo', '085754345678', 'L'),
-('D0005', 'JD018', 'Anton', 'Jakarta', '1981-06-17', 'Surabaya', '085666723451', 'L');
+INSERT INTO `dokter` (`ID_DOKTER`, `ID_JENIS_DOKTER`, `NAMA_DOKTER`, `PASSWORD`, `TMPT_LAHIR_DOKTER`, `TGL_LAHIR_DOKTER`, `ALAMAT_DOKTER`, `NO_TELP_DOKTER`, `JNS_KELAMIN_DOKTER`) VALUES
+('D0001', 'JD001', 'Caca', 'marica', 'Surabaya', '1990-05-09', 'Darmo', '081345672312', 'P'),
+('D0002', 'JD002', 'Irma', '', 'Padang', '1987-01-08', 'Surabaya', '081445267165', 'P'),
+('D0003', 'JD003', 'Wahyu', '', 'Lombok', '1988-08-15', 'Surabaya', '081211633098', 'L'),
+('D0004', 'JD012', 'Dani', '', 'Palu', '1982-12-10', 'Sidoarjo', '085754345678', 'L'),
+('D0005', 'JD018', 'Anton', '', 'Jakarta', '1981-06-17', 'Surabaya', '085666723451', 'L');
 
 -- --------------------------------------------------------
 
@@ -4947,8 +4948,14 @@ CREATE TABLE IF NOT EXISTS `pasien` (
   `ALAMAT_PASIEN` varchar(50) NOT NULL,
   `NO_TLP_PASIEN` varchar(15) DEFAULT NULL,
   `GOL_DARAH_PASIEN` varchar(3) DEFAULT NULL,
-  `JENIS_KELAMIN_PASIEN` varchar(3) DEFAULT NULL,
+  `JENIS_KELAMIN_PASIEN` varchar(20) DEFAULT NULL,
   `PEKERJAAN_PASIEN` varchar(15) DEFAULT NULL,
+  `AGAMA` varchar(15) NOT NULL,
+  `NO_HP` int(15) NOT NULL,
+  `HUBUNGAN` varchar(20) NOT NULL,
+  `TYPE_PEMBAYARAN` varchar(20) NOT NULL,
+  `KELUHAN_PENYAKIT` varchar(300) NOT NULL,
+  `TANGGAL_PENDAFTARAN` date NOT NULL,
   PRIMARY KEY (`ID_PASIEN`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -4956,12 +4963,22 @@ CREATE TABLE IF NOT EXISTS `pasien` (
 -- Dumping data for table `pasien`
 --
 
-INSERT INTO `pasien` (`ID_PASIEN`, `NAMA_PASIEN`, `TMPT_LAHIR_PASIEN`, `TGL_LAHIR_PASIEN`, `ALAMAT_PASIEN`, `NO_TLP_PASIEN`, `GOL_DARAH_PASIEN`, `JENIS_KELAMIN_PASIEN`, `PEKERJAAN_PASIEN`) VALUES
-('P0001', 'Mulia', 'Surabaya', '1999-04-07', 'Surabaya', '085321456481', 'A', 'P', 'Pelajar'),
-('P0002', 'Satya', 'Jombang', '1990-02-18', 'Sidoarjo', '081267233890', 'B', 'L', 'Pegawai'),
-('P0003', 'Bulan', 'Banyuwangi', '1989-08-28', 'Waru', '085777334561', 'AB', 'P', 'Karyawan'),
-('P0004', 'Indah', 'Surabaya', '1993-10-15', 'Surabaya', '081667889234', 'O', 'P', 'Mahasiswa'),
-('P0005', 'Toni', 'Gresik', '1990-03-10', 'Surabaya', '0876555423789', 'O', 'L', 'Wirausaha');
+INSERT INTO `pasien` (`ID_PASIEN`, `NAMA_PASIEN`, `TMPT_LAHIR_PASIEN`, `TGL_LAHIR_PASIEN`, `ALAMAT_PASIEN`, `NO_TLP_PASIEN`, `GOL_DARAH_PASIEN`, `JENIS_KELAMIN_PASIEN`, `PEKERJAAN_PASIEN`, `AGAMA`, `NO_HP`, `HUBUNGAN`, `TYPE_PEMBAYARAN`, `KELUHAN_PENYAKIT`, `TANGGAL_PENDAFTARAN`) VALUES
+('0909', 'donyprasetiyo', 'samarinda', '0000-00-00', 'jncajlajcnalnc', '0541260248', 'ab', 'lak', 'designer', 'Hindu', 2147483647, 'anak kandung', 'Kredit', ' sjvdbvddbsjkvbskjdvb', '0000-00-00'),
+('2522', 'donyprasetiyo', 'samarinda', '0000-00-00', 'jlsnaxlancklanscksanlkacnsk', '0541260248', 'ab', 'lak', 'designer', 'Islam', 2147483647, 'anak kandung', 'Cash', 'bkcbckbkhcd dcka kahbdkca', '0000-00-00'),
+('5656', 'donyprasetiyo', 'samarinda', '0000-00-00', 'jncajlajcnalnc', '0541260248', 'ab', 'lak', 'designer', 'Hindu', 2147483647, 'anak kandung', 'Kredit', ' sjvdbvddbsjkvbskjdvb', '0000-00-00'),
+('7777', 'donyprasetiyo', 'samarinda', '0000-00-00', 'xbajbcjascbkasbcakb', '0541260248', 'ab', 'lak', 'designer', 'Kristen Katolik', 2147483647, 'anak kandung', 'Kredit', 'cbsackbackjakcjbajkcbajcbsabckasjcbskja', '0000-00-00'),
+('8181', 'donyprasetiyo', 'samarinda', '0000-00-00', 'jncajlajcnalnc', '0541260248', 'ab', 'lak', 'designer', 'Hindu', 2147483647, 'anak kandung', 'Kredit', ' sjvdbvddbsjkvbskjdvb', '0000-00-00'),
+('855', 'donyprasetiyo', 'samarinda', '0000-00-00', 'jncajlajcnalnc', '0541260248', 'ab', 'lak', 'designer', 'Hindu', 2147483647, 'anak kandung', 'Kredit', ' sjvdbvddbsjkvbskjdvb', '0000-00-00'),
+('8828', 'donyprasetiyo', 'samarinda', '0000-00-00', 'jncajlajcnalnc', '0541260248', 'ab', 'lak', 'designer', 'Hindu', 2147483647, 'anak kandung', 'Kredit', ' sjvdbvddbsjkvbskjdvb', '0000-00-00'),
+('b001', 'Dony Prasetiyo', 'samarinda', '2001-11-02', 'jnlljlljnljnljnlnlj', '260248', 'ab', 'Kri', 'designer', 'Kristen Katolik', 2147483647, 'anak kandung', 'Kredit', 'njlnlnljn', '2015-11-02'),
+('dp01', 'Dony Prasetiyo', 'samarinda', '1995-11-30', 'nxlanxanxlanxklsa', '0541260248', 'ab', 'Kristen Katolik', 'designer', 'Kristen Katolik', 2147483647, 'anak kandung', 'Kredit', 'cnlsncklnsklcslkcsl', '2016-11-02'),
+('hu12', '', 'samarinda', '2015-05-02', 'jalan bungtomo gang reel rt 19 no 14 samarinda', '0541260248', 'ab', 'lak', 'designer', 'Islam', 2147483647, 'anak kandung', 'Cash', 'pusing batuk pilek asma bengek kanker', '0000-00-00'),
+('P0001', 'Mulia', 'Surabaya', '1999-04-07', 'Surabaya', '085321456481', 'A', 'P', 'Pelajar', '', 0, '', '', '', '0000-00-00'),
+('P0002', 'Satya', 'Jombang', '1990-02-18', 'Sidoarjo', '081267233890', 'B', 'L', 'Pegawai', '', 0, '', '', '', '0000-00-00'),
+('P0003', 'Bulan', 'Banyuwangi', '1989-08-28', 'Waru', '085777334561', 'AB', 'P', 'Karyawan', '', 0, '', '', '', '0000-00-00'),
+('P0004', 'Indah', 'Surabaya', '1993-10-15', 'Surabaya', '081667889234', 'O', 'P', 'Mahasiswa', '', 0, '', '', '', '0000-00-00'),
+('P0005', 'Toni', 'Gresik', '1990-03-10', 'Surabaya', '0876555423789', 'O', 'L', 'Wirausaha', '', 0, '', '', '', '0000-00-00');
 
 -- --------------------------------------------------------
 
