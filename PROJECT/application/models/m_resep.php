@@ -34,8 +34,8 @@ class M_resep extends CI_Model {
                 $query = $this->db->query("SELECT * FROM detail_resep AS d, obat AS o WHERE d.ID_OBAT = o.ID_OBAT AND d.ID_RESEP='".$idr."'");
                 return $query;
         } 
-         public function insertresep ($iddetailresep,$idobat,$idresep,$ketobat){
-                $query = $this->db->query("INSERT INTO detail_resep (`ID_DETAIL_RESEP`, `ID_OBAT`, `ID_RESEP`, `KET_RESEP`) VALUES ('".$iddetailresep."','".$idobat."'.'".$idresep."'.'".$ketobat."')");
+        public function insertresep ($iddetailresep,$idobat,$idresep,$ketobat){
+                $query = $this->db->query("INSERT INTO detail_resep (`ID_DETAIL_RESEP`, `ID_OBAT`, `ID_RESEP`, `KET_RESEP`) VALUES ('".$iddetailresep."','".$idobat."','".$idresep."','".$ketobat."')");
                 return $query;
         }
 
