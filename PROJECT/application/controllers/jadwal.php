@@ -17,7 +17,7 @@ class Jadwal extends CI_Controller {
         //"lihatjadwalapt"=>$this->m_jadwal->getAllData(),
 
 		$this->load->view("v_header");
-		$this->load->view("jadwal/v_content_dokter", $data);
+		$this->load->view("jadwal/v_content_karyawan", $data);
 		$this->load->view("v_footer");
 
     }
@@ -66,7 +66,7 @@ class Jadwal extends CI_Controller {
 
 		}
 
-		else if(preg_match('/[^_a-z0-9]/', $iddokter)){
+		else if(preg_match('/[^a-z0-9]/i', $iddokter)){
 			redirect(base_url().'jadwal?error=symbolerror');
 		}
 
@@ -111,8 +111,12 @@ class Jadwal extends CI_Controller {
 
 		if($idkar==null || $idkar==""){
 			redirect(base_url().'jadwal?error=idkaryawannull');
-
 		}
+
+		else if(preg_match('/[^a-z0-9]/i', $idkar)){
+			redirect(base_url().'jadwal?error=symbolerror');
+		}
+
 		else {
 			
 			$this->tampilKaryawan($idkar);
@@ -165,6 +169,11 @@ class Jadwal extends CI_Controller {
 			redirect(base_url().'jadwal?error=idapotekernull');
 
 		}
+
+		else if(preg_match('/[^a-z0-9]/i', $idapt)){
+			redirect(base_url().'jadwal?error=symbolerror');
+		}
+
 		else {
 			
 			$this->tampilApoteker($idapt);

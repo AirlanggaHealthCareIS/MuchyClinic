@@ -34,6 +34,12 @@
             </div>
           <?php endif ?>
 
+          <?php if($this->input->get('error')=='symbolerror'): ?>
+            <div class="alert alert-danger" role="alert">
+              Maaf anda memasukkan symbol yang tidak seharusnya diinput
+            </div>
+          <?php endif ?>
+
           <div class = "col-md-6">
            
             <form class="form-horizontal" action="<?php echo base_url(); ?>jadwal/validasiApoteker" method ="post">
