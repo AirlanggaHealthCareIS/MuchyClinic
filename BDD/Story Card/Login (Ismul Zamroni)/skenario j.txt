@@ -1,0 +1,14 @@
+US01 Login
+Feature   :	Dokter, karyawan, apoteker, dan owner melakukan login.
+Skenario  : 	melakukan login.
+	Given 	saya membuka fitur utama
+	When 	saya memilih menu login
+	And 	saya mendapat tampilan form login
+	When 	saya menginputkan username salah (belum terinput ke database) 
+	And 	saya menginputkan password salah (belum terinput ke database) 
+	And 	saya menunggu validasi login
+	When	sistem melakukan pengecekan data ke database
+	And 	saya mendapat konfirmasi gagal login
+	Then 	saya seharusnya berada di dalam sistem
+	And	saya melakukan login kembali
+	
