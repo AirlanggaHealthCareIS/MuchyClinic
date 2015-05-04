@@ -1,7 +1,9 @@
-Feature : Fitur ini dapat mengatur antrian pasien saat akan masuk ke ruang pemeriksaan
+Fitur : Fitur ini dapat mengatur antrian pasien saat akan masuk ke ruang pemeriksaan
 
 Scenario D : Pasien yang telah mendaftar dan admin tidak menginputkan ID pasien, field kosong
 
 Given 	: Pasien telah mendapatkan ID pasien
-When 	: Admin tidak melakukan input ID pasien, field kosong
+And	: Admin memilih menu Sistem Antri On The Spot
+When 	: Admin tidak menginputkan ID pasien
+And	: Admin menekan tombol input ID pasien
 Then 	: Admin menerima pemberitahuan bahwa ÒMaaf field kosong! Silahkan input ID pasien kembaliÓ
