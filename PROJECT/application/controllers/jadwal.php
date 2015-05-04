@@ -17,7 +17,7 @@ class Jadwal extends CI_Controller {
         //"lihatjadwalapt"=>$this->m_jadwal->getAllData(),
 
 		$this->load->view("v_header");
-		$this->load->view("jadwal/v_content_karyawan", $data);
+		$this->load->view("jadwal/v_content_dokter", $data);
 		$this->load->view("v_footer");
 
     }
@@ -238,14 +238,34 @@ class Jadwal extends CI_Controller {
 
 		$this->load->model("m_jadwal");
 
-		$query = $this->m_jadwal->getDokter($iddokter);
-		$ro = $query->row();
+		$query = $this->m_jadwal->getIDDokter($iddokter);
+		
+		if($query->num_rows() > 0) {
+			$ro = $query->row();	
 
-		$data = array("iddokter"=>$ro->ID_DOKTER, "namadokter"=>$ro->NAMA_DOKTER, "lihatjadwaldok"=>$this->m_jadwal->getDataDokter());
+			$query1 = $this->m_jadwal->getDokter($iddokter);
+			if($query1->num_rows() > 0) {
+				$data = array(
+					"iddokter"=>$ro->ID_DOKTER, 
+					"namadokter"=>$ro->NAMA_DOKTER, 
+					"lihatjadwaldok"=>$this->m_jadwal->getDataDokter());
 
-		$this->load->view("v_header");
-		$this->load->view("jadwal/v_content_dokter", $data);
-		$this->load->view("v_footer");		
+				$this->load->view("v_header");
+				$this->load->view("jadwal/v_content_dokter", $data);
+				$this->load->view("v_footer");	
+
+			}
+			else{
+				redirect(base_url().'jadwal?error=apaya');
+			}
+		}
+		else{
+			redirect(base_url().'jadwal?error=notfound');
+		}
+
+		
+
+			
 	}
 
 	public function tampilKaryawan($idkar){
