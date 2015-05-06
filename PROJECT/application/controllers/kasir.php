@@ -5,11 +5,9 @@ class Kasir extends CI_Controller {
 
 	public function index() {
 
-		$data = array("ID_PASIEN"=> " ", "NAMA_PASIEN"=> " ", "JENIS_KELAMIN_PASIEN"=> " ");
 		$this->load->view("v_header");
-		$this->load->view("kasir/v_contain",$data);
+		$this->load->view("kasir/v_contain");
 		$this->load->view("v_footer");
-
 	}
 
 	public function validation(){
@@ -29,107 +27,66 @@ class Kasir extends CI_Controller {
 	}
 
 	private function checkDatabase($id) {
-		echo $id;
-		$this->session->set_flashdata('idpasien', $id);
 
+		$total = 0;
+
+		$this->session->set_flashdata('idpasien', $id);	
 		$this->load->model('m_kasir');
-		$getpasien = $this->m_kasir->getPasien($id);
-		$query = $this->m_kasir->checkid($id);
-		$query2 = $this->m_kasir->checkid($id);
-		if ($query==true) {
-			$dkamar = $this->m_kasir->getKamar($id); //get data detail kamar
-			$this->session->set_flashdata('detailkamar', $dkamar); //simpan variabel utk dikirim ke view
-			redirect(base_url().'kasir');
 
-		} else if ($query2==true) {
-			$dpemeriksaan = $this->m_kasir-getPemeriksaan($id);
-			$this->session->set_flashdata('detailpemeriksaan', $dpemeriksaan);
-			redirect(base_url().'kasir');
+		$query1 = $this->m_kasir->checkidKamar($id);
+		$query2 = $this->m_kasir->checkidPemeriksaan($id);
+		$query3 = $this->m_kasir->checkidObat($id);
 
-			# code...
-		} else {
-			# code...
-			redirect(base_url().'kasir?error=invalidid');
-            return FALSE;			
-		}
-		
-	}
-
-
-
-// 	private function checkDatabase($id) {
-// 	echo $id;
-// 	$this->session->set_flashdata('idpasien', $id);
-
-// 	$this->load->model('m_kasir');
-// 	$query = $this->m_kasir->checkid($id);
-// 	if ($query==true) {
-// 		//simpan data untuk di tampilkan
-// 		// $this->storeValueKamar($query->NAMA_KAMAR_INAP, $query->TGL_MASK, $query->TGL_KELUAR, $query->TOTAL_BIAYA_RWT);
-// 		// detail kamar
-// 		$dkamar = $this->m_kasir->getKamar($id); //get data detail resep
-// 		$this->session->set_flashdata('detailkamar', $dkamar); //simpan variabel utk dikirim ke view
-// 		redirect(base_url().'kasir');
-
-// 		$dpemeriksaan = $this->m_kasir-getPemeriksaan($id);
-// 		$this->session->set_flashdata('detailpemeriksaan', $dpemeriksaan);
-// 		redirect(base_url().'kasir');
-
-
-
-// 		//$this->getkasir($id);
-// 		//$this->getkasir();
-
-// 	} else {
-// 		redirect(base_url().'kasir?error=invalidid');
-//            return FALSE;
-// 	}
-
-// }
-
-
-	public function getkasir(){
-		$this->load->database();
-		
-		$id = $this->input->post('idpasien');
-		$this->load->model('m_kasir');
-//		$kamar = $this->m_kasir->getkamar();
-//		$dokter = $this->m_kasir->getdokter();
 		$query = $this->m_kasir->getcariid($id);
+		if ($query->num_rows() > 0) {
+			$query = $query->row();
+			$this->storevalue($query->ID_PASIEN, $query->NAMA_PASIEN, $query->JENIS_KELAMIN_PASIEN);
+		}
 
-		$ro = $query->row();
-		$data = array("ID_PASIEN"=> $ro->ID_PASIEN, "NAMA_PASIEN"=> $ro->NAMA_PASIEN, "JENIS_KELAMIN_PASIEN"=> $ro->JENIS_KELAMIN_PASIEN);
-		$this->session->idpasien = $ro->ID_PASIEN;
+		if ($query1==true) {
+			$dkamar = $this->m_kasir->getKamar($id); //get data detail kamar
 
+			foreach ($query1 as $k) {
+				$total = $total + $k->TARIF_KMR;
+			}
 
-//		$data['dpemeriksaan'] = $this->m_kasir->getpemeriksaan();
-		$data['drawatinap'] = $this->m_kasir->getrawatinap();
+			$this->session->set_flashdata('total', $total);
+			$this->session->set_flashdata('detailkamar', $dkamar);
+			
 
-		$this->load->view('v_header');
-		$this->load->view('kasir/v_containmain', $data);
-		$this->load->view('v_footer');
+		}
+		if ($query2==true) {
+			$dpemeriksaan = $this->m_kasir->getPemeriksaan($id);
+			
+			foreach ($query2 as $p) {
+				$total = $total + $p->TARIF_TINDAKAN;
+			}
+
+			$this->session->set_flashdata('total', $total);
+			$this->session->set_flashdata('detailpemeriksaan', $dpemeriksaan);
+
+		}
+		if ($query3==true) {
+			$dobat = $this->m_kasir->getObat($id);
+
+			foreach ($query3 as $o) {
+				$total = $total + $o->HARGA;
+			}
+
+			$this->session->set_flashdata('total', $total);
+			$this->session->set_flashdata('detailobat', $dobat);
+
+		}	else {
+			redirect(base_url().'kasir?error=invalidid');
+			return FALSE;
+		}
+			redirect(base_url().'kasir');	
 	}
 
-
-
-	// public function getkasir() {
-	// 	$this->load->database();
-	// 	$this->load->model('m_kasir');
-	// 	// $query = $this->m_kasir->getpemeriksaan();
-	// 	// $data['totalbiayapemeriksaan'] = $query->TOTAL_BIAYA_PEMERIKSAAN;
-
-	// 	// $query = $this->m_kasir->getrawatinap();
-	// 	// $data['totalbiayarawat'] = $query->TOTAL_BIAYA_RWT;
-
-	// 	//$query = $this->mambildata->getkamar();
-	// 	//$data['totalbayardokterpemeriksaan'] = $query->BIAYA_DOKTER;
-
-
-	// 	$data['drawatinap'] = $this->m_kasir->getrawatinap();
-
-	// 	$this->load->view('v_header');
-	// 	$this->load->view('kasir/v_contain', $data);
-	// 	$this->load->view('v_footer');
-	// }
+	public function storevalue($idpas, $namapas, $jkpas){
+		$this->session->set_flashdata('idpasien', $idpas);
+		$this->session->set_flashdata('namapas', $namapas);
+		$this->session->set_flashdata('jkpas', $jkpas);
+	}
 
 }

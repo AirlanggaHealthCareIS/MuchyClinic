@@ -35,24 +35,22 @@
             <!-- pesan error -->
             <?php if ($this->input->get("error")=="null"): ?>
             <div class = "alert alert-danger" role = "alert">
-              <p>Please enter a valid ID Pasien</p>
+              <p>Silahkan masukkan ID Pasien</p>
 
             </div>
             <?php endif ?>
             <?php if ($this->input->get("error")=="simbol"): ?>
             <div class = "alert alert-danger" role = "alert">
-              <p>Don't input symbol, Please enter a valid ID Pasien</p>
+              <p>Jangan masukan ID Pasien dengan Simbol</p>
             </div>  
             
             <?php endif ?>
             <?php if ($this->input->get("error")=="invalidid"): ?>
             <div class = "alert alert-danger" role = "alert">
-              <p>ID Pasien Tidak di temukan dalam database, Please enter a valid ID Pasien</p>
+              <p>ID Pasien Tidak di temukan dalam database</p>
             </div>  
             <?php endif ?>
             <!-- end pesan error -->
-
-
 
             <form class="form-inline" action="<?php echo base_url(); ?>kasir/validation" method="post">
               <div class="form-group">
@@ -60,26 +58,26 @@
                 <input type="normal" class="form-control" name="idpasien" id="exampleInputEmail3" placeholder="ID Pasien">
               </div>
               
-              <button type="submit" class="btn btn-default">Search</button>
+              <button type="submit" class="btn btn-primary">Search</button>
               <br></br>
 
-              <table class="table table-bordered" style="border: 0px currentColor; border-image: none;">
+              <div>
+                    <table class="table">
+                      <tr>
+                        <td class="info" width="35%">ID Pasien</td>
+                        <td class="info">: <?php echo $this->session->flashdata('idpasien'); ?></td>
+                      </tr>
+                      <tr>
+                        <td class="info">Nama Pasien</td>
+                        <td class="info">: <?php echo $this->session->flashdata('namapas'); ?></td>
+                      </tr>
+                      <tr>
+                        <td class="info">Jenis Kelamin</td>
+                        <td class="info">: <?php echo $this->session->flashdata('jkpas'); ?></td>
+                      </tr>
+                    </table>
+              </div>
 
-                <tr>
-                <td class="info">ID Pasien</td>
-                <td class="info"><?php echo $this->session->flashdata('idpasien'); ?></td>
-                </tr>
-                <tr>
-                <td class="">Nama Pasien</td>
-                <td class=""><?php echo $this->session->flashdata('namapas'); ?></td>
-                </tr>
-
-                <tr>
-                <td class="info">Jenis Kelamin</td>
-                <td class="info"><?php echo $this->session->flashdata('jkpas'); ?></td>
-                </tr>
-
-              </table>
             </form>
           </div>
           
@@ -96,72 +94,65 @@
             </table>
        
               <h3>TOTAL</h3>
-             <h2>Rp. 4.131.345,-</h2>
+             <h2><?php echo $this->session->flashdata('total'); ?></h2>
           </div>
         </div>
         <br>
 
-<!--         <table class="table table-bordered">
-          <tr style="background-color: rgb(226, 246, 245);">
-            <td >Nama Kamar</td>
-            <td >Tanggal Masuk</td>
-            <td >Tanggal Keluar</td>
-            <td >Total</td>
-          </tr>
-
-
-
-
-        </table> -->
-        <h3>Rawat Inap</h3>
+        <h3>Detail Transaksi</h3>
 
         <table class="table table-bordered table-hover">
           <thead style="background-color: #337AB7;color: #FFF;">
-            <td>Nama Kamar</td>
-            <td>Tanggal Masuk</td>
-            <td>Tanggal Keluar</td>
+            <td>Tanggal</td>
+            <td>Transaksi</td>
+            <td>Keterangan</td>
+            <td>QTY</td>
+            <td>Harga</td>
             <td>Total</td>
 
           </thead>
           <tbody>
             <?php if ($this->session->flashdata('detailkamar')): ?>
-              <?php foreach ($this->session->flashdata('detailkamar') as $r): ?>
+              <?php foreach ($this->session->flashdata('detailkamar') as $k): ?>
               <tr>
-                <td><?php echo $r->NAMA_KAMAR_INAP; ?></td>
-                <td><?php echo $r->TGL_MASK; ?></td>
-                <td><?php echo $r->TGL_KELUAR; ?></td>
-                <td><?php echo $r->TOTAL_BIAYA_RWT; ?></td>
+                <td><?php echo $k->TGL_MASK; ?></td>
+                <td><?php echo $k->NAMA_KAMAR_INAP; ?></td>
+                <td><?php echo $k->KETERANGAN; ?></td>
+                <td></td>
+                <td><?php echo $k->TARIF_KMR; ?></td>
+                <td></td>
               </tr>
               <?php endforeach ?>
             <?php endif ?>
-          </tbody>
-        </table>
 
-
-        <h3>Pemeriksaan</h3>
-
-        <table class="table table-bordered table-hover">
-          <thead style="background-color: #337AB7;color: #FFF;">
-            <td>Nama Tindakan</td>
-            <td>Tanggal</td>
-            <td>Biaya</td>
-            
-          </thead>
-          <tbody>
             <?php if ($this->session->flashdata('detailpemeriksaan')): ?>
               <?php foreach ($this->session->flashdata('detailpemeriksaan') as $p): ?>
               <tr>
-                <td><?php echo $p->NAMA_TINDAKAN; ?></td>
                 <td><?php echo $p->TANGGAL_PERIKSA; ?></td>
+                <td><?php echo $p->NAMA_TINDAKAN; ?></td>
+                <td><?php echo $p->KETERANGAN; ?></td>
+                <td></td>
                 <td><?php echo $p->TARIF_TINDAKAN; ?></td>
+                <td></td>
               </tr>
               <?php endforeach ?>
             <?php endif ?>
+
+            <?php if ($this->session->flashdata('detailobat')): ?>
+              <?php foreach ($this->session->flashdata('detailobat') as $o): ?>
+              <tr>
+                <td><?php echo $o->TGL_OBAT_KELUAR; ?></td>
+                <td><?php echo $o->NAMA_OBAT; ?></td>
+                <td><?php echo $o->KETERANGAN; ?></td>
+                <td><?php echo $o->QTY; ?></td>
+                <td><?php echo $o->HARGA; ?></td>
+                <td></td>
+              </tr>
+              <?php endforeach ?>
+            <?php endif ?>
+
           </tbody>
         </table>
-
-
-
 
         <div class="row">
           <div class="col-md-4">
