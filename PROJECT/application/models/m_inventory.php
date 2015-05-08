@@ -18,6 +18,10 @@ class M_inventory extends CI_Model {
                 return $query;
                
         }
+        public function stokkritis(){
+                $query = $this->db->query("SELECT * FROM `obat` ");
+                return $query;
+        }
 }
 
 ?>

@@ -1,6 +1,5 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
-class Inventory extends CI_Controller {
+<?php  
+class Inventory extends CI_Controller{
 
 	public function index()
 	{
@@ -8,6 +7,25 @@ class Inventory extends CI_Controller {
 
       	$this->load->view('v_header');
 	    $this->load->view('inventory/v_conten', $data);
+		$this->load->view('v_footer');
+
+		// $this->load->database();
+		// $this->load->model("m_inventory");
+
+		/*$call = $this->m_inventory->getObat("paramex");
+		$ro = $call->row();*/
+		//echo $ro->takaran;
+		//echo $ro->nama_obat;
+
+
+
+	}
+	public function index2()
+	{
+		$data = array("idobat"=>"", "nama_obat"=>"", "kategori"=>" ", "harga"=>" ", "obat_kritis"=>"", "query2"=>null); 
+
+      	$this->load->view('v_header');
+	    $this->load->view('inventory/v_contenkritis', $data);
 		$this->load->view('v_footer');
 
 		// $this->load->database();
@@ -75,9 +93,19 @@ class Inventory extends CI_Controller {
 			$this->load->view('v_footer');
 
 	}
+	public function stok(){
+		$this->load->database();
+		$this->load->model('m_inventory');
+		$data = $this->m_inventory->stokkritis();
+		$data2 = array('stokkritis'=>$data);
+	}
+	public function hitung ($a, $b){
+		return $a+$b;
+	}
 	/*public function getObat($ido){
 		$query = $this->db->query('SELECT * FROM `obat_pasien` WHERE `nama_obat`= "'.$nobat.'"');
 		$row = $query->row();
 		return $row->nama_obat;
 	}*/
 }
+	

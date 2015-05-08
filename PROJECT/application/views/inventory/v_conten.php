@@ -37,9 +37,11 @@
           </div>
 
           <div class="col-md-8" style="text-align: right;">
-
-             
-              <button type="submit" class="btn btn-default">Stok kritis</button>
+          <form class="form-inline" action="<?php echo base_url()?>inventory/index2" method="post">
+              <div class="form-group">
+              </div>
+              
+              <button type="submit" class="btn btn-default">Stok Kritis</button>
               
 
           </div>
