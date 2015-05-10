@@ -3,18 +3,11 @@
 class Cabsensi extends CI_Controller {
 	public function index()
 	{
+
 		$this->load->view('v_header');
 		$this->load->view('absensi/v_absensi');
 		$this->load->view('v_footer');	
-		$this->load->helper('date');
-		$datestring = "Year: %Y Month: %m Day: %d - %h:%i %a";
-		$time = time();
-
-		date_default_timezone_set('Asia/Jakarta');
-		echo mdate($datestring, $time);
 		
-
-
 	}
 	
 	/*private function input()
@@ -28,18 +21,31 @@ class Cabsensi extends CI_Controller {
 	}*/
 	private function inputabsensikaryawan()
 	{
-		date_default_timezone_set('Asia/Jakarta');
+		date_default_timezone_set('asia/jakarta');
 		$idkr=$this->input->post('id_karyawan');
 
 		$datekr=date('Y-m-d');
 		$timedkr=date('H:i:s');
+		if ($timedkr<'16:00:00' && $timedkr>'07:00:00') {
+			$timepkr = '' ;
+		}
+		else {
+		$timedkr='';
 		$timepkr=date('H:i:s');
+		if($timepkr>'18:00:00'){
+			$ketkr='lembur';
+		}
+		else{
+			$ketkr='tidak lembur';
+		}
+		}
+		/*$timepkr=date('H:i:s');
 		if($timepkr>='16:00:00'){
 			$ketkr='lembur';
 		}
 		else{
 			$ketkr='tepat';
-		}
+		}*/
 		$this->load->model("m_absensi");
 		$inputX = $this->m_absensi->getAbsensiKaryawan($idkr,$timedkr,$datekr,$timepkr,$ketkr);
 		

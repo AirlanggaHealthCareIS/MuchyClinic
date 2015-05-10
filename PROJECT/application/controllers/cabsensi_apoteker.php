@@ -7,15 +7,32 @@ class cabsensi_apoteker extends CI_Controller {
 		$this->load->view('v_header');
 		$this->load->view('absensi/v_absensi_apoteker');
 		$this->load->view('v_footer');	
-		
+		date_default_timezone_set('europe/paris');
+		 echo $dateco = date('H:i:s');
+
 	}
 	
 	private function inputabsensiApoteker()
 	{
-		date_default_timezone_set('Asia/Jakarta');
+		date_default_timezone_set('asia/jakarta');
 		$ida=$this->input->post('id_apoteker');
 
 		$datea=date('Y-m-d');
+		$timeda=date('H:i:s');
+		if ($timeda<'16:00:00' && $timeda>'07:00:00') {
+			$timepa = '' ;
+		}
+		else {
+		$timeda = '';
+		$timepa=date('H:i:s');
+		if($timepa>'18:00:00'){
+			$keta='lembur';
+		}
+		else{
+			$keta='tidak lembur';
+		}
+		}
+		/*$datea=date('Y-m-d');
 		$timeda=date('H:i:s');
 		$timepa=date('H:i:s');
 		if($timepa>='16:00:00'||$timepa<="06:00:00"){
@@ -23,7 +40,7 @@ class cabsensi_apoteker extends CI_Controller {
 		}
 		else{
 			$keta='tepat';
-		}
+		}*/
 		$this->load->model("m_absensi");
 		$inputY = $this->m_absensi->getAbsensiApoteker($ida, $timeda, $datea, $timepa,$keta);
 	}

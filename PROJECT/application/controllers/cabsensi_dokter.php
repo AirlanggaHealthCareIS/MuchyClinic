@@ -20,13 +20,28 @@ class cabsensi_dokter extends CI_Controller {
 
 		$dated=date('Y-m-d');
 		$timedd=date('H:i:s');
+		if ($timedd<'16:00:00' && $timedd>'07:00:00') {
+			$timepd = '' ;
+		}
+		else {
+		$timedd = '';
+		$timepd=date('H:i:s');
+		if($timepd>'18:00:00' && $timepd <'06:59:59'){
+			$ketd='lembur';
+		}
+		else{
+			$ketd='tidak lembur';
+		}
+		}
+		/*$dated=date('Y-m-d');
+		$timedd=date('H:i:s');
 		$timepd=date('H:i:s');
 		if($timepd>='16:00:00'|| $timepd<="06:00:00"){
 			$ketd='lembur';
 		}
 		else{
 			$ketd='tepat';
-		}
+		}*/
 		$this->load->model("m_absensi");
 		$inputY = $this->m_absensi->getAbsensiDokter($idd, $timedd, $dated, $timepd,$ketd);
 				
