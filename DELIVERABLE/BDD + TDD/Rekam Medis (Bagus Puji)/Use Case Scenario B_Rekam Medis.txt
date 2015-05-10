@@ -1,0 +1,22 @@
+US05 Rekam Medis
+Skenario	: Rekam Medis
+Feature		: Dokter melihat Rekam Medis pasien
+Skenario B	: Melihat Rekam Medis pasien gagal dengan Id_pasien = "P00@!"
+
+Given	: Dokter telah melakukan login
+And	: Dokter berada pada home page Muchy Clinic
+And	: Dokter menekan tombol Rekam Medis
+And	: Dokter berada di halaman Rekam Medis
+And	: Dokter masuk ke halaman Rekam Medis melalui controller dengan method index()
+When	: Dokter memasukkan Id_pasien "P00@!"
+And	: Dokter menekan tombol Search
+Then	: Sistem Memanggil Method getId_pasien pada tabel pasien dengan
+	  parameter "P00@!"
+And	: Sistem masuk pada method validasi pada controller "rekammedis"
+And	: Id_pasien divalidasi karena terdapat simbol
+And	: Sistem akan memberikan notifikasi eror simbol
+And	: Dokter menginputkan kembali Id_pasien dengan benar
+
+
+
+

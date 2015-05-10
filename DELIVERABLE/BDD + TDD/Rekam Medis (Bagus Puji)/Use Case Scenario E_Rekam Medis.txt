@@ -1,0 +1,22 @@
+US05 Rekam Medis
+Story		: Rekam Medis
+Feature		: Dokter dapat melihat Rekam Medis pasien
+Skenario E	: Dokter melihat Rekam Medis pasien dan ID Pasien tidak ditemukan
+
+
+Given	: Dokter telah melakukan login
+And	: Dokter berada pada home page Muchy Clinic
+And	: Dokter menekan tombol Rekam Medis
+And	: Dokter berada di halaman Rekam Medis
+And	: Dokter masuk ke halaman Rekam Medis melalui controller dengan method index()
+When	: Dokter memasukkan Id_pasien "P0007"
+And	: Dokter menekan tombol Search
+Then	: Sistem Memanggil Method getId_pasien pada tabel pasien dengan
+	  parameter "P0007"
+And	: Sistem masuk pada method validasi pada controller "rekammedis"
+And	: Sistem masuk ke method tampil($id)
+And	: $id akan disimpan pada method set_userdata , karena akan digunakan nanti
+And 	: Sistem akan memanggil method yang ada pada model 'm_ambildata'
+And 	: $id akan dicari pada method getrekammedis pada model 'm_ambildata' yang disimpan pada variabel $query
+And 	: Jika id pasien yang dimasukkan tidak di temukan dalam database maka sistem akan memberikan notifikasi pasien tidak ditemukan
+

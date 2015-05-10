@@ -1,0 +1,21 @@
+US05 Rekam Medis
+Story		: Rekam Medis
+Feature		: Dokter dapat melihat Rekam Medis pasien
+Skenario D	: Dokter melihat Rekam Medis pasien dengan fild Id_pasien kosong
+
+Given	: Dokter telah melakukan login
+And	: Dokter berada pada home page Muchy Clinic
+And	: Dokter menekan tombol Rekam Medis
+And	: Dokter berada di halaman Rekam Medis
+And	: Dokter masuk ke halaman Rekam Medis melalui controller dengan method index()
+When	: Dokter memasukkan Id_pasien " "
+And	: Dokter menekan tombol Search
+Then	: Sistem Memanggil Method getId_pasien pada tabel pasien dengan
+	  parameter " "
+And	: Sistem masuk pada method validasi pada controller "rekammedis"
+And	: Id_pasien divalidasi karena fild kosong
+And	: Sistem akan memberikan notifikasi eror null
+And	: Dokter menginputkan kembali Id_pasien dengan benar
+
+
+
