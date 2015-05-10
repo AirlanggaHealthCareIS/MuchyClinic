@@ -1,6 +1,6 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php //if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Crawatinap extends CI_Controller {
+class Crawatinap {
 	public function index()
 	{
 		$this->load->model('mambildata');
@@ -98,4 +98,17 @@ class Crawatinap extends CI_Controller {
 			$this->index2();
 		}
 	}
+	public function kamar(){
+		$this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
+		$this->load->database();
+		$k1 = 3;
+		$k2 = 5;
+		$gKamar['kamar'] = $this->mambildata->getkamar();
+		
+	}
+	public function hitung($a,$b){
+		return $a+$b;
+	}
 }
+	
