@@ -1,9 +1,14 @@
     <div class="container-fluid">
-      <div class="container text-center">
+        
+      <div class="">
         <div class="row">
           <div class="">
-            <div class="box-keluar">        
-              <h3>Pengambilan Obat</h3>
+            <div class="box-keluar">
+              <div class="row">
+                <div class="col-lg-12">
+                  <h1 class="page-header">Pengambilan Obat</h1>
+                </div>
+              </div>        
               <br>
               <div class="row">
                 <div class="col-md-6" style="text-align: left;">
@@ -31,13 +36,13 @@
                   <!-- untuk form input id dan tanggal -->
                   <form class="form-horizontal" action="<?php echo base_url(); ?>obatkeluarresep/validasi" method="post">
                     <div class="form-group">
-                      <label for="tanggal" class="col-sm-2 control-label">Tanggal</label>
+                      <label style="text-align:left; padding-right: 0;" for="tanggal" class="col-sm-2 control-label">Tanggal</label>
                       <div class="col-sm-10">
                         <input type="date" name="tanggal" value="21/04/2015<?php //echo $this->session->flashdata('tanggal'); ?>" class="form-control" id="tanggal" placeholder="input tanggal">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="idpasien" class="col-sm-2 control-label">Id Pasien</label>
+                      <label style="text-align:left; padding-right: 0;" for="idpasien" class="col-sm-2 control-label">Id Pasien</label>
                       <div class="col-sm-10">
                         <input type="normal" autofocus name="idpasien" value="<?php echo $this->session->flashdata('idpasien'); ?>" class="form-control" id="idpasien" placeholder="input pasien id">
                       </div>
@@ -105,7 +110,7 @@
                       <td><?php echo $row->KET_RESEP; ?></td>
                       <td><?php echo $row->KATEGORI_OBAT; ?></td>
                       <td>QTY</td>
-                      <td><input type="checkbox"> Ada</td>
+                      <td><input id="ada" class="ada" type="checkbox" value="<?php echo $row->ID_OBAT; ?>" name="obatcek"> Ada</td>
                     </tr>
                   <?php endforeach ?>
                 <?php endif ?>
@@ -124,7 +129,7 @@
               <!-- end of tabel detail resep -->
 
               <div style="text-align:right">
-                <button type="button" class="btn btn-primary">Selesai</button>
+                <button type="button" onclick="return selesai()" class="btn btn-primary">Selesai</button>
               </div>
             </div>
             <br><br>
