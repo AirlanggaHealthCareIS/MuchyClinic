@@ -1,4 +1,3 @@
-US05 Rekam Medis
 Story		: Antrian On The Spot
 Feature		: Pasien mendapatkan nomor antrian
 Skenario A	: Admin menginputkan Id_Pasien = "P0001" dan pasien mendapatkan nomor antrian
