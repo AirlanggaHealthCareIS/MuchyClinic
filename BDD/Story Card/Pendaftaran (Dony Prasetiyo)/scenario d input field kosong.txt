@@ -1,7 +1,10 @@
 Feature : Pendaftaran Pasien oleh Karyawan
 
 > Scenario : Karyawan menginputkan field kosong dan mengklik tombol pada form pendaftaran
-	Given 	: User mengklik tombol saat file kosng 
-	And 	: User tidak mengisi field pada kolom pendaftaran
-	When 	: User tidak menginputkan isi field pada form pendaftaran
-	Then 	: User mendapat notifikasi error field belum terisi 
+	Given 	: Karyawan berada pada home page Muchy Clinic
+	And 	: Karyawan melakukan log in 
+	And 	: Karyawan memilih menu pendaftaran
+	And 	: Karyawan berada pada halaman pendaftaran pasien
+	When 	: Karyawan tidak menginputkan data pada form pendaftaran
+	And	: Karyawan mengklik tombol simpan 
+	Then 	: Karyawan mendapat notifikasi error field belum terisi 

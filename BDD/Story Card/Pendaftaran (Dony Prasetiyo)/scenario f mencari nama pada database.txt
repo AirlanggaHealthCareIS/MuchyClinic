@@ -1,6 +1,12 @@
 Feature : Pendaftaran Pasien oleh Karyawan
 
 > Scenario : Karyawan mencari nama pada database
-	Given 	: User telah masuk pada halaman database pendaftaran pasien
-	When 	: User menginputkan nama pasien pada tabel database pendaftaran pasien 
+	Given 	: Karyawan berada pada home page Muchy Clinic
+	And 	: Karyawan melakukan log in 
+	And 	: Karyawan memilih menu pendaftaran
+	And 	: Karyawan berada pada form pendaftaran
+	And 	: Karyawan memilih menu detail pasien	
+	And 	: Karyawan berada pada halaman detail pasien	
+	When 	: Karyawan menginputkan nama pasien pada tabel database pendaftaran pasien "mulia"
+	And 	: Karyawan menekan tombol search 
 	Then 	: User akan mendapatkan nama pasien yang dicari dan akan muncul pada  tabel database pasien

@@ -1,6 +1,10 @@
 Feature : Pendaftaran Pasien oleh Karyawan
 
 > Scenario : Karyawan menginputkan data yang sudah ada 
-	Given 	: Data sudah ada didatabase pendaftaran pasien
-	When 	: User menginputkan data pasien yang sudah ada
-	Then 	: User mendapat notifikasi "data sudah ada"
+	Given 	: Karyawan berada pada home page Muchy Clinic
+	And 	: Karyawan melakukan log in 
+	And 	: Karyawan memilih menu pendaftaran
+	And 	: Karyawan berada pada form pendaftaran
+	When 	: Karyawan menginputkan data pada form pendaftaran pasien ( id sama )
+	And	: Karyawan menekan tombol simpan 
+	Then 	: User mendapat notifikasi "data sudah ada pada database"

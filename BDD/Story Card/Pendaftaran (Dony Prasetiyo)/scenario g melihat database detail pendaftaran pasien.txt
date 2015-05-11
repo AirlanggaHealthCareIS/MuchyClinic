@@ -1,6 +1,9 @@
 Feature : Pendaftaran Pasien oleh Karyawan
 
 > Scenario : Karyawan melihat database detail pasien
-	Given 	: User telah masuk pada halaman database detail pendaftaran pasien
-	When 	: User membuka menu detail pendaftaran pasien 
+	Given 	: Karyawan berada pada home page Muchy Clinic
+	And 	: Karyawan melakukan log in 
+	And 	: Karyawan memilih menu pendaftaran
+	And 	: Karyawan berada pada form pendaftaran
+	When 	: Karyawan memilih menu detail pasien
 	Then 	: User akan dapat melihat daftar detail pasien pada menu ini.

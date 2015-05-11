@@ -1,18 +1,15 @@
 Feature : Pendaftaran Pasien oleh Karyawan
 
-> Scenario : Karyawan menginputkan data pasien pada halaman form pendaftaran 
+> Scenario : Karyawan menginputkan data yang sudah ada 
 	Given 	: Karyawan berada pada home page Muchy Clinic
 	And 	: Karyawan melakukan log in 
 	And 	: Karyawan memilih menu pendaftaran
 	And 	: Karyawan berada pada form pendaftaran
-	When 	: Karyawan menginputkan data pada form pendaftaran pasien
+	When 	: Karyawan menginputkan data pada form pendaftaran pasien ( id sama )
 	And	: Karyawan memasukkan ( $id_pasienkr,$nama_pasienkr,$tempat_lahirkr,$tanggal_lahirkr,$Alamatkr,$teleponkr,$goldarahkr,$jenis_kelaminkr,$pekerjaankr,$agamakr,$hpkr,$hubungankr,$pembayarankr,$keluhankr,$tanggal_pendaftarankr )
 	And	: Karyawan menekan tombol simpan 
 	Then 	: Karyawan menuju controller pendaftaran ke method validasi 
 	And	: Karyawan mengambil data dari view kemudian disimpan di cotrollerr dengan variabel masing - masing
 	And	: Sistem mengecek input benar atau tidak dengan memanggil method validasi
-	And 	: Data berhasil di validasi
-	And 	: Karyawan masuk pada method insert di model pendaftaran dengan parameter ( $id_pasienkr,$nama_pasienkr,$tempat_lahirkr,$tanggal_lahirkr,$Alamatkr,$teleponkr,$goldarahkr,$jenis_kelaminkr,$pekerjaankr,$agamakr,$hpkr,$hubungankr,$pembayarankr,$keluhankr,$tanggal_pendaftarankr )
-	And	: Karyawan menyimpan form pendaftaran pasien pada database pendaftaran pasien 
-	And 	: Sistem meredirect pesan berhasil
-	And 	: Sistem menampilkan pesan data berhasil di input
+	And	: Sistem mevalidasi inputan
+	Then 	: User mendapat notifikasi "data sudah ada pada database"

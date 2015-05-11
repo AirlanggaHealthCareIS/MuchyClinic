@@ -1,6 +1,0 @@
-Feature : Pendaftaran Pasien oleh Karyawan
-
-> Scenario : Karyawan menginputkan data yang sudah ada 
-	Given 	: Data sudah ada didatabase pendaftaran pasien
-	When 	: User menginputkan data pasien yang sudah ada
-	Then 	: User mendapat notifikasi "data sudah ada"
