@@ -1,0 +1,8 @@
+Feature : Pendaftaran Pasien oleh Karyawan
+
+> Scenario : Karyawan mencetak ulang data pasien dalam bentuk id card 
+	Given 	: Data sudah ada didatabase pendaftaran pasien
+	When 	: User menginputkan nama atau id pada kolom search
+	Then 	: Menampilkan data yang dicari
+	When 	: User mengklik cetak id card
+	Then 	: Id card tercetak 

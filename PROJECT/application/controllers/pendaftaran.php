@@ -1,7 +1,7 @@
 <?php
 // defined('BASEPATH') OR exit('No direct script access allowed');
 
-class pendaftaran  { // extends CI_Controller
+class pendaftaran extends CI_Controller  { // extends CI_Controller
 
 
 

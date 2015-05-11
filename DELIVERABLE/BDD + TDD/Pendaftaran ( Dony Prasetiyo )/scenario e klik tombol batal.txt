@@ -4,8 +4,9 @@ Feature : Pendaftaran Pasien oleh Karyawan
 	Given 	: Karyawan berada pada home page Muchy Clinic
 	And 	: Karyawan melakukan log in 
 	And 	: Karyawan memilih menu pendaftaran
-	And	: Karyawan berada pada halaman pendaftaran pasien 
-	When 	: Karyawan menginputkan data pada form pendaftaran pasien
+	And 	: Karyawan berada pada form pendaftaran 
+	When 	: Karyawan masuk ke controller pendaftaran method index
+	And	: Karyawan menginputkan data pada form pendaftaran pasien		
 	And 	: Karyawan mengklik tombol batal pada fitur ini 
 	Then 	: Sistem akan menjalankan season destroy
 	And	: Sistem akan mereset ulang data input form pendaftaran dan user harus mengisi ulang 

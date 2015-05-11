@@ -1,0 +1,13 @@
+Feature : Pendaftaran Pasien oleh Karyawan
+
+> Scenario : Karyawan menginputkan field kosong dan mengklik tombol pada form pendaftaran
+	Given 	: Karyawan berada pada home page Muchy Clinic
+	And 	: Karyawan melakukan log in 
+	And 	: Karyawan memilih menu pendaftaran
+	And 	: Karyawan berada pada halaman pendaftaran pasien
+	When 	: Karyawan menuju ke controller pendaftaran method index
+	And	: Karyawan tidak menginputkan data pada form pendaftaran
+	And	: Karyawan mengklik tombol simpan 
+	Then 	: Sistem mengecek method validasi pada controller pendaftaran
+	And 	: Sistem akan meredirect error
+	And 	: Karyawan mendapat notifikasi error field belum terisi 

@@ -1,0 +1,11 @@
+Feature : Pendaftaran Pasien oleh Karyawan
+
+> Scenario : Karyawan melihat database detail pasien
+	Given 	: Karyawan berada pada home page Muchy Clinic
+	And 	: Karyawan melakukan log in 
+	And 	: Karyawan memilih menu pendaftaran
+	And 	: Karyawan berada pada form pendaftaran
+	When 	: Karyawan memilih menu detail pasien		
+	And 	: Karyawan menuju ke controller pendaftaran method index2
+	And 	: Karyawan berada pada halaman detail pasien
+	Then 	: Sistem menampilkan id_pasien, namapasien , keluhan dan tanggal pendaftaran dari tabel pasien
