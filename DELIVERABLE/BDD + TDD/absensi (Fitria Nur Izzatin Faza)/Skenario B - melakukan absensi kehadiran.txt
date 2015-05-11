@@ -1,0 +1,14 @@
+Story		: Absensi
+Feature		: User (Karyawan/ Apoteker/Dokter) dapat melakukan absensi kehadiran dan absensi kepulangan
+Skenario B	: Melakukan Absensi
+
+Given	: saya seorang Karyawan/Apoteker/Dokter ingin melakukan absensi kehadiran
+And	: Saya membuka fitur Absensi pada sistem 
+And	: Saya memilih profesi saya di tombol yang sudah disiapkan
+When	: Saya Masuk ke halaman Absensi yang sudah disesuaikan pada bidang profesi yang saya pilih
+And	: Saya memasukkan ID saya pada kolom ID 
+And	: Saya menekan tombol 'Submit Absen'
+Then 	: Sistem masuk pada metode Validasi 
+And	: Sistem memangil metode inputabsensi-
+And	: Data yang saya masukkan aka di olah dan masuk kedalam databse absensi
+And 	: memunculkan pesan sukses 

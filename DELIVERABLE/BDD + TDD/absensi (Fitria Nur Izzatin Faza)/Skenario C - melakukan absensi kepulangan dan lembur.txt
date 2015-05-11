@@ -1,0 +1,16 @@
+Story		: Absensi
+Feature		: User (Karyawan/ Apoteker/Dokter) dapat melakukan absensi kehadiran dan absensi kepulangan
+Skenario c	: Melakukan Absensi kepulangan
+
+Given	: saya seorang Karyawan/Apoteker/Dokter ingin melakukan absensi kepulangan
+And	: Saya membuka fitur Absensi pada sistem 
+And	: Saya memilih profesi saya di tombol yang sudah disiapkan
+When	: Saya Masuk ke halaman Absensi yang sudah disesuaikan pada bidang profesi yang saya pilih
+And	: Saya memasukkan ID saya pada kolom ID 
+And	: Saya menekan tombol 'Submit Absen'
+Then 	: Sistem masuk pada metode Validasi 
+And	: Sistem memangil metode inputabsensi-
+And	: Sistem akan melakukan pengecekan jika user melakukan absensi pada jam 16:00:00 keatas maka akan masuk kedalam database kepulangan 
+AND	: jika user melakukan absensi diatas pukul 18:00:00 - 06:00:00 akan dianggap pulang lembur
+And	: Data yang saya masukkan akan di olah dan masuk kedalam databse absensi
+And 	: memunculkan pesan sukses 

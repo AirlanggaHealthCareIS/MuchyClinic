@@ -1,0 +1,9 @@
+Story		: Absensi
+Feature		: User (Karyawan/ Apoteker/Dokter) dapat melakukan absensi kehadiran dan absensi kepulangan
+Skenario A	: Melakukan Absensi
+
+Given	: saya seorang Karyawan/Apoteker/Dokter ingin melakukan absensi kehadiran
+And	: Saya membuka fitur Absensi pada sistem 
+And	: Saya memilih profesi saya di tombol yang sudah disiapkan
+When	: Saya Masuk ke halaman Absensi yang sudah disesuaikan pada bidang profesi yang saya pilih
+Then 	: Sistem masuk dan memunculkan interface absensi yang telah disesuaikan dengan profesi yang saya pilih
