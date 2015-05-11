@@ -1,6 +1,6 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
 
-class Jadwal extends CI_Controller {
+class Jadwal extends CI_Controller{
 
 	public function index()
 	{
@@ -17,10 +17,15 @@ class Jadwal extends CI_Controller {
         //"lihatjadwalapt"=>$this->m_jadwal->getAllData(),
 
 		$this->load->view("v_header");
-		$this->load->view("jadwal/v_content_dokter", $data);
+		$this->load->view("jadwal/v_content_apoteker", $data);
 		$this->load->view("v_footer");
 
     }
+
+    public function coba($a, $b){
+		return $a+$b;
+		
+	}
 
 	public function validasi()
 	{
@@ -262,10 +267,6 @@ class Jadwal extends CI_Controller {
 		else{
 			redirect(base_url().'jadwal?error=notfound');
 		}
-
-		
-
-			
 	}
 
 	public function tampilKaryawan($idkar){
@@ -276,13 +277,32 @@ class Jadwal extends CI_Controller {
 		$this->load->model("m_jadwal");
 
 		$query = $this->m_jadwal->getKaryawan($idkar);
-		$ro = $query->row();
 
-		$data = array("idkaryawan"=>$ro->ID_KARYAWAN, "namakaryawan"=>$ro->NAMA_K, "lihatjadwalkar"=>$this->m_jadwal->getDataKaryawan());
+		if($query->num_rows() > 0) {
+			$ro = $query->row();
+			
+			$query1 = $this->m_jadwal->getKaryawan($idkar);				
+			if($query1->num_rows() > 0){
 
-		$this->load->view("v_header");
-		$this->load->view("jadwal/v_content_karyawan", $data);
-		$this->load->view("v_footer");
+				$data = array(
+					"idkaryawan"=>$ro->ID_KARYAWAN, 
+					"namakaryawan"=>$ro->NAMA_K, 
+					"lihatjadwalkar"=>$this->m_jadwal->getDataKaryawan());
+
+				$this->load->view("v_header");
+				$this->load->view("jadwal/v_content_karyawan", $data);
+				$this->load->view("v_footer");	
+
+			}
+
+			else{
+				redirect(base_url().'jadwal?error=apaya');
+			}
+		}
+
+		else{
+			redirect(base_url().'jadwal?error=notfound');
+		}
 	}
 
 	public function tampilApoteker($idapt){
@@ -293,13 +313,30 @@ class Jadwal extends CI_Controller {
 		$this->load->model("m_jadwal");
 
 		$query = $this->m_jadwal->getApoteker($idapt);
-		$ro = $query->row();
 
-		$data = array("idapoteker"=>$ro->ID_APOTEKER, "namaapoteker"=>$ro->NAMA_APOTEKER, "lihatjadwalapt"=>$this->m_jadwal->getDataApoteker());
+		if($query->num_rows() > 0) {
+			$ro = $query->row();	
+		
+			$query1 = $this->m_jadwal->getApoteker($idapt);
 
-		$this->load->view("v_header");
-		$this->load->view("jadwal/v_content_apoteker", $data);
-		$this->load->view("v_footer");
+			if($query1->num_rows() > 0){
+
+				$data = array(
+					"idapoteker"=>$ro->ID_APOTEKER, 
+					"namaapoteker"=>$ro->NAMA_APOTEKER, 
+					"lihatjadwalapt"=>$this->m_jadwal->getDataApoteker());		
+			
+				$this->load->view("v_header");
+				$this->load->view("jadwal/v_content_apoteker", $data);
+				$this->load->view("v_footer");
+			}
+			else{
+				redirect(base_url().'jadwal?error=apaya');	
+			}
+		}
+		else{
+			redirect(base_url().'jadwal?error=notfound');	
+		}
 	}
 
 	private function inputJadwalDokter(){

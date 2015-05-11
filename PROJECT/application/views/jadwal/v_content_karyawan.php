@@ -40,6 +40,18 @@
             </div>
           <?php endif ?>
 
+          <?php if($this->input->get('error')=='notfound'): ?>
+            <div class="alert alert-danger " role="alert">
+              Maaf ID Karyawan yang anda masukkan tidak ada dalam database
+            </div>
+          <?php endif ?>
+
+          <?php if($this->input->get('error')=='apaya'): ?>
+            <div class="alert alert danger alert dismissible" role="alert">
+              Enaknya isi apa?
+            </div>
+          <?php endif ?>
+
           <div class = "col-md-6">
            
             <form class="form-horizontal" action="<?php echo base_url(); ?>jadwal/validasiKaryawan" method ="post">
