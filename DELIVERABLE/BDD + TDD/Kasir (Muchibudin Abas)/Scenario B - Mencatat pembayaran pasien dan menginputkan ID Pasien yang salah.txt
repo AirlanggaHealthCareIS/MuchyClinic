@@ -1,0 +1,14 @@
+Feature 	: Kasir dapat mencatat seluruh transaksi pembayaran pasien.
+
+Scenario 2: Mencatat pembayaran pasien dan menginputkan ID Pasien yang salah (ID Pasien tidak ditemukan dalam database)
+Give	: Kasir telah berada pada menu kasir
+And	: Admin masuk halaman kasir dengan controller "kasir" method index()
+When	: Kasir melakukan kesalahan saat menginputkan ID Pasien
+And	: Kasir menekan tombol search
+Then 	: Sistem menuju controller masuk ke method validasi()
+And	: Sistem akan mengecek ID Pasien, jika ID Pasien benar, Sistem akan menuju controller masuk ke method checkDatabase.
+And	: dengan parameter ID pasien Sistem akan menuju model "m_kasir" masuk ke method getcariid untuk mencari ID Pasien dalam database masuk ke method validasi()
+And	: Maka akan keluar notifikasi ID Pasien tidak ditemukan
+Then	: Kasir menerima pemberitahuan bahwa “ID Pasien tidak ditemukan dalam database”
+When	: Kasir kembali menginputkan ID Pasien
+

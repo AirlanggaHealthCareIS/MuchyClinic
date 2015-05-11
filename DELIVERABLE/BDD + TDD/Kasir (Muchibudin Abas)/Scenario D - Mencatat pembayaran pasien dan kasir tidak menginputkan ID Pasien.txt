@@ -1,0 +1,14 @@
+Feature 	: Kasir dapat mencatat seluruh transaksi pembayaran pasien.
+
+Scenario D: Mencatat pembayaran pasien dan Kasir tidak menginputkan ID Pasien
+
+Give	: Kasir telah berada pada menu kasir
+And	: Admin masuk halaman kasir dengan controller "kasir" method index()
+When	: Kasir tidak melakukan input ID Pasien
+And	: Kasir menekan tombol search
+Then 	: Sistem menuju controller masuk ke method validasi()
+And	: Sistem akan mengecek apakah terdapat simbol 
+And	: Maka akan keluar notifikasi error simbol
+Then	: Kasir menerima pemberitahuan bahwa “field ID Pasien harus diisi terlebih dahulu”
+When	: Kasir kembali menginputkan ID Pasien
+
