@@ -92,9 +92,22 @@
               <td style="width:43%">Irfan Nur Aulia</td>
               </tr>
             </table>
-       
-              <h3>TOTAL</h3>
-             <h2><?php echo $this->session->flashdata('total'); ?></h2>
+            <br>
+
+            <h3>TOTAL</h3>
+            <?php if ($this->session->flashdata('total')) {
+              echo "<h1>Rp. ";
+              echo $this->session->flashdata('total');
+              echo " ,-"; 
+            }
+            else {
+              echo "<h1>Rp. 0 ,-</h1>";
+            }
+             ?>
+          
+<!--             <h3>TOTAL</h3>
+            <h1>Rp. <?php echo $this->session->flashdata('total'); ?>,-</h1>
+ -->
           </div>
         </div>
         <br>
@@ -114,9 +127,9 @@
           <tbody>
             <?php if ($this->session->flashdata('detailkamar')): ?>
               <?php foreach ($this->session->flashdata('detailkamar') as $k): ?>
-              <tr>
+              <tr class="active">
                 <td><?php echo $k->TGL_MASK; ?></td>
-                <td><?php echo $k->NAMA_KAMAR_INAP; ?></td>
+                <td>Kamar Rawat Inap : <?php echo $k->NAMA_KAMAR_INAP; ?></td>
                 <td><?php echo $k->KETERANGAN; ?></td>
                 <td></td>
                 <td><?php echo $k->TARIF_KMR; ?></td>
@@ -127,9 +140,9 @@
 
             <?php if ($this->session->flashdata('detailpemeriksaan')): ?>
               <?php foreach ($this->session->flashdata('detailpemeriksaan') as $p): ?>
-              <tr>
+              <tr class="success">
                 <td><?php echo $p->TANGGAL_PERIKSA; ?></td>
-                <td><?php echo $p->NAMA_TINDAKAN; ?></td>
+                <td>Tindakan : <?php echo $p->NAMA_TINDAKAN; ?></td>
                 <td><?php echo $p->KETERANGAN; ?></td>
                 <td></td>
                 <td><?php echo $p->TARIF_TINDAKAN; ?></td>
@@ -140,9 +153,9 @@
 
             <?php if ($this->session->flashdata('detailobat')): ?>
               <?php foreach ($this->session->flashdata('detailobat') as $o): ?>
-              <tr>
+              <tr class="danger">
                 <td><?php echo $o->TGL_OBAT_KELUAR; ?></td>
-                <td><?php echo $o->NAMA_OBAT; ?></td>
+                <td>Obat : <?php echo $o->NAMA_OBAT; ?></td>
                 <td><?php echo $o->KETERANGAN; ?></td>
                 <td><?php echo $o->QTY; ?></td>
                 <td><?php echo $o->HARGA; ?></td>
@@ -157,28 +170,52 @@
         <div class="row">
           <div class="col-md-4">
             <label for="disabledTextInput">Total</label>
-            <input class="form-control" id="disabledInput" type="text" placeholder="4.131.345" disabled>
+            <input class="form-control" id="disabledInput" type="text" placeholder="<?php echo $this->session->flashdata('total'); ?>" disabled>
             <br>
+
+              <!-- pesan error -->
+              <?php if ($this->input->get("error")=="nullcash"): ?>
+                <div class = "alert alert-danger" role = "alert">
+                  <p>Silahkan masukkan Uang Tunai</p>
+                </div>
+              <?php endif ?>
+
+              <?php if ($this->input->get("error")=="simbolcash"): ?>
+                <div class = "alert alert-danger" role = "alert">
+                  <p>masukan Uang Tunai hanya dengan Angka</p>
+                </div>  
+              <?php endif ?>
+              
+              <?php if ($this->input->get("error")=="invalidid"): ?>
+                <div class = "alert alert-danger" role = "alert">
+                  <p>ID Pasien Tidak di temukan dalam database</p>
+                </div>  
+              <?php endif ?>
+              <!-- end pesan error -->
 
             <label for="disabledTextInput">Tunai</label>
               <div class="row">
-                <div class="col-md-9">
-                  
-                  <label class="sr-only" for="exampleInputAmount">Tunai (in rupiah)</label>
-                  <div class="input-group">
-                    <div class="input-group-addon">Rp.</div>
-                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="4.132.000">
-                    <div class="input-group-addon">.00</div>
+
+                <form class="form-inline" action="<?php echo base_url(); ?>kasir/validationCash" method="post">
+
+                  <div class="col-md-9">    
+                    <label class="sr-only" for="exampleInputAmount">Tunai (in rupiah)</label>
+                    <div class="input-group">
+                      <div class="input-group-addon">Rp.</div>
+                      <input type="text" class="form-control" name="bayar" id="exampleInputAmount" placeholder="">
+                      <div class="input-group-addon">.00</div>
+                    </div>
                   </div>
-                </div>
-                <div class="col-md-3">
-                  <button type="submit" class="btn btn-primary">Cash</button>
-                  <br></br>
-                </div>
+
+                  <div class="col-md-3">
+                    <button type="submit" class="btn btn-primary">Cash</button>
+                    <br></br>
+                  </div>
+                </form>
               </div>
 
             <label for="disabledTextInput">Kembali</label>
-            <input class="form-control" id="disabledInput" type="text" placeholder="655" disabled>
+            <input class="form-control" id="disabledInput" type="text" placeholder="0" disabled>
           </div>
         
           <div class="col-md-4" style="text-align: center">
