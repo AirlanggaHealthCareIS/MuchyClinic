@@ -8,7 +8,7 @@ class m_login extends CI_Model {
                 parent::__construct();
         }
         
-        public function getcoba_psi($username,$password)
+        public function getdokter($username,$password)
         {
                 $query = $this->db->query("SELECT * FROM `dokter` WHERE NAMA_DOKTER = '".$username."' OR PASSWORD = '".$password."'");
                 if ($query->num_rows() ==1) {
@@ -16,6 +16,21 @@ class m_login extends CI_Model {
                 } else {
                         return false;
                 }
+
+
+        }
+         public function getkaryawan($username,$password)
+        {
+                // $query = $this->db->query("SELECT * FROM `dokter` WHERE NAMA_DOKTER = '".$username."' OR PASSWORD = '".$password."'");
+                
+                $query = $this->db->query("SELECT * FROM `karyawan` WHERE NAMA_K = '".$username."' OR PASSWORD = '".$password."'");
+                if ($query->num_rows() ==1) {
+                        return true;
+                } else {
+                        return false;
+                }
+
+        
         }
 }
 
