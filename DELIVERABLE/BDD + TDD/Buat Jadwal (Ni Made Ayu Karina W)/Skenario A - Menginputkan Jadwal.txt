@@ -1,0 +1,21 @@
+Story	: Buat Jadwal
+Feature : User (Owner) dapat menginputkan jadwal karyawan, dokter, dan apoteker
+Skenario A : Menginputkan jadwal dokter
+
+Given	: saya telah melakukan login sebagai owner
+And 	: saya telah memilih menu jadwal
+And 	: saya telah memilih submenu Buat Jadwal
+And 	: saya berada di halaman Buat Jadwal
+And	: saya masuk ke halaman Buat Jadwal melalui controller dengan method index()
+When 	: saya memasukkan ID Dokter "D0001"
+And	: saya menekan tombol search
+Then	: sistem masuk pada method validasiDokter pada controller jadwal
+And	: sistem memanggil method tampilDokter dengan parameter "D0001"
+And	: sistem memanggil method getDokter yang ada pada model m_jadwal
+And	: Field Id Dokter dan Nama akan otomatis terisi pada field yang disediakan
+When	: saya mengisi field ID Jadwal, hari, tanggal
+And 	: saya menekan tombol add
+Then	: sistem masuk pada method validasiDokter2
+Then	: sistem memanggil method inputJadwalDokter
+And	: sistem memanggil method getDokter yang ada pada model m_ jadwal dengan parameter IDJADWALD, IDDOKTER, HARID, JAMD
+And	: Jika semua inputan saya benar, maka data akan tersimpan dalam database

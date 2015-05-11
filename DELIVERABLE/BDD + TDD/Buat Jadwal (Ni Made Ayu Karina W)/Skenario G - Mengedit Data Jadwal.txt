@@ -1,0 +1,17 @@
+Feature: User (Dokter, Apoteker, dan Karyawan) dapat melihat jadwal kerjanya masing-masing
+Skenario G: Mengedit data jadwal
+
+Given	: saya telah melakukan login sebagai owner
+And 	: saya telah memilih menu jadwal
+And 	: saya telah memilih submenu Buat Jadwal
+And 	: saya berada di halaman Buat Jadwal
+And	: saya masuk ke halaman Buat Jadwal melalui controller dengan method index()
+And	: sistem menampilkan semua data jadwal dokter
+When	: saya memilih salah satu jadwal
+And	: saya menekan tombol edit
+And	: saya mengisi data hari dan jam yang baru
+And	: saya menekan tombol OK
+And	: data hari masuk pada variabel $haridn dan jam masuk pada variabel $jamdn
+Then	: sistem akan masuk pada method gantiJadwalDokter dengan parameter $iddokter
+And	: sistem akan memanggil method gantiJadwalDoter yang ada pada model m_jadwal dengan parameter $iddokter
+And	: data yang lama telah berganti dengan data yang baru

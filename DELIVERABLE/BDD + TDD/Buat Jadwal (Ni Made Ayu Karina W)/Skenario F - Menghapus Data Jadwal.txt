@@ -1,0 +1,16 @@
+Feature : User (Owner) dapat menginputkan jadwal karyawan, dokter, dan apoteker
+Skenario F: User menghapus data jadwal
+
+Given	: saya telah melakukan login sebagai owner
+And 	: saya telah memilih menu jadwal
+And 	: saya telah memilih submenu Buat Jadwal
+And 	: saya berada di halaman Buat Jadwal
+And	: saya masuk ke halaman Buat Jadwal melalui controller dengan method index()
+And	: sistem menampilkan semua data jadwal dokter
+When	: saya memilih salah satu jadwal
+And	: saya menekan tombol hapus
+Then	: sistem akan masuk pada method hapusJadwalDokter dengan parameter $iddokter
+And	: sistem akan memanggil method deleteJadwalDoter yang ada pada model m_jadwal dengan parameter $iddokter
+And	: sistem akan memunculkan peringatan "Apakah anda yakin akan menghapus data ini?"
+And	: saya memilih Iya
+And	: sistem akan menjalankan method deleteJadwalDokter

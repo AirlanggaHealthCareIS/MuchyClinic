@@ -1,0 +1,12 @@
+Feature : User (Owner) dapat menginputkan jadwal karyawan, dokter, dan apoteker
+Skenario E: User menginputkan karakter yang tidak sesuai pada text field
+
+Given	: saya telah melakukan login sebagai owner
+And 	: saya telah memilih menu jadwal
+And 	: saya telah memilih submenu Buat Jadwal
+And 	: saya berada di halaman Buat Jadwal
+And	: saya masuk ke halaman Buat Jadwal melalui controller dengan method index()
+When 	: saya memasukkan ID Dokter "D0001"
+And	: saya menekan tombol search
+Then	: sistem masuk pada method validasiDokter pada controller jadwal
+And	: sistem akan memunculkan peringatan bahwa karakter yang diinputkan tidak sesuai
