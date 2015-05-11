@@ -4,12 +4,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+ 
     <title>Muchy Clinic | Pendaftaran</title>
 
     <!-- Bootstrap -->
     <!-- <link href ="assets/css/bootstrap.min.css" rel="stylesheet"> -->
     <link href="assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
+     <!-- <link href="assets/css/style2.css" rel="stylesheet" type="text/css" media="all" /> -->
 	<link href="<?php echo base_url (); ?>assets/css/bootstrap1.css" rel="stylesheet" type="text/css" media="all" />
 
     
@@ -20,6 +21,8 @@
 
    <!-- dari sini  -->
 
+
+					
 
 
 <div id="pendaftaran" class="pendaftaran" >
@@ -117,8 +120,13 @@
 		
 		  			<div class="col-md-6">
 						<!-- <input type="radio" name="laki" value="Pria" />  Laki laki  -->
-						<input type="text" name="jenis_kelamin" maxlength="30" size="20" />
+						<!-- <input type="text" name="jenis_kelamin" maxlength="30" size="20" /> -->
 						<!-- <input type="radio" name="perempuan" value="Wanita" />  Perempuan  -->
+						<select name="jenis_kelamin" id="jenis_kelamin">
+							<option value="-1">jenis_kelamin</option>
+							<option value="Islam">Laki-laki</option>
+							<option value="Kristen Katolik">Perempuan</option>
+						</select>
 		  			</div>
 	  			</div>
 
@@ -183,7 +191,7 @@
 	  			<br><br>
 	  			<div class="row">
 	  				<div class="col-md-5">
-		  				Type Pembayaran
+		  				Pembayaran
 		  			</div>
 		  			<div class="col-md-3">
 						<select name="Pembayaran" id="Pembayaran">
@@ -201,7 +209,7 @@
 		  				Tanggal Pendaftaran
 		  			</div>
 		  			<div class="col-md-3">
-						<input type="text" name="tanggal_pendaftaran" maxlength="30" size="20" />
+						<input type="date" name="tanggal_pendaftaran" maxlength="30" size="16" />
 		  			</div>
 	  			</div>
 
@@ -213,7 +221,7 @@
   				
   				<br>
   				<div class="row">
-	  				<div class="col-md-4">
+	  				<div class="col-md-6">
 		  				Nama Pasien
 		  			</div>
 		  			<div class="col-md-3">
@@ -221,20 +229,29 @@
 		  			</div>
 	  			</div>
 
-
-				<br><br><br>
-	  			<div class="row">
-	  				<div class="col-md-4">
-		  				Tanggal Lahir
+				<br>
+  				<div class="row">
+	  				<div class="col-md-6">
+		  				
 		  			</div>
 		  			<div class="col-md-3">
-						<input type="text" name="tanggal_lahir" maxlength="30" size="20" />
+						
 		  			</div>
 	  			</div>
 
-	  			<br><br><br><br>
+				<br><br>
 	  			<div class="row">
-	  				<div class="col-md-4">
+	  				<div class="col-md-6	">
+		  				Tanggal Lahir
+		  			</div>
+		  			<div class="col-md-5">
+						<input type="date" name="tanggal_lahir" maxlength="70" size="70" />
+		  			</div>
+	  			</div>
+
+	  			<br><br><br>
+	  			<div class="row">
+	  				<div class="col-md-6">
 		  				Pekerjaan
 		  			</div>
 		  			<div class="col-md-3">
@@ -244,7 +261,7 @@
 
 	  			<br>
 	  			<div class="row">
-	  				<div class="col-md-4">
+	  				<div class="col-md-6">
 		  				Hp
 		  			</div>
 		  			<div class="col-md-3">
@@ -254,7 +271,7 @@
 
 	  			<br>
 	  			<div class="row">
-	  				<div class="col-md-4">
+	  				<div class="col-md-6">
 		  				Hubungan
 		  			</div>
 		  			<div class="col-md-3">
@@ -262,14 +279,14 @@
 		  			</div>
 	  			</div>
 
-	  			<br>
+	  			<br><br>
 	  			<div class="row">
 
-	  				<div class="col-md-4">
+	  				<div class="col-md-6">
 	  					Keluhan Penyakit
 		  			</div>
 		  			<div class="col-md-3">
-						<textarea name="keluhan" rows="4" cols="22"></textarea>
+						<textarea name="keluhan" rows="5" cols="22"></textarea>
 		  			</div>
 	  			</div>
 
@@ -284,7 +301,7 @@
 				 <button type="submit" class="btn btn-primary">Simpan</button>
 
 
-				 <button type="submit" class="btn btn-primary">Batal</button>
+				 <button type="reset" class="btn btn-primary" action="<?php session_destroy(); ?>">Batal</button>
 			</div>
 
 

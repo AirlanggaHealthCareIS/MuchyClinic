@@ -23,18 +23,28 @@
 	<p>cari menggunakan nama atau id pasien</p>
 	
 
-<form class="form-horizontal" action="<?php echo base_url(); ?>pendaftaran/tampil" method="post">  		
+<form class="form-horizontal" action="<?php echo base_url(); ?>pendaftaran/index2" method="post">  		
 
-	<input type="text" name="carinama" maxlength="30" size="50" id="cari_nama" />
+            <div class="row">
+                <div class="col-md-5">
+                    <input type="text" name="carinama" maxlength="30" size="50" id="cari_nama" />
+                </div>
+                <div class="col-md-3">
+                   <button type="submit" name="cari" class="btn btn-primary" size="20">Cari</button>
+                </div>
+            </div>
+
     <br><br>
         <table class="table table-bordered">
           
           <tr>
 
             <!-- <td >No</td> -->
-            <td >Nama Pasien</td>
-            <td >Id Pasien</td>
-            <td >Keluhan_Penyakit</td>
+            <th style="color: white;background-color: rgb(39, 190, 196);">Id Pasien</th>
+            <th style="color: white;background-color: rgb(39, 190, 196);">Nama Pasien</th>
+            <th style="color: white;background-color: rgb(39, 190, 196);">Keluhan_Penyakit</th>
+            <th style="color: white;background-color: rgb(39, 190, 196);">Tanggal Pendaftaran</th>
+                       
  
           </tr>
 
@@ -43,9 +53,11 @@
           
           <tr>
             <!-- <td >  </td> -->
-            <td > <?php echo $newisi->NAMA_PASIEN;  ?>  </td>
             <td > <?php echo $newisi->ID_PASIEN;  ?>  </td>
-            <td > <?php echo $newisi->KELUHAN_PENYAKIT;  ?> </td>          
+            <td > <?php echo $newisi->NAMA_PASIEN;  ?>  </td>
+            <td > <?php echo $newisi->KELUHAN_PENYAKIT;  ?> </td>
+            <td > <?php echo $newisi->TANGGAL_PENDAFTARAN;  ?> </td>
+                      
           </tr>
      
        <?php endforeach ?>

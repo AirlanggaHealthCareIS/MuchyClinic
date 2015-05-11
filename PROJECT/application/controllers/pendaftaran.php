@@ -1,7 +1,7 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+// defined('BASEPATH') OR exit('No direct script access allowed');
 
-class pendaftaran extends CI_Controller {
+class pendaftaran  { // extends CI_Controller
 
 
 
@@ -17,22 +17,23 @@ class pendaftaran extends CI_Controller {
 	public function index2()
 	{
 		$this->load->database();
-
+		$daftarpasien = $this->input->post('carinama');
 		$this->load->model('m_pendaftaranpasien');
 		
-		$ambil = $this->m_pendaftaranpasien->getdatapasien();
+		$ambil = $this->m_pendaftaranpasien->getdatapasien($daftarpasien);
 		$newambil = $ambil->result();
 		// foreach ($q as $re) {
 		// 	echo "<br>".$re->ID_PASIEN;
 		// 	echo "<br>".$re->NAMA_PASIEN;
 		// }
 
-		$databaru['isidata'] = $newambil;
-		
+		// $databaru['isidata'] = $newambil;
+		$databaru = array('isidata'=>$newambil);
 
 		$this->load->view('v_header');
 		$this->load->view('pendaftaran/v_detail', $databaru);
 		$this->load->view('v_footer');
+		// echo "indra";
 	}
 
 
@@ -166,6 +167,9 @@ class pendaftaran extends CI_Controller {
 		$this->load->view('v_footer');
 	}
 
+public function hitung ($a,$b) {
+	return $a+$b;
+}
 
 }
 

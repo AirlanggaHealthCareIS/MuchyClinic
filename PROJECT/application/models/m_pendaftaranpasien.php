@@ -18,8 +18,8 @@ class m_pendaftaranpasien extends CI_Model {
                 }   
 
 
-        public function getdatapasien(){
-                $query = $this->db->query("SELECT * FROM `pasien` ");
+        public function getdatapasien($nama_pasien){
+                $query = $this->db->query("SELECT * FROM `pasien` WHERE `NAMA_PASIEN` LIKE '%".$nama_pasien."%'");
                 return $query;
 
         }
