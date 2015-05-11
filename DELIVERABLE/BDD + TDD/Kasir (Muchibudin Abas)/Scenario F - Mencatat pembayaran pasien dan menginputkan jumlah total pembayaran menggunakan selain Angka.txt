@@ -1,0 +1,17 @@
+Scenario F : Mencatat pembayaran pasien dan menginputkan jumlah total pembayaran menggunakan selain ANGKA
+Give	: Kasir telah berada pada menu kasir
+And	: Admin masuk halaman kasir dengan controller "kasir" method index()
+When	: Kasir melakukan kesalahan saat menginputkan ID Pasien
+And	: Kasir menekan tombol search
+Then 	: Sistem menuju controller masuk ke method "validasi()"
+And	: Sistem akan mengecek ID Pasien, jika ID Pasien benar, Sistem akan menuju controller masuk ke method "checkDatabase".
+And	: dengan parameter ID pasien Sistem akan menuju model "m_kasir" masuk ke method getcariid untuk mencari ID Pasien dalam database
+And	: jika ID Pasien ada dalam database, Maka sistem akan menuju model "m_kasir" masuk ke method checkidKamar, checkidPemeriksaan, dan checkidObat kemudian 
+And	: Sistem akan menampilkan daftar transaksi dengan menuju model "m_kasir" masuk ke method getKamar, getPemeriksaan, dan getObat
+Then	: Kasir dapat melihat jumlah total pembayaran yang harus dibayar oleh pasien
+When	: Kasir menginputkan total pembayaran dengan selain angka
+And	: Kasir menekan tombol search
+Then 	: Sistem menuju controller masuk ke method "validasiCash()"
+Then	: Kasir menerima pemberitahuan bahwa “Jumlah Total Pembayaran harus diisi dengan angka”
+When	: Kasir kembali menginputkan total pembayaran
+
