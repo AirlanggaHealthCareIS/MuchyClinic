@@ -1,0 +1,17 @@
+Story		: Antrian On The Spot
+Feature		: Pasien mendapatkan nomor antrian
+Skenario D	: Pasien yang telah mendaftar dan admin tidak menginputkan ID pasien, field kosong
+
+Given	: Pasien telah melakukan pendaftaran dan menyerahkan Id Pasien kepada Admin
+And	: Admin berada pada home page Muchy Clinic
+And	: Admin menekan tombol Sistem Antri On The Spot
+And	: Admin berada di halaman Sistem Antri On The Spot
+And	: Admin masuk ke halaman Sistem Antri On The Spot melalui controller dengan method index()
+When	: Admin tidak memasukkan Id_pasien "P0001"
+And	: Admin menekan tombol Input Id pasien
+Then 	: Sistem menuju controller masuk ke method validasi()
+And	: Sistem akan mengecek apakah field terisi 
+And	: Jika field kosong, maka akan muncul pesan error
+Then	: Kasir menerima pemberitahuan bahwa “Maaf field kosong! Silahkan input ID pasien kembali”
+When	: Kasir kembali menginputkan ID Pasien
+

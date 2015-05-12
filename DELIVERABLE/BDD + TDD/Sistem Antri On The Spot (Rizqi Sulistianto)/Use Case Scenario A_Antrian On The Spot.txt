@@ -1,6 +1,6 @@
 Story		: Antrian On The Spot
 Feature		: Pasien mendapatkan nomor antrian
-Skenario A	: Admin menginputkan Id_Pasien = "P0001" dan pasien mendapatkan nomor antrian
+Skenario A	: Pasien yang telah mendaftar dan admin menginputkan ID pasien dengan benar lalu pasien mendapat nomor antrian
 
 Given	: Pasien telah melakukan pendaftaran dan menyerahkan Id Pasien kepada Admin
 And	: Admin berada pada home page Muchy Clinic
