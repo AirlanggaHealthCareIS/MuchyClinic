@@ -1,59 +1,58 @@
 <div class ="container-fluid" style="margin-bottom:50px;">
-      <div class="container">
-        <h1><center>Laporan Uang Masuk</center></h1>
-        <br></br>
+      <div class="">
+        <h1>Laporan Uang Masuk</h1>
+ 
 
         <div class="row">
-          <div class="col-md-6">
-
-              <div class="radio">
-                  <label>
-                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                    Pilihan Jangka Waktu
-                  </label>
-                   <div class="form-group">
-                      <form class="form-horizontal" action = "<?php echo base_url()?>laporanuang" method = "post">
-                         <div class="form-group">
-                          <label for="inputPassword3" class="col-sm-5 control-label">Periode Awal Transaksi</label>
-                          <div class="col-sm-7">
-                            <select class="form-control" style = "width:250px">
-                              <option>- Pilih Periode Awal Transaksi -</option>
-
-
-
-                            </select>
-                          </div>
-                        </div>
-
+          <div class="col-md-5">
+            <form>
+            <h4>Periode Laporan :</h4>
+            <div class="col-sm-offset-1 col-sm-11">
+            <div class="col-xs-5">
+              <input type="radio" name="rad" id="rad1" value="1" class="rad"/> Jangka Waktu
+            </div>
+            <div class="col-xs-7">
+              <input type="radio" name="rad" id="rad2" value="2" class="rad"/> n Transaksi Terakhir
+            </div>
+            </div>
+            
+                       
+            <!-- form yang mau ditampilkan-->
+            <br></br>
+            <div id="form1" style="display:none">
+                <div class="form-group">
+                     <form class="form-horizontal" action="<?php echo base_url(); ?>laporanuang/validasi" method="post">
                         <div class="form-group">
-                          <label for="inputPassword3" class="col-sm-5 control-label">Periode Akhir Transaksi</label>
-                          <div class="col-sm-7">
-                            <select class="form-control" style = "width:250px">
-                              <option>- Pilih Periode Akhir Transaksi -</option>
-                             
-                            </select>
+                          <label for="tanggal" class="col-sm-4 control-label">Periode Awal</label>
+                          <div class="col-sm-8">
+                            <input type="date" name="tanggal" value="21/04/2015<?php?>" class="form-control" id="tanggal" placeholder="input tanggal">
                           </div>
                         </div>
-                      </form>
-                </div>
-                </div>
-          <br></br>     
-          </div>
+                         <br></br>
+                        <div class="form-group">
+                          <label for="tanggal" class="col-sm-4 control-label">Periode Akhir</label>
+                          <div class="col-sm-8">
+                            <input type="date" name="tanggal" value="21/04/2015<?php?>" class="form-control" id="tanggal" placeholder="input tanggal">
+                          </div>
+                        </div>
+                        
+                  </form>
 
-          <div class="col-md-6">
-              <div class="radio">
-                  <label>
-                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                    n Transaksi Terakhir
-                  </label>
-                  
-                  <div class="form-group">
+                  <br></br>
+                    <button type="submit" class="btn btn-info" style = "width:100px">Submit</button>
+                                    
+            </form>
+                </div>
+            </div>
+
+            <div id="form2" style="display:none">
+                <div class="form-group">
                       <form class="form-horizontal">
                          <div class="form-group">
-                          <label for="inputPassword3" class="col-sm-5 control-label">Jumlah Transaksi Terakhir</label>
-                          <div class="col-sm-7">
-                            <select class="form-control" style = "width:250px">
-                              <option>- Pilih Transaksi Terakhir -</option>
+                          <label for="inputPassword3" class="col-sm-6 control-label">Jumlah Transaksi Terakhir</label>
+                          <div class="col-sm-6">
+                            <select class="form-control" style = "width:200px">
+                              <option>- Transaksi Terakhir -</option>
                               <option>5 Transaksi Terakhir</option>
                               <option>10 Transaksi Terakhir</option>
                               <option>15 Transaksi Terakhir</option>
@@ -62,10 +61,10 @@
                         </div>
 
                         <div class="form-group">
-                          <label for="inputPassword3" class="col-sm-5 control-label">Tampil Berdasarkan</label>
-                          <div class="col-sm-7">
-                            <select class="form-control" style = "width:250px">
-                              <option>- Pilih Tampil Berdasarkan -</option>
+                          <label for="inputPassword3" class="col-sm-6 control-label">Tampil Berdasarkan</label>
+                          <div class="col-sm-6">
+                            <select class="form-control" style = "width:200px">
+                              <option>- Tampil Berdasarkan -</option>
                               <option>Tanggal Transaksi</option>
                               <option>Jumlah Total Biaya</option>
                             </select>
@@ -73,29 +72,39 @@
                         </div>
 
                         <div class="form-group">
-                          <label for="inputPassword3" class="col-sm-5 control-label">Urut Berdasarkan</label>
-                          <div class="col-sm-7">
-                            <select class="form-control" style = "width:250px">
-                              <option>- Pilih Urut Berdasarkan -</option>
-                              <option>Mulai Dari Yang Terkecil</option>
-                              <option>Mulai Dari Yang Terbesar</option>
+                          <label for="inputPassword3" class="col-sm-6 control-label">Urut Berdasarkan</label>
+                          <div class="col-sm-6">
+                            <select class="form-control" style = "width:200px">
+                              <option>- Urut Berdasarkan -</option>
+                              <option>Dari Yang Terkecil</option>
+                              <option>Dari Yang Terbesar</option>
                             </select>
                           </div>
                         </div>
+
+                          <button type="submit" class="btn btn-info" style = "width:100px">Submit</button>
                       </form>
                 </div>
-          </div>
-        <br></br>
-        </div>
+            </div>
+            </form>
 
-          <div class="text-center">
-          <button type="submit" class="btn btn-info" style = "width:100px">Submit</button>
-          <button type="reset" class="btn btn-info" style = "width:100px">Back</button>
-          </div>
-          <br></br>
-          </div>
+            <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+            <script type="text/javascript">
+            $(function(){
+            $(":radio.rad").click(function(){
+            $("#form1, #form2").hide()
+            if($(this).val() == "1"){
+            $("#form1").show();
+            }else{
+            $("#form2").show();
+            }
+            });
+            });
+            </script>
+      </div>
 
-        <table class="table table-bordered">
+          <div class="col-md-7">
+                    <table class="table table-bordered">
           <tr style="background-color: rgb(226, 246, 245);">
             <td ><center>Tanggal Trnsaksi</center></td>
             <td ><center>Id Transaksi</center></td>
@@ -137,7 +146,10 @@
             <td >...</td>
           </tr>
         </table>
-        
+
+          </div>
+        <br></br>
+        </div>         
 
       </div>
     </div>
