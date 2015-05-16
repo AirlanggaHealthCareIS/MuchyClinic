@@ -30,6 +30,15 @@ class M_obatkeluar extends CI_Model {
                 $this->db->insert('detail_obat_keluar', $data);
         }
 
+        public function getResep($id, $tgl){
+                $query = $this->db->query("SELECT * FROM resep AS r, dokter AS d, pasien AS p WHERE r.ID_DOKTER = d.ID_DOKTER AND r.ID_PASIEN=p.ID_PASIEN AND r.ID_PASIEN='".$id."' AND TGL_RESEP='".$tgl."'");
+                if ($query->num_rows()>0) {
+                        $query = $query->row();
+                        return $query->ID_RESEP;
+                } else {
+                        return 0;
+                }
+        }
 }
 
 ?>
