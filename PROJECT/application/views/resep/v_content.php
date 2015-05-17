@@ -1,4 +1,4 @@
-<div class="container-fluid" style=" width: 900px;">
+<div class="container" style=" width: 900px;">
 	<!-- <div class = "container" style="margin-top: 43px;"> -->
 		<h1>Resep</h1>
 				
@@ -24,6 +24,23 @@
 		                  </div>
 		                <?php endif ?>
 
+		                <?php if ($this->input->get('error')=="null"): ?>
+							<div class="alert alert-danger" role="alert">
+							Error! Belum Terinput
+							</div>	
+						<?php endif ?>
+
+						 <?php if ($this->input->get('errorresep')=="null"): ?>
+							<div class="alert alert-danger" role="alert">
+							Maaf Field Belum Lengkap
+							</div>	
+						<?php endif ?>
+
+						<?php if ($this->input->get('error')=="symbol"): ?>
+							<div class="alert alert-danger" role="alert">
+							Maaf Symbol Tidak Diperbolehkan
+							</div>	
+						<?php endif ?>
 	<div class = "row">
 		<div class = "col-md-4" >			
 			<form class ="form-inline" action="<?php echo base_url(); ?>resep/getidpemeriksaan" method="post">

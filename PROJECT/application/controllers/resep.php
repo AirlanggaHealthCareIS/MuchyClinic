@@ -1,6 +1,6 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php //if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Resep extends CI_Controller {
+class Resep extends CI_Controller{
 	public function index(){
 		$data = array("idpemeriksaan"=>" ","idpasien"=>" ","namapasien"=>" ","iddokter"=>" ","namadokter"=>" ", "idobat"=>" ", "namaobat"=>"");
 		$this->load->view("v_header");
@@ -9,12 +9,24 @@ class Resep extends CI_Controller {
 		
 	}
 	
-	public function index2(){
-		
-		$data = array("idobat"=>" ", "namaobat"=>"");
+	public function index2($idresep = "", $namaobat=null){
+		$this->load->model('m_resep');
+		$query2 = null;
+		if ($namaobat==null) {
+
+		} else if($namaobat!=null){
+			$query2 =$this->m_resep->getObat($namaobat);
+		}
+		$data = array("namaobat"=>$namaobat, "idresep"=>$idresep, 'query2'=>$query2);
 		$this->load->view("v_header");
 		$this->load->view("resep/v_resep",$data);
 		$this->load->view("v_footer");
+	}
+
+	public function cari_obat($idresep=""){
+		// $idresep = $this->input->post('idresep');
+		$namaobat = $this->input->post('namaobat');
+		redirect(base_url().'resep/index2/'.$idresep."/".$namaobat);
 	}
 
 	public function index3(){
@@ -29,17 +41,44 @@ class Resep extends CI_Controller {
 	public function getidpemeriksaan(){
 		$this->load->helper(array('form','url'));
 		$this->load->library('form_validation');
-
-
 		$idpemeriksaan = $this->input->post('idpemeriksaan');
+
+		$isValid = $this->inValidIDPemeriksaan($idpemeriksaan);
 		
-		if ($idpemeriksaan==null || $idpemeriksaan=="") {
+		if ($isValid==null || $isValid=="") {
 			redirect(base_url().'resep?erroidpemeriksaan=null');
 		}
-		else  {
+		else if ($isValid == "error=symbol"){
+			redirect(base_url().'resep?error=symbol');
+		}
+		else  if ($isValid == "true"){
 			$this->tampilid($idpemeriksaan);		
 		}
 
+	}
+
+	public function inValidIDPemeriksaan($idpemeriksaan){
+		if ($idpemeriksaan == null || $idpemeriksaan == ""){
+			return "error=null";
+		}
+		else if (preg_match('/[^a-z0-9]/i', $idpemeriksaan)){
+			return "error=symbol";
+		}
+		else {
+			return "true";
+		}
+
+	}
+
+	public function testingIdPemeriksaan(){
+		$this->load->library("unit_test");
+
+		$this->unit->run($this->inValidIDPemeriksaan(""),"error=null", "Test ID Pemeriksaan Kosong");
+		$this->unit->run($this->inValidIDPemeriksaan("!@#$%^&*()-+_="),"error=symbol", "Test ID Pemeriksaan Dengan Symbol");
+		$this->unit->run($this->inValidIDPemeriksaan("PR001"),"true", "Test ID Pemeriksaan Benar");
+		$this->unit->run($this->inValidIDPemeriksaan("PR002"),"true", "Test ID Pemeriksaan Benar");
+
+		echo $this->unit->report();
 	}
 
 	public function tampilid($idpemeriksaan){
@@ -66,33 +105,33 @@ class Resep extends CI_Controller {
 
 		//$idresep = $this->session->idresep;
 		$idresep = $this->input->post('idresep'); // kalo input pake ini
+		$tglresep = $this->input->post('tglresep');
 		$idpemeriksaan = $this->session->idpemeriksaan; // kalo ambil dari method lain kyk ini
 		$idpasien = $this->session->idpasien;
 		$iddokter = $this->session->iddokter;
-		$tglresep = $this->input->post('tglresep');
+		
 
+
+		if ($idresep == null || $tglresep == null || $idpemeriksaan == null || $idpasien == null || $iddokter == null){
+			redirect(base_url().'resep?error=null');
+		}
+		else{
+			$this->load->model('m_resep');
+			$input_r = $this->m_resep->insert($idresep, $idpemeriksaan, $idpasien, $iddokter, $tglresep);
+			redirect(base_url().'resep/index2/'.$idresep);
+		}
 		
-		$this->load->model('m_resep');
-		$input_r = $this->m_resep->insert($idresep, $idpemeriksaan, $idpasien, $iddokter, $tglresep);
 		
-		$this->index2();
 	}
 	
-	public function inputresep(){
-		$this->load->helper(array('form', 'url'));
-        $this->load->library('form_validation');
-		$this->load->database();
+	// public function inputdetailresep($idresep,$idobat){
 
-		$iddetailresep = $this->input->post('iddetailresep');
-		$idobat = $this->input->post('idobat');
-		$idresep = $this->input->post('idresep');
-		$ketobat= $this->input->post('ketobat');
+	// 	$this->load->model('m_resep')
+	// 	$input_dr = $this->m_resep->insertresep($idresep,$idobat);
 
-		$this->load->model('m_resep');
-		$input_dr = $this->m_resep->insertresep($iddetailresep,$idobat,$idresep,$ketobat);
-
-		$this->index3();
-	}
+		
+	// }
+	
 	public function getobat(){
 		$this->load->helper(array('form','url'));
 		$this->load->library('form_validation');
@@ -150,6 +189,10 @@ class Resep extends CI_Controller {
 		$this->load->view("v_header");
 		$this->load->view("resep/v_resep",$data);
 		$this->load->view("v_footer");
+	}
+
+	public function hitung($a,$b){
+		return $a+$b;
 	}
 
 
