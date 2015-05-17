@@ -61,4 +61,15 @@ class M_kasir extends CI_Model {
 			return $query->result();
 		}
 
+		public function getKasir($id) {
+			$query =  $this->db->query("SELECT * FROM `pasien` WHERE `ID_PASIEN` = '".$id."'");
+			if ($query->num_rows()>0) {
+				$query = $query->row();
+				return $query->ID_PASIEN;
+				// return $query->row();
+			} else {
+				return 0;
+			}
+		}
+
 }

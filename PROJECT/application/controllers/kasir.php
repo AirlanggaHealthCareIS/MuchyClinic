@@ -28,6 +28,43 @@ class Kasir extends CI_Controller {
 		}
 	}
 
+	public function isInputValidation($id){
+		if ($id==null || $id=="") {
+			return "error=null";
+		} else {
+			if (preg_match('/[^a-z0-9]/i', $id)) {
+				return "error=simbol";
+			} else{ 
+				//$this->checkDatabase($id);
+				return "true";
+			}
+		}
+	}
+
+	public function test_isvalid() {
+		$this->load->library("unit_test");
+		$this->unit->run($this->isInputValidation(""), "error=null", "Test method isvalid");
+		$this->unit->run($this->isInputValidation("@$#%5t"), "error=simbol", "Test method isvalid");
+		$this->unit->run($this->isInputValidation("P0001"), "true", "Test method isvalid");
+		echo $this->unit->report();
+	}
+
+	public function test_getkasir() {
+		$this->load->model('m_kasir');
+		$this->load->library("unit_test");
+		$this->load->database();
+
+		$this->unit->run($this->m_kasir->getKasir("P0000"), 0, "Test method isvalid");
+		$this->unit->run($this->m_kasir->getKasir("P0001"), "P0001", "Test method isvalid");
+		echo $this->unit->report();
+	}
+
+
+
+
+
+
+
 	private function checkDatabase($id) {
 
 		$total = 0;
@@ -107,10 +144,24 @@ class Kasir extends CI_Controller {
 		}
 	}
 
-	public function coba ($id, $id2) {
+	public function coba ($i) {
 		return $id+$id2;
 
 	}
+
+	// public function IdPasien($id) {
+	// 	$this->session->set_flashdata('idpasien', $id);
+	// 	$this->load->model('m_kasir');
+
+	// 	$query = $this->m_kasir->getcariid($id);
+	// 	if ($query->num_rows() > 0) {
+	// 		$query = $query->row();
+	// 		$this->storevalue($query->ID_PASIEN, $query->NAMA_PASIEN, $query->JENIS_KELAMIN_PASIEN);
+	// 	}
+	// 	return $id;
+	// }
+
+
 
 	public function checkHitung ($byr) {
 		$kembali = 0;
