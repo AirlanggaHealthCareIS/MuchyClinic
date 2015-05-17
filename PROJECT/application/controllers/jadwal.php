@@ -1,6 +1,6 @@
 <?php
 
-class Jadwal extends CI_Controller{
+class Jadwal extends CI_Controller{ 
 
 	public function index()
 	{
@@ -17,7 +17,7 @@ class Jadwal extends CI_Controller{
         //"lihatjadwalapt"=>$this->m_jadwal->getAllData(),
 
 		$this->load->view("v_header");
-		$this->load->view("jadwal/v_content_apoteker", $data);
+		$this->load->view("jadwal/v_content_dokter", $data);
 		$this->load->view("v_footer");
 
     }
@@ -27,51 +27,63 @@ class Jadwal extends CI_Controller{
 		
 	}
 
-	public function validasi()
-	{
-		$id = $this->input->post('idaktor');
-		$cb_aktor = $this->input->post('cbaktor');
-		$cb_bagian = $this->input->post('cbbagian');
-		$cb_hari = $this->input->post('cbhari');
-		$cb_jam = $this->input->post('cbjam');
+	//============================================================ T E S T I N G ====================================================================
 
-		if ($id==null || $id=="") {
-			redirect(base_url().'jadwal?error=null');
+	public function testing(){
+		$this->load->library("unit_test");
+
+		$this->unit->run($this->isValid(""), "null", "Test Validasi Null");
+		$this->unit->run($this->isValid("*&&^^"), "symbolerror", "Test Validasi Symbol");
+		$this->unit->run($this->isValidHari("Selasa"), true, "Test Validasi Hari");
+		$this->unit->run($this->isValidJam("0"), false, "Test Validasi Jam");
+
+		echo $this->unit->report();
+	}
+
+	//========================================================= E N D  O F  T E S T I N G ======================================================
+
+	public function isValid($cek){
+		if($cek==null || $cek==""){
+			return "null";
 		}
 
-		else if($cb_aktor=="0"){
-			redirect(base_url().'jadwal?error=cbaktornull');
-		}
+		else if(preg_match('/[^a-z0-9]/i', $cek)){
+			return "symbolerror";
+		}		
+	}
 
-		else if($cb_bagian=="0"){
-			redirect(base_url().'jadwal?error=cbbagiannull');
+	public function isValidHari($cekhari){
+		if($cekhari=="0"){
+			return false;
 		}
-
-		else if($cb_hari=="0"){
-			redirect(base_url().'jadwal?error=cbharinull');
-		}
-
-		else if($cb_jam=="0"){
-			redirect(base_url().'jadwal?error=cbjamnull');
-		}
-
-		else {
-			
-			$this->tampil($id);
+		else if ($cekhari == "Senin" || $cekhari == "Selasa" || $cekhari == "Rabu" || $cekhari == "Kamis" || $cekhari == "Jumat" || $cekhari == "Sabtu" || $cekhari == "Minggu") {
+			return true;
 		}
 	}
+
+	public function isValidJam($cekjam){
+		if($cekjam == "0"){
+			return false;
+		}
+		else if ($cekjam == "07.00-12.00" || $cekjam == "12.00-17.00" || $cekjam == "17.00-22.00") {
+			return true;
+		}
+	}
+
+//==============================================================================================================================================
 
 	public function validasiDokter(){
 
 		$iddokter = $this->input->post('iddok');
 		
-
-		if($iddokter==null || $iddokter==""){
+		$cek = $this->isValid($iddokter);
+		
+		if($cek == "null"){
 			redirect(base_url().'jadwal?error=iddokternull');
 
 		}
 
-		else if(preg_match('/[^a-z0-9]/i', $iddokter)){
+		else if($cek == "symbolerror"){
 			redirect(base_url().'jadwal?error=symbolerror');
 		}
 
@@ -87,16 +99,24 @@ class Jadwal extends CI_Controller{
 		$cb_hari = $this->input->post('cbhari');
 		$cb_jam = $this->input->post('cbjam');
 
+		$cekjadwal = $this->isValid($idjadwal);
+		$cekhari = $this->isValidHari($cb_hari);
+		$cekjam = $this->isValidJam($cb_jam);
+
 		if ($this->input->post('submit')=='add') {
-			if ($idjadwal==null || $idjadwal=="") {
+			if ($cekjadwal == "null") {
 				redirect(base_url().'jadwal?error=idjadwalnull');
 			}
 
-			else if($cb_hari=="0"){
+			else if($cekjadwal == "symbolerror"){
+				redirect(base_url().'jadwal?error=symbolerror');
+			}
+
+			else if($cekhari == false){
 				redirect(base_url().'jadwal?error=cbharinull');
 			}
 
-			else if($cb_jam=="0"){
+			else if($cekjam == false){
 				redirect(base_url().'jadwal?error=cbjamnull');
 			}
 
@@ -114,11 +134,13 @@ class Jadwal extends CI_Controller{
 
 		$idkar = $this->input->post('idkar');
 
-		if($idkar==null || $idkar==""){
+		$cek = $this->isValid($idkar);
+
+		if($cek == "null"){
 			redirect(base_url().'jadwal?error=idkaryawannull');
 		}
 
-		else if(preg_match('/[^a-z0-9]/i', $idkar)){
+		else if($cekjadwal == "symbolerror"){
 			redirect(base_url().'jadwal?error=symbolerror');
 		}
 
@@ -135,17 +157,25 @@ class Jadwal extends CI_Controller{
 		$cb_hari = $this->input->post('cbhari');
 		$cb_jam = $this->input->post('cbjam');
 
+		$cekjadwal = $this->isValid($idjadwal);
+		$cekhari = $this->isValidHari($cb_hari);
+		$cekjam = $this->isValidJam($cb_jam);
+
 
 		if ($this->input->post('submit')=='add'){
-			if ($idjadwal==null || $idjadwal=="") {
+			if ($cekjadwal == "null") {
 				redirect(base_url().'jadwal?error=idjadwalnull');
 			}
 
-			else if($cb_hari=="0"){
+			else if($cekjadwal == "symbolerror"){
+				redirect(base_url().'jadwal?error=symbolerror');
+			}
+
+			else if($cb_hari == false){
 				redirect(base_url().'jadwal?error=cbharinull');
 			}
 
-			else if($cb_jam=="0"){
+			else if($cb_jam == false){
 				redirect(base_url().'jadwal?error=cbjamnull');
 			}
 
@@ -170,12 +200,14 @@ class Jadwal extends CI_Controller{
 
 		$idapt = $this->input->post('idapt');
 
-		if($idapt==null || $idapt==""){
+		$cek = $this->isValid($idapt);
+
+		if($cek == "null"){
 			redirect(base_url().'jadwal?error=idapotekernull');
 
 		}
 
-		else if(preg_match('/[^a-z0-9]/i', $idapt)){
+		else if(preg_match('/[^a-z0-9]/i', $cek)){
 			redirect(base_url().'jadwal?error=symbolerror');
 		}
 
@@ -193,16 +225,24 @@ class Jadwal extends CI_Controller{
 		$cb_hari = $this->input->post('cbhari');
 		$cb_jam = $this->input->post('cbjam');
 
+		$cekjadwal = $this->isValid($idjadwal);
+		$cekhari = $this->isValidHari($cb_hari);
+		$cekjam = $this->isValidJam($cb_jam);
+
 		if($this->input->post('submit')=='add'){
-			if ($idjadwal==null || $idjadwal=="") {
+			if ($cekjadwal == "null") {
 				redirect(base_url().'jadwal?error=idjadwalnull');
 			}
 
-			else if($cb_hari=="0"){
+			else if(preg_match('/[^a-z0-9]/i', $cekjadwal)){
+				redirect(base_url().'jadwal?error=symbolerror');
+			}
+
+			else if($cb_hari == false){
 				redirect(base_url().'jadwal?error=cbharinull');
 			}
 
-			else if($cb_jam=="0"){
+			else if($cb_jam == false){
 				redirect(base_url().'jadwal?error=cbjamnull');
 			}
 
@@ -215,25 +255,6 @@ class Jadwal extends CI_Controller{
 			echo "Fitur ini belum ada";
 		}
 
-	}
-
-	public function tampil($id)
-	{
-		$this->load->database();
-
-		$id = $this->input->post('idaktor');
-		
-		$this->load->model("m_jadwal");
-		
-		$query = $this->m_jadwal->getAktor($id); //ambil data
-        $ro = $query->row();
-
-		$data = array("ida"=>$ro->ID_APOTEKER, "nama"=>$ro->NAMA_APOTEKER); //tampil data di tabel dan ambil nilai
-
-		$this->load->view("v_header");
-		$this->load->view("jadwal/v_content", $data);
-		$this->load->view("v_footer");
-       	
 	}
 
 	public function tampilDokter($iddokter){
@@ -249,25 +270,21 @@ class Jadwal extends CI_Controller{
 			$ro = $query->row();	
 
 			$query1 = $this->m_jadwal->getDokter($iddokter);
-			if($query1->num_rows() > 0) {
-				$data = array(
-					"iddokter"=>$ro->ID_DOKTER, 
-					"namadokter"=>$ro->NAMA_DOKTER, 
-					"lihatjadwaldok"=>$this->m_jadwal->getDataDokter());
+			$data = array(
+				"iddokter"=>$ro->ID_DOKTER, 
+				"namadokter"=>$ro->NAMA_DOKTER, 
+				"lihatjadwaldok"=>$this->m_jadwal->getDataDokter());
 
-				$this->load->view("v_header");
-				$this->load->view("jadwal/v_content_dokter", $data);
-				$this->load->view("v_footer");	
+			$this->load->view("v_header");
+			$this->load->view("jadwal/v_content_dokter", $data);
+			$this->load->view("v_footer");	
 
-			}
-			else{
-				redirect(base_url().'jadwal?error=apaya');
-			}
 		}
 		else{
 			redirect(base_url().'jadwal?error=notfound');
 		}
 	}
+
 
 	public function tampilKaryawan($idkar){
 		$this->load->database();
@@ -353,6 +370,18 @@ class Jadwal extends CI_Controller{
 
 	}
 
+	public function hapusJadwalDokter($idJadwalD){
+		$this->load->database();
+
+		$IDDOKTER = $this->input->post('iddokter');
+
+		$this->load->model('m_jadwal');	
+
+		$deleteDokter = $this->m_jadwal->deleteJadwalDokter($idJadwalD);
+
+		$this->showJadwalDokter($IDDOKTER);
+	}
+
 	public function showJadwalDokter($iddok){
 		$this->load->database();
 
@@ -379,6 +408,18 @@ class Jadwal extends CI_Controller{
 
 		$this->showJadwalApoteker($IDAPOTEKER);
 		
+	}
+
+	public function hapusJadwalApoteker($idJadwalA){
+		$this->load->database();
+
+		$IDAPOTEKER = $this->input->post('idapoteker');
+
+		$this->load->model('m_jadwal');	
+
+		$deleteDokter = $this->m_jadwal->deleteJadwalApoteker($idJadwalA);
+
+		$this->showJadwalApoteker($IDAPOTEKER);
 	}
 
 	public function showJadwalApoteker($idapt){
@@ -419,6 +460,8 @@ class Jadwal extends CI_Controller{
 		$this->load->view("jadwal/v_content_karyawan", $data);
 		$this->load->view("v_footer");
 	}
+
+
 
 
 
