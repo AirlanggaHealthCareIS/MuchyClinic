@@ -10,19 +10,55 @@ class Rekammedis extends CI_Controller {
 		$this->load->view("v_footer");	
 	}
 
+	public function test_login(){
+		$this->load->library ('unit_test');
+		$this->unit->run($this->sum(5,7),12, "Test Methot Sum");
+		echo $this->unit->report();
+	}
+
+	public function sum($a, $b){
+		$c = $a + $b;
+		return $c;
+	}
+
+	public function testing (){
+		$this->load->library ('unit_test');
+		$this->unit->run($this->inputValidasi(""),"error=null", "Test Methot Validasi ID Null");
+		$this->unit->run($this->inputValidasi("P0001"),"true", "Test Methot Validasi ID True");
+		$this->unit->run($this->inputValidasi("P001@"),"error=symbol", "Test Methot Validasi ID Symbol");
+		echo $this->unit->report();
+	}
+
+
 	public function validasi(){
 		$id = $this->input->post('id_pasien');
-		//echo $id;
-		if ($id==null || $id==""){
+		$id2=$this->inputValidasi($id);
+		if ($id2=="eror=null"){
 			redirect(base_url().'rekammedis?error=null');
 		}
-		else if (preg_match('/[^a-z0-9]/i', $id)) { //untuk symbol
+		else if ($id2=="eror=symbol"){
 			redirect(base_url().'rekammedis?error=symbol');
 		}	
-		else {
+		else if ($id2=="true"){
 			$this->tampil($id);
 		}
+		
 	}
+
+	public function inputValidasi($id){
+		if ($id==null || $id==""){
+			return "error=null";
+		}
+		else if (preg_match('/[^a-z0-9]/i', $id)) { //untuk symbol
+			return "error=symbol";
+		}	
+		else {
+			return "true";
+		}
+
+
+	}
+
 
 	public function tampil($id)
 	{

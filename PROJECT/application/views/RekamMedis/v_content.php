@@ -27,9 +27,6 @@
             <?php endif ?>
 
 
-
-
-
             <form class="form-inline" action = "<?php echo base_url()?>rekammedis/validasi" method = "post">
               <div class="form-group">
                 <label class="sr-only" for="exampleInputId">ID Pasien</label>

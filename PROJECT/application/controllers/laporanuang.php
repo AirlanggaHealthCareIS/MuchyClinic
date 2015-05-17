@@ -8,6 +8,20 @@ class Laporanuang extends CI_Controller {
 		$this->load->view("v_footer");	
 	}
 
+	public function validasi(){
+		$id = $this->input->post('tanggal');
+		//echo $id;
+		if ($id==null || $id==""){
+			redirect(base_url().'laporanuang?error=null');
+		}
+		else if (preg_match('/[^a-z0-9]/i', $id)) { //untuk symbol
+			redirect(base_url().'laporanuang?error=symbol');
+		}	
+		else {
+			$this->tampil($tanggal);
+		}
+	}
+
 
 }
 
