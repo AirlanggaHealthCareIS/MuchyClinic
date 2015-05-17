@@ -168,6 +168,7 @@
                   <td class="info">Nama</td>
                   <td class="info">Hari</td>
                   <td class="info">Jam Kerja</td>
+                  <td class="info">Delete</td>
                 </tr>
 
                 <?php if($lihatjadwalkar!=null): ?>
@@ -180,6 +181,10 @@
                   <td class="active"><?php echo $row->ID_NAMA_KARYAWAN ?></td>
                   <td class="active"><?php echo $row->HARI_K ?></td>
                   <td class="active"><?php echo $row->JAM_K ?></td>
+                  <td class="active">
+                      <!-- <a data-toggle="modal" data-target="#myModal" href="<?php echo base_url() ?>/jadwal/hapusJadwalDokter/<?php echo $row->ID_JADWAL_DOKTER ?>" class="btn btn-primary">Delete</a> -->
+                      <a data-toggle="modal" data-target="#myModal" href="<?php echo base_url() ?>/jadwal/hapusJadwalKaryawan/<?php echo $row->ID_JADWAL_KRYN ?>" class="btn btn-primary">Delete</a>                      <?php ?></td>
+                  </tr>
                 </tr>
 
                 <?php } ?>

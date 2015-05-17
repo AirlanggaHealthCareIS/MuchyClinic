@@ -180,6 +180,7 @@
                   <th class="info">Nama</td>
                   <th class="info">Hari</td>
                   <th class="info">Jam Kerja</td>
+                  <td class="info">Delete</td>
                 </tr>
 
                 <?php if ($lihatjadwal!=null): ?>
@@ -192,6 +193,10 @@
                     <td class="active"><?php echo $row->NAMA_APOTEKER ?></td>
                     <td class="active"><?php echo $row->HARI_A ?></td>
                     <td class="active"><?php echo $row->JAM_KERJA_A ?></td>
+                    <td class="active">
+                      <!-- <a href="<?php echo base_url() ?>/jadwal/hapusJadwalApoteker/<?php echo $row->ID_JADWAL_APOTKR ?>" class="btn btn-primary">Delete</a> -->
+                      <a href="<?php echo base_url() ?>/jadwal/hapusJadwalApoteker/<?php echo $row->ID_JADWAL_APOTKR ?>" class="btn btn-primary">Delete</a>
+                      <?php ?></td>
                   </tr>
 
                 <?php } ?>

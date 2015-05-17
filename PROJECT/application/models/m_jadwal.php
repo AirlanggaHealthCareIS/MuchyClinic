@@ -86,7 +86,29 @@ class M_jadwal extends CI_Model {
                 FROM `jadwal_karyawan` AS J, `karyawan` AS K
                 WHERE K.`ID_KARYAWAN` = J.`ID_KARYAWAN`
                 ORDER BY `J`.`ID_JADWAL_KRYN` ASC");
+
+            return $query;
         }
 
+        public function deleteJadwalDokter($IDJadwalD){
+            $query = $this->db->query
+            ("DELETE FROM `jadwal_dokter` WHERE `ID_JADWAL_DOKTER` = '".$IDJadwalD."'");
+        
+            return $query;
+        }
+
+        public function deleteJadwalApoteker($IDJadwalA){
+            $query = $this->db->query
+            ("DELETE FROM `jadwal_apoteker` WHERE `ID_JADWAL_APOTKR` = '".$IDJadwalA."'");
+        
+            return $query;
+        }
+
+        public function deleteJadwalKaryawan($IDJadwalK){
+            $query = $this->db->query
+            ("DELETE FROM `jadwal_karyawan` WHERE `ID_JADWAL_KRYN` = '".$IDJadwalK."'");
+        
+            return $query;
+        }
 }
  ?>

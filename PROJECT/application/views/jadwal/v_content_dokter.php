@@ -166,6 +166,7 @@
                   <td class="info">Nama</td>
                   <td class="info">Hari</td>
                   <td class="info">Jam Kerja</td>
+                  <td class="info">Delete</td>
                 </tr>
 
                 <?php if($lihatjadwaldok!=null): ?>
@@ -178,6 +179,8 @@
                     <td class="active"><?php echo $row->NAMA_DOKTER ?></td>
                     <td class="active"><?php echo $row->HARI_D ?></td>
                     <td class="active"><?php echo $row->JAM_D ?></td>
+                    <td class="active">
+                      <a data-toggle="modal" data-target="#myModal" href="<?php echo base_url() ?>/jadwal/hapusJadwalDokter/<?php echo $row->ID_JADWAL_DOKTER ?>" class="btn btn-primary">Delete</a>                      <?php ?></td>
                   </tr>
 
                 <?php } ?>
@@ -191,3 +194,25 @@
           
         </div>
       </div>
+
+      <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

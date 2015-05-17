@@ -461,6 +461,18 @@ class Jadwal extends CI_Controller{
 		$this->load->view("v_footer");
 	}
 
+	public function hapusJadwalKarywan($idJadwalK){
+		$this->load->database();
+
+		$IDKARYAWAN = $this->input->post('idkaryawan');
+
+		$this->load->model('m_jadwal');	
+
+		$deleteDokter = $this->m_jadwal->deleteJadwalKaryawan($idJadwalK);
+
+		$this->showJadwalKaryawan($IDKARYAWAN);
+	}
+
 
 
 
