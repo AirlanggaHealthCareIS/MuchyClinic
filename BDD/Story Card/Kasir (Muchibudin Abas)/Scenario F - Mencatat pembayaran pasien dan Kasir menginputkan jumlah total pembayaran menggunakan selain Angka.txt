@@ -1,6 +1,6 @@
-Scenario F : Mencatat pembayaran pasien dan menginputkan jumlah total pembayaran menggunakan selain ANGKA
+Scenario F - Mencatat pembayaran pasien dan Kasir menginputkan jumlah total pembayaran menggunakan selain Angka
 Give	: Kasir telah berada pada menu kasir
-When	: Kasir menginputkan ID Pasien
+When	: Kasir menginputkan ID Pasien dg benar
 Then	: Kasir dapat melihat jumlah total pembayaran yang harus dibayar oleh pasien
 When	: Kasir menginputkan total pembayaran dengan selain angka
 Then	: Kasir menerima pemberitahuan bahwa “Jumlah Total Pembayaran harus diisi dengan angka”

@@ -1,0 +1,8 @@
+Scenario G - Mencatat pembayaran pasien dan Kasir tidak menginputkan jumlah total pembayaran
+Give	: Kasir telah berada pada menu kasir
+When	: Kasir menginputkan ID Pasien dg benar
+Then	: Kasir dapat melihat jumlah total pembayaran yang harus dibayar oleh pasien
+When	: Kasir tidak menginputkan jumlah total pembayaran
+Then	: Kasir menerima pemberitahuan bahwa “Jumlah Total Pembayaran harus diisi”
+When	: Kasir kembali menginputkan total pembayaran
+

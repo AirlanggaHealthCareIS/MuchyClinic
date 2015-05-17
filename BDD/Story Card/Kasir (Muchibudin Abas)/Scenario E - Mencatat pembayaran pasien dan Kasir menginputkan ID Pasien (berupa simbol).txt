@@ -1,6 +1,5 @@
 Feature 	: Kasir dapat mencatat seluruh transaksi pembayaran pasien.
-
-Scenario E: Mencatat pembayaran pasien dan Kasir menginputkan ID Pasien (berupa simbol !@#$%^&*()_+)
+Scenario E - Mencatat pembayaran pasien dan Kasir menginputkan ID Pasien (berupa simbol !@#$%^&*()_+)
 
 Give	: Kasir telah berada pada menu kasir
 When	: Kasir melakukan input ID Pasien (berupa simbol !@#$%^&*()_+)

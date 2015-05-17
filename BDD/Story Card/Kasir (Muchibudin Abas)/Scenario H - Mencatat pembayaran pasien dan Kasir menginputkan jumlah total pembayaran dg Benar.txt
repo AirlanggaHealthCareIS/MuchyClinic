@@ -1,0 +1,8 @@
+Scenario H - Mencatat pembayaran pasien dan Kasir menginputkan jumlah total pembayaran dg Benar
+Give	: Kasir telah berada pada menu kasir
+When	: Kasir menginputkan ID Pasien dg benar
+Then	: Kasir dapat melihat jumlah total pembayaran yang harus dibayar oleh pasien
+When	: Kasir menginputkan total pembayaran dg benar
+Then	: Kasir menerima pemberitahuan bahwa “Transaksi Pembayaran berhasil”
+When	: Kasir dapat mencetak detail transaksi
+

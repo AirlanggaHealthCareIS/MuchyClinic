@@ -1,8 +1,0 @@
-Feature 	: Kasir dapat mencatat seluruh transaksi pembayaran pasien.
-
-Scenario 1: Mencatat pembayaran pasien
-Give	: Kasir telah berada pada menu kasir
-When	: Kasir menginputkan ID Pasien
-Then	: Kasir dapat melihat jumlah total pembayaran yang harus dibayar 		oleh pasien
-When	: Kasir menginputkan total pembayaran
-Then	: Kemudian Kasir menerima pemberitahuan bahwa “Pembayaran 		Sukses”  dilakukan
