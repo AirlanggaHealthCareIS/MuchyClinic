@@ -1,7 +1,7 @@
 <?php
 // defined('BASEPATH') OR exit('No direct script access allowed');
 
-class pendaftaran { // extends CI_Controller  // php unit dengan cmd tidak bisa mengakses estends CI_Controller
+class pendaftaran extends CI_Controller { // extends CI_Controller
 
 
 
@@ -56,21 +56,23 @@ class pendaftaran { // extends CI_Controller  // php unit dengan cmd tidak bisa 
 			// $tanggungan_ibu = $_POST['tanggungan_ibu'];  //14
 			$tanggal_pendaftaran = $_POST['tanggal_pendaftaran'];  //15
 			$keluhan = $_POST['keluhan'];  //16
-			
+		
+		$isvalid=$this->inputvalidasi($id_pasien, $nama_pasien, $jenis_kelamin, $tempat_lahir, $tanggal_lahir, $Alamat, $agama, $pekerjaan, $telepon, $hp, $goldarah, $hubungan, $pembayaran, $tanggal_pendaftaran, $keluhan);
 
-		//echo $id;
-		if ($id_pasien==null || $nama_pasien==null || $jenis_kelamin==null || $tempat_lahir==null || $tanggal_lahir==null || $Alamat==null || $agama==null || $pekerjaan==null || $telepon==null || $hp==null || $goldarah==null || $hubungan==null || $pembayaran==null || $tanggal_pendaftaran==null || $keluhan==null){
-			echo "Maaf Fild Kosong! Silahkan Input Data Pasien Dengan Benar.";
+		//echo $id; 
+		if ($isvalid == "error=null"){
+			//echo "Maaf Fild Kosong! Silahkan Input Data Pasien Dengan Benar.";
 			redirect(base_url().'pendaftaran?error=null');
 		}
-		else {
+
+		else if ($isvalid=="TRUE") {
 			
 			$this->save();
 			redirect(base_url().'pendaftaran?sukses=benar');
 	
-			$this->load->view('v_header');
-		$this->load->view('pendaftaran/v_content');
-		$this->load->view('v_footer');
+			// $this->load->view('v_header');
+			// $this->load->view('pendaftaran/v_content');
+			// $this->load->view('v_footer');
 			// echo "Selamat.";
 
 
@@ -89,6 +91,32 @@ class pendaftaran { // extends CI_Controller  // php unit dengan cmd tidak bisa 
 
 		// echo"hello";
 	}
+
+
+	public function inputvalidasi($id_pasien, $nama_pasien, $jenis_kelamin, $tempat_lahir, $tanggal_lahir, $Alamat, $agama, $pekerjaan, $telepon, $hp, $goldarah, $hubungan, $pembayaran, $tanggal_pendaftaran, $keluhan){
+
+			if ($id_pasien==null || $nama_pasien==null || $jenis_kelamin==null || $tempat_lahir==null || $tanggal_lahir==null || $Alamat==null || $agama==null || $pekerjaan==null || $telepon==null || $hp==null || $goldarah==null || $hubungan==null || $pembayaran==null || $tanggal_pendaftaran==null || $keluhan==null){
+			
+			return "error=null" ;
+
+			}
+
+			else {
+
+			return "TRUE" ;
+
+			}
+
+	}
+
+	public function testing () {
+
+		$this->load->library ('unit_test');
+		$this->unit->run($this->inputvalidasi("", "", "", "", "", "", "", "", "", "", "", "", "", " ", ""),"error=null", "idkosong") ;
+		$this->unit->run($this->inputvalidasi("p0001", "Dony Prasetiyo", "Laki_laki", "samarinda", "12/04/1995", "bungtomo gangreel", "islam", "designer", "081211611039", "085350013118", "ab", "anak kandung", "cash", "11/10/2015", "ngelu"),"TRUE", "ada isinya");
+		echo $this->unit->report();
+	}
+
 
 	public function save(){
 		// include("koneksi.php");
