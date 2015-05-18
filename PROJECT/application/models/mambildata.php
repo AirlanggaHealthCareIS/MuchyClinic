@@ -6,7 +6,20 @@ class Mambildata extends CI_Model {
                 parent::__construct();
         }
 
-        public function getcariid ($id){
+        public function getcariid2 ($id)
+        {
+		// .$id untuk varchar
+		// '".$id."' untuk int
+		$query =  $this->db->query("SELECT * FROM `pasien` WHERE `ID_PASIEN` = '".$id."'");
+		if ($query->num_rows()>0) {
+                        // $query = $query->row();
+                        // return $query->ID_RESEP;
+                        return $query->row();
+                } else {
+                        return 0;
+                }
+		}
+		public function getcariid ($id){
 		// .$id untuk varchar
 		// '".$id."' untuk int
 		$query =  $this->db->query("SELECT * FROM `pasien` WHERE `ID_PASIEN` = '".$id."'");
