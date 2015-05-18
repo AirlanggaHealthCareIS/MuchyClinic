@@ -11,7 +11,9 @@
               </div>        
               <br>
               <div class="row">
-                <div class="col-md-6" style="text-align: left;">
+                <div class="col-md-6" style="text-align: left; border-right: #D9EDF7 0.12em solid;">
+                  <h4>Cari resep</h4>
+                  <hr>
                   <!-- untuk messages -->
                   <?php if ($this->input->get('error')=="null"): ?>
                     <div class="alert alert-danger alert-dismissible" role="alert">
@@ -38,7 +40,7 @@
                     <div class="form-group">
                       <label style="text-align:left; padding-right: 0;" for="tanggal" class="col-sm-2 control-label">Tanggal</label>
                       <div class="col-sm-10">
-                        <input type="date" name="tanggal" value="21/04/2015<?php //echo $this->session->flashdata('tanggal'); ?>" class="form-control" id="tanggal" placeholder="input tanggal">
+                        <input type="date" name="tanggal" value="<?php echo $this->session->flashdata('tanggal') ?>" class="form-control" id="tanggal" placeholder="input tanggal">
                       </div>
                     </div>
                     <div class="form-group">
@@ -56,9 +58,17 @@
                   <!-- end of form -->
 
                   <br>
+                  
+                </div>
+                <!-- untuk mengetahui siapa apotekernya -->
+                <div class="col-md-6">
+                  <!-- Apoteker - Joko Irianto -->
                   <!-- untuk interface get resep -->
+                  <h4>Deskripsi resep</h4>
+                  <hr>
                   <div>
                     <table class="table">
+
                       <tr>
                         <td class="info" width="35%">No Resep</td>
                         <td class="info">: <?php echo $this->session->flashdata('idr'); ?></td>
@@ -78,17 +88,15 @@
                     </table>
                   </div>
                   <!-- end get resep -->
-                  
-                </div>
-                <!-- untuk mengetahui siapa apotekernya -->
-                <div class="col-md-6" style="text-align:right">
-                  Apoteker - Joko Irianto
                 </div>
                 <!-- end of apoteker -->
               </div>
 
               <br>
+              <br>
               <!-- untuk tabel show detail resep -->
+              <h4>Resep</h4>
+                  <hr>
               <table class="table table-bordered table-hover">
                 <thead style="background-color: #337AB7;color: #FFF;">
                   <td>No</td>
