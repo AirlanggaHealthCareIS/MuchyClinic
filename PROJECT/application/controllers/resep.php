@@ -46,7 +46,7 @@ class Resep extends CI_Controller{
 		$isValid = $this->inValidIDPemeriksaan($idpemeriksaan);
 		
 		if ($isValid==null || $isValid=="") {
-			redirect(base_url().'resep?erroidpemeriksaan=null');
+			redirect(base_url().'resep?error=null');
 		}
 		else if ($isValid == "error=symbol"){
 			redirect(base_url().'resep?error=symbol');
@@ -70,16 +70,7 @@ class Resep extends CI_Controller{
 
 	}
 
-	public function testingIdPemeriksaan(){
-		$this->load->library("unit_test");
-
-		$this->unit->run($this->inValidIDPemeriksaan(""),"error=null", "Test ID Pemeriksaan Kosong");
-		$this->unit->run($this->inValidIDPemeriksaan("!@#$%^&*()-+_="),"error=symbol", "Test ID Pemeriksaan Dengan Symbol");
-		$this->unit->run($this->inValidIDPemeriksaan("PR001"),"true", "Test ID Pemeriksaan Benar");
-		$this->unit->run($this->inValidIDPemeriksaan("PR002"),"true", "Test ID Pemeriksaan Benar");
-
-		echo $this->unit->report();
-	}
+	
 
 	public function tampilid($idpemeriksaan){
 		$this->load->database();
@@ -110,20 +101,35 @@ class Resep extends CI_Controller{
 		$idpasien = $this->session->idpasien;
 		$iddokter = $this->session->iddokter;
 		
+		$isValid=$this->inValidResep($idresep,$tglresep);
 
 
-		if ($idresep == null || $tglresep == null || $idpemeriksaan == null || $idpasien == null || $iddokter == null){
+		if ($isValid == null || $tglresep ==""){
 			redirect(base_url().'resep?error=null');
 		}
-		else{
+		else if ($isValid == "error=symbol"){
+			redirect(base_url().'resep?error=symbol');
+		}
+
+		else if ($isValid == "true"){
 			$this->load->model('m_resep');
 			$input_r = $this->m_resep->insert($idresep, $idpemeriksaan, $idpasien, $iddokter, $tglresep);
 			redirect(base_url().'resep/index2/'.$idresep);
 		}
 		
-		
 	}
 	
+	public function inValidResep($idresep,$tglresep){
+		if ($idresep == null || $idresep == "" || $tglresep == null || $tglresep == ""){
+			return "error=null";
+		}
+		else if (preg_match('/[^a-z0-9]/i', $idresep, $tglresep)){
+			return "error=symbol";
+		}
+		else {
+			return "true";
+		}
+	}
 	// public function inputdetailresep($idresep,$idobat){
 
 	// 	$this->load->model('m_resep')
@@ -189,6 +195,20 @@ class Resep extends CI_Controller{
 		$this->load->view("v_header");
 		$this->load->view("resep/v_resep",$data);
 		$this->load->view("v_footer");
+	}
+
+	public function testing(){
+		$this->load->library("unit_test");
+
+		$this->unit->run($this->inValidIDPemeriksaan(""),"error=null", "Test ID Pemeriksaan Kosong");
+		$this->unit->run($this->inValidIDPemeriksaan("!@#$%^&*()-+_="),"error=symbol", "Test ID Pemeriksaan Dengan Symbol");
+		$this->unit->run($this->inValidIDPemeriksaan("PR001"),"true", "Test ID Pemeriksaan Benar");
+		$this->unit->run($this->inValidIDPemeriksaan("PR002"),"true", "Test ID Pemeriksaan Benar");
+		$this->unit->run($this->inValidResep("",""),"error=null", "Test Resep");
+		$this->unit->run($this->inValidResep("!@#$%^&*()-+_=","!@#$%^&*()+_="),"error=symbol", "Test Resep Dengan Symbol");
+		$this->unit->run($this->inValidResep("MR88",2015-05-11),"true", "Test ANDA BENAR");
+
+		echo $this->unit->report();
 	}
 
 	public function hitung($a,$b){
