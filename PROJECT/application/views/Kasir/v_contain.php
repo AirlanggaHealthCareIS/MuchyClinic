@@ -41,13 +41,13 @@
             <?php endif ?>
             <?php if ($this->input->get("error")=="simbol"): ?>
             <div class = "alert alert-danger" role = "alert">
-              <p>Jangan masukan ID Pasien dengan Simbol</p>
+              <p>Jangan masukkan ID Pasien dengan simbol</p>
             </div>  
             
             <?php endif ?>
             <?php if ($this->input->get("error")=="invalidid"): ?>
             <div class = "alert alert-danger" role = "alert">
-              <p>ID Pasien Tidak di temukan dalam database</p>
+              <p>ID Pasien tidak di temukan dalam database</p>
             </div>  
             <?php endif ?>
             <!-- end pesan error -->
@@ -110,7 +110,6 @@
  -->
           </div>
         </div>
-        <br>
 
         <h3>Detail Transaksi</h3>
 
@@ -170,25 +169,25 @@
         <div class="row">
           <div class="col-md-4">
             <label for="disabledTextInput">Total</label>
-            <input class="form-control" id="disabledInput" type="text" placeholder="<?php echo $this->session->flashdata('total'); ?>" disabled>
+            <input class="form-control" id="disabledInput" type="text" placeholder="<?php echo $this->session->flashdata('total'); ?> " disabled>
             <br>
 
               <!-- pesan error -->
               <?php if ($this->input->get("error")=="nullcash"): ?>
                 <div class = "alert alert-danger" role = "alert">
-                  <p>Silahkan masukkan Uang Tunai</p>
+                  <p>Silahkan masukkan total pembayaran</p>
                 </div>
               <?php endif ?>
 
               <?php if ($this->input->get("error")=="simbolcash"): ?>
                 <div class = "alert alert-danger" role = "alert">
-                  <p>masukan Uang Tunai hanya dengan Angka</p>
+                  <p>Silahkan masukkan total pembayaran hanya dengan Angka</p>
                 </div>  
               <?php endif ?>
               
-              <?php if ($this->input->get("error")=="invalidid"): ?>
+              <?php if ($this->input->get("error")=="invalidcash"): ?>
                 <div class = "alert alert-danger" role = "alert">
-                  <p>ID Pasien Tidak di temukan dalam database</p>
+                  <p>Total pembayaran yang anda masukkan masih kurang</p>
                 </div>  
               <?php endif ?>
               <!-- end pesan error -->
@@ -196,29 +195,64 @@
             <label for="disabledTextInput">Tunai</label>
               <div class="row">
 
-                <form class="form-inline" action="<?php echo base_url(); ?>kasir/validationCash" method="post">
+                <form class="form-inline" action="<?php echo base_url(); ?>kasir/validationCash/<?php echo $this->session->flashdata('idpasien'); ?>" method="post">
 
                   <div class="col-md-9">    
                     <label class="sr-only" for="exampleInputAmount">Tunai (in rupiah)</label>
                     <div class="input-group">
                       <div class="input-group-addon">Rp.</div>
-                      <input type="text" class="form-control" name="bayar" id="exampleInputAmount" placeholder="">
+                      <input id="ada" type="text" class="form-control ada" name="bayar" id="exampleInputAmount" placeholder="<?php echo $this->session->flashdata('bayar'); ?>"> </td>
                       <div class="input-group-addon">.00</div>
                     </div>
                   </div>
 
                   <div class="col-md-3">
-                    <button type="submit" class="btn btn-primary">Cash</button>
+                    <button type="submit" onclick="return selesai()" class="btn btn-primary">Cash</button>  
                     <br></br>
                   </div>
                 </form>
               </div>
 
+              <?php if ($this->input->get("success")=="sukses"): ?>
+                <div class = "alert alert-success" role = "alert">
+                  <p>Pembayaran sukses</p>
+                </div>  
+              <?php endif ?>
+
             <label for="disabledTextInput">Kembali</label>
-            <input class="form-control" id="disabledInput" type="text" placeholder="0" disabled>
+            <input class="form-control" id="disabledInput" type="text" placeholder="<?php echo $this->session->flashdata('kembali'); ?>" disabled>
           </div>
         
           <div class="col-md-4" style="text-align: center">
+            <?php if ($this->input->get("error")=="nullcash"): ?>
+                <div>
+                  <br></br>
+                  <br>
+                </div>
+              <?php endif ?>
+
+            <?php if ($this->input->get("error")=="simbolcash"): ?>
+              <div>
+                <br></br>
+                <br>
+              </div> 
+            <?php endif ?>
+            
+            <?php if ($this->input->get("error")=="invalidcash"): ?>
+              <div>
+                <br></br>
+                <br>
+              </div>
+            <?php endif ?>
+
+            <?php if ($this->input->get("success")=="sukses"): ?>
+              <div>
+                <br></br>
+                <br>
+              </div>
+            <?php endif ?>
+
+
             <br></br>
             <br></br>
             <br></br>
@@ -226,11 +260,28 @@
             <br></br>
             <br></br>
             <br>
+
+            <div class="row">
+              <div class="col-md-3"> 
+                 <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+                <button type="button" class="btn btn-primary">Print</button>
+              </div>
+
+              <div class="col-md-3"> 
+                <!-- Indicates a successful or positive action -->
+                <form class="form-inline" action="<?php echo base_url(); ?>kasir">
+                <button type="submit" class="btn btn-success">New</button>
+                </form>
+              </div>
             
             <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-            <button type="button" class="btn btn-primary">Print</button>
-            <!-- Indicates a successful or positive action -->
-            <button type="button" class="btn btn-success">New</button>
+   <!--          <button type="button" class="btn btn-primary">Print</button>
+            Indicates a successful or positive action
+            <form class="form-inline" action="<?php echo base_url(); ?>kasir">
+            <button type="submit" class="btn btn-success">New</button>
+            </form> -->
+
+            </div>
 
           </div>
           <div class="col-md-4">

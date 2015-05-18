@@ -3,9 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Kasir extends CI_Controller {
 
-//untuk test php unit
-//class Kasir  {
-	public function index() {
+	public function index($idpasien = "") {
+		
+		if ($idpasien!="") {
+			$this->checkDatabase($idpasien);
+		}
 
 		$this->load->view("v_header");
 		$this->load->view("kasir/v_contain");
@@ -23,19 +25,20 @@ class Kasir extends CI_Controller {
 			if (preg_match('/[^a-z0-9]/i', $id)) {
 				redirect(base_url().'kasir?error=simbol');
 			} else{ 
-				$this->checkDatabase($id);
+				// $this->checkDatabase($id);
+				redirect(base_url().'kasir/index/'.$id);
 			}
 		}
 	}
 
+	//method untuk testing
 	public function isInputValidation($id){
 		if ($id==null || $id=="") {
 			return "error=null";
 		} else {
 			if (preg_match('/[^a-z0-9]/i', $id)) {
 				return "error=simbol";
-			} else{ 
-				//$this->checkDatabase($id);
+			} else{
 				return "true";
 			}
 		}
@@ -59,23 +62,14 @@ class Kasir extends CI_Controller {
 		echo $this->unit->report();
 	}
 
-
-
-
-
-
+	//akhir dari method testing Id Pasien
 
 	private function checkDatabase($id) {
 
 		$total = 0;
 
 		$this->session->set_flashdata('idpasien', $id);
-
 		$this->load->model('m_kasir');
-
-		$query1 = $this->m_kasir->checkidKamar($id);
-		$query2 = $this->m_kasir->checkidPemeriksaan($id);
-		$query3 = $this->m_kasir->checkidObat($id);
 
 		$query = $this->m_kasir->getcariid($id);
 		if ($query->num_rows() > 0) {
@@ -83,6 +77,9 @@ class Kasir extends CI_Controller {
 			$this->storevalue($query->ID_PASIEN, $query->NAMA_PASIEN, $query->JENIS_KELAMIN_PASIEN);
 		}
 
+		$query1 = $this->m_kasir->checkidKamar($id);
+		$query2 = $this->m_kasir->checkidPemeriksaan($id);
+		$query3 = $this->m_kasir->checkidObat($id);
 		if ($query1==true) {
 			$dkamar = $this->m_kasir->getKamar($id); //get data detail kamar
 
@@ -119,7 +116,7 @@ class Kasir extends CI_Controller {
 			redirect(base_url().'kasir?error=invalidid');
 			return FALSE;
 		}
-			redirect(base_url().'kasir');
+			//redirect(base_url().'kasir');
 	}
 
 	public function storevalue($idpas, $namapas, $jkpas){
@@ -128,68 +125,117 @@ class Kasir extends CI_Controller {
 		$this->session->set_flashdata('jkpas', $jkpas);
 	}
 
-	public function validationCash(){
+	public function validationCash($id="") {
 		$this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
 
 		$byr = $this->input->post("bayar");
 		if ($byr==null || $byr=="") {
-			redirect(base_url().'kasir?error=nullcash');
+			redirect(base_url().'kasir/index/'.$id.'?error=nullcash');
 		} else {
 			if (preg_match('/[^0-9]/i', $byr)) {
-				redirect(base_url().'kasir?error=simbolcash');
+				redirect(base_url().'kasir/index/'.$id.'?error=simbolcash');
 			} else{ 
-				$this->checkHitung($byr);
+				$this->checkHitung($byr, $id);
 			}
 		}
 	}
 
-	public function coba ($i) {
-		return $id+$id2;
-
+	//method untuk testing Cash
+	public function isInputValidationCash($byr){
+		if ($byr==null || $byr=="") {
+			return "error=null";
+		} else {
+			if (preg_match('/[^0-9]/i', $byr)) {
+				return "error=simbol";
+			} else{
+				return "true";
+			}
+		}
 	}
 
-	// public function IdPasien($id) {
-	// 	$this->session->set_flashdata('idpasien', $id);
-	// 	$this->load->model('m_kasir');
+	public function test_isvalidCash() {
+		$this->load->library("unit_test");
+		$this->unit->run($this->isInputValidationCash(""), "error=null", "Test method test_isvalidCash");
+		$this->unit->run($this->isInputValidationCash("@$#%at"), "error=simbol", "Test method test_isvalidCash");
+		$this->unit->run($this->isInputValidationCash("5000"), "true", "Test method test_isvalidCash");
+		echo $this->unit->report();
+	}
 
-	// 	$query = $this->m_kasir->getcariid($id);
-	// 	if ($query->num_rows() > 0) {
-	// 		$query = $query->row();
-	// 		$this->storevalue($query->ID_PASIEN, $query->NAMA_PASIEN, $query->JENIS_KELAMIN_PASIEN);
-	// 	}
-	// 	return $id;
-	// }
+	public function isInputValidationCash2($byr, $total) {
 
+		if ($byr==$total || $byr>$total) {
+			return "true";
+		} else {
+			return "FALSE";
+		}
+	}
 
+	public function test_isvalidCash2() {
+		$this->load->library("unit_test");
+		$this->unit->run($this->isInputValidationCash2(700000, 50000), "true", "Test method test_isvalidCash2");
+		$this->unit->run($this->isInputValidationCash2(700000, 700000), "true", "Test method test_isvalidCash2");
+		$this->unit->run($this->isInputValidationCash2(40000, 700000), "FALSE", "Test method test_isvalidCash2");
+		echo $this->unit->report();
+	}
+	//akhir dari method testing Cash
 
-	public function checkHitung ($byr) {
+	public function gethitung($id){
+
+		$total = 0;
+		$this->load->model('m_kasir');
+		$query1 = $this->m_kasir->checkidKamar($id);
+		$query2 = $this->m_kasir->checkidPemeriksaan($id);
+		$query3 = $this->m_kasir->checkidObat($id);
+		if ($query1==true) {
+			$dkamar = $this->m_kasir->getKamar($id); //get data detail kamar
+
+			foreach ($dkamar as $k) {
+				$total = $total + $k->TARIF_KMR;
+				$this->session->set_flashdata('total', $total);
+			}
+
+			$this->session->set_flashdata('detailkamar', $dkamar);
+
+		}
+		if ($query2==true) {
+			$dpemeriksaan = $this->m_kasir->getPemeriksaan($id);
+			
+			foreach ($dpemeriksaan as $p) {
+				$total = $total + $p->TARIF_TINDAKAN;
+				$this->session->set_flashdata('total', $total);
+			}
+
+			$this->session->set_flashdata('detailpemeriksaan', $dpemeriksaan);
+
+		}
+		if ($query3==true) {
+			$dobat = $this->m_kasir->getObat($id);
+
+			foreach ($dobat as $o) {
+				$total = $total + $o->HARGA;
+				$this->session->set_flashdata('total', $total);
+			}
+
+			// $this->session->set_flashdata('detailobat', $dobat);
+			return $total;
+		}
+	}
+
+	public function checkHitung ($byr, $id) {
+
 		$kembali = 0;
 		$byr=$this->input->post('bayar');
-		$total=$this->session->flashdata('total');
+		$total = $this->gethitung($id);
 
 		if ($byr==$total || $byr>$total) {
 			$kembali = $byr - $total;
-			//echo $byr;
-			echo $total;
-			//echo $total;
-		
-			//echo $kembali;
+			$this->session->set_flashdata('kembali', $kembali);
+			$this->session->set_flashdata('bayar', $byr);	
+			//redirect(base_url().'kasir/index/'.$id);
+			redirect(base_url().'kasir/index/'.$id.'?success=sukses');		
 		} else {
-			echo "maaf";
+			redirect(base_url().'kasir/index/'.$id.'?error=invalidcash');
 		}
-
-
-
-		// $this->session->set_userdata('bayar', $byr);
-
-		// $this->session->userdata('total', $total);
-	
-		// if ($byr==$total) {
-		// $kembali = $byr-$total;
-		// redirect(base_url().'kasir?error=null');	
-		// } 
-		// redirect(base_url().'kasir');
 	}
-	
 }
