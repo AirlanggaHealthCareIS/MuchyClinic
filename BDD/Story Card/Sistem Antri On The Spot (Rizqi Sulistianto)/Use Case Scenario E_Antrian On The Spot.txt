@@ -1,9 +1,0 @@
-Fitur : Fitur ini dapat mengatur antrian pasien saat akan masuk ke ruang pemeriksaan
-
-Scenario E : Pasien yang telah mendaftar dan admin menginputkan ID pasien menggunakan simbol
-
-Given 	: Pasien telah mendapatkan ID pasien
-And	: Admin memilih menu Sistem Antri On The Spot
-When 	: Admin salah menginputkan ID pasien dengan memasukkan simbol seperti Ò!@#$%^&*()Ó
-And	: Admin menekan tombol input ID pasien 
-Then 	: Admin menerima pemberitahuan bahwa ÒID pasien hanya berisi angka dan hurufÓ
