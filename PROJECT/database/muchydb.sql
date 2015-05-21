@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2015 at 11:11 AM
+-- Generation Time: May 21, 2015 at 12:08 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `muchy4`
+-- Database: `psi`
 --
 
 -- --------------------------------------------------------
@@ -488,9 +488,7 @@ CREATE TABLE IF NOT EXISTS `kamar` (
 
 INSERT INTO `kamar` (`ID_KAMAR_INAP`, `NAMA_KAMAR_INAP`, `KAPASITAS_KMR`, `TARIF_KMR`) VALUES
 ('KI001', 'Mawar', 3, 500000),
-('KI002', 'Melati', 5, 300000),
-('KI003', 'Anggrek', 2, 650000),
-('KI004', 'Flamboyan', 1, 700000);
+('KI002', 'Melati', 5, 300000);
 
 -- --------------------------------------------------------
 
