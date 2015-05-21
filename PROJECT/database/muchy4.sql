@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 17, 2015 at 09:01 AM
+-- Generation Time: May 21, 2015 at 11:11 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `muchy2`
+-- Database: `muchy4`
 --
 
 -- --------------------------------------------------------
@@ -95,51 +95,6 @@ INSERT INTO `bagian` (`ID_BAGIAN`, `NAMA_BAGIAN`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bayar_obat`
---
-
-CREATE TABLE IF NOT EXISTS `bayar_obat` (
-  `ID_BAYAR_OBAT` varchar(5) NOT NULL,
-  `ID_RESEP` varchar(5) DEFAULT NULL,
-  `TGL_BAYAR_OBAT` date DEFAULT NULL,
-  `TOTAL_BAYAR_OBAT` int(11) DEFAULT NULL,
-  PRIMARY KEY (`ID_BAYAR_OBAT`),
-  KEY `FK_36` (`ID_RESEP`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `bayar_periksa`
---
-
-CREATE TABLE IF NOT EXISTS `bayar_periksa` (
-  `ID_BAYAR_PERIKSA` varchar(5) NOT NULL,
-  `ID_PERIKSA` varchar(5) DEFAULT NULL,
-  `TGL_BAYAR_PERIKSA` date DEFAULT NULL,
-  `TOTAL_BAYAR_PERIKSA` int(11) DEFAULT NULL,
-  PRIMARY KEY (`ID_BAYAR_PERIKSA`),
-  KEY `FK_35` (`ID_PERIKSA`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `bayar_rawat_inap`
---
-
-CREATE TABLE IF NOT EXISTS `bayar_rawat_inap` (
-  `ID_BAYAR_RAWAT` varchar(5) NOT NULL,
-  `ID_RAWAT_INAP` varchar(5) NOT NULL,
-  `TGL_BAYAR_RAWAT` date DEFAULT NULL,
-  `TOTAL_BAYAR_RAWAT` int(11) DEFAULT NULL,
-  PRIMARY KEY (`ID_BAYAR_RAWAT`),
-  KEY `ID_RAWAT_INAP` (`ID_RAWAT_INAP`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `detail_obat_keluar`
 --
 
@@ -149,6 +104,7 @@ CREATE TABLE IF NOT EXISTS `detail_obat_keluar` (
   `ID_OBAT` varchar(5) DEFAULT NULL,
   `QTY` int(11) DEFAULT NULL,
   `KETERANGAN` varchar(100) DEFAULT NULL,
+  `SUBTOTAL` int(11) NOT NULL,
   PRIMARY KEY (`ID_DETAIL_OBAT_KELUAR`),
   KEY `FK_21` (`ID_OBAT`),
   KEY `FK_27` (`ID_OBAT_KELUAR`)
@@ -158,9 +114,9 @@ CREATE TABLE IF NOT EXISTS `detail_obat_keluar` (
 -- Dumping data for table `detail_obat_keluar`
 --
 
-INSERT INTO `detail_obat_keluar` (`ID_DETAIL_OBAT_KELUAR`, `ID_OBAT_KELUAR`, `ID_OBAT`, `QTY`, `KETERANGAN`) VALUES
-('DOK01', 'OK001', 'O0002', 5, 'Asekkk'),
-('DOK02', 'OK002', 'O0005', 3, 'Wenak');
+INSERT INTO `detail_obat_keluar` (`ID_DETAIL_OBAT_KELUAR`, `ID_OBAT_KELUAR`, `ID_OBAT`, `QTY`, `KETERANGAN`, `SUBTOTAL`) VALUES
+('DOK01', 'OK001', 'O0002', 5, 'Asekkk', 12500),
+('DOK02', 'OK002', 'O0005', 3, 'Wenak', 15000);
 
 -- --------------------------------------------------------
 
@@ -190,6 +146,8 @@ CREATE TABLE IF NOT EXISTS `detail_periksa` (
   `ID_PERIKSA` varchar(5) NOT NULL,
   `ID_TINDAKAN` varchar(5) DEFAULT NULL,
   `KETERANGAN` varchar(500) DEFAULT NULL,
+  `QTY` int(11) NOT NULL,
+  `SUBTOTAL` int(11) NOT NULL,
   PRIMARY KEY (`ID_DETAIL_PERIKSA`),
   KEY `FK_3` (`ID_PERIKSA`),
   KEY `FK_8` (`ID_TINDAKAN`)
@@ -199,9 +157,9 @@ CREATE TABLE IF NOT EXISTS `detail_periksa` (
 -- Dumping data for table `detail_periksa`
 --
 
-INSERT INTO `detail_periksa` (`ID_DETAIL_PERIKSA`, `ID_PERIKSA`, `ID_TINDAKAN`, `KETERANGAN`) VALUES
-('DP001', 'PR001', 'T0002', '-'),
-('DP002', 'PR001', 'T0001', '-');
+INSERT INTO `detail_periksa` (`ID_DETAIL_PERIKSA`, `ID_PERIKSA`, `ID_TINDAKAN`, `KETERANGAN`, `QTY`, `SUBTOTAL`) VALUES
+('DP001', 'PR001', 'T0002', '-', 2, 110000),
+('DP002', 'PR001', 'T0001', '-', 3, 300000);
 
 -- --------------------------------------------------------
 
@@ -214,6 +172,8 @@ CREATE TABLE IF NOT EXISTS `detail_rawat_inap` (
   `ID_RAWAT_INAP` varchar(5) NOT NULL,
   `ID_PERIKSA` varchar(5) DEFAULT NULL,
   `KETERANGAN` varchar(100) NOT NULL,
+  `QTY` int(11) NOT NULL,
+  `SUBTOTAL` int(11) NOT NULL,
   PRIMARY KEY (`ID_DETAIL_RAWAT_INAP`),
   KEY `FK_30` (`ID_RAWAT_INAP`),
   KEY `FK_42` (`ID_PERIKSA`)
@@ -223,9 +183,9 @@ CREATE TABLE IF NOT EXISTS `detail_rawat_inap` (
 -- Dumping data for table `detail_rawat_inap`
 --
 
-INSERT INTO `detail_rawat_inap` (`ID_DETAIL_RAWAT_INAP`, `ID_RAWAT_INAP`, `ID_PERIKSA`, `KETERANGAN`) VALUES
-('DI001', 'RI001', 'PR001', ''),
-('DI002', 'RI002', 'PR002', '');
+INSERT INTO `detail_rawat_inap` (`ID_DETAIL_RAWAT_INAP`, `ID_RAWAT_INAP`, `ID_PERIKSA`, `KETERANGAN`, `QTY`, `SUBTOTAL`) VALUES
+('DI001', 'RI001', 'PR001', '3 Hari', 3, 1500000),
+('DI002', 'RI002', 'PR002', '7 Hari', 7, 3500000);
 
 -- --------------------------------------------------------
 
@@ -256,6 +216,57 @@ INSERT INTO `detail_resep` (`ID_DETAIL_RESEP`, `ID_OBAT`, `ID_RESEP`, `KET_RESEP
 ('DR006', 'O0007', 'R0003', '3x 1hari'),
 ('DR007', 'O0006', 'R0003', '3x 1hari'),
 ('DR008', 'O0007', 'R0005', '3x 1hari');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `detail_transaksi_obat`
+--
+
+CREATE TABLE IF NOT EXISTS `detail_transaksi_obat` (
+  `NO_O` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_TRANSAKSI` int(11) NOT NULL,
+  `ID_OBAT` varchar(5) NOT NULL,
+  `KETERANGAN` varchar(100) NOT NULL,
+  `QTY` int(5) NOT NULL,
+  `HARGA` int(11) NOT NULL,
+  `SUBTOTAL` int(11) NOT NULL,
+  PRIMARY KEY (`NO_O`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `detail_transaksi_periksa`
+--
+
+CREATE TABLE IF NOT EXISTS `detail_transaksi_periksa` (
+  `NO_TP` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_TRANSAKSI` int(11) NOT NULL,
+  `ID_PERIKSA` varchar(5) NOT NULL,
+  `KETERANGAN` varchar(100) NOT NULL,
+  `QTY` int(5) NOT NULL,
+  `HARGA` int(11) NOT NULL,
+  `SUBTOTAL` int(11) NOT NULL,
+  PRIMARY KEY (`NO_TP`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `detail_transaksi_rawat_inap`
+--
+
+CREATE TABLE IF NOT EXISTS `detail_transaksi_rawat_inap` (
+  `NO_TRI` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_TRANSAKSI` int(11) NOT NULL,
+  `ID_RAWAT_INAP` varchar(5) NOT NULL,
+  `KETERANGAN` varchar(100) NOT NULL,
+  `QTY` int(5) NOT NULL,
+  `HARGA` int(11) NOT NULL,
+  `SUBTOTAL` int(11) NOT NULL,
+  PRIMARY KEY (`NO_TRI`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -536,7 +547,7 @@ CREATE TABLE IF NOT EXISTS `obat` (
 
 INSERT INTO `obat` (`ID_OBAT`, `ID_SUPPLIER`, `NAMA_OBAT`, `KATEGORI_OBAT`, `HARGA`, `OBAT_KRITIS`) VALUES
 ('O0001', 'S0001', 'A-B VASK 10MG TAB', 'Obat Antiangina', 9510, '10'),
-('O0002', NULL, 'A-B VASK 5MG TAB', 'Obat Antiangina', 4512, '10'),
+('O0002', NULL, 'A-B VASK 5MG TAB', 'Obat Antiangina', 2500, '10'),
 ('O0003', NULL, 'ACEPRESS 25MG TAB', 'Obat ACE Inhibitor', 2800, '10'),
 ('O0004', NULL, 'ACETENSA 50MG TAB', 'Obat Antagonis Angiotensin II', 8213, '10'),
 ('O0005', NULL, 'ACETYLCYSTEINE NOVEL 200MG CAP 100S', 'Obat Batuk & Pilek', 5000, '10'),
@@ -5782,6 +5793,28 @@ INSERT INTO `tindakan` (`ID_TINDAKAN`, `NAMA_TINDAKAN`, `TARIF_TINDAKAN`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `transaksi`
+--
+
+CREATE TABLE IF NOT EXISTS `transaksi` (
+  `ID_TRANSAKSI` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_KASIR` varchar(5) NOT NULL,
+  `TGL_TRANSAKSI` date NOT NULL,
+  `JAM_TRANSAKSI` time NOT NULL,
+  `TOTAL` int(50) NOT NULL,
+  PRIMARY KEY (`ID_TRANSAKSI`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+
+--
+-- Dumping data for table `transaksi`
+--
+
+INSERT INTO `transaksi` (`ID_TRANSAKSI`, `ID_KASIR`, `TGL_TRANSAKSI`, `JAM_TRANSAKSI`, `TOTAL`) VALUES
+(13, 'K0001', '2015-05-21', '16:10:03', 1925000);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `waiting_list`
 --
 
@@ -5816,24 +5849,6 @@ ALTER TABLE `absensi`
   ADD CONSTRAINT `FK_38` FOREIGN KEY (`ID_KARYAWAN`) REFERENCES `karyawan` (`ID_KARYAWAN`),
   ADD CONSTRAINT `FK_39` FOREIGN KEY (`ID_DOKTER`) REFERENCES `dokter` (`ID_DOKTER`),
   ADD CONSTRAINT `FK_40` FOREIGN KEY (`ID_APOTEKER`) REFERENCES `apoteker` (`ID_APOTEKER`);
-
---
--- Constraints for table `bayar_obat`
---
-ALTER TABLE `bayar_obat`
-  ADD CONSTRAINT `FK_36` FOREIGN KEY (`ID_RESEP`) REFERENCES `resep` (`ID_RESEP`);
-
---
--- Constraints for table `bayar_periksa`
---
-ALTER TABLE `bayar_periksa`
-  ADD CONSTRAINT `FK_35` FOREIGN KEY (`ID_PERIKSA`) REFERENCES `pemeriksaan` (`ID_PERIKSA`);
-
---
--- Constraints for table `bayar_rawat_inap`
---
-ALTER TABLE `bayar_rawat_inap`
-  ADD CONSTRAINT `bayar_rawat_inap_ibfk_1` FOREIGN KEY (`ID_RAWAT_INAP`) REFERENCES `rawat_inap` (`ID_RAWAT_INAP`);
 
 --
 -- Constraints for table `detail_obat_keluar`
