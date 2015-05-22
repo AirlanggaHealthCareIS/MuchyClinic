@@ -5,22 +5,28 @@ class Antri extends CI_Controller {
 	public function index()
 	{
 		//echo "hello";
-		$this->load->view("v_header");
-		$this->load->view("antrian/v_content");
-		$this->load->view("v_footer");
+		
 		$this->load->model("m_antrian");
-		$call = $this->m_antrian->getAntri("12340");
-		$row=$call->row();
+		//$call = $this->m_antrian->getAntri("12340");
+		$dokter = $this->m_antrian->getdokter();
+		//$row=$call->row();
+
+		$data = array("getdok"=>$dokter);
+		$this->load->view("v_header");
+		$this->load->view("antrian/v_content", $data);
+		$this->load->view("v_footer");
 		//echo $row ->nm_pasien;
 		// echo "sukses";
 	}
 
 	public function validasi()
 	{
-		$antrian = $this->input->post('id_pasien');
+		// $antrian = $this->input->post('id_pasien');
+
 		$this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
 		$id = $this->input->post("id_pasien");
+		$namadokter = $this->input->post('dokter');
 		$isvalid = $this->input_validasi($id);
 
 		if ($isvalid == "error=null") {
