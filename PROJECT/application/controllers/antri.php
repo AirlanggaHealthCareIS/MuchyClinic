@@ -38,7 +38,16 @@ class Antri extends CI_Controller {
 		} 
 		else if ($isvalid == "true"){
 			echo "Sukses";
+			$this->insert($id,$namadokter);
 		}
+	}
+
+	public function insert($id,$namadokter){
+		$this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
+		$this->load->database();
+		$this->load->model('m_antrian');
+		$this->m_antrian->insert($id, $namadokter);
 	}
 
 	public function input_validasi($id)
