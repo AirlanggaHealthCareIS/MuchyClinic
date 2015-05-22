@@ -99,13 +99,19 @@
             <form class="form-horizontal" action = "<?php echo base_url()?>antri/validasi" method = "post">
               <label for="inputEmail3" class="col-sm-2 control-label">Nama dokter :</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputdokter" placeholder="Dokter Rizqi" disabled>
+                <select class="form-control" name="dokter">
+                  <?php
+                      foreach ($getdok as $row) {?>
+                      <option value="<?php echo $row->ID_DOKTER?>" selected><?php echo $row->NAMA_DOKTER; ?></option>
+                  <?php   }?>
+                </select>      
+
               </div>
               <br>
               <br>
               <label for="inputEmail3"  class="col-sm-2 control-label">ID pasien :</label>
               <div class="col-sm-10">
-                <input type="text" name="id_pasien" class="form-control" id="inputidpasien" placeholder="123">
+                <input type="text" name="id_pasien" class="form-control" id="inputidpasien" placeholder="Masukkan id pasien">
               </div>
             </div>
             <br>
