@@ -110,5 +110,23 @@ class M_jadwal extends CI_Model {
         
             return $query;
         }
+
+        public function getIDJadwalDokter($IDJADWALD){
+            $query = $this->db->query
+            ("SELECT `ID_DOKTER`, `ID_JADWAL_DOKTER` FROM `jadwal_dokter` WHERE `ID_JADWAL_DOKTER` = '".$IDJADWALD."'");
+
+            return $query;
+        }
+
+        public function updateJadwalDokter($HARID, $JAMD, $IDJADWALD){
+            $query = $this->db->query
+            ("UPDATE `jadwal_dokter` SET `HARI_D`= '".$HARID."', `JAM_D`= '".$JAMD."' WHERE `ID_JADWAL_DOKTER` = '".$IDJADWALD."'");
+
+            $query = $this->db->query
+            ("UPDATE `jadwal_dokter` SET `HARI_D`= '".$HARID."', `JAM_D`= '".$JAMD."' WHERE `ID_JADWAL_DOKTER` = '".$IDJADWALD."'");
+            
+            // return $query;
+        }
+
 }
  ?>

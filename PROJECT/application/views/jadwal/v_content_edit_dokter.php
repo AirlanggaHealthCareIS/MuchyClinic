@@ -1,7 +1,6 @@
-
 <div class="container-fluid">
       <div class="container">
-        <h1>Buat Jadwal Dokter</h1>
+        <h1>Edit Jadwal Dokter</h1>
       </div>
     </div>
     <div class="container-fluid width: 900px">
@@ -49,49 +48,14 @@
 
           <div class = "col-md-6">
            
-            <form class="form-horizontal" action="<?php echo base_url(); ?>jadwal/validasiDokter" method ="post">
-
-              <div class="form-group">
-                
-                    <label for="ID Aktor" class="col-sm-2 control-label">ID Dokter</label>
-                    <div class="col-sm-10">
-                      <div class="row">
-                        <div class="col-sm-10">
-                          <input name="iddok" maxlength="5" type="normal" class="form-control" id="inputIDAktor" placeholder="ID Dokter">    
-                        </div>
-                        <div class="col-sm-2">
-                          <button type="submit" class="btn btn-default">Search</button>      
-                        </div>
-                      </div>
-                    </div>
-              </div>
-
-              <div>
-                <table class="table">
-                  <tr>
-                    <td class="info">ID</td>
-                    <td class="info"><?php echo $iddokter; ?></td>
-                  </tr>
-
-                  <tr>
-                    <td class="info">Nama</td>
-                    <td class="info"><?php echo $namadokter; ?></td>
-                  </tr>
-                </table>
-              </div>
-
-              </form> 
-
-              <br>  
-
-              <form class="form-horizontal" action="<?php echo base_url(); ?>jadwal/validasiDokter2" method ="post">
+            <form class="form-horizontal" action="<?php echo base_url(); ?>jadwal/updateJadwalD" method ="post">
               <div class="form-group">
                 
                     <label for="ID Aktor" class="col-sm-2 control-label">ID Jadwal</label>
                     <div class="col-sm-10">
                       <div class="row">
                         <div class="col-sm-12">
-                          <input name="idjadwal" maxlength="5" type="normal" class="form-control" id="inputIDJadwal" placeholder="ID Jadwal">    
+                          <input name="idjadwal2" maxlength="5" type="normal" class="form-control" id="inputIDJadwal" value="<?php echo $idjadwal2 ?>">    
                         </div>
                       </div>
                     </div>
@@ -103,7 +67,7 @@
                   <div class="col-sm-10">
                     <div class="row">
                       <div class="col-sm-12">
-                        <input name="iddokter" maxlength="5" type="normal" class="form-control" id="showIDDokter" value="<?php echo $iddokter; ?>" >    
+                        <input name="iddokter2" maxlength="5" type="normal" class="form-control" id="showIDDokter" value="<?php echo $iddokter2; ?>">    
                       </div>
                     </div>
                   </div>
@@ -112,7 +76,7 @@
               <div class="form-group">
                 <label for="Hari" class="col-sm-2 control-label">Hari</label>
                 <div class="col-sm-10">
-                  <select name="cbhari" class="form-control">
+                  <select name="cbhari2" class="form-control">
                     <option value="0" >- Pilih Hari -</option>
                     <option value="Senin">Senin</option>
                     <option value="Selasa">Selasa</option>
@@ -128,7 +92,7 @@
               <div class="form-group">
                 <label for="Jam" class="col-sm-2 control-label">Jam</label>
                 <div class="col-sm-10">
-                  <select name="cbjam" class="form-control">
+                  <select name="cbjam2" class="form-control">
                     <option value="0" >- Pilih Jam -</option>
                     <option value="07.00-12.00" >07.00-12.00</option>
                     <option value="12.00-17.00" >12.00-17.00</option>
@@ -142,7 +106,7 @@
             <br>
 
             <div class="text-center">
-              <button name="submit" class="btn btn-primary" value= "add" type="submit">Add</button>
+              <button name="submit" class="btn btn-default" value= "add" type="submit">Edit</button>
             </div>
 
         </form>
@@ -159,8 +123,6 @@
                   <td class="info">Nama</td>
                   <td class="info">Hari</td>
                   <td class="info">Jam Kerja</td>
-                  <td class="info">Edit</td>
-                  <td class="info">Delete</td>
                 </tr>
 
                 <?php if($lihatjadwaldok!=null): ?>
@@ -173,11 +135,6 @@
                     <td class="active"><?php echo $row->NAMA_DOKTER ?></td>
                     <td class="active"><?php echo $row->HARI_D ?></td>
                     <td class="active"><?php echo $row->JAM_D ?></td>
-                    <td class="active">
-                      <a href="<?php echo base_url() ?>/jadwal/editJadwalDokter/<?php echo $row->ID_JADWAL_DOKTER ?>" class="btn btn-primary">Edit</a><?php ?></td>
-                    </td>
-                    <td class="active">
-                      <a href="<?php echo base_url() ?>/jadwal/hapusJadwalDokter/<?php echo $row->ID_JADWAL_DOKTER ?>" class="btn btn-primary">Delete</a><?php  ?></td>
                   
                   </tr>
 

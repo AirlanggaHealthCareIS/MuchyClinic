@@ -10,6 +10,7 @@ class Jadwal extends CI_Controller{
         "iddokter"=>"", "namadokter"=>"", 
         "idkaryawan"=>"", "namakaryawan"=>"",
         "idapoteker"=>"", "namaapoteker"=>"",
+        "iddokter2"=>"",
         "lihatjadwalapt"=>null,
         "lihatjadwaldok"=>null,
         "lihatjadwalkar"=>null); //tampil data di tabel
@@ -21,11 +22,6 @@ class Jadwal extends CI_Controller{
 		$this->load->view("v_footer");
 
     }
-
-    public function coba($a, $b){
-		return $a+$b;
-		
-	}
 
 	//============================================================ T E S T I N G ====================================================================
 
@@ -269,7 +265,6 @@ class Jadwal extends CI_Controller{
 		if($query->num_rows() > 0) {
 			$ro = $query->row();	
 
-			$query1 = $this->m_jadwal->getDokter($iddokter);
 			$data = array(
 				"iddokter"=>$ro->ID_DOKTER, 
 				"namadokter"=>$ro->NAMA_DOKTER, 
@@ -372,10 +367,9 @@ class Jadwal extends CI_Controller{
 
 	public function hapusJadwalDokter($idJadwalD){
 		$this->load->database();
-
+		$this->load->model('m_jadwal');
+			
 		$IDDOKTER = $this->input->post('iddokter');
-
-		$this->load->model('m_jadwal');	
 
 		$deleteDokter = $this->m_jadwal->deleteJadwalDokter($idJadwalD);
 
@@ -471,11 +465,38 @@ class Jadwal extends CI_Controller{
 		$deleteDokter = $this->m_jadwal->deleteJadwalKaryawan($idJadwalK);
 
 		$this->showJadwalKaryawan($IDKARYAWAN);
+
 	}
 
+	public function editJadwalDokter($IDJADWALD){
+		 $this->load->database();
+		 $this->load->model('m_jadwal');
 
+		 $IDDOKTER = $this->input->post('iddokter2');
 
+		 $query = $this->m_jadwal->getIDJadwalDokter($IDJADWALD);
+	 	 $ro = $query->row();	
+		 $data["iddokter2"] = $ro->ID_DOKTER;
+		 $data['idjadwal2'] = $ro->ID_JADWAL_DOKTER;
+		 $data["lihatjadwaldok"]= $this->m_jadwal->getDataDokter();
 
+		 $this->load->view("v_header");
+		 $this->load->view("jadwal/v_content_edit_dokter", $data);
+		 $this->load->view("v_footer");
 
+	}
+
+	public function updateJadwalD(){
+		$this->load->model('m_jadwal');
+
+		$IDJADWALD = $this->input->post('idjadwal2');
+		$IDDOKTER = $this->input->post('iddokter2');
+		$HARID = $this->input->post('cbhari2');
+		$JAMD = $this->input->post('cbjam2');
+		
+		$updateJDokter = $this->m_jadwal->updateJadwalDokter($HARID, $JAMD, $IDJADWALD);
+
+		redirect(base_url()."jadwal/showJadwalDokter/".$IDDOKTER);
+	}	
 	
 }
