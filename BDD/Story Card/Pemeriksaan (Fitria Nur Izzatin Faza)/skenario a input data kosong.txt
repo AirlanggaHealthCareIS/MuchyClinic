@@ -1,0 +1,11 @@
+Story		: Pemeriksaan Pasien
+Feature		: Fitur ini digunakan untuk memasukkan data - data medis hasil pemeriksaan yang sudah dilakukan dokter terhadap pasien
+Skenario A	: data yang diisi kosong
+
+Given	: saya seorang dokter ingin memasukkan data periksa dari pasien
+And	: saya membuka fitur pemeriksaan pasien 
+When	: Saya masuk ke halaman fitur pemeriksaan
+And	: saya lupa melakukan input 
+And	: saya memilih tombol 'ok'  
+Then	: Sistem masuk dan melakukan validasi
+And	: menampilkan pesan gagal data belum ada yang di inputkan 
