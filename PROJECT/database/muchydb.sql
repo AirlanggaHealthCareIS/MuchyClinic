@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Inang: 127.0.0.1
--- Waktu pembuatan: 22 Mei 2015 pada 09.56
+-- Waktu pembuatan: 24 Mei 2015 pada 12.04
 -- Versi Server: 5.5.27
 -- Versi PHP: 5.4.7
 
@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `absensi` (
-  `ID_ABSENSI` varchar(5) NOT NULL,
+  `ID_ABSENSI` int(5) NOT NULL AUTO_INCREMENT,
   `ID_APOTEKER` varchar(5) DEFAULT NULL,
   `ID_DOKTER` varchar(5) DEFAULT NULL,
   `ID_KARYAWAN` varchar(5) DEFAULT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `absensi` (
   KEY `FK_38` (`ID_KARYAWAN`),
   KEY `FK_39` (`ID_DOKTER`),
   KEY `FK_40` (`ID_APOTEKER`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -198,6 +198,7 @@ CREATE TABLE IF NOT EXISTS `detail_resep` (
   `ID_OBAT` varchar(5) DEFAULT NULL,
   `ID_RESEP` varchar(5) NOT NULL,
   `KET_RESEP` text,
+  `QTY_OBAT` int(11) NOT NULL,
   PRIMARY KEY (`ID_DETAIL_RESEP`),
   KEY `FK_16` (`ID_RESEP`),
   KEY `FK_17` (`ID_OBAT`)
@@ -207,15 +208,16 @@ CREATE TABLE IF NOT EXISTS `detail_resep` (
 -- Dumping data untuk tabel `detail_resep`
 --
 
-INSERT INTO `detail_resep` (`ID_DETAIL_RESEP`, `ID_OBAT`, `ID_RESEP`, `KET_RESEP`) VALUES
-('DR001', 'O0003', 'R0001', '3x 1hari'),
-('DR002', 'O0023', 'R0001', '2x 1hari setelah makan'),
-('DR003', 'O0031', 'R0001', '1kali 1hari sebelum makan'),
-('DR004', 'O0001', 'R0002', '3x 1hari'),
-('DR005', 'O0006', 'R0002', '3x 1hari'),
-('DR006', 'O0007', 'R0003', '3x 1hari'),
-('DR007', 'O0006', 'R0003', '3x 1hari'),
-('DR008', 'O0007', 'R0005', '3x 1hari');
+INSERT INTO `detail_resep` (`ID_DETAIL_RESEP`, `ID_OBAT`, `ID_RESEP`, `KET_RESEP`, `QTY_OBAT`) VALUES
+('DR001', 'O0003', 'R0001', '3x 1hari', 0),
+('DR002', 'O0023', 'R0001', '2x 1hari setelah makan', 0),
+('DR003', 'O0031', 'R0001', '1kali 1hari sebelum makan', 0),
+('DR004', 'O0001', 'R0002', '3x 1hari', 0),
+('DR005', 'O0006', 'R0002', '3x 1hari', 0),
+('DR006', 'O0007', 'R0003', '3x 1hari', 0),
+('DR007', 'O0006', 'R0003', '3x 1hari', 0),
+('DR008', 'O0007', 'R0005', '3x 1hari', 0),
+('DR991', 'O1823', 'R011', '3x1 sehari', 2);
 
 -- --------------------------------------------------------
 
@@ -4967,7 +4969,9 @@ CREATE TABLE IF NOT EXISTS `obat_masuk` (
 
 INSERT INTO `obat_masuk` (`ID_OBAT_MASUK`, `ID_APOTEKER`, `TGL_MASUK`) VALUES
 ('OM001', 'A0001', '2015-05-22'),
-('OM002', 'A0001', '2015-05-22');
+('OM002', 'A0001', '2015-05-22'),
+('OM008', 'A0001', '2015-05-24'),
+('om099', 'A0001', '2015-05-24');
 
 -- --------------------------------------------------------
 
@@ -5737,7 +5741,9 @@ INSERT INTO `resep` (`ID_RESEP`, `ID_PASIEN`, `ID_DOKTER`, `ID_PERIKSA`, `TGL_RE
 ('R0003', 'P0002', 'D0004', 'PR003', '2015-05-10'),
 ('R0004', 'P0002', 'D0002', 'PR004', '2015-05-19'),
 ('R0005', 'P0003', 'D0005', 'PR005', '2015-05-20'),
-('R0006', 'P0004', 'D0005', 'PR006', '2015-05-19');
+('R0006', 'P0004', 'D0005', 'PR006', '2015-05-19'),
+('R009', 'P0002', 'D0002', 'PR002', '2015-05-24'),
+('R011', 'P0001', 'D0001', 'PR001', '2015-05-24');
 
 -- --------------------------------------------------------
 
