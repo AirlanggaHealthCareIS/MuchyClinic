@@ -29,6 +29,18 @@ class Rekammedis extends CI_Controller {
 		echo $this->unit->report();
 	}
 
+	public function testingModel (){
+		$this->load->library ('unit_test');
+		$this->load->model('m_rekammedis');
+		$this->load->database();
+
+		$this->unit->run($this->m_rekammedis->getRekamMedisTest("P0001"),true, "Pasien Terdaftar dan Memiliki Rekam Medis");
+		$this->unit->run($this->m_rekammedis->getRekamMedisTest("P0004"),true, "Pasien Terdaftar dan tidak Memiliki Rekam Medis");
+		$this->unit->run($this->m_rekammedis->getRekamMedisTest("P0006"),true, "Pasien Tidak Terdaftar");
+
+		echo $this->unit->report();
+	}
+
 
 	public function validasi(){
 		$id = $this->input->post('id_pasien');
@@ -58,6 +70,9 @@ class Rekammedis extends CI_Controller {
 
 
 	}
+
+
+
 
 
 	public function tampil($id)

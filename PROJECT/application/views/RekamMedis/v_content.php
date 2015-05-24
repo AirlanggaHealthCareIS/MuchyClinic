@@ -86,8 +86,6 @@
                     <?php } ?>
                     <?php endif ?>
             </table>
-        <button type="reset" class="btn btn-info" style = "width:100px">Back</button>
-
           </div>
    </div>
       </div>
