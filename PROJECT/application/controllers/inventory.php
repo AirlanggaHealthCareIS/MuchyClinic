@@ -39,6 +39,18 @@ class Inventory extends CI_Controller{
 
 
 	}
+
+	public function testingInv()
+	{
+		$this->load->library("unit_test");
+
+		$this->unit->run($this->inpValidasi(""),"error=null", "ID pasien kosssonngg");
+		$this->unit->run($this->inpValidasi("!@$)"),"error=symbol", "ID pasien dengan simbolll");
+		$this->unit->run($this->inpValidasi("p0010"),"true", "ID pasien benarrr");
+		//$this->unit->run($this->inCheckdb("p0010"),"true", "uji Id pasien benar");
+
+		echo $this->unit->report();
+	}
 	
 	public function stokkritis()
 	{
@@ -62,26 +74,41 @@ class Inventory extends CI_Controller{
 
 	public function validasi()
 	{
-	 $nama_obat = $this->input->post('nama_obat');	  
+	 $nama_obat = $this->input->post('nama_obat');
+	 $nama_obat2 = $this->inpValidasi($nama_obat);	  
 
- 	if ($nama_obat == "" || $nama_obat == null){
- 	//echo "belum mengisi nama obat";
- 	redirect (base_url().'inventory?error=null');
-  	}
-  	else if (preg_match ('/[^_a-z0-9]/i', $nama_obat)){
-  		redirect(base_url().'inventory?error=symbol');
-  	}
-   else {
-  	$this->tampil($nama_obat);
-  }
+	 	if ($nama_obat2 == "error=null"){
+	 	//echo "belum mengisi nama obat";
+	 	redirect (base_url().'inventory?error=null');
+	  	}
+	  	else if ($nama_obat2 == "error=symbol"){
+	  		redirect(base_url().'inventory?error=symbol');
+	  	}
+		   else if ($nama_obat2 == "true"){
+	  		$this->tampil($nama_obat);
+		  		}
 
+	}
+	public function inpValidasi($nama_obat)
+	{
+		if ($nama_obat == "" || $nama_obat == null){
+	 	//echo "belum mengisi nama obat";
+	 	//redirect (base_url().'inventory?error=null');
+	  	return "error=null";
+	  	}
+	  	else if (preg_match ('/[^_a-z0-9]/i', $nama_obat)){
+	  		return "error=symbol";
+	  	}
+		   else {
+	  		return "true";
+		  		}		
 	}
 
 	public function tampil($nama_obat)
 	{ 
 		$this->load->database();
 
-		 $nama_obat = $this->input->post('nama_obat');
+		$nama_obat = $this->input->post('nama_obat');
 
 		$this->load->model("m_inventory");
 		$query = $this->m_inventory->getObat($nama_obat);
