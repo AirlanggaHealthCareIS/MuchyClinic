@@ -37,8 +37,20 @@ class Mambildata extends CI_Model {
 			$query = $this->db->query("SELECT * FROM DOKTER");
 			return $query->result();
 		}
-		public function insertinap($id_pas, $kamar_r, $dokter_r, $tgl_masuk_r, $tgl_keluar_r, $newharga){
-			$query = $this->db->query("INSERT INTO RAWAT_INAP(`ID_KAMAR_INAP`, `ID_PASIEN`, `ID_DOKTER`, `TGL_MASK`, `TGL_KELUAR`, `TOTAL_BIAYA_RWT`) VALUES ('".$kamar_r."', '".$id_pas."', '".$dokter_r."', '".$tgl_masuk_r."', '".$tgl_keluar_r."', '".$newharga."')");
+		public function insertinap($id_pas, $kamar_r, $dokter_r, $tgl_masuk_r){
+			$query = $this->db->query("INSERT INTO RAWAT_INAP(`ID_KAMAR_INAP`, `ID_PASIEN`, `ID_DOKTER`, `TGL_MASK`, `TGL_KELUAR`, `TOTAL_BIAYA_RWT`) VALUES ('".$kamar_r."', '".$id_pas."', '".$dokter_r."', '".$tgl_masuk_r."', NULL, 'NULL')");
 			return $query;
+		}
+		public function jumlahKamar($idkamar){
+			$query = $this->db->query("SELECT count(*) AS jumlah FROM `rawat_inap` where ID_kamar_inap = '".$idkamar."' AND TGL_KELUAR is NULL");
+			$query = $query->row();
+
+			return $query->jumlah;
+		}
+		public function kapasitasKamar($idkamar){
+			$query = $this->db->query("SELECT kapasitas_kmr FROM  `kamar` WHERE id_kamar_inap = '".$idkamar."' ");
+			$query = $query->row();
+
+			return $query->kapasitas_kmr;
 		}
 }

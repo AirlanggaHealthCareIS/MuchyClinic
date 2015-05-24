@@ -63,51 +63,45 @@ class Crawatinap extends CI_Controller{
 	public function insertinap(){
 		//echo "id_pasien = ".$this->session->idpasien;
 
+
 		$this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
 		$this->load->database();
 		$id_pas = $this->session->userdata('idpasien3');
 		$kamar_r = $this->input->post('kamar');
+		$cek = $this->cekKamar($kamar_r);
+		if ($cek == false) {
+			redirect(base_url().'crawatinap?act=kamar_penuh');
+		} 
+		
 		$dokter_r = $this->input->post('dokter');
 		$tgl_masuk_r = $this->input->post('tgl_masuk');
-		$tgl_keluar_r = $this->input->post('tgl_keluar');
-		
-		//hitung selisih hari
-		$datetime1 = new DateTime($tgl_masuk_r);
-  		$datetime2 = new DateTime($tgl_keluar_r);
-		$day = $datetime1->diff($datetime2);
-		//echo "hari = ".$day->days;
-		$selisihday = $day->days;
-		$this->checktgl($datetime1, $datetime2); // buat testing tanggal
-		if ($kamar_r == 'KI001'){
-			$newharga = $selisihday*500000;
-			$this->insertinap2($id_pas, $kamar_r, $dokter_r, $tgl_masuk_r, $tgl_keluar_r, $newharga);
-		}
-		else {
-			$newharga = $selisihday*300000;
-			$this->insertinap2($id_pas, $kamar_r, $dokter_r, $tgl_masuk_r, $tgl_keluar_r, $newharga);
-		}
-	}
-	public function insertinap2($id_pas, $kamar_r, $dokter_r, $tgl_masuk_r, $tgl_keluar_r, $newharga){
-		$this->load->helper(array('form', 'url'));
-        $this->load->library('form_validation');
-		$this->load->database();
-		if ($id_pas == null || $kamar_r == null || $dokter_r == null || $tgl_masuk_r == null || $tgl_keluar_r == null || $newharga == null) {
+
+		if ($id_pas == null || $kamar_r == null || $dokter_r == null || $tgl_masuk_r == null ) {
 			redirect(base_url().'crawatinap?error=null 	');
 
 		} else {
 			$this->load->model('mambildata');
-			$insert_r = $this->mambildata->insertinap($id_pas, $kamar_r, $dokter_r, $tgl_masuk_r, $tgl_keluar_r, $newharga);
+			$insert_r = $this->mambildata->insertinap($id_pas, $kamar_r, $dokter_r, $tgl_masuk_r);
 			$this->index2();
 		}
 	}
-	public function kamar(){
-		$this->load->helper(array('form', 'url'));
-        $this->load->library('form_validation');
+	public function cekKamar($kamar_r){
 		$this->load->database();
-		$k1 = 3;
-		$k2 = 5;
-		$gKamar['kamar'] = $this->mambildata->getkamar();
+		$idkamar = $kamar_r;
+		$this->load->model('mambildata');
+		$jumlahK = $this->mambildata->jumlahKamar($idkamar);
+		$kapasitasK = $this->mambildata->kapasitasKamar($idkamar);
+		if ($jumlahK >= $kapasitasK){
+			
+			return false;
+		}
+		else{
+			// echo "benarr";
+			// echo "jumlah kamar = " .$jumlahK;
+			// echo "jumlah kapasitas = " .$kapasitasK;
+			return true;
+		}
 		
 	}
 	public function inValidasi ($id)
@@ -133,6 +127,7 @@ class Crawatinap extends CI_Controller{
 		$this->unit->run($this->inValidasi("!@$)"),"error=symbol", "uji Id pasien yang dimasukkan symbol");
 		$this->unit->run($this->inValidasi("p0001"),"true", "uji Id pasien benar");
 		$this->unit->run($this->checktgl(2015-04-21, 2015-04-20),1, "uji tanggal");
+		$this->unit->run($this->checktgl(2015-04-20, 2015-04-21),-1, "uji tanggal");
 		
 
 		echo $this->unit->report();
@@ -144,9 +139,5 @@ class Crawatinap extends CI_Controller{
 		$this->unit->run($this->mambildata->getcariid2("P0001"),true, "pasien tersebut ada broo");
 		echo $this->unit->report();
 	}
-	// public function hitung($a,$b)
-	// {
-	// 	return $a+$b;
-	// }
 }
 	
