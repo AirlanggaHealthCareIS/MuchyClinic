@@ -140,6 +140,19 @@ class M_jadwal extends CI_Model {
         
         }
 
+        public function getIDJadwalKaryawan($IDJADWALK){
+            $query = $this->db->query
+            ("SELECT `ID_JADWAL_KRYN`, `ID_KARYAWAN` FROM `jadwal_karyawan` WHERE `ID_JADWAL_KRYN` = '".$IDJADWALK."'");
+
+            return $query;
+        }
+
+        public function updateJadwalKaryawan($HARIK, $JAMK, $IDJADWALK){
+            $query = $this->db->query
+            ("UPDATE `jadwal_karyawan` SET `HARI_K`= '".$HARIK."' ,`JAM_K`= '".$JAMK."' WHERE `ID_JADWAL_KRYN` = '".$IDJADWALK."'");
+        
+        }
+
 
 }
  ?>

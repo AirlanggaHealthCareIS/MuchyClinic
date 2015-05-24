@@ -1,7 +1,6 @@
-
 <div class="container-fluid">
       <div class="container">
-        <h1>Buat Jadwal Karyawan</h1>
+        <h1>Edit Jadwal Apoteker</h1>
       </div>
     </div>
     <div class="container-fluid width: 900px">
@@ -16,7 +15,7 @@
             </div>
           <?php endif ?>
 
-          <?php if ($this->input->get('error')=='idkaryawannull'): ?>
+          <?php if ($this->input->get('error')=='iddokternull'): ?>
             <div class="alert alert-danger" role="alert">
               Maaf anda belum mengisi ID Karyawan (untuk memilih karyawan yang akan diinputkan jadwalnya)
             </div>
@@ -46,57 +45,17 @@
             </div>
           <?php endif ?>
 
-          <?php if($this->input->get('error')=='apaya'): ?>
-            <div class="alert alert danger alert dismissible" role="alert">
-              Enaknya isi apa?
-            </div>
-          <?php endif ?>
 
           <div class = "col-md-6">
            
-            <form class="form-horizontal" action="<?php echo base_url(); ?>jadwal/validasiKaryawan" method ="post">
-
-              <div class="form-group">
-                
-                    <label for="ID Aktor" class="col-sm-2 control-label">ID Karyawan</label>
-                    <div class="col-sm-10">
-                      <div class="row">
-                        <div class="col-sm-10">
-                          <input name="idkar" maxlength="5" type="normal" class="form-control" id="inputIDKaryawan" placeholder="ID Karyawan">    
-                        </div>
-                        <div class="col-sm-2">
-                          <button type="submit" class="btn btn-default">Search</button>      
-                        </div>
-                      </div>
-                    </div>
-              </div>
-
-              <div>
-                <table class="table">
-                  <tr>
-                    <td class="info">ID</td>
-                    <td class="info"><?php echo $idkaryawan; ?></td>
-                  </tr>
-
-                  <tr>
-                    <td class="info">Nama</td>
-                    <td class="info"><?php echo $namakaryawan; ?></td>
-                  </tr>
-                </table>
-              </div>
-
-              </form> 
-
-              <br>  
-
-              <form class="form-horizontal" action="<?php echo base_url(); ?>jadwal/validasiKaryawan2" method ="post">
+            <form class="form-horizontal" action="<?php echo base_url(); ?>jadwal/updateJadwalK" method ="post">
               <div class="form-group">
                 
                     <label for="ID Aktor" class="col-sm-2 control-label">ID Jadwal</label>
                     <div class="col-sm-10">
                       <div class="row">
                         <div class="col-sm-12">
-                          <input name="idjadwal" maxlength="5" type="normal" class="form-control" id="inputIDJadwal" placeholder="ID Jadwal">    
+                          <input name="idjadwal2" maxlength="5" type="normal" class="form-control" id="inputIDJadwal" value="<?php echo $idjadwal2 ?>">    
                         </div>
                       </div>
                     </div>
@@ -104,11 +63,11 @@
 
               <div class="form-group">
                 
-                  <label for="ID Karyawan" class="col-sm-2 control-label">ID Karyawan</label>
+                  <label for="ID Aktor" class="col-sm-2 control-label">ID Karyawan</label>
                   <div class="col-sm-10">
                     <div class="row">
                       <div class="col-sm-12">
-                        <input name="idkaryawan" maxlength="5" type="normal" class="form-control" id="showIDKaryawan" value="<?php echo $idkaryawan; ?>" >    
+                        <input name="idkar2" maxlength="5" type="normal" class="form-control" id="showIDKaryawan" value="<?php echo $idkar2; ?>">    
                       </div>
                     </div>
                   </div>
@@ -117,7 +76,7 @@
               <div class="form-group">
                 <label for="Hari" class="col-sm-2 control-label">Hari</label>
                 <div class="col-sm-10">
-                  <select name="cbhari" class="form-control">
+                  <select name="cbhari2" class="form-control">
                     <option value="0" >- Pilih Hari -</option>
                     <option value="Senin">Senin</option>
                     <option value="Selasa">Selasa</option>
@@ -133,27 +92,24 @@
               <div class="form-group">
                 <label for="Jam" class="col-sm-2 control-label">Jam</label>
                 <div class="col-sm-10">
-                  <select name="cbjam" class="form-control">
+                  <select name="cbjam2" class="form-control">
                     <option value="0" >- Pilih Jam -</option>
-                    <option value="07.00 - 12.00" >07.00-12.00</option>
-                    <option value="12.00 - 17.00" >12.00-17.00</option>
-                    <option value="17.00 - 22.00" >17.00-22.00</option>
+                    <option value="07.00-12.00" >07.00-12.00</option>
+                    <option value="12.00-17.00" >12.00-17.00</option>
+                    <option value="17.00-22.00" >17.00-22.00</option>
                   </select>
                 </div>
               </div>
+
+              <div class="text-center">
+                <button name="submit" class="btn btn-default" value= "add" type="submit">Edit</button>
+              </div>
+              
               </div>
             </div>
 
             <br>
 
-            <!-- // <form action="<?php echo base_url(); ?>" method="post"> -->
-            <div class="text-center">
-              <button name="submit" class="btn btn-default" value= "add" type="submit">Add</button>
-              <button name="submit" class="btn btn-default" value= "edit" type="submit">Edit</button>
-              <button name="submit" class="btn btn-default" type="submit">Delete</button>
-            </div>
-
-          <!-- </form> -->
         </form>
 
             <br>
@@ -161,38 +117,31 @@
 
             <div >
               <table class="table table-bordered">
-
+              
                 <tr>
                   <td class="info">ID Jadwal</td>
                   <td class="info">ID Karyawan</td>
                   <td class="info">Nama</td>
                   <td class="info">Hari</td>
                   <td class="info">Jam Kerja</td>
-                  <td class="info">Edit</td>
-                  <td class="info">Delete</td>
                 </tr>
 
                 <?php if($lihatjadwalkar!=null): ?>
-            
+                
                 <?php foreach($lihatjadwalkar->result() as $row) { ?>
 
-                <tr>
-                  <td class="active"><?php echo $row->ID_JADWAL_KRYN ?></td>
-                  <td class="active"><?php echo $row->ID_KARYAWAN ?></td>
-                  <td class="active"><?php echo $row->NAMA_K ?></td>
-                  <td class="active"><?php echo $row->HARI_K ?></td>
-                  <td class="active"><?php echo $row->JAM_K ?></td>
-                  <td class="active">
-                      <a href="<?php echo base_url() ?>/jadwal/editJadwalKaryawan/<?php echo $row->ID_JADWAL_KRYN ?>" class="btn btn-primary">Edit</a>                      <?php ?></td>
+                  <tr>
+                    <td class="active"><?php echo $row->ID_JADWAL_KRYN ?></td>
+                    <td class="active"><?php echo $row->ID_KARYAWAN ?></td>
+                    <td class="active"><?php echo $row->NAMA_K ?></td>
+                    <td class="active"><?php echo $row->HARI_K ?></td>
+                    <td class="active"><?php echo $row->JAM_K ?></td>
+                  
                   </tr>
-                  <td class="active">
-                      <a href="<?php echo base_url() ?>/jadwal/hapusJadwalKaryawan/<?php echo $row->ID_JADWAL_KRYN ?>" class="btn btn-primary">Delete</a>                      <?php ?></td>
-                  </tr>
-                </tr>
 
                 <?php } ?>
 
-                <?php endif ?>
+              <?php endif ?>
 
               </table>
               
@@ -201,3 +150,25 @@
           
         </div>
       </div>
+
+      <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Delete</h4>
+      </div>
+      <div class="modal-body">
+        Do you want to delete this record?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">OK</button>
+      </div>
+    </div>
+  </div>
+</div>

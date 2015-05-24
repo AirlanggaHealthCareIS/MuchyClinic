@@ -18,7 +18,7 @@ class Jadwal extends CI_Controller{
         //"lihatjadwalapt"=>$this->m_jadwal->getAllData(),
 
 		$this->load->view("v_header");
-		$this->load->view("jadwal/v_content_apoteker", $data);
+		$this->load->view("jadwal/v_content_karyawan", $data);
 		$this->load->view("v_footer");
 
     }
@@ -136,7 +136,7 @@ class Jadwal extends CI_Controller{
 			redirect(base_url().'jadwal?error=idkaryawannull');
 		}
 
-		else if($cekjadwal == "symbolerror"){
+		else if($cek == "symbolerror"){
 			redirect(base_url().'jadwal?error=symbolerror');
 		}
 
@@ -293,9 +293,6 @@ class Jadwal extends CI_Controller{
 		if($query->num_rows() > 0) {
 			$ro = $query->row();
 			
-			$query1 = $this->m_jadwal->getKaryawan($idkar);				
-			if($query1->num_rows() > 0){
-
 				$data = array(
 					"idkaryawan"=>$ro->ID_KARYAWAN, 
 					"namakaryawan"=>$ro->NAMA_K, 
@@ -304,12 +301,6 @@ class Jadwal extends CI_Controller{
 				$this->load->view("v_header");
 				$this->load->view("jadwal/v_content_karyawan", $data);
 				$this->load->view("v_footer");	
-
-			}
-
-			else{
-				redirect(base_url().'jadwal?error=apaya');
-			}
 		}
 
 		else{
@@ -445,6 +436,7 @@ class Jadwal extends CI_Controller{
 
 	public function showJadwalKaryawan($idkar){
 		$this->load->database();
+		$this->load->model("m_jadwal");
 
 		$idkar = $this->input->post('idkaryawan');
 
@@ -529,6 +521,38 @@ class Jadwal extends CI_Controller{
 
 		//redirect(base_url().'jadwal?success==updatesuccess');
 		redirect(base_url()."jadwal/showJadwalApoteker/".$IDAPOTEKER);
+	}
+
+	public function editJadwalKaryawan($IDJADWALK){
+		 $this->load->database();
+		 $this->load->model('m_jadwal');
+
+		 $IDKARYAWAN = $this->input->post('idapt2');
+
+		 $query = $this->m_jadwal->getIDJadwalKaryawan($IDJADWALK);
+	 	 $ro = $query->row();	
+		 $data["idkar2"] = $ro->ID_KARYAWAN;
+		 $data['idjadwal2'] = $ro->ID_JADWAL_KRYN;
+		 $data["lihatjadwalkar"]= $this->m_jadwal->getDataKaryawan();
+
+		 $this->load->view("v_header");
+		 $this->load->view("jadwal/v_content_edit_karyawan", $data);
+		 $this->load->view("v_footer");
+
+	}
+
+	public function updateJadwalK(){
+		$this->load->model('m_jadwal');
+
+		$IDJADWALK = $this->input->post('idjadwal2');
+		$IDKARYAWAN = $this->input->post('idkar2');
+		$HARIK = $this->input->post('cbhari2');
+		$JAMK = $this->input->post('cbjam2');
+		
+		$updateJApoteker = $this->m_jadwal->updateJadwalKaryawan($HARIK, $JAMK, $IDJADWALK);
+
+		//redirect(base_url().'jadwal?success==updatesuccess');
+		redirect(base_url()."jadwal/showJadwalKaryawan/".$IDKARYAWAN);
 	}	
 	
 }
