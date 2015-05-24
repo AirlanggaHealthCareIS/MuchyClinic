@@ -18,7 +18,7 @@ class Jadwal extends CI_Controller{
         //"lihatjadwalapt"=>$this->m_jadwal->getAllData(),
 
 		$this->load->view("v_header");
-		$this->load->view("jadwal/v_content_dokter", $data);
+		$this->load->view("jadwal/v_content_apoteker", $data);
 		$this->load->view("v_footer");
 
     }
@@ -497,6 +497,38 @@ class Jadwal extends CI_Controller{
 		$updateJDokter = $this->m_jadwal->updateJadwalDokter($HARID, $JAMD, $IDJADWALD);
 
 		redirect(base_url()."jadwal/showJadwalDokter/".$IDDOKTER);
+	}
+
+	public function editJadwalApoteker($IDJADWALA){
+		 $this->load->database();
+		 $this->load->model('m_jadwal');
+
+		 $IDAPOTEKER = $this->input->post('idapt2');
+
+		 $query = $this->m_jadwal->getIDJadwalApoteker($IDJADWALA);
+	 	 $ro = $query->row();	
+		 $data["idapt2"] = $ro->ID_APOTEKER;
+		 $data['idjadwal2'] = $ro->ID_JADWAL_APOTKR;
+		 $data["lihatjadwalapt"]= $this->m_jadwal->getDataApoteker();
+
+		 $this->load->view("v_header");
+		 $this->load->view("jadwal/v_content_edit_apoteker", $data);
+		 $this->load->view("v_footer");
+
+	}
+
+	public function updateJadwalA(){
+		$this->load->model('m_jadwal');
+
+		$IDJADWALA = $this->input->post('idjadwal2');
+		$IDAPOTEKER = $this->input->post('idapt2');
+		$HARIA = $this->input->post('cbhari2');
+		$JAMA = $this->input->post('cbjam2');
+		
+		$updateJApoteker = $this->m_jadwal->updateJadwalApoteker($HARIA, $JAMA, $IDJADWALA);
+
+		//redirect(base_url().'jadwal?success==updatesuccess');
+		redirect(base_url()."jadwal/showJadwalApoteker/".$IDAPOTEKER);
 	}	
 	
 }

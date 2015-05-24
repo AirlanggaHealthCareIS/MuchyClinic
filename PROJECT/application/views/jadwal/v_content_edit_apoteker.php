@@ -1,7 +1,6 @@
-
 <div class="container-fluid">
       <div class="container">
-        <h1>Buat Jadwal Apoteker</h1>
+        <h1>Edit Jadwal Apoteker</h1>
       </div>
     </div>
     <div class="container-fluid width: 900px">
@@ -46,58 +45,17 @@
             </div>
           <?php endif ?>
 
-          <?php if($this->input->get('error')=='updatesuccess'): ?>
-            <div class="alert alert-success" role="alert">
-              Data berhasil di update
-            </div>
-          <?php endif ?>
 
           <div class = "col-md-6">
            
-            <form class="form-horizontal" action="<?php echo base_url(); ?>jadwal/validasiApoteker" method ="post">
-
-              <div class="form-group">
-                
-                    <label for="ID Apoteker" class="col-sm-2 control-label">ID Apoteker</label>
-                    <div class="col-sm-10">
-                      <div class="row">
-                        <div class="col-sm-10">
-                          <input name="idapt" maxlength="5" type="normal" class="form-control" id="inputIDApoteker" placeholder="ID Apoteker">    
-                        </div>
-                        <div class="col-sm-2">
-                          <button type="submit" class="btn btn-default">Search</button>      
-                        </div>
-                      </div>
-                    </div>
-              </div>
-
-              <div>
-                <table class="table">
-                  <tr>
-                    <td class="info">ID</td>
-                    <td class="info"><?php echo $idapoteker; ?></td>
-                  </tr>
-
-                  <tr>
-                    <td class="info">Nama</td>
-                    <td class="info"><?php echo $namaapoteker; ?></td>
-                  </tr>
-                </table>
-              </div>
-
-            </form>
-
-            <br>
-
-            <form class="form-horizontal" action="<?php echo base_url(); ?>jadwal/validasiApoteker2" method ="post">
-
+            <form class="form-horizontal" action="<?php echo base_url(); ?>jadwal/updateJadwalA" method ="post">
               <div class="form-group">
                 
                     <label for="ID Aktor" class="col-sm-2 control-label">ID Jadwal</label>
                     <div class="col-sm-10">
                       <div class="row">
                         <div class="col-sm-12">
-                          <input name="idjadwal" maxlength="5" type="normal" class="form-control" id="inputIDJadwal" placeholder="ID Jadwal">    
+                          <input name="idjadwal2" maxlength="5" type="normal" class="form-control" id="inputIDJadwal" value="<?php echo $idjadwal2 ?>">    
                         </div>
                       </div>
                     </div>
@@ -105,23 +63,11 @@
 
               <div class="form-group">
                 
-                  <label for="ID Apoteker" class="col-sm-2 control-label">ID Apoteker</label>
+                  <label for="ID Aktor" class="col-sm-2 control-label">ID Apoteker</label>
                   <div class="col-sm-10">
                     <div class="row">
                       <div class="col-sm-12">
-                        <input name="idapoteker" maxlength="5" type="normal" class="form-control" id="showIDApoteker" value="<?php echo $idapoteker; ?>" placeholder="ID Apoteker">    
-                      </div>
-                    </div>
-                  </div>
-              </div>
-
-              <div class="form-group">
-                
-                  <label for="Nama Apoteker" class="col-sm-2 control-label">Nama Apoteker</label>
-                  <div class="col-sm-10">
-                    <div class="row">
-                      <div class="col-sm-12">
-                        <input name="namaapoteker" maxlength="5" type="normal" class="form-control" id="showNamaDokter" value="<?php echo $namaapoteker; ?>" placeholder="Nama Apoteker">    
+                        <input name="idapt2" maxlength="5" type="normal" class="form-control" id="showIDApoteker" value="<?php echo $idapt2; ?>">    
                       </div>
                     </div>
                   </div>
@@ -130,7 +76,7 @@
               <div class="form-group">
                 <label for="Hari" class="col-sm-2 control-label">Hari</label>
                 <div class="col-sm-10">
-                  <select name="cbhari" class="form-control">
+                  <select name="cbhari2" class="form-control">
                     <option value="0" >- Pilih Hari -</option>
                     <option value="Senin">Senin</option>
                     <option value="Selasa">Selasa</option>
@@ -146,7 +92,7 @@
               <div class="form-group">
                 <label for="Jam" class="col-sm-2 control-label">Jam</label>
                 <div class="col-sm-10">
-                  <select name="cbjam" class="form-control">
+                  <select name="cbjam2" class="form-control">
                     <option value="0" >- Pilih Jam -</option>
                     <option value="07.00-12.00" >07.00-12.00</option>
                     <option value="12.00-17.00" >12.00-17.00</option>
@@ -155,16 +101,16 @@
                 </div>
               </div>
 
+              <div class="text-center">
+                <button name="submit" class="btn btn-default" value= "add" type="submit">Edit</button>
+              </div>
+              
               </div>
             </div>
 
             <br>
-            
-            <div class="text-center">
-              <button name="submit" class="btn btn-default" value="add" type="submit">Add</button>
-            </div>
 
-          </form>
+        </form>
 
             <br>
             <br>
@@ -174,41 +120,55 @@
               
                 <tr>
                   <td class="info">ID Jadwal</td>
-                  <td class="info">ID Apoteker</td>
+                  <td class="info">ID Dokter</td>
                   <td class="info">Nama</td>
                   <td class="info">Hari</td>
                   <td class="info">Jam Kerja</td>
-                  <td class="info">Edit</td>  
-                  <td class="info">Delete</td>
                 </tr>
 
-                <?php if ($lihatjadwalapt!=null): ?>
-
-                <?php foreach($lihatjadwalapt->result() as $row) { ?>
+                <?php if($lihatjadwalapt!=null): ?>
                 
+                <?php foreach($lihatjadwalapt->result() as $row) { ?>
+
                   <tr>
                     <td class="active"><?php echo $row->ID_JADWAL_APOTKR ?></td>
                     <td class="active"><?php echo $row->ID_APOTEKER ?></td>
                     <td class="active"><?php echo $row->NAMA_APOTEKER ?></td>
                     <td class="active"><?php echo $row->HARI_A ?></td>
                     <td class="active"><?php echo $row->JAM_KERJA_A ?></td>
-                    <td class="active">
-                      <a href="<?php echo base_url() ?>/jadwal/editJadwalApoteker/<?php echo $row->ID_JADWAL_APOTKR ?>" class="btn btn-primary">Edit</a>
-                    <td class="active">
-                      <a href="<?php echo base_url() ?>/jadwal/hapusJadwalApoteker/<?php echo $row->ID_JADWAL_APOTKR ?>" class="btn btn-primary">Delete</a>
-                      <?php ?></td>
+                  
                   </tr>
 
                 <?php } ?>
 
-                <?php endif ?>
+              <?php endif ?>
 
               </table>
               
             </div>
-            </form>       
-
           </div>
           
         </div>
       </div>
+
+      <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Delete</h4>
+      </div>
+      <div class="modal-body">
+        Do you want to delete this record?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
