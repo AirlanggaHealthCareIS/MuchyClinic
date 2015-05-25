@@ -1,28 +1,31 @@
 
 function selesai(){
+	$('#myModal').modal('show');
+};
+
+function simpan(){
+	$('#myModal').modal('hide');
+	var pasien = $( "#idpasien" ).val();
 	var checkedValue = ""; 
 	var inputElements = document.getElementsByClassName('ada');
 	for(var i=0; inputElements[i]; ++i){
-	      if(inputElements[i].checked){
-	           checkedValue = checkedValue + " " + inputElements[i].value;
-	      }
+		if(inputElements[i].checked){
+			checkedValue = checkedValue + " " + inputElements[i].value;
+		}
 	}
-	alert("checkedValue = "+checkedValue);
-
-	// var formData = {uip:<?php echo $this->id; ?>, jawaban:jawaban};
- //    $.ajax(
- //    {
- //      url : "functions/save_jawaban.php",
- //      type: "POST",
- //      data : formData,
- //      dataType : "json",
- //      success: function(data, textStatus, jqXHR)
- //      {
- //        $('#info').html(data);
- //      },
- //      error: function(jqXHR, textStatus, errorThrown)
- //      {
- //        $('#info').html("DISSCONNECT");
- //      }
- //    });
+    $.ajax(
+    {
+		url : "http://localhost/psi3/obatkeluarresep/savetokeluar",
+		type: "POST",
+		data: {ada:checkedValue},
+		dataType : "html",
+		success: function(data, textStatus, jqXHR)
+		{
+			alert("sukses "+pasien+" dengan "+data);
+		},
+		error: function(jqXHR, textStatus, errorThrown)
+		{
+			alert("Request gagal");
+		}
+    });
 };

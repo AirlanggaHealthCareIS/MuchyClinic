@@ -20,7 +20,7 @@ class Obatkeluarresep extends CI_Controller {
 		echo $this->unit->report();
 	}
 
-	public function test_getresep(){ //t
+	public function test_getresep(){ //tes untuk model getresep
 		$this->load->model('m_obatkeluar');
 		$this->load->library("unit_test");
 		$this->load->database();
@@ -35,8 +35,9 @@ class Obatkeluarresep extends CI_Controller {
 		//get post data
 		$id = $this->input->post('idpasien');
 		$tgl = $this->input->post('tanggal');
-		
+		// echo $tgl;
 		$isValid = $this->isValidInput($id);
+		$this->storeInput($tgl, $id);
 		if ($isValid=="error=null") {
 			redirect(base_url()."obatkeluarresep?error=null");
 		} else if ($isValid=="error=symbol"){
@@ -53,20 +54,21 @@ class Obatkeluarresep extends CI_Controller {
 		else if (preg_match('/[^a-z0-9]/i', $id)) { //untuk symbol
 			return "error=symbol";
  		} else {
- 			return true;
+ 			return "true";
  		}
 	}
 
 	private function checkDatabase($id, $tgl){ //search ke db
 		//simpan input untuk di set ke text field
 		$this->session->set_flashdata('idpasien', $id);
-		$this->session->set_flashdata('tanggal', $this->convertDate($tanggal));
+		$this->session->set_flashdata('tanggal', $tgl);
 
 		$this->load->model('m_resep');
 		$this->load->model('m_obatkeluar');
 		$query = $this->m_obatkeluar->getResep($id, $tgl); //get data
-		if ($query!=null) { //cek jika hasil ada
+		if ($query!=0) { //cek jika hasil ada
 			//simpan data untuk di tampilkan
+			$query = $query->row();
 			$this->storeValueResep($query->ID_RESEP, $query->TGL_RESEP, $query->NAMA_DOKTER, $query->NAMA_PASIEN);
 			// detail resep
 			$dresep = $this->m_resep->getDetailResep($query->ID_RESEP); //get data detail resep
@@ -80,14 +82,26 @@ class Obatkeluarresep extends CI_Controller {
 
 	private function storeValueResep($idr, $tglr, $dokterr, $pasienr){
 		$this->session->set_flashdata('idr', $idr);
-		// $tglr = $this->convertDate($tglr);
+		$tglr = $this->convertDate($tglr);
 		$this->session->set_flashdata('tanggalr', $tglr);
 		$this->session->set_flashdata('dokterr', $dokterr);
 		$this->session->set_flashdata('pasienr', $pasienr);
+	}
+
+	private function storeInput($tgl, $id){
+		$this->session->set_flashdata('tanggal', $tgl);
+		$this->session->set_flashdata('idpasien', $id);
 	}
 
 	private function convertDate($tglr){
 		$a = explode("-", $tglr);
 		return $a[2]."/".$a[1]."/".$a[0];
 	}
+
+	public function saveToKeluar(){
+		// echo "";
+		$data = $this->input->post("ada"); 
+		echo "data = ".$data;
+	}
+
 }

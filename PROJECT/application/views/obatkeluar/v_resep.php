@@ -118,7 +118,7 @@
                       <td><?php echo $row->KET_RESEP; ?></td>
                       <td><?php echo $row->KATEGORI_OBAT; ?></td>
                       <td>QTY</td>
-                      <td><input id="ada" class="ada" type="checkbox" value="<?php echo $row->ID_OBAT; ?>" name="obatcek"> Ada</td>
+                      <td><input id="ada" class="ada" type="checkbox" data-ada="<?php echo $row->ID_OBAT; ?>" value="<?php echo $row->ID_OBAT; ?>" name="obatcek"> Ada</td>
                     </tr>
                   <?php endforeach ?>
                 <?php endif ?>
@@ -145,3 +145,23 @@
         </div>
       </div>
     </div>
+
+    <!-- Untuk Pop Up -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Konfirmasi</h4>
+          </div>
+          <div class="modal-body">
+            Simpan data?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+            <button type="button" onclick="return simpan()" class="btn btn-primary">Simpan</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
