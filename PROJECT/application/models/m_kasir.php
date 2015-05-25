@@ -45,21 +45,22 @@ class M_kasir extends CI_Model {
 
 	//menampilkan detail transaksi kamar
 	public function getKamar($id) {
-		$query = $this->db->query("SELECT ri.TGL_MASK, k.NAMA_KAMAR_INAP, dri.KETERANGAN, k.TARIF_KMR FROM rawat_inap AS ri, kamar AS k, detail_rawat_inap AS dri WHERE dri.ID_RAWAT_INAP=ri.ID_RAWAT_INAP AND ri.ID_KAMAR_INAP=k.ID_KAMAR_INAP AND ri.ID_PASIEN = '".$id."'");
+		$query = $this->db->query("SELECT ri.TGL_MASK, k.NAMA_KAMAR_INAP, dri.KETERANGAN, dri.QTY, k.TARIF_KMR, dri.SUBTOTAL FROM rawat_inap AS ri, kamar AS k, detail_rawat_inap AS dri WHERE dri.ID_RAWAT_INAP=ri.ID_RAWAT_INAP AND ri.ID_KAMAR_INAP=k.ID_KAMAR_INAP AND ri.ID_PASIEN = '".$id."'");
 		return $query->result();
 	}
 
 	//menampilkan detail transaksi pemeriksaan
 	public function getPemeriksaan($id) {
-		$query = $this->db->query("SELECT p.TANGGAL_PERIKSA, t.NAMA_TINDAKAN, dp.KETERANGAN, t.TARIF_TINDAKAN FROM tindakan AS t, pemeriksaan AS p, detail_periksa AS dp WHERE p.ID_PERIKSA = dp.ID_PERIKSA AND dp.ID_TINDAKAN = t.ID_TINDAKAN AND p.ID_PASIEN = '".$id."'");
+		$query = $this->db->query("SELECT p.TANGGAL_PERIKSA, t.NAMA_TINDAKAN, dp.KETERANGAN, dp.QTY, t.TARIF_TINDAKAN, dp.SUBTOTAL FROM tindakan AS t, pemeriksaan AS p, detail_periksa AS dp WHERE p.ID_PERIKSA = dp.ID_PERIKSA AND dp.ID_TINDAKAN = t.ID_TINDAKAN AND p.ID_PASIEN = '".$id."'");
 		return $query->result();
 	}
 
 	//menampilkan detail transaksi obat
 	public function getObat($id) {
-		$query = $this->db->query("SELECT ok.TGL_OBAT_KELUAR, o.NAMA_OBAT, dok.KETERANGAN, dok.QTY, o.HARGA FROM obat_keluar AS ok, obat AS o, detail_obat_keluar AS dok WHERE o.ID_OBAT = dok.ID_OBAT AND dok.ID_OBAT_KELUAR= ok.id_OBAT_KELUAR AND ok.ID_PASIEN = '".$id."'");
+		$query = $this->db->query("SELECT ok.TGL_OBAT_KELUAR, o.NAMA_OBAT, dok.KETERANGAN, dok.QTY, o.HARGA, dok.SUBTOTAL FROM obat_keluar AS ok, obat AS o, detail_obat_keluar AS dok WHERE o.ID_OBAT = dok.ID_OBAT AND dok.ID_OBAT_KELUAR= ok.id_OBAT_KELUAR AND ok.ID_PASIEN = '".$id."'");
 		return $query->result();
 	}
+
 
 	//untuk testing id pasien
 	public function getKasir($id) {
@@ -71,5 +72,26 @@ class M_kasir extends CI_Model {
 		} else {
 			return 0;
 		}
+	}
+
+
+	//save detail transaksi
+	public function setTransaksi($idtransaksi, $idkasir, $tgltransaksi, $timetransaksi, $total) {
+		$query = $this->db->query('INSERT IGNORE INTO transaksi (`ID_TRANSAKSI`, `ID_KASIR`, `TGL_TRANSAKSI`, `JAM_TRANSAKSI`, `TOTAL`) VALUES (null, "K0001", "'.$tgltransaksi.'", "'.$timetransaksi.'", "'.$total.'")');
+	}
+
+	//save detail transaksi obat
+	public function saveTransaksiObat($id) {
+		$query = $this->db->query("INSERT IGNORE INTO detail_transaksi_obat (`ID_TRANSAKSI`,`NAMA_OBAT`,`KETERANGAN`, `QTY`, `HARGA`, `SUBTOTAL`) SELECT tr.ID_TRANSAKSI, o.NAMA_OBAT, dok.KETERANGAN, dok.QTY, o.HARGA, dok.SUBTOTAL FROM transaksi AS tr, obat_keluar AS ok, obat AS o, detail_obat_keluar AS dok WHERE o.ID_OBAT = dok.ID_OBAT AND dok.ID_OBAT_KELUAR= ok.id_OBAT_KELUAR AND ok.ID_PASIEN = '".$id."'");
+	}
+
+	//save detail transaksi kamar
+	public function saveTransaksiKamar($id) {
+		$query = $this->db->query("INSERT IGNORE INTO detail_transaksi_rawat_inap (`ID_TRANSAKSI`,`NAMA_KAMAR_INAP`,`KETERANGAN`, `QTY`, `HARGA`, `SUBTOTAL`) SELECT tr.ID_TRANSAKSI, k.NAMA_KAMAR_INAP, dri.KETERANGAN, dri.QTY, k.TARIF_KMR, dri.SUBTOTAL FROM transaksi AS tr, rawat_inap AS ri, kamar AS k, detail_rawat_inap AS dri WHERE dri.ID_RAWAT_INAP=ri.ID_RAWAT_INAP AND ri.ID_KAMAR_INAP=k.ID_KAMAR_INAP AND ri.ID_PASIEN = '".$id."'");
+	}
+
+	//save detail transaksi pemeriksaan
+	public function saveTransaksiPemeriksaan($id) {
+		$query = $this->db->query("INSERT IGNORE INTO detail_transaksi_periksa (`ID_TRANSAKSI`,`NAMA_TINDAKAN`,`KETERANGAN`, `QTY`, `HARGA`, `SUBTOTAL`) SELECT tr.ID_TRANSAKSI, t.NAMA_TINDAKAN, dp.KETERANGAN, dp.QTY, t.TARIF_TINDAKAN, dp.SUBTOTAL FROM transaksi AS tr, tindakan AS t, pemeriksaan AS p, detail_periksa AS dp WHERE p.ID_PERIKSA = dp.ID_PERIKSA AND dp.ID_TINDAKAN = t.ID_TINDAKAN AND p.ID_PASIEN = '".$id."'");
 	}
 }

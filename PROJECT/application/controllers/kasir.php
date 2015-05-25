@@ -61,7 +61,6 @@ class Kasir extends CI_Controller {
 		$this->unit->run($this->m_kasir->getKasir("P0001"), "P0001", "Test method isvalid");
 		echo $this->unit->report();
 	}
-
 	//akhir dari method testing Id Pasien
 
 	private function checkDatabase($id) {
@@ -84,7 +83,7 @@ class Kasir extends CI_Controller {
 			$dkamar = $this->m_kasir->getKamar($id); //get data detail kamar
 
 			foreach ($dkamar as $k) {
-				$total = $total + $k->TARIF_KMR;
+				$total = $total + $k->SUBTOTAL;
 				$this->session->set_flashdata('total', $total);
 			}
 
@@ -95,7 +94,7 @@ class Kasir extends CI_Controller {
 			$dpemeriksaan = $this->m_kasir->getPemeriksaan($id);
 			
 			foreach ($dpemeriksaan as $p) {
-				$total = $total + $p->TARIF_TINDAKAN;
+				$total = $total + $p->SUBTOTAL;
 				$this->session->set_flashdata('total', $total);
 			}
 
@@ -106,7 +105,7 @@ class Kasir extends CI_Controller {
 			$dobat = $this->m_kasir->getObat($id);
 
 			foreach ($dobat as $o) {
-				$total = $total + $o->HARGA;
+				$total = $total + $o->SUBTOTAL;
 				$this->session->set_flashdata('total', $total);
 			}
 
@@ -142,7 +141,7 @@ class Kasir extends CI_Controller {
 	}
 
 	//method untuk testing Cash
-	public function isInputValidationCash($byr){
+	public function isInputValidationCash($byr) {
 		if ($byr==null || $byr=="") {
 			return "error=null";
 		} else {
@@ -191,7 +190,7 @@ class Kasir extends CI_Controller {
 			$dkamar = $this->m_kasir->getKamar($id); //get data detail kamar
 
 			foreach ($dkamar as $k) {
-				$total = $total + $k->TARIF_KMR;
+				$total = $total + $k->SUBTOTAL;
 				$this->session->set_flashdata('total', $total);
 			}
 
@@ -202,7 +201,7 @@ class Kasir extends CI_Controller {
 			$dpemeriksaan = $this->m_kasir->getPemeriksaan($id);
 			
 			foreach ($dpemeriksaan as $p) {
-				$total = $total + $p->TARIF_TINDAKAN;
+				$total = $total + $p->SUBTOTAL;
 				$this->session->set_flashdata('total', $total);
 			}
 
@@ -213,7 +212,7 @@ class Kasir extends CI_Controller {
 			$dobat = $this->m_kasir->getObat($id);
 
 			foreach ($dobat as $o) {
-				$total = $total + $o->HARGA;
+				$total = $total + $o->SUBTOTAL;
 				$this->session->set_flashdata('total', $total);
 			}
 
@@ -227,15 +226,50 @@ class Kasir extends CI_Controller {
 		$kembali = 0;
 		$byr=$this->input->post('bayar');
 		$total = $this->gethitung($id);
-
+		
 		if ($byr==$total || $byr>$total) {
 			$kembali = $byr - $total;
 			$this->session->set_flashdata('kembali', $kembali);
-			$this->session->set_flashdata('bayar', $byr);	
+			$this->session->set_flashdata('bayar', $byr);
+
 			//redirect(base_url().'kasir/index/'.$id);
-			redirect(base_url().'kasir/index/'.$id.'?success=sukses');		
+
+			$this->saveTransaksi($id);
+		    redirect(base_url().'kasir/index/'.$id.'?success=sukses');
+			
 		} else {
 			redirect(base_url().'kasir/index/'.$id.'?error=invalidcash');
+		}
+	}
+
+	public function saveTransaksi($id) {
+
+		//untuk set tanggal transaksi
+		date_default_timezone_set('asia/jakarta');
+		$tgltransaksi = date('Y-m-d');
+		$timetransaksi = date('H:i:s');
+		$this->load->model("m_kasir");
+
+		$total = $this->gethitung($id);
+	
+		//echo " id transaksi = ".$idtransaksi." idkasir ".$idkasir." tgltransaksi ".$tgltransaksi." timetransaksi ".$timetransaksi." total ".$total;
+		//save data transaksi
+			
+		$query = $this->m_kasir->setTransaksi($idtransaksi, $idkasir, $tgltransaksi, $timetransaksi, $total);
+
+		$query1 = $this->m_kasir->checkidKamar($id);
+		if ($query1==true) {
+			$this->m_kasir->saveTransaksiKamar($id);
+		}
+
+		$query2 = $this->m_kasir->checkidPemeriksaan($id);
+		if ($query2==true) {
+			$this->m_kasir->saveTransaksiPemeriksaan($id);
+		}
+
+		$query3 = $this->m_kasir->checkidObat($id);
+		if ($query3==true) {
+			$this->m_kasir->saveTransaksiObat($id);
 		}
 	}
 }
