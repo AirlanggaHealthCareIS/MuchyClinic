@@ -1,0 +1,17 @@
+Story		: Antrian On The Spot
+Feature		: Pasien mendapatkan nomor antrian
+Skenario D	: Pasien yang telah mendaftar dan admin menginputkan ID pasien menggunakan simbol
+
+Given	: Pasien telah melakukan pendaftaran dan menyerahkan ID Pasien kepada Admin
+And	: Admin berada pada home page Muchy Clinic
+And	: Admin menekan tombol Sistem Antri On The Spot
+And	: Admin berada di halaman Sistem Antri On The Spot
+And	: Admin masuk ke halaman Sistem Antri On The Spot melalui controller dengan method index()
+When	: Admin menginputkan ID pasien dengan memasukkan simbol seperti “!@#$%^&*()”
+And	: Admin menekan tombol Input ID pasien
+Then 	: Sistem menuju controller masuk ke method validasi()
+And	: Sistem akan mengecek apakah terdapat simbol seperti “!@#$%^&*()”
+And	: Jika terdapat simbol, maka akan muncul pesan error
+Then	: Admin menerima pemberitahuan bahwa “ID pasien hanya berisi angka dan huruf”
+When	: Admin kembali menginputkan ID Pasien
+
