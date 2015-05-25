@@ -6,4 +6,5 @@ Given 	: Pasien telah mendapatkan ID pasien
 And	: Admin memilih menu Sistem Antri On The Spot
 When 	: Admin menginputkan ID pasien
 And	: Admin menekan tombol input ID pasien
-Then 	: Pasien mendapatkan nomor antrian
+Then	: Admin menyimpan ID pasien ke database waiting list
+And 	: Pasien mendapatkan nomor antrian

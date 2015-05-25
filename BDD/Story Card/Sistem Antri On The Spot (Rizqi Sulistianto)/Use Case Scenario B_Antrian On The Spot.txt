@@ -1,6 +1,6 @@
 Fitur : Fitur ini dapat mengatur antrian pasien saat akan masuk ke ruang pemeriksaan
 
-Scenario C : Pasien yang telah mendaftar dan admin salah menginputkan ID pasien
+Scenario B : Pasien yang telah mendaftar dan admin salah menginputkan ID pasien
 
 Given 	: Pasien telah mendapatkan ID pasien
 And	: Admin memilih menu Sistem Antri On The Spot
