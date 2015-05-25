@@ -24,10 +24,21 @@ class Welcome extends CI_Controller {
 		$this->load->view('m_masuk');
 	}
 	
+	public function testing()
+	{
+		$this->load->library('unit_test');
+		$this->unit->run($this->inputvalidasi("Caca","marica"),true, "username password benar");
+		echo $this->unit->report();
+	}
+
 	public function validasi()
 	{
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
+		$username1 = $this->inputvalidasi($username);
+		$password1 = $this->inputvalidasi($password);
+
+
 		if (($username==null || $username=="") && ($password==null || $password=="")) {
 			redirect(base_url().'Welcome?error=null');
 		} 
@@ -45,7 +56,7 @@ class Welcome extends CI_Controller {
 		}
 		
 		$this->load->model('m_login');
-		$login = $this->m_login->getcoba_psi($username,$password);
+		$login = $this->m_login->getdokter($username,$password);
 		if ($login==true) {
 			echo "awakmu wes melbu login boss";
 		} else {
@@ -53,9 +64,38 @@ class Welcome extends CI_Controller {
 			redirect(base_url().'Welcome?error=m_login');
 		} 
 
+	
+
 	}
 
+	public function inputvalidasi($username1,$password1)
+	{
+		if (($username1==null || $username1=="") && ($password1==null || $password1=="")) {
+			return "error=null";
+		} 
+		
+		if ($username1==null || $username1=="") {
+			return "error=nullusername";
+		} 
+
+		if ($password1==null || $password1=="") {
+			return "error=nullpassword";
+		} 
+		
+		if (preg_match('/[^a-z0-9]/',$username1)) {
+			return "error=symbol";	
+		}
+		
+		// $this->load->model('m_login');
+		// $login = $this->m_login->getdokter($username,$password);
+		// if ($login==true) {
+		// 	return true;
+		// } else {
+		// return false;
+		// } 
+
 	
-	
+
+	}
 
 }
