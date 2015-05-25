@@ -1,6 +1,6 @@
 Story		: Antrian On The Spot
 Feature		: Pasien mendapatkan nomor antrian
-Skenario D	: Pasien yang telah mendaftar dan admin tidak menginputkan ID pasien, field kosong
+Skenario C	: Pasien yang telah mendaftar dan admin tidak menginputkan ID pasien, field kosong
 
 Given	: Pasien telah melakukan pendaftaran dan menyerahkan Id Pasien kepada Admin
 And	: Admin berada pada home page Muchy Clinic
