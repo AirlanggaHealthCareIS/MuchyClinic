@@ -34,14 +34,24 @@ class M_resep extends CI_Model {
                 $query = $this->db->query("SELECT * FROM detail_resep AS d, obat AS o WHERE d.ID_OBAT = o.ID_OBAT AND d.ID_RESEP='".$idr."'");
                 return $query;
         } 
-        public function insertresep ($iddetailresep,$idobat,$idresep,$ketobat){
-                $query = $this->db->query("INSERT INTO detail_resep (`ID_DETAIL_RESEP`, `ID_OBAT`, `ID_RESEP`, `KET_RESEP`) VALUES ('".$iddetailresep."','".$idobat."','".$idresep."','".$ketobat."')");
-                return $query;
-        }
+        
 
         public function getidresep($idresep){
                 $query = $this->db->query("SELECT R.`ID_RESEP` FROM `RESEP` AS R WHERE R.`ID_RESEP` = '".$idresep."'");
                 return $query;
+        }
+
+        public function insertdetailresep($iddetailresep, $idresep, $idobat, $jmlobat, $ketobat){
+                $query = $this->db->query("INSERT INTO detail_resep (`ID_DETAIL_RESEP`, `ID_OBAT`, `ID_RESEP`, `KET_RESEP` , `QTY_OBAT`) VALUES ('".$iddetailresep."','".$idobat."','".$idresep."','".$ketobat."',".$jmlobat.")");
+                return $query;
+        }
+        public function getObat($nobat){
+                $query = $this->db->query("SELECT * FROM `obat` WHERE `NAMA_OBAT` LIKE '%".$nobat."%'");
+                 // $row = $query->row();
+
+                 //$row=$query_>row();
+                return $query;
+               
         }
                 
 
