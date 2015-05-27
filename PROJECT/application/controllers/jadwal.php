@@ -10,7 +10,7 @@ class Jadwal extends CI_Controller{
         "iddokter"=>"", "namadokter"=>"", 
         "idkaryawan"=>"", "namakaryawan"=>"",
         "idapoteker"=>"", "namaapoteker"=>"",
-        "iddokter2"=>"",
+        "iddokter2"=>"", "idjadwala"=>"",
         "lihatjadwalapt"=>null,
         "lihatjadwaldok"=>null,
         "lihatjadwalkar"=>null); //tampil data di tabel
@@ -18,7 +18,7 @@ class Jadwal extends CI_Controller{
         //"lihatjadwalapt"=>$this->m_jadwal->getAllData(),
 
 		$this->load->view("v_header");
-		$this->load->view("jadwal/v_content_karyawan", $data);
+		$this->load->view("jadwal/v_content_apoteker", $data);
 		$this->load->view("v_footer");
 
     }
@@ -192,7 +192,7 @@ class Jadwal extends CI_Controller{
 
 		$this->load->model('m_jadwal');
 
-		$data= array("idapoteker"=>null, "namaapoteker"=>null, "lihatjadwalapt"=>$this->m_jadwal->getDataApoteker());
+		$data= array("idapoteker"=>null, "idjadwala"=>null, "namaapoteker"=>null, "lihatjadwalapt"=>$this->m_jadwal->getDataApoteker());
 
 		$idapt = $this->input->post('idapt');
 
@@ -217,24 +217,16 @@ class Jadwal extends CI_Controller{
 
 		$this->load->model('m_jadwal');
 
-		$idjadwal = $this->input->post('idjadwal');
+		//$idjadwal = $this->generateIdJadwalA();
 		$cb_hari = $this->input->post('cbhari');
 		$cb_jam = $this->input->post('cbjam');
 
-		$cekjadwal = $this->isValid($idjadwal);
+		//$cekjadwal = $this->isValid($idjadwal);
 		$cekhari = $this->isValidHari($cb_hari);
 		$cekjam = $this->isValidJam($cb_jam);
 
 		if($this->input->post('submit')=='add'){
-			if ($cekjadwal == "null") {
-				redirect(base_url().'jadwal?error=idjadwalnull');
-			}
-
-			else if(preg_match('/[^a-z0-9]/i', $cekjadwal)){
-				redirect(base_url().'jadwal?error=symbolerror');
-			}
-
-			else if($cb_hari == false){
+			if($cb_hari == false){
 				redirect(base_url().'jadwal?error=cbharinull');
 			}
 
@@ -246,9 +238,6 @@ class Jadwal extends CI_Controller{
 			
 				$this->inputJadwalApoteker();
 			}
-		}
-		else if($this->input->post('submit')=='edit'){
-			echo "Fitur ini belum ada";
 		}
 
 	}
@@ -316,26 +305,21 @@ class Jadwal extends CI_Controller{
 		$this->load->model("m_jadwal");
 
 		$query = $this->m_jadwal->getApoteker($idapt);
+		//$query1 = $this->m_jadwal->generateIdJadwalA();
 
 		if($query->num_rows() > 0) {
-			$ro = $query->row();	
+			$ro = $query->row();
+			//$rr = $query->row();	
 		
-			$query1 = $this->m_jadwal->getApoteker($idapt);
-
-			if($query1->num_rows() > 0){
-
 				$data = array(
 					"idapoteker"=>$ro->ID_APOTEKER, 
-					"namaapoteker"=>$ro->NAMA_APOTEKER, 
+					"namaapoteker"=>$ro->NAMA_APOTEKER,
+					"idjadwala"=>$this->generateIdJadwalA(), 
 					"lihatjadwalapt"=>$this->m_jadwal->getDataApoteker());		
 			
 				$this->load->view("v_header");
 				$this->load->view("jadwal/v_content_apoteker", $data);
 				$this->load->view("v_footer");
-			}
-			else{
-				redirect(base_url().'jadwal?error=apaya');	
-			}
 		}
 		else{
 			redirect(base_url().'jadwal?error=notfound');	
@@ -384,7 +368,8 @@ class Jadwal extends CI_Controller{
 		private function inputJadwalApoteker(){
 		$this->load->model('m_jadwal');
 
-		$IDJADWALA = $this->input->post('idjadwal');
+		//$IDJADWAL = $this->input->post('idjadwal');
+		$IDJADWALA = $this->generateIdJadwalA();
 		$IDAPOTEKER = $this->input->post('idapoteker');
 		$HARIA = $this->input->post('cbhari');
 		$JAMA = $this->input->post('cbjam');
@@ -414,7 +399,7 @@ class Jadwal extends CI_Controller{
 
 		$this->load->model("m_jadwal");
 
-		$data= array("idapoteker"=>null, "namaapoteker"=>null, "lihatjadwalapt"=>$this->m_jadwal->getDataApoteker());
+		$data= array("idapoteker"=>null, "idjadwala"=>null, "namaapoteker"=>null, "lihatjadwalapt"=>$this->m_jadwal->getDataApoteker());
 
 		$this->load->view("v_header");
 		$this->load->view("jadwal/v_content_apoteker", $data);
@@ -554,5 +539,61 @@ class Jadwal extends CI_Controller{
 		//redirect(base_url().'jadwal?success==updatesuccess');
 		redirect(base_url()."jadwal/showJadwalKaryawan/".$IDKARYAWAN);
 	}	
+
+	public function generateIdJadwalA(){
+		$this->load->model('m_jadwal');
+
+		$id = $this->m_jadwal->countIdJadwalA() + 1;
+
+		if($id < 10){
+			$id = "JA00".$id;
+		}
+		else if($id < 100){
+			$id = "JA0".$id;
+		}
+		else if($id < 1000){
+			$id = "JA".$id;
+		}
+
+		return $id;
+	}
+
+	public function generateIdJadwalD(){
+		$this->load->model('m_jadwal');
+
+		$id = $this->m_jadwal->countIdJadwalD() + 1;
+
+		if($id < 10){
+			$id = "JD00".$id;
+		}
+		else if($id < 100){
+			$id = "JD0".$id;
+		}
+		else if($id < 1000){
+			$id = "JD".$id;
+		}
+
+		echo $id;
+
+		return $id;
+	}
 	
+	public function generateIdJadwalK(){
+		$this->load->model('m_jadwal');
+
+		$id = $this->m_jadwal->countIdJadwalK() + 1;
+
+		if($id < 10){
+			$id = "JK00".$id;
+		}
+		else if($id < 100){
+			$id = "JK0".$id;
+		}
+		else if($id < 1000){
+			$id = "JK".$id;
+		}
+		echo $id;
+
+		return $id;
+	}
 }

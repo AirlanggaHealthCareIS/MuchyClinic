@@ -71,7 +71,19 @@
                     </div>
               </div>
 
-              <div>
+              <div class="form-group">
+                
+                    <label for="ID Aktor" class="col-sm-2 control-label">ID Jadwal</label>
+                    <div class="col-sm-10">
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <input name="idjadwal" maxlength="5" type="normal" class="form-control" id="inputIDJadwal" placeholder="ID Jadwal" value="<?php echo $idjadwala ?>">    
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
+              <!-- <div>
                 <table class="table">
                   <tr>
                     <td class="info">ID</td>
@@ -83,25 +95,11 @@
                     <td class="info"><?php echo $namaapoteker; ?></td>
                   </tr>
                 </table>
-              </div>
+              </div> -->
 
             </form>
 
-            <br>
-
             <form class="form-horizontal" action="<?php echo base_url(); ?>jadwal/validasiApoteker2" method ="post">
-
-              <div class="form-group">
-                
-                    <label for="ID Aktor" class="col-sm-2 control-label">ID Jadwal</label>
-                    <div class="col-sm-10">
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <input name="idjadwal" maxlength="5" type="normal" class="form-control" id="inputIDJadwal" placeholder="ID Jadwal">    
-                        </div>
-                      </div>
-                    </div>
-                </div>
 
               <div class="form-group">
                 

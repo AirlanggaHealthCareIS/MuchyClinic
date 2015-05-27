@@ -153,6 +153,39 @@ class M_jadwal extends CI_Model {
         
         }
 
+        public function countIdJadwalA(){
+            $query = $this->db->query("SELECT COUNT(*) AS N FROM `jadwal_apoteker`");
+
+            if($query->num_rows() > 0){
+                return $query->row()->N;
+            }
+            else {
+                return 0;
+            }
+        }
+
+        public function countIdJadwalD(){
+            $query = $this->db->query("SELECT COUNT(*) AS N FROM `jadwal_dokter`");
+
+            if($query->num_rows() > 0){
+                return $query->row()->N;
+            }
+            else {
+                return 0;
+            }
+        }
+
+        public function countIdJadwalK(){
+            $query = $this->db->query("SELECT COUNT(*) AS N FROM `jadwal_karyawan`");
+
+            if($query->num_rows() > 0){
+                return $query->row()->N;
+            }
+            else {
+                return 0;
+            }
+        }
+
 
 }
  ?>
