@@ -1,10 +1,9 @@
-
-    <div class="container-fluid">
-      <div class="container">
-        
-        <h1 class="text-center"> Sistem Antri On The Spot</h1>
-        <br>
-
+<div class="container-fluid">
+      <div class="">
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header">Antrian On The Spot</h1>
+      </div>
         <div class="row">
           <div class="col-md-6 text-center">
             <!-- tanggal -->
@@ -71,15 +70,17 @@
 
           <br>
           <br>
-            <div class="text-center">
-                <h1> Nomor Antrian Saat Ini</h1>
-                <h1 style"font-size:="" 150px;"="" style="font-size: 100px;">001</h1>
-              <!-- no antri -->
+          <div class="row">
+            <div class="col-md-2">
             </div>
+            <div class="col-md-8" style="font-size:50px">
+              <center><h1 style="font-size:40px; font-family:arial black;"> NOMOR ANTRI</h1></center>
+              <center><h1 style="font-size:60px; font-family:arial;"><?php if(isset($this->nomor_antri)) echo $this->nomor_antri; ?></h1><center></div>
+            <div class="col-md-2">
+            </div>
+          </div>
+          <h1 class="page-header" style="padding-bottom:10px"></h1>
           <br>
-          <br>
-          <br>
-
           <!-- pesan eror -->
           <?php if ($this->input->get('error')=="null"): ?>
             <div class ="alert alert-danger" role="alert">
@@ -93,25 +94,60 @@
             </div>  
             <?php endif ?>  
 
-
+            
+            <?php if ($this->input->get("act")=="not_found"): ?>
+            <div class = "alert alert-danger" role = "alert">
+              <p>Pasien nya gak ada brooh</p>
+            </div>  
+            <?php endif ?>
+            <?php if ($this->input->get('act')=='succesfully'): ?>
+              <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <p>Input Succesfully!!</p>
+              </div>
+            <?php endif ?>
+            <!-- pesan eror -->
           
             <br>
             <form class="form-horizontal" action = "<?php echo base_url()?>antri/validasi" method = "post">
-              <label for="inputEmail3" class="col-sm-2 control-label">Nama dokter :</label>
+              <label for="inputEmail3" class="col-sm-2 control-label">ID PASIEN :</label>
+              <div class="col-sm-10">
+                <input type="text" name="id_pasien" class="form-control" id="inputidpasien" placeholder="Masukkan id pasien">
+                <button type="submit" class="btn btn-info" style = "width:100px">search</button><br></br>
+
+                <table class="table table-bordered" style="border: 0px currentColor; border-image: none;">
+                    
+                    <tr>
+                    <td class="info">Id Pasien</td>
+                    <td class="info"> <?php echo $this->session->flashdata('idpasien'); ?></td>
+                    </tr>
+                    <tr>
+                    <td class="">Nama Pasien</td>
+                    <td class=""><?php echo $this->session->flashdata('namapas'); ?></td>
+                    </tr>
+
+                    <tr>
+                    <td class="info">no telp</td>
+                    <td class="info"><?php echo $this->session->flashdata('telppas'); ?></td>
+                    </tr>
+
+            
+                </table><br>   
+
+              </div>
+
+            </form>
+              <br>
+              </br>
+              <form class="form-horizontal" action = "<?php echo base_url()?>antri/insert" method ="post">
+                <label for="inputEmail3"  class="col-sm-2 control-label">NAMA DOKTER :</label>
               <div class="col-sm-10">
                 <select class="form-control" name="dokter">
                   <?php
                       foreach ($getdok as $row) {?>
-                      <option value="<?php echo $row->ID_DOKTER?>" selected><?php echo $row->NAMA_DOKTER; ?></option>
+                      <option value="<?php echo $row->ID_DOKTER?>"><?php echo $row->NAMA_DOKTER; ?></option>
                   <?php   }?>
-                </select>      
-
-              </div>
-              <br>
-              <br>
-              <label for="inputEmail3"  class="col-sm-2 control-label">ID pasien :</label>
-              <div class="col-sm-10">
-                <input type="text" name="id_pasien" class="form-control" id="inputidpasien" placeholder="Masukkan id pasien">
+                </select> 
               </div>
             </div>
             <br>
@@ -121,11 +157,12 @@
               <div class="text-center">
                 <button type="submit" class="btn btn-default btn-lg">Input ID pasien</button>
               </div>
+              </form>
+              
             </div>
             <br>
               
             
           
       </div>
-      </form>
     </div>
