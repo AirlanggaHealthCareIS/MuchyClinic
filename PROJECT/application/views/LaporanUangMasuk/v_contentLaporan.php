@@ -12,16 +12,6 @@
             </div>
             <?php endif ?>
 
-            <?php if ($this->input->get('error')=='notfound'): ?>
-              <div class ="alert alert-danger alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              Sorry Periode Date Not Found! Please Check Periode Again.
-            </div>
-            <?php endif ?>
-
-            
-
-
 
             <h4>Periode Laporan :</h4>
             <div class="col-sm-offset-1 col-sm-11">
@@ -32,6 +22,7 @@
               <input type="radio" name="rad" id="rad2" value="2" class="rad"/> n Transaksi Terakhir
             </div>
             </div>
+
                              
             <!-- form yang mau ditampilkan-->
             <br></br>
@@ -41,21 +32,20 @@
                         <div class="form-group">
                           <label for="tanggal" class="col-sm-4 control-label">Periode Awal</label>
                           <div class="col-sm-8">
-                            <input type="date" name="tanggal_awal" value="21/04/2015<?php?>" class="form-control" id="tanggal" placeholder="input tanggal">
+                            <input type="date" name="tanggal_awal" value="" class="form-control" id="tanggal" placeholder="input tanggal">
                           </div>
                         </div>
                          
                         <div class="form-group">
                           <label for="tanggal" class="col-sm-4 control-label">Periode Akhir</label>
                           <div class="col-sm-8">
-                            <input type="date" name="tanggal_akhir" value="21/04/2015<?php?>" class="form-control" id="tanggal" placeholder="input tanggal">
+                            <input type="date" name="tanggal_akhir" value="" class="form-control" id="tanggal" placeholder="input tanggal">
                           </div>
                         </div>
                     <button type="submit" class="btn btn-info" style = "width:100px">Submit</button>
                     <br></br>
                   </form>
-        
-          
+                  <br></br>         
                 </div>
             </div>
 
@@ -98,11 +88,12 @@
                           <button type="submit" class="btn btn-info" style = "width:100px">Submit</button>
                           <br></br>
                       </form>
+                      <br></br>
                 </div>
             </div>
 
                   <!-- tambahkan jquery-->
-                  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+                  <script type="text/javascript" src="<?php echo base_url(); ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
                   <script type="text/javascript">
                   $(function(){
                   $(":radio.rad").click(function(){
@@ -120,9 +111,7 @@
     <div class="col-md-7">  
     </div>
 
-
-    <br></br>
-          <div class="col-md-8">
+          <div class="">
             <table class="table table-bordered">
           <tr style="background-color: rgb(226, 246, 245);">
             <td ><center>Tanggal Transaksi</center></td>
@@ -148,6 +137,8 @@
                     <?php } ?>
                     <?php endif ?>
             </table>
+             <button type="submit" class="btn btn-info" style = "width:100px">Cetak</button>
+             <button type="submit" class="btn btn-info" style = "width:150px">Tampilkan Grafik</button>
           </div>
 
 

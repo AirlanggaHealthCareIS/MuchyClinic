@@ -19,19 +19,20 @@ class Laporanuang extends CI_Controller {
 		$tanggal_awal = $this->input->post('tanggal_awal');
 		$tanggal_akhir = $this->input->post('tanggal_akhir');
 		
-		if ($tanggal_awal==null || $tanggal_awal=="" || $tanggal_akhir=null || $tanggal_akhir=""){
+		if ($tanggal_awal==null || $tanggal_awal=="" || $tanggal_akhir==null || $tanggal_akhir==""){
 			redirect(base_url().'laporanuang?error=null');
 		}
 		else {
 			$this->tampil($tanggal_awal, $tanggal_akhir);
+			
 		}
 	}
 
 	public function tampil($tanggal_awal, $tanggal_akhir) {
-		$query = $this->m_ambildatalaporanuang->getlaporanuang($tanggal_awal, $tanggal_akhir); //ambil data
 		$this->load->database();
+		$query = $this->m_ambildatalaporanuang->getlaporanuang($tanggal_awal, $tanggal_akhir); //ambil data
 		if ($query->num_rows() > 0) { //cek jika hasil ada
-			$ro = $query1->row();
+			$ro = $query->row();
 				$data = array(
 					"tanggal"=>$ro->TGL_TRANSAKSI, 
 					"total_rawat_inap"=>$ro->SUBTOTAL, 
@@ -49,32 +50,7 @@ class Laporanuang extends CI_Controller {
 			redirect(base_url().'laporanuang?error=notfound');
 		}
 
-
-
-
-			
-
 	}
-
-
-
-
-
-
-
-
-
-	// public function validasiTransaksi(){
-	// 	$id = $this->input->post('tanggal');
-	// 	//echo $id;
-	// 	if ($id==null || $id==""){
-	// 		redirect(base_url().'laporanuang?error=null');
-	// 	}
-	// 	else {
-	// 		$this->tampil($tanggal);
-	// 	}
-	// }
-
 
 }
 
