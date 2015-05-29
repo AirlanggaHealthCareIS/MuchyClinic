@@ -50,6 +50,8 @@ class Laporanuang extends CI_Controller {
 			redirect(base_url().'laporanuang?error=notfound');
 		}
 
+
+
 	}
 
 }
