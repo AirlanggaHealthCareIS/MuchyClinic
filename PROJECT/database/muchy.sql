@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Inang: 127.0.0.1
--- Waktu pembuatan: 29 Mei 2015 pada 09.08
+-- Waktu pembuatan: 29 Mei 2015 pada 09.41
 -- Versi Server: 5.5.27
 -- Versi PHP: 5.4.7
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Basis data: `psi`
+-- Basis data: `muchy`
 --
 
 -- --------------------------------------------------------
@@ -227,13 +227,22 @@ INSERT INTO `detail_resep` (`ID_DETAIL_RESEP`, `ID_OBAT`, `ID_RESEP`, `KET_RESEP
 CREATE TABLE IF NOT EXISTS `detail_transaksi_obat` (
   `NO_O` int(11) NOT NULL AUTO_INCREMENT,
   `ID_TRANSAKSI` int(11) NOT NULL,
-  `ID_OBAT` varchar(5) NOT NULL,
+  `NAMA_OBAT` varchar(50) NOT NULL,
   `KETERANGAN` varchar(100) NOT NULL,
   `QTY` int(5) NOT NULL,
   `HARGA` int(11) NOT NULL,
   `SUBTOTAL` int(11) NOT NULL,
   PRIMARY KEY (`NO_O`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data untuk tabel `detail_transaksi_obat`
+--
+
+INSERT INTO `detail_transaksi_obat` (`NO_O`, `ID_TRANSAKSI`, `NAMA_OBAT`, `KETERANGAN`, `QTY`, `HARGA`, `SUBTOTAL`) VALUES
+(1, 15, 'ACETYLCYSTEINE NOVEL 200MG CAP 100S', 'Wenak', 3, 5000, 15000),
+(2, 15, 'A-B VASK 5MG TAB', 'Asekkk', 5, 2500, 12500),
+(3, 16, 'A-B VASK 5MG TAB', 'Asekkk', 5, 2500, 12500);
 
 -- --------------------------------------------------------
 
@@ -244,13 +253,21 @@ CREATE TABLE IF NOT EXISTS `detail_transaksi_obat` (
 CREATE TABLE IF NOT EXISTS `detail_transaksi_periksa` (
   `NO_TP` int(11) NOT NULL AUTO_INCREMENT,
   `ID_TRANSAKSI` int(11) NOT NULL,
-  `ID_PERIKSA` varchar(5) NOT NULL,
+  `NAMA_TINDAKAN` varchar(50) NOT NULL,
   `KETERANGAN` varchar(100) NOT NULL,
   `QTY` int(5) NOT NULL,
   `HARGA` int(11) NOT NULL,
   `SUBTOTAL` int(11) NOT NULL,
   PRIMARY KEY (`NO_TP`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data untuk tabel `detail_transaksi_periksa`
+--
+
+INSERT INTO `detail_transaksi_periksa` (`NO_TP`, `ID_TRANSAKSI`, `NAMA_TINDAKAN`, `KETERANGAN`, `QTY`, `HARGA`, `SUBTOTAL`) VALUES
+(1, 15, 'Suntik', '-', 2, 55000, 110000),
+(2, 15, 'Periksa & Kosultasi', '-', 3, 100000, 300000);
 
 -- --------------------------------------------------------
 
@@ -261,13 +278,20 @@ CREATE TABLE IF NOT EXISTS `detail_transaksi_periksa` (
 CREATE TABLE IF NOT EXISTS `detail_transaksi_rawat_inap` (
   `NO_TRI` int(11) NOT NULL AUTO_INCREMENT,
   `ID_TRANSAKSI` int(11) NOT NULL,
-  `ID_RAWAT_INAP` varchar(5) NOT NULL,
+  `NAMA_KAMAR_INAP` varchar(50) NOT NULL,
   `KETERANGAN` varchar(100) NOT NULL,
   `QTY` int(5) NOT NULL,
   `HARGA` int(11) NOT NULL,
   `SUBTOTAL` int(11) NOT NULL,
   PRIMARY KEY (`NO_TRI`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data untuk tabel `detail_transaksi_rawat_inap`
+--
+
+INSERT INTO `detail_transaksi_rawat_inap` (`NO_TRI`, `ID_TRANSAKSI`, `NAMA_KAMAR_INAP`, `KETERANGAN`, `QTY`, `HARGA`, `SUBTOTAL`) VALUES
+(1, 15, 'Mawar', '3 Hari', 3, 500000, 1500000);
 
 -- --------------------------------------------------------
 
@@ -5816,14 +5840,15 @@ CREATE TABLE IF NOT EXISTS `transaksi` (
   `JAM_TRANSAKSI` time NOT NULL,
   `TOTAL` int(50) NOT NULL,
   PRIMARY KEY (`ID_TRANSAKSI`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data untuk tabel `transaksi`
 --
 
 INSERT INTO `transaksi` (`ID_TRANSAKSI`, `ID_KASIR`, `TGL_TRANSAKSI`, `JAM_TRANSAKSI`, `TOTAL`) VALUES
-(13, 'K0001', '2015-05-21', '16:10:03', 1925000);
+(15, 'K0001', '2015-05-29', '14:38:37', 1925000),
+(16, 'K0001', '2015-05-29', '14:40:06', 12500);
 
 -- --------------------------------------------------------
 
