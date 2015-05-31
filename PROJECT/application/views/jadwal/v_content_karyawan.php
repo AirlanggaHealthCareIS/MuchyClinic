@@ -1,11 +1,11 @@
 
 <div class="container-fluid">
-      <div class="container">
+      <div class="">
         <h1>Buat Jadwal Karyawan</h1>
       </div>
     </div>
     <div class="container-fluid width: 900px">
-      <div class="container">
+      <div class="">
         
         <br>
         <div class = "row">
@@ -71,6 +71,18 @@
                     </div>
               </div>
 
+              <div class="form-group">
+                
+                    <label for="ID Aktor" class="col-sm-2 control-label">ID Jadwal</label>
+                    <div class="col-sm-10">
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <input disabled name="idjadwal" maxlength="5" type="normal" class="form-control" id="inputIDJadwal" placeholder="ID Jadwal" value="<?php echo $idjadwalk ?>">    
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
               <div>
                 <table class="table">
                   <tr>
@@ -90,25 +102,14 @@
               <br>  
 
               <form class="form-horizontal" action="<?php echo base_url(); ?>jadwal/validasiKaryawan2" method ="post">
-              <div class="form-group">
-                
-                    <label for="ID Aktor" class="col-sm-2 control-label">ID Jadwal</label>
-                    <div class="col-sm-10">
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <input name="idjadwal" maxlength="5" type="normal" class="form-control" id="inputIDJadwal" placeholder="ID Jadwal">    
-                        </div>
-                      </div>
-                    </div>
-                </div>
-
+              
               <div class="form-group">
                 
                   <label for="ID Karyawan" class="col-sm-2 control-label">ID Karyawan</label>
                   <div class="col-sm-10">
                     <div class="row">
                       <div class="col-sm-12">
-                        <input name="idkaryawan" maxlength="5" type="normal" class="form-control" id="showIDKaryawan" value="<?php echo $idkaryawan; ?>" >    
+                        <input name="idkaryawan" maxlength="5" type="normal" class="form-control" id="showIDKaryawan" placeholder="ID Karyawan" value="<?php echo $idkaryawan; ?>" >    
                       </div>
                     </div>
                   </div>
@@ -135,9 +136,9 @@
                 <div class="col-sm-10">
                   <select name="cbjam" class="form-control">
                     <option value="0" >- Pilih Jam -</option>
-                    <option value="07.00 - 12.00" >07.00-12.00</option>
-                    <option value="12.00 - 17.00" >12.00-17.00</option>
-                    <option value="17.00 - 22.00" >17.00-22.00</option>
+                    <option value="07.00-12.00" >07.00-12.00</option>
+                    <option value="12.00-17.00" >12.00-17.00</option>
+                    <option value="17.00-22.00" >17.00-22.00</option>
                   </select>
                 </div>
               </div>
@@ -149,8 +150,6 @@
             <!-- // <form action="<?php echo base_url(); ?>" method="post"> -->
             <div class="text-center">
               <button name="submit" class="btn btn-default" value= "add" type="submit">Add</button>
-              <button name="submit" class="btn btn-default" value= "edit" type="submit">Edit</button>
-              <button name="submit" class="btn btn-default" type="submit">Delete</button>
             </div>
 
           <!-- </form> -->
