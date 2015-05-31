@@ -1,11 +1,11 @@
 
 <div class="container-fluid">
-      <div class="container">
+      <div class="">
         <h1>Buat Jadwal Dokter</h1>
       </div>
     </div>
     <div class="container-fluid width: 900px">
-      <div class="container">
+      <div class="">
         
         <br>
         <div class = "row">
@@ -34,13 +34,13 @@
             </div>
           <?php endif ?>
 
-          <?php if($this->input->get('error')=='symbolerror'): ?>
+          <?php if($this->input->get('error')=='doktersymbolerror'): ?>
             <div class="alert alert-danger" role="alert">
               Maaf anda memasukkan symbol yang tidak seharusnya diinput
             </div>
           <?php endif ?>
 
-          <?php if($this->input->get('error')=='notfound'): ?>
+          <?php if($this->input->get('error')=='dokternotfound'): ?>
             <div class="alert alert-danger " role="alert">
               Maaf ID Dokter yang anda masukkan tidak ada dalam database
             </div>
@@ -66,6 +66,18 @@
                     </div>
               </div>
 
+              <div class="form-group">
+                
+                    <label for="ID Aktor" class="col-sm-2 control-label">ID Jadwal</label>
+                    <div class="col-sm-10">
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <input disabled name="idjadwal" maxlength="5" type="normal" class="form-control" id="inputIDJadwal" placeholder="ID Jadwal" value="<?php echo $idjadwald ?>">    
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
               <div>
                 <table class="table">
                   <tr>
@@ -82,28 +94,15 @@
 
               </form> 
 
-              <br>  
-
               <form class="form-horizontal" action="<?php echo base_url(); ?>jadwal/validasiDokter2" method ="post">
-              <div class="form-group">
-                
-                    <label for="ID Aktor" class="col-sm-2 control-label">ID Jadwal</label>
-                    <div class="col-sm-10">
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <input name="idjadwal" maxlength="5" type="normal" class="form-control" id="inputIDJadwal" placeholder="ID Jadwal">    
-                        </div>
-                      </div>
-                    </div>
-                </div>
-
+              
               <div class="form-group">
                 
                   <label for="ID Aktor" class="col-sm-2 control-label">ID Dokter</label>
                   <div class="col-sm-10">
                     <div class="row">
                       <div class="col-sm-12">
-                        <input name="iddokter" maxlength="5" type="normal" class="form-control" id="showIDDokter" value="<?php echo $iddokter; ?>" >    
+                        <input name="iddokter" maxlength="5" type="normal" class="form-control" id="showIDDokter" value="<?php echo $iddokter; ?>">    
                       </div>
                     </div>
                   </div>

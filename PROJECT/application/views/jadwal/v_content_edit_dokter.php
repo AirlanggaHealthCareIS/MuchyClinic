@@ -1,10 +1,10 @@
 <div class="container-fluid">
-      <div class="container">
+      <div class="">
         <h1>Edit Jadwal Dokter</h1>
       </div>
     </div>
     <div class="container-fluid width: 900px">
-      <div class="container">
+      <div class="">
         
         <br>
         <div class = "row">
