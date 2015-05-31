@@ -76,8 +76,8 @@ class M_kasir extends CI_Model {
 
 
 	//save detail transaksi
-	public function setTransaksi($idtransaksi, $idkasir, $tgltransaksi, $timetransaksi, $total) {
-		$query = $this->db->query('INSERT IGNORE INTO transaksi (`ID_TRANSAKSI`, `ID_KASIR`, `TGL_TRANSAKSI`, `JAM_TRANSAKSI`, `TOTAL`) VALUES (null, "K0001", "'.$tgltransaksi.'", "'.$timetransaksi.'", "'.$total.'")');
+	public function setTransaksi($idtransaksi, $idkasir, $tgltransaksi, $timetransaksi, $total, $idpasien) {
+		$query = $this->db->query('INSERT IGNORE INTO transaksi (`ID_TRANSAKSI`, `ID_KASIR`, `TGL_TRANSAKSI`, `JAM_TRANSAKSI`, `TOTAL`, `ID_PASIEN`) VALUES (null, "K0001", "'.$tgltransaksi.'", "'.$timetransaksi.'", "'.$total.'", "'.$idpasien.'")');
 	}
 
 	//save detail transaksi obat
@@ -94,4 +94,22 @@ class M_kasir extends CI_Model {
 	public function saveTransaksiPemeriksaan($id) {
 		$query = $this->db->query("INSERT IGNORE INTO detail_transaksi_periksa (`ID_TRANSAKSI`,`NAMA_TINDAKAN`,`KETERANGAN`, `QTY`, `HARGA`, `SUBTOTAL`) SELECT tr.ID_TRANSAKSI, t.NAMA_TINDAKAN, dp.KETERANGAN, dp.QTY, t.TARIF_TINDAKAN, dp.SUBTOTAL FROM transaksi AS tr, tindakan AS t, pemeriksaan AS p, detail_periksa AS dp WHERE p.ID_PERIKSA = dp.ID_PERIKSA AND dp.ID_TINDAKAN = t.ID_TINDAKAN AND p.ID_PASIEN = '".$id."'");
 	}
+
+	//cek id pasien dalam tabel transaksi
+    public function checkidPasienTransaksi($idpasien){
+		$query = $this->db->query("SELECT * FROM TRANSAKSI WHERE id_pasien='".$idpasien."'");
+		if ($query->num_rows()>0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	// public function checkidPasienTransaksi2($idpasien){
+	// 	$query = $this->db->query("SELECT * FROM TRANSAKSI WHERE id_pasien='".$idpasien."'");
+	// 	if ($query->num_rows()>0) {
+	// 		return true;
+	// 	} else {
+	// 		return false;
+	// 	}
+	// }
 }

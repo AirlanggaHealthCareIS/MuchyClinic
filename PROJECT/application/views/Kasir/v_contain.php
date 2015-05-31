@@ -120,7 +120,7 @@
             <td>Keterangan</td>
             <td>QTY</td>
             <td>Harga</td>
-            <td>Total</td>
+            <td>SubTotal</td>
 
           </thead>
           <tbody>
@@ -130,9 +130,9 @@
                 <td><?php echo $k->TGL_MASK; ?></td>
                 <td>Kamar Rawat Inap : <?php echo $k->NAMA_KAMAR_INAP; ?></td>
                 <td><?php echo $k->KETERANGAN; ?></td>
-                <td></td>
+                <td><?php echo $k->QTY; ?></td>
                 <td><?php echo $k->TARIF_KMR; ?></td>
-                <td></td>
+                <td><?php echo $k->SUBTOTAL; ?></td>
               </tr>
               <?php endforeach ?>
             <?php endif ?>
@@ -143,9 +143,9 @@
                 <td><?php echo $p->TANGGAL_PERIKSA; ?></td>
                 <td>Tindakan : <?php echo $p->NAMA_TINDAKAN; ?></td>
                 <td><?php echo $p->KETERANGAN; ?></td>
-                <td></td>
+                <td><?php echo $p->QTY; ?></td>
                 <td><?php echo $p->TARIF_TINDAKAN; ?></td>
-                <td></td>
+                <td><?php echo $p->SUBTOTAL; ?></td>
               </tr>
               <?php endforeach ?>
             <?php endif ?>
@@ -158,7 +158,7 @@
                 <td><?php echo $o->KETERANGAN; ?></td>
                 <td><?php echo $o->QTY; ?></td>
                 <td><?php echo $o->HARGA; ?></td>
-                <td></td>
+                <td><?php echo $o->SUBTOTAL; ?></td>
               </tr>
               <?php endforeach ?>
             <?php endif ?>
@@ -190,6 +190,12 @@
                   <p>Total pembayaran yang anda masukkan masih kurang</p>
                 </div>  
               <?php endif ?>
+
+              <?php if ($this->input->get("error")=="nullidpasien"): ?>
+                <div class = "alert alert-danger" role = "alert">
+                  <p>Maaf id pasien belum diinputkan</p>
+                </div>  
+              <?php endif ?>
               <!-- end pesan error -->
 
             <label for="disabledTextInput">Tunai</label>
@@ -216,6 +222,12 @@
               <?php if ($this->input->get("success")=="sukses"): ?>
                 <div class = "alert alert-success" role = "alert">
                   <p>Pembayaran sukses</p>
+                </div>  
+              <?php endif ?>
+
+              <?php if ($this->input->get("success")=="pasienlunas"): ?>
+                <div class = "alert alert-success" role = "alert">
+                  <p>Pasien dg ID tersebut telah lunas</p>
                 </div>  
               <?php endif ?>
 
@@ -246,6 +258,20 @@
             <?php endif ?>
 
             <?php if ($this->input->get("success")=="sukses"): ?>
+              <div>
+                <br></br>
+                <br>
+              </div>
+            <?php endif ?>
+
+            <?php if ($this->input->get("success")=="pasienlunas"): ?>
+              <div>
+                <br></br>
+                <br>
+              </div>
+            <?php endif ?>
+
+            <?php if ($this->input->get("error")=="nullidpasien"): ?>
               <div>
                 <br></br>
                 <br>

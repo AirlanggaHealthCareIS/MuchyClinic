@@ -127,6 +127,7 @@ class Kasir extends CI_Controller {
 	public function validationCash($id="") {
 		$this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
+        $this->load->model('m_kasir');
 
 		$byr = $this->input->post("bayar");
 		if ($byr==null || $byr=="") {
@@ -134,8 +135,15 @@ class Kasir extends CI_Controller {
 		} else {
 			if (preg_match('/[^0-9]/i', $byr)) {
 				redirect(base_url().'kasir/index/'.$id.'?error=simbolcash');
-			} else{ 
-				$this->checkHitung($byr, $id);
+			} else {
+				// $this->checkHitung($byr, $id);
+				$this->session->set_flashdata('idpasien', $id);
+				$query = $this->m_kasir->checkidPasienTransaksi($id);
+				if ($query==true) {
+					redirect(base_url().'kasir/index/'.$id.'?success=pasienlunas');
+					} else {
+						$this->checkHitung($byr, $id);
+					}
 			}
 		}
 	}
@@ -215,7 +223,6 @@ class Kasir extends CI_Controller {
 				$total = $total + $o->SUBTOTAL;
 				$this->session->set_flashdata('total', $total);
 			}
-
 			// $this->session->set_flashdata('detailobat', $dobat);
 			return $total;
 		}
@@ -226,7 +233,11 @@ class Kasir extends CI_Controller {
 		$kembali = 0;
 		$byr=$this->input->post('bayar');
 		$total = $this->gethitung($id);
-		
+
+		// if ($byr>$total && $total==null || $byr>$total && $total==0) {
+		// 	redirect(base_url().'kasir/index/'.$id.'?error=nullidpasien');
+		// }
+
 		if ($byr==$total || $byr>$total) {
 			$kembali = $byr - $total;
 			$this->session->set_flashdata('kembali', $kembali);
@@ -251,11 +262,13 @@ class Kasir extends CI_Controller {
 		$this->load->model("m_kasir");
 
 		$total = $this->gethitung($id);
-	
+
+		$idpasien = "$id";
+
 		//echo " id transaksi = ".$idtransaksi." idkasir ".$idkasir." tgltransaksi ".$tgltransaksi." timetransaksi ".$timetransaksi." total ".$total;
 		//save data transaksi
 			
-		$query = $this->m_kasir->setTransaksi($idtransaksi, $idkasir, $tgltransaksi, $timetransaksi, $total);
+		$query = $this->m_kasir->setTransaksi($idtransaksi, $idkasir, $tgltransaksi, $timetransaksi, $total, $idpasien);
 
 		$query1 = $this->m_kasir->checkidKamar($id);
 		if ($query1==true) {
@@ -271,5 +284,7 @@ class Kasir extends CI_Controller {
 		if ($query3==true) {
 			$this->m_kasir->saveTransaksiObat($id);
 		}
+
+		echo $id;
 	}
 }
