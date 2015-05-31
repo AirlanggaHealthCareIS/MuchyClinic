@@ -10,8 +10,75 @@ class Jadwal extends CI_Controller{
         "iddokter"=>"", "namadokter"=>"", 
         "idkaryawan"=>"", "namakaryawan"=>"",
         "idapoteker"=>"", "namaapoteker"=>"",
-        "iddokter2"=>"", "idjadwala"=>"",
+        "iddokter2"=>"", 
+        "idjadwala"=>"", "idjadwald"=>"", "idjadwalk"=>"",
         "lihatjadwalapt"=>null,
+        "lihatjadwaldok"=>null,
+        "lihatjadwalkar"=>null); //tampil data di tabel
+
+        //"lihatjadwalapt"=>$this->m_jadwal->getAllData(),
+
+		$this->load->view("v_header");
+		$this->load->view("jadwal/v_content_karyawan", $data);
+		$this->load->view("v_footer");
+
+    }
+
+    public function karyawan()
+	{
+		$this->load->model("m_jadwal");
+
+        $data = array("ida"=>"", "nama"=>"", 
+        "iddokter"=>"", "namadokter"=>"", 
+        "idkaryawan"=>"", "namakaryawan"=>"",
+        "idapoteker"=>"", "namaapoteker"=>"",
+        "iddokter2"=>"", 
+        "idjadwala"=>"", "idjadwald"=>"", "idjadwalk"=>"",
+        "lihatjadwalapt"=>null,
+        "lihatjadwaldok"=>null,
+        "lihatjadwalkar"=>$this->m_jadwal->getDataKaryawan()); //tampil data di tabel
+
+        //"lihatjadwalapt"=>$this->m_jadwal->getAllData(),
+
+		$this->load->view("v_header");
+		$this->load->view("jadwal/v_content_karyawan", $data);
+		$this->load->view("v_footer");
+
+    }
+
+    public function dokter()
+	{
+		$this->load->model("m_jadwal");
+
+        $data = array("ida"=>"", "nama"=>"", 
+        "iddokter"=>"", "namadokter"=>"", 
+        "idkaryawan"=>"", "namakaryawan"=>"",
+        "idapoteker"=>"", "namaapoteker"=>"",
+        "iddokter2"=>"", 
+        "idjadwala"=>"", "idjadwald"=>"", "idjadwalk"=>"",
+        "lihatjadwalapt"=>null,
+        "lihatjadwaldok"=>$this->m_jadwal->getDataDokter(),
+        "lihatjadwalkar"=>null); //tampil data di tabel
+
+        //"lihatjadwalapt"=>$this->m_jadwal->getAllData(),
+
+		$this->load->view("v_header");
+		$this->load->view("jadwal/v_content_dokter", $data);
+		$this->load->view("v_footer");
+
+    }
+
+    public function apoteker()
+	{
+		$this->load->model("m_jadwal");
+
+        $data = array("ida"=>"", "nama"=>"", 
+        "iddokter"=>"", "namadokter"=>"", 
+        "idkaryawan"=>"", "namakaryawan"=>"",
+        "idapoteker"=>"", "namaapoteker"=>"",
+        "iddokter2"=>"", 
+        "idjadwala"=>"", "idjadwald"=>"", "idjadwalk"=>"",
+        "lihatjadwalapt"=>$this->m_jadwal->getDataApoteker(),
         "lihatjadwaldok"=>null,
         "lihatjadwalkar"=>null); //tampil data di tabel
 
@@ -66,8 +133,10 @@ class Jadwal extends CI_Controller{
 		}
 	}
 
-//==============================================================================================================================================
+//======================================================================================================================================================
 
+	
+//=============================================================== D O K T E R ========================================================================
 	public function validasiDokter(){
 
 		$iddokter = $this->input->post('iddok');
@@ -75,12 +144,12 @@ class Jadwal extends CI_Controller{
 		$cek = $this->isValid($iddokter);
 		
 		if($cek == "null"){
-			redirect(base_url().'jadwal?error=iddokternull');
+			redirect(base_url().'jadwal/dokter?error=iddokternull');
 
 		}
 
 		else if($cek == "symbolerror"){
-			redirect(base_url().'jadwal?error=symbolerror');
+			redirect(base_url().'jadwal/dokter?error=doktersymbolerror');
 		}
 
 		else {
@@ -91,29 +160,22 @@ class Jadwal extends CI_Controller{
 
 	public function validasiDokter2(){
 		
-		$idjadwal = $this->input->post('idjadwal');
+		//$idjadwal = $this->input->post('idjadwal');
 		$cb_hari = $this->input->post('cbhari');
 		$cb_jam = $this->input->post('cbjam');
 
-		$cekjadwal = $this->isValid($idjadwal);
+		//$cekjadwal = $this->isValid($idjadwal);
 		$cekhari = $this->isValidHari($cb_hari);
 		$cekjam = $this->isValidJam($cb_jam);
 
 		if ($this->input->post('submit')=='add') {
-			if ($cekjadwal == "null") {
-				redirect(base_url().'jadwal?error=idjadwalnull');
-			}
 
-			else if($cekjadwal == "symbolerror"){
-				redirect(base_url().'jadwal?error=symbolerror');
-			}
-
-			else if($cekhari == false){
-				redirect(base_url().'jadwal?error=cbharinull');
+			if($cekhari == false){
+				redirect(base_url().'jadwal/dokter?error=cbharinull');
 			}
 
 			else if($cekjam == false){
-				redirect(base_url().'jadwal?error=cbjamnull');
+				redirect(base_url().'jadwal/dokter?error=cbjamnull');
 			}
 
 			else{
@@ -126,120 +188,22 @@ class Jadwal extends CI_Controller{
 
 	}
 
-	public function validasiKaryawan(){
-
-		$idkar = $this->input->post('idkar');
-
-		$cek = $this->isValid($idkar);
-
-		if($cek == "null"){
-			redirect(base_url().'jadwal?error=idkaryawannull');
-		}
-
-		else if($cek == "symbolerror"){
-			redirect(base_url().'jadwal?error=symbolerror');
-		}
-
-		else {
-			
-			$this->tampilKaryawan($idkar);
-		}
-
-	}
-
-	public function validasiKaryawan2(){
-
-		$idjadwal = $this->input->post('idjadwal');
-		$cb_hari = $this->input->post('cbhari');
-		$cb_jam = $this->input->post('cbjam');
-
-		$cekjadwal = $this->isValid($idjadwal);
-		$cekhari = $this->isValidHari($cb_hari);
-		$cekjam = $this->isValidJam($cb_jam);
-
-
-		if ($this->input->post('submit')=='add'){
-			if ($cekjadwal == "null") {
-				redirect(base_url().'jadwal?error=idjadwalnull');
-			}
-
-			else if($cekjadwal == "symbolerror"){
-				redirect(base_url().'jadwal?error=symbolerror');
-			}
-
-			else if($cb_hari == false){
-				redirect(base_url().'jadwal?error=cbharinull');
-			}
-
-			else if($cb_jam == false){
-				redirect(base_url().'jadwal?error=cbjamnull');
-			}
-
-			else {
-				
-				$this->inputJadwalKaryawan();
-			}
-		}
-
-		else if($this->input->post('submit')=='edit'){
-			echo "Fitur ini belum ada";
-		}
-		
-
-	}
-
-	public function validasiApoteker(){
-
+	public function generateIdJadwalD(){
 		$this->load->model('m_jadwal');
 
-		$data= array("idapoteker"=>null, "idjadwala"=>null, "namaapoteker"=>null, "lihatjadwalapt"=>$this->m_jadwal->getDataApoteker());
+		$id = $this->m_jadwal->countIdJadwalD() + 1;
 
-		$idapt = $this->input->post('idapt');
-
-		$cek = $this->isValid($idapt);
-
-		if($cek == "null"){
-			redirect(base_url().'jadwal?error=idapotekernull');
-
+		if($id < 10){
+			$id = "JD00".$id;
+		}
+		else if($id < 100){
+			$id = "JD0".$id;
+		}
+		else if($id < 1000){
+			$id = "JD".$id;
 		}
 
-		else if(preg_match('/[^a-z0-9]/i', $cek)){
-			redirect(base_url().'jadwal?error=symbolerror');
-		}
-
-		else {
-			
-			$this->tampilApoteker($idapt);
-		}
-	}
-
-	public function validasiApoteker2(){
-
-		$this->load->model('m_jadwal');
-
-		//$idjadwal = $this->generateIdJadwalA();
-		$cb_hari = $this->input->post('cbhari');
-		$cb_jam = $this->input->post('cbjam');
-
-		//$cekjadwal = $this->isValid($idjadwal);
-		$cekhari = $this->isValidHari($cb_hari);
-		$cekjam = $this->isValidJam($cb_jam);
-
-		if($this->input->post('submit')=='add'){
-			if($cb_hari == false){
-				redirect(base_url().'jadwal?error=cbharinull');
-			}
-
-			else if($cb_jam == false){
-				redirect(base_url().'jadwal?error=cbjamnull');
-			}
-
-			else {
-			
-				$this->inputJadwalApoteker();
-			}
-		}
-
+		return $id;
 	}
 
 	public function tampilDokter($iddokter){
@@ -256,8 +220,12 @@ class Jadwal extends CI_Controller{
 
 			$data = array(
 				"iddokter"=>$ro->ID_DOKTER, 
-				"namadokter"=>$ro->NAMA_DOKTER, 
+				"namadokter"=>$ro->NAMA_DOKTER,
+				"idjadwald"=>$this->generateIdJadwalD(), 
 				"lihatjadwaldok"=>$this->m_jadwal->getDataDokter());
+
+			$this->session->set_flashdata("iddokter", $ro->ID_DOKTER);
+			// $this->sessiom->idjadwald = $ro->generateIdJadwalD();
 
 			$this->load->view("v_header");
 			$this->load->view("jadwal/v_content_dokter", $data);
@@ -265,71 +233,14 @@ class Jadwal extends CI_Controller{
 
 		}
 		else{
-			redirect(base_url().'jadwal?error=notfound');
-		}
-	}
-
-
-	public function tampilKaryawan($idkar){
-		$this->load->database();
-
-		$idkar = $this->input->post('idkar');
-
-		$this->load->model("m_jadwal");
-
-		$query = $this->m_jadwal->getKaryawan($idkar);
-
-		if($query->num_rows() > 0) {
-			$ro = $query->row();
-			
-				$data = array(
-					"idkaryawan"=>$ro->ID_KARYAWAN, 
-					"namakaryawan"=>$ro->NAMA_K, 
-					"lihatjadwalkar"=>$this->m_jadwal->getDataKaryawan());
-
-				$this->load->view("v_header");
-				$this->load->view("jadwal/v_content_karyawan", $data);
-				$this->load->view("v_footer");	
-		}
-
-		else{
-			redirect(base_url().'jadwal?error=notfound');
-		}
-	}
-
-	public function tampilApoteker($idapt){
-		$this->load->database();
-
-		$idapt = $this->input->post('idapt');
-
-		$this->load->model("m_jadwal");
-
-		$query = $this->m_jadwal->getApoteker($idapt);
-		//$query1 = $this->m_jadwal->generateIdJadwalA();
-
-		if($query->num_rows() > 0) {
-			$ro = $query->row();
-			//$rr = $query->row();	
-		
-				$data = array(
-					"idapoteker"=>$ro->ID_APOTEKER, 
-					"namaapoteker"=>$ro->NAMA_APOTEKER,
-					"idjadwala"=>$this->generateIdJadwalA(), 
-					"lihatjadwalapt"=>$this->m_jadwal->getDataApoteker());		
-			
-				$this->load->view("v_header");
-				$this->load->view("jadwal/v_content_apoteker", $data);
-				$this->load->view("v_footer");
-		}
-		else{
-			redirect(base_url().'jadwal?error=notfound');	
+			redirect(base_url().'jadwal/dokter?error=dokternotfound');
 		}
 	}
 
 	private function inputJadwalDokter(){
 		$this->load->model('m_jadwal');
 
-		$IDJADWALD = $this->input->post('idjadwal');
+		$IDJADWALD = $this->generateIdJadwalD();
 		$IDDOKTER = $this->input->post('iddokter');
 		$HARID = $this->input->post('cbhari');
 		$JAMD = $this->input->post('cbjam');
@@ -343,7 +254,8 @@ class Jadwal extends CI_Controller{
 	public function hapusJadwalDokter($idJadwalD){
 		$this->load->database();
 		$this->load->model('m_jadwal');
-			
+
+		$idJadwalD = $this->generateIdJadwalD();	
 		$IDDOKTER = $this->input->post('iddokter');
 
 		$deleteDokter = $this->m_jadwal->deleteJadwalDokter($idJadwalD);
@@ -358,14 +270,150 @@ class Jadwal extends CI_Controller{
 
 		$this->load->model('m_jadwal');
 
-		$data= array("iddokter"=>null, "namadokter"=>null, "lihatjadwaldok"=>$this->m_jadwal->getDataDokter());
+		$data= array("iddokter"=>null, "idjadwald"=>null, "namadokter"=>null, "lihatjadwaldok"=>$this->m_jadwal->getDataDokter());
 
 		$this->load->view("v_header");
 		$this->load->view("jadwal/v_content_dokter", $data);
 		$this->load->view("v_footer");
 	}
 
-		private function inputJadwalApoteker(){
+	public function editJadwalDokter($IDJADWALD){
+		 $this->load->database();
+		 $this->load->model('m_jadwal');
+
+		 $IDDOKTER = $this->input->post('iddokter2');
+
+		 $query = $this->m_jadwal->getIDJadwalDokter($IDJADWALD);
+	 	 $ro = $query->row();	
+		 $data["iddokter2"] = $ro->ID_DOKTER;
+		 $data['idjadwal2'] = $ro->ID_JADWAL_DOKTER;
+		 $data["lihatjadwaldok"]= $this->m_jadwal->getDataDokter();
+
+		 $this->load->view("v_header");
+		 $this->load->view("jadwal/v_content_edit_dokter", $data);
+		 $this->load->view("v_footer");
+
+	}
+
+	public function updateJadwalD(){
+		$this->load->model('m_jadwal');
+
+		$IDJADWALD = $this->input->post('idjadwal2');
+		$IDDOKTER = $this->input->post('iddokter2');
+		$HARID = $this->input->post('cbhari2');
+		$JAMD = $this->input->post('cbjam2');
+		
+		$updateJDokter = $this->m_jadwal->updateJadwalDokter($HARID, $JAMD, $IDJADWALD);
+
+		redirect(base_url()."jadwal/showJadwalDokter/".$IDDOKTER);
+	}
+
+	//======================================================= E N D  O F  D O K T E R ========================================================================
+
+	
+	//=============================================================== A P O T E K E R ========================================================================
+	public function validasiApoteker(){
+
+		$this->load->model('m_jadwal');
+
+		$data= array("idapoteker"=>null, "idjadwala"=>null, "namaapoteker"=>null, "lihatjadwalapt"=>$this->m_jadwal->getDataApoteker());
+
+		$idapt = $this->input->post('idapt');
+
+		$cek = $this->isValid($idapt);
+
+		if($cek == "null"){
+			redirect(base_url().'jadwal/apoteker?error=idapotekernull');
+
+		}
+
+		else if(preg_match('/[^a-z0-9]/i', $cek)){
+			redirect(base_url().'jadwal/apoteker?error=symbolerror');
+		}
+
+		else {
+			
+			$this->tampilApoteker($idapt);
+		}
+	}
+
+	public function validasiApoteker2(){
+
+		$this->load->model('m_jadwal');
+
+		$cb_hari = $this->input->post('cbhari');
+		$cb_jam = $this->input->post('cbjam');
+
+		$cekhari = $this->isValidHari($cb_hari);
+		$cekjam = $this->isValidJam($cb_jam);
+
+		if($this->input->post('submit')=='add'){
+			if($cb_hari == false){
+				redirect(base_url().'jadwal/apoteker?error=cbharinull');
+			}
+
+			else if($cb_jam == false){
+				redirect(base_url().'jadwal/apoteker?error=cbjamnull');
+			}
+
+			else {
+			
+				$this->inputJadwalApoteker();
+			}
+		}
+
+	}
+
+	public function generateIdJadwalA(){
+		$this->load->model('m_jadwal');
+
+		$id = $this->m_jadwal->countIdJadwalA() + 1;
+
+		if($id < 10){
+			$id = "JA00".$id;
+		}
+		else if($id < 100){
+			$id = "JA0".$id;
+		}
+		else if($id < 1000){
+			$id = "JA".$id;
+		}
+
+		return $id;
+	}
+
+	public function tampilApoteker($idapt){
+		$this->load->database();
+
+		$idapt = $this->input->post('idapt');
+
+		$this->load->model("m_jadwal");
+
+		$query = $this->m_jadwal->getApoteker($idapt);
+
+		if($query->num_rows() > 0) {
+			$ro = $query->row();
+		
+				$data = array(
+					"idapoteker"=>$ro->ID_APOTEKER, 
+					"namaapoteker"=>$ro->NAMA_APOTEKER,
+					"idjadwala"=>$this->generateIdJadwalA(), 
+					"lihatjadwalapt"=>$this->m_jadwal->getDataApoteker());		
+			
+				$this->session->set_flashdata("idapoteker", $ro->ID_APOTEKER);
+
+				$this->load->view("v_header");
+				$this->load->view("jadwal/v_content_apoteker", $data);
+				$this->load->view("v_footer");
+		}
+		else{
+			redirect(base_url().'jadwal/apoteker?error=notfound');	
+		}
+	}
+
+	
+
+	private function inputJadwalApoteker(){
 		$this->load->model('m_jadwal');
 
 		//$IDJADWAL = $this->input->post('idjadwal');
@@ -406,76 +454,6 @@ class Jadwal extends CI_Controller{
 		$this->load->view("v_footer");
 	}
 
-	private function inputJadwalKaryawan(){
-		$this->load->model('m_jadwal');
-
-		$IDJADWALK = $this->input->post('idjadwal');
-		$IDKARYAWAN = $this->input->post('idkaryawan');
-		$HARIK = $this->input->post('cbhari');
-		$JAMK = $this->input->post('cbjam');
-
-		$inputKaryawan = $this->m_jadwal->insertJadwalKaryawan($IDJADWALK, $IDKARYAWAN, $HARIK, $JAMK);
-
-		$this->showJadwalKaryawan($IDKARYAWAN);
-	}
-
-	public function showJadwalKaryawan($idkar){
-		$this->load->database();
-		$this->load->model("m_jadwal");
-
-		$idkar = $this->input->post('idkaryawan');
-
-		$data= array("idkaryawan"=>null, "namakaryawan"=>null, "lihatjadwalkar"=>$this->m_jadwal->getDataKaryawan());		
-
-		$this->load->view("v_header");
-		$this->load->view("jadwal/v_content_karyawan", $data);
-		$this->load->view("v_footer");
-	}
-
-	public function hapusJadwalKarywan($idJadwalK){
-		$this->load->database();
-
-		$IDKARYAWAN = $this->input->post('idkaryawan');
-
-		$this->load->model('m_jadwal');	
-
-		$deleteDokter = $this->m_jadwal->deleteJadwalKaryawan($idJadwalK);
-
-		$this->showJadwalKaryawan($IDKARYAWAN);
-
-	}
-
-	public function editJadwalDokter($IDJADWALD){
-		 $this->load->database();
-		 $this->load->model('m_jadwal');
-
-		 $IDDOKTER = $this->input->post('iddokter2');
-
-		 $query = $this->m_jadwal->getIDJadwalDokter($IDJADWALD);
-	 	 $ro = $query->row();	
-		 $data["iddokter2"] = $ro->ID_DOKTER;
-		 $data['idjadwal2'] = $ro->ID_JADWAL_DOKTER;
-		 $data["lihatjadwaldok"]= $this->m_jadwal->getDataDokter();
-
-		 $this->load->view("v_header");
-		 $this->load->view("jadwal/v_content_edit_dokter", $data);
-		 $this->load->view("v_footer");
-
-	}
-
-	public function updateJadwalD(){
-		$this->load->model('m_jadwal');
-
-		$IDJADWALD = $this->input->post('idjadwal2');
-		$IDDOKTER = $this->input->post('iddokter2');
-		$HARID = $this->input->post('cbhari2');
-		$JAMD = $this->input->post('cbjam2');
-		
-		$updateJDokter = $this->m_jadwal->updateJadwalDokter($HARID, $JAMD, $IDJADWALD);
-
-		redirect(base_url()."jadwal/showJadwalDokter/".$IDDOKTER);
-	}
-
 	public function editJadwalApoteker($IDJADWALA){
 		 $this->load->database();
 		 $this->load->model('m_jadwal');
@@ -506,6 +484,148 @@ class Jadwal extends CI_Controller{
 
 		//redirect(base_url().'jadwal?success==updatesuccess');
 		redirect(base_url()."jadwal/showJadwalApoteker/".$IDAPOTEKER);
+	}
+	//=======================================================E N D  O F  A P O T E K E R ========================================================================
+
+	//=============================================================== K A R Y A W A N ========================================================================
+
+	public function validasiKaryawan(){
+
+		$idkar = $this->input->post('idkar');
+
+		$cek = $this->isValid($idkar);
+
+		if($cek == "null"){
+			redirect(base_url().'jadwal/karyawan?error=idkaryawannull');
+		}
+
+		else if($cek == "symbolerror"){
+			redirect(base_url().'jadwal/karyawan?error=symbolerror');
+		}
+
+		else {
+			
+			$this->tampilKaryawan($idkar);
+		}
+
+	}
+
+	public function validasiKaryawan2(){
+
+		//$idjadwal = $this->input->post('idjadwal');
+		$cb_hari = $this->input->post('cbhari');
+		$cb_jam = $this->input->post('cbjam');
+
+		//$cekjadwal = $this->isValid($idjadwal);
+		$cekhari = $this->isValidHari($cb_hari);
+		$cekjam = $this->isValidJam($cb_jam);
+
+
+		if ($this->input->post('submit')=='add'){
+			if($cb_hari == false){
+				redirect(base_url().'jadwal/karyawan?error=cbharinull');
+			}
+
+			else if($cb_jam == false){
+				redirect(base_url().'jadwal/karyawan?error=cbjamnull');
+			}
+
+			else {
+				
+				$this->inputJadwalKaryawan();
+			}
+		}
+
+		else if($this->input->post('submit')=='edit'){
+			echo "Fitur ini belum ada";
+		}
+	}
+
+	public function generateIdJadwalK(){
+		$this->load->model('m_jadwal');
+
+		$id = $this->m_jadwal->countIdJadwalK() + 1;
+
+		if($id < 10){
+			$id = "JK00".$id;
+		}
+		else if($id < 100){
+			$id = "JK0".$id;
+		}
+		else if($id < 1000){
+			$id = "JK".$id;
+		}
+
+		return $id;
+	}
+
+	public function tampilKaryawan($idkar){
+		$this->load->database();
+
+		$idkar = $this->input->post('idkar');
+
+		$this->load->model("m_jadwal");
+
+		$query = $this->m_jadwal->getKaryawan($idkar);
+
+		if($query->num_rows() > 0) {
+			$ro = $query->row();
+			
+				$data = array(
+					"idkaryawan"=>$ro->ID_KARYAWAN, 
+					"namakaryawan"=>$ro->NAMA_K, 
+					"idjadwalk"=>$this->generateIdJadwalK(),
+					"lihatjadwalkar"=>$this->m_jadwal->getDataKaryawan());
+
+				$this->session->set_flashdata("idkaryawan", $ro->ID_KARYAWAN);
+
+				$this->load->view("v_header");
+				$this->load->view("jadwal/v_content_karyawan", $data);
+				$this->load->view("v_footer");	
+		}
+
+		else{
+			redirect(base_url().'jadwal/karyawan?error=notfound');
+		}
+	}
+
+	private function inputJadwalKaryawan(){
+		$this->load->model('m_jadwal');
+
+		$IDJADWALK = $this->generateIdJadwalK();
+		$IDKARYAWAN = $this->input->post('idkaryawan');
+		$HARIK = $this->input->post('cbhari');
+		$JAMK = $this->input->post('cbjam');
+
+		$inputKaryawan = $this->m_jadwal->insertJadwalKaryawan($IDJADWALK, $IDKARYAWAN, $HARIK, $JAMK);
+
+		$this->showJadwalKaryawan($IDKARYAWAN);
+	}
+
+	public function showJadwalKaryawan($idkar){
+		$this->load->database();
+		$this->load->model("m_jadwal");
+
+		$idkar = $this->input->post('idkaryawan');
+
+		$data= array("idkaryawan"=>null, "idjadwalk"=>null,"namakaryawan"=>null, "lihatjadwalkar"=>$this->m_jadwal->getDataKaryawan());		
+
+		$this->load->view("v_header");
+		$this->load->view("jadwal/v_content_karyawan", $data);
+		$this->load->view("v_footer");
+	}
+
+	public function hapusJadwalKarywan($idJadwalK){
+		$this->load->database();
+
+		$IDKARYAWAN = $this->input->post('idkaryawan');
+
+		$this->load->model('m_jadwal');	
+
+		$deleteDokter = $this->m_jadwal->deleteJadwalKaryawan($idJadwalK);
+
+		$this->showJadwalKaryawan($IDKARYAWAN);
+
 	}
 
 	public function editJadwalKaryawan($IDJADWALK){
@@ -539,61 +659,6 @@ class Jadwal extends CI_Controller{
 		//redirect(base_url().'jadwal?success==updatesuccess');
 		redirect(base_url()."jadwal/showJadwalKaryawan/".$IDKARYAWAN);
 	}	
-
-	public function generateIdJadwalA(){
-		$this->load->model('m_jadwal');
-
-		$id = $this->m_jadwal->countIdJadwalA() + 1;
-
-		if($id < 10){
-			$id = "JA00".$id;
-		}
-		else if($id < 100){
-			$id = "JA0".$id;
-		}
-		else if($id < 1000){
-			$id = "JA".$id;
-		}
-
-		return $id;
-	}
-
-	public function generateIdJadwalD(){
-		$this->load->model('m_jadwal');
-
-		$id = $this->m_jadwal->countIdJadwalD() + 1;
-
-		if($id < 10){
-			$id = "JD00".$id;
-		}
-		else if($id < 100){
-			$id = "JD0".$id;
-		}
-		else if($id < 1000){
-			$id = "JD".$id;
-		}
-
-		echo $id;
-
-		return $id;
-	}
+	//=======================================================E N D  O F  K A R Y A W A N ========================================================================	
 	
-	public function generateIdJadwalK(){
-		$this->load->model('m_jadwal');
-
-		$id = $this->m_jadwal->countIdJadwalK() + 1;
-
-		if($id < 10){
-			$id = "JK00".$id;
-		}
-		else if($id < 100){
-			$id = "JK0".$id;
-		}
-		else if($id < 1000){
-			$id = "JK".$id;
-		}
-		echo $id;
-
-		return $id;
-	}
 }
