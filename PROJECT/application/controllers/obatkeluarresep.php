@@ -3,6 +3,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Obatkeluarresep extends CI_Controller {
 
+	public function Obatkeluarresep(){
+		parent::__construct();
+		$this->load->model('m_obatkeluar');
+		$this->load->model('m_resep');
+
+		$this->id_apoteker = "A0001"; //user
+	}
+
 	public function index()
 	{
 		$this->load->view('v_header');
@@ -21,7 +29,6 @@ class Obatkeluarresep extends CI_Controller {
 	}
 
 	public function test_getresep(){ //tes untuk model getresep
-		$this->load->model('m_obatkeluar');
 		$this->load->library("unit_test");
 		$this->load->database();
 		$this->unit->run($this->m_obatkeluar->getResep("P001", "2015-04-20"), 0, "Test getdata resep");
@@ -63,8 +70,7 @@ class Obatkeluarresep extends CI_Controller {
 		$this->session->set_flashdata('idpasien', $id);
 		$this->session->set_flashdata('tanggal', $tgl);
 
-		$this->load->model('m_resep');
-		$this->load->model('m_obatkeluar');
+		
 		$query = $this->m_obatkeluar->getResep($id, $tgl); //get data
 		if ($query!=0) { //cek jika hasil ada
 			//simpan data untuk di tampilkan
@@ -99,9 +105,51 @@ class Obatkeluarresep extends CI_Controller {
 	}
 
 	public function saveToKeluar(){
-		// echo "";
-		$data = $this->input->post("ada"); 
-		echo "data = ".$data;
+		// $data["idobat"] = $this->input->post("ada"); 
+		// $data['pasien'] = $this->input->post("pasien"); 
+		// $data['subtotal'] = $this->input->post("subtotal"); 
+		// $idOk = $this->m_obatkeluar->generateIdObatKeluar();
+		// // date_default_timezone_set('Asia/Jakarta');
+		// $tgl = date("Y-m-d");
+		// // $this->m_obatkeluar->insertObatKeluar($idOk, $this->id_apoteker, $data['pasien'], $tgl);
+		
+		// $kotak = explode(" ", $data["idobat"]);
+		// $kotak2 = explode(" ", $data["subtotal"]);
+		// // for ($i=1; $i < count($kotak); $i++) { 
+		// // 	// echo "no idobat ".$kotak[$i];
+		// // 	// echo "subtotal ".$kotak2[$i];
+		// // }
+		// // echo " id pasien = ".$data['pasien'];
+		
+		// // echo "Sukses Insert";
+		// echo $this->m_obatkeluar->insertDetailObatKeluar($data, $idOk);
+
+		//create obat keluar
+		$idOk = $this->m_obatkeluar->generateIdObatKeluar();
+		date_default_timezone_set('Asia/Jakarta');
+		$tgl = date("Y-m-d");
+		$data['pasien'] = $this->input->post("pasien"); 
+		echo $idOk." ".$this->id_apoteker." ".$data['pasien']." ".$tgl;
+		// $this->m_obatkeluar->insertObatKeluar($idOk, $this->id_apoteker, $data['pasien'], $tgl);
+
+		// create detail obat keluar
+		$detail_resep = array();
+		$data["idresep"] = $this->input->post("ada"); 
+		$kotak = explode(" ", $data["idresep"]);
+		$id_detail_ok = $this->m_obatkeluar->generateBanyakIdDetailObatKeluar(count($kotak)-1);
+		for ($i=1; $i < count($kotak); $i++) { 
+			// echo " Id resep ".$kotak[$i];
+			array_push($detail_resep, $kotak[$i]);
+		}
+		// print_r($id_detail_ok);
+
+		$query = $this->m_obatkeluar->selectDetailObatKeluar($detail_resep);
+		foreach ($query as $row) {
+			echo " Nama Obat ".$row->NAMA_OBAT;
+		}
+		// print_r($detail_resep);
+
 	}
+
 
 }

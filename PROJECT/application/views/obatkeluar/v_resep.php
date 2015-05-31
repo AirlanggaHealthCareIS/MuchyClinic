@@ -105,20 +105,26 @@
                   <td>Keterangan</td>
                   <td>Kategori</td>
                   <td>Jumlah</td>
+                  <td>Harga Satuan</td>
                   <td>Status</td>
+                  <td>Subtotal</td>
                 </thead>
                 <?php if ($this->session->flashdata('detailr')!=null): ?> 
-                  <?php $r = $this->session->flashdata('detailr'); $i=0; ?>
+                  <?php $r = $this->session->flashdata('detailr'); $i=0; $total = 0; ?>
                   <?php foreach ($r as $row): ?>
-                    <?php $i = $i + 1; ?>
+                    <?php $i = $i + 1;
+                      $total = $total + ($row->HARGA*$row->QTY_OBAT);
+                     ?>
                     <tr>
                       <td><?php echo $i; ?></td>
                       <td><?php echo $row->ID_OBAT; ?></td>
                       <td><?php echo $row->NAMA_OBAT; ?></td>
                       <td><?php echo $row->KET_RESEP; ?></td>
                       <td><?php echo $row->KATEGORI_OBAT; ?></td>
-                      <td>QTY</td>
-                      <td><input id="ada" class="ada" type="checkbox" data-ada="<?php echo $row->ID_OBAT; ?>" value="<?php echo $row->ID_OBAT; ?>" name="obatcek"> Ada</td>
+                      <td><?php echo $row->QTY_OBAT; ?></td>
+                      <td style="text-align:right"><?php echo $row->HARGA; ?></td>
+                      <td><input id="ada" class="ada" type="checkbox" data-ada="<?php echo $row->ID_DETAIL_RESEP; ?>" value="<?php echo $row->ID_DETAIL_RESEP; ?>" name="obatcek"> Ada</td>
+                      <td class="subtotal" type="normal" value="<?php echo ($row->HARGA*$row->QTY_OBAT); ?>" style="text-align:right"><?php echo ($row->HARGA*$row->QTY_OBAT); ?></td>
                     </tr>
                   <?php endforeach ?>
                 <?php endif ?>
@@ -131,9 +137,16 @@
                     <td>-</td>
                     <td>-</td>
                     <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
                   </tr>
                 <?php endif ?>
               </table>
+              <?php if ($this->session->flashdata('detailr')!=null): ?>
+              <div class="" style="text-align:right">
+                <h3 id="total">Total = <?php echo $total; ?></h3>
+              </div>
+              <?php endif ?>
               <!-- end of tabel detail resep -->
 
               <div style="text-align:right">
