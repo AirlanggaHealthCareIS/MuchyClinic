@@ -4,33 +4,44 @@
         <h1 class="page-header">Rawat Inap</h1>
       </div>
     </div>
-      <div class="container-fluid" style="margin-bottom:50px; ">
-          <div class="">
-            <div class="row">
-              <div class="col-md-8">
+    <div class="row">
+        <div class="col-md-6">
+          <form class="form-inline" action="<?php echo base_url()?>crawatinap" method="post">
+            <button type="submit"  class="btn btn-primary" style="width:100%">Lihat kamar</button>
+          </form>
+        </div>
+        <div class="col-md-6">
+            <button type="submit" disabled class="btn btn-primary" style="width:100%">Insert Rawat Inap</button>
+        </div>
+      </div>
+      <hr>
+          <div class="row">
+              <div class="col-md-8" style="text-align: left; border-right: #D9EDF7 0.12em solid;">
+                <h4 class="">Insert Rawat Inap</h4>
+                <hr>
                 <!-- pesan error -->
                 <?php if ($this->input->get('error')=='null'): ?>
                   <div class="alert alert-danger alert-dismissible" role="alert">
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <p>Please Fill in the blank</p>
+                    <p>Field Kosong, Mohon diisi dengan benar</p>
                   </div>
                 <?php endif ?>
                 <?php if ($this->input->get('act')=='not_found'): ?>
                   <div class="alert alert-danger alert-dismissible" role="alert">
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <p>Patient Not Found</p>
+                    <p>Pasien Tidak Terdaftar</p>
                   </div>
                 <?php endif ?>
                 <?php if ($this->input->get('error')=='symbol'): ?>
                   <div class="alert alert-danger alert-dismissible" role="alert">
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <p>No symbol here</p>
+                    <p>Mohon tidak memasukan simbol</p>
                   </div>
                 <?php endif ?>
                 <?php if ($this->input->get('act')=='kamar_penuh'): ?>
                   <div class="alert alert-danger alert-dismissible" role="alert">
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <p>Kamar Penuh</p>
+                    <p>Maaf, Kamar Penuh</p>
                   </div>
                 <?php endif ?>
                 <?php if ($this->input->get('succesfully')=='succesfully'): ?>
@@ -48,20 +59,20 @@
                   
                   <br></br>
 
-                  <table class="table table-bordered" style="border: 0px currentColor; border-image: none;">
+                  <table class="table">
                     
                     <tr>
-                    <td class="info">Id Pasien</td>
-                    <td class="info"> <?php echo $this->session->flashdata('idpasien'); ?></td>
+                    <td class="info" width="35%">Id Pasien</td>
+                    <td class="info">: <?php echo $this->session->flashdata('idpasien'); ?></td>
                     </tr>
                     <tr>
-                    <td class="">Nama Pasien</td>
-                    <td class=""><?php echo $this->session->flashdata('namapas'); ?></td>
+                    <td class="info">Nama Pasien</td>
+                    <td class="info">: <?php echo $this->session->flashdata('namapas'); ?></td>
                     </tr>
 
                     <tr>
                     <td class="info">no telp</td>
-                    <td class="info"><?php echo $this->session->flashdata('telppas'); ?></td>
+                    <td class="info">: <?php echo $this->session->flashdata('telppas'); ?></td>
                     </tr>
 
             
@@ -77,13 +88,13 @@
 
             <form action="<?php echo base_url()?>crawatinap/insertinap" method="post">
             <div class="row">
-              <div class="col-md-8">
+              <div class="col-md-8" style="text-align: left; border-right: #D9EDF7 0.12em solid;">
                 <label for="disabledTextInput">Kamar</label>
 
                 <select class="form-control" name="kamar">
                   <?php 
                       foreach ($getkam as $row) {?>
-                      <option value="<?php echo $row->ID_KAMAR_INAP?>" selected><?php echo $row->NAMA_KAMAR_INAP; ?></option>
+                      <option value="<?php echo $row->ID_KAMAR_INAP?>"><?php echo $row->NAMA_KAMAR_INAP; ?></option>
                   <?php    }?>
                 </select>
                 <br>
@@ -93,29 +104,20 @@
                 <select class="form-control" name="dokter">
                   <?php 
                       foreach ($getdok as $row) {?>
-                      <option value="<?php echo $row->ID_DOKTER?>" selected><?php echo $row->NAMA_DOKTER; ?></option>
+                      <option value="<?php echo $row->ID_DOKTER?>"><?php echo $row->NAMA_DOKTER; ?></option>
                   <?php    }?>
                 </select>
-                
-                
-                <br>
-                <div class="row">
+                <!-- <div class="row">
                   <div class="col-xs-6">
                     <label for="disabledTextInput">Tanggal masuk</label>
                       <div class="form-group">
-                          <label class="sr-only" for="exampleInputEmail3">Tanggal masuk</label>
                           <input type="date" name="tgl_masuk" class="form-control" id="tanggal" placeholder="tanggal masuk">
                       </div>
                   </div>
-                  <div class="col-xs-6">
-                    <!-- <label for="disabledTextInput">Tanggal keluar</label>
-                      <div class="form-group">
-                          <label class="sr-only" for="exampleInputEmail3">Tanggal keluar</label>
-                          <input type="date" name="tgl_keluar" class="form-control" id="tanggal2" placeholder="tanggal keluar">
-                      </div>-->
+                  <div class="col-xs-6" style="text-align: left; border-right: #D9EDF7 0.12em solid;">
                   </div>
                   
-                </div><br>
+                </div> -->
                 </div>
             
               <div class="col-md-2" style="padding-top:143px;"><br></br>
@@ -126,8 +128,9 @@
             </div>
             <button type="submit" class="btn btn-primary" style="width:150px">submit</button>
             </form>
+          <div class="row">
+            <div class="col-md-12"></div>
           </div>
-        </div>
-    
-  </div>
+          </div>
+            
 </div>
