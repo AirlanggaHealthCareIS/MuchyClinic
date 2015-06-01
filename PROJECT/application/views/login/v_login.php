@@ -57,6 +57,12 @@
             </div>  
             <?php endif ?>
 
+            <?php if ($this->input->get("error")=="n_login"): ?>
+            <div class = "alert alert-danger" role = "alert"> 
+              <p>sepurane boss login mu salah</p> 
+            </div>  
+            <?php endif ?>
+
               <form class="form-horizontal"action="<?php echo base_url(); ?>welcome/validasi " method="post">
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Username</label>

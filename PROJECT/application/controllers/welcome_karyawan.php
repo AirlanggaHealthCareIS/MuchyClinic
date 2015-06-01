@@ -5,7 +5,7 @@ class Welcome_karyawan extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('header');
+		$this->load->view('v_header');
 		$this->load->view('login/karyawan_login');
 		// $username = $this->getcoba_psi(1);
 		// echo $username;
@@ -35,8 +35,8 @@ class Welcome_karyawan extends CI_Controller {
 	{
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
-		$username1 = $this->inputvalidasi($username);
-		$password1 = $this->inputvalidasi($password);
+		// $username1 = $this->inputvalidasi($username);
+		// $password1 = $this->inputvalidasi($password);
 
 
 		if (($username==null || $username=="") && ($password==null || $password=="")) {
