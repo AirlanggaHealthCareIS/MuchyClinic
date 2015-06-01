@@ -1,4 +1,4 @@
-<div class="container" style=" width: 900px;">
+<div class="container">
 	<!-- <div class = "container" style="margin-top: 43px;"> -->
 		<h1>Resep</h1>
 				
@@ -8,21 +8,7 @@
 							</div>	
 						<?php endif ?>
 
-						
-
-						<?php if ($this->input->get('succesfully')=='succesfully'): ?>
-		                  <div class="alert alert-success alert-dismissible" role="alert">
-		                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		                    <p>Data Berhasil Tersimpan</p>
-		                  </div>
-		                <?php endif ?>
-
-		                <?php if ($this->input->get('resepsukses')=='succesfully'): ?>
-		                  <div class="alert alert-success alert-dismissible" role="alert">
-		                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		                    <p>Resep Berhasil Terinput</p>
-		                  </div>
-		                <?php endif ?>
+	
 
 		                <?php if ($this->input->get('error')=="null"): ?>
 							<div class="alert alert-danger" role="alert">
@@ -41,6 +27,10 @@
 							Maaf Symbol Tidak Diperbolehkan
 							</div>	
 						<?php endif ?>
+
+						
+
+
 	<div class = "row">
 		<div class = "col-md-4" >			
 			<form class ="form-inline" action="<?php echo base_url(); ?>resep/getidpemeriksaan" method="post">
@@ -71,6 +61,10 @@
 					<td class="info">Nama Dokter</td>
 					<td class="info"><?php echo $namadokter ?></td>
 				</tr>
+				<tr>
+					<td class="active">Keluhan</td>
+					<td class="active"><?php echo $keluhan ?></td>
+				</tr>
 			</table>
 			</form>	
 		</div>
@@ -78,31 +72,39 @@
 		<div class = "col-md-4" >
 				<form class ="form-inline" action="<?php echo base_url(); ?>resep/input" method="post">
 					<div class="form-group">
-						<label for="IDResep">ID Resep</label><br>
-						<input type="normal" name="idresep" class="form-control" id="IDResep" placeholder="ID Resep">
-					</div>	
-					<div class="form-group">
-						<label for="IDPemeriksaan">ID Pemeriksaan</label>
+						<label for="IDPemeriksaan">ID Pemeriksaan</label><br>
 						<input type="normal" disabled name="idpemeriksaan" class="form-control" id="IDPemeriksaan" placeholder="<?php echo $idpemeriksaan ?>">
 					</div>
+
 					<div class="form-group">
-						<label for="TglResep">Tanggal Resep</label>
+						<label for="NamaPasien">ID Pasien</label><br>
+						<input type="normal" disabled name="idpasien" class="form-control" id="NamaPasien" placeholder="<?php echo $idpasien ?>">
+					</div>
+
+					<div class="form-group">
+						<label for="NamaDokter">ID Dokter</label><br>
+						<input type="normal" disabled name="iddokter" class="form-control" id="NamaDokter"  placeholder="<?php echo $iddokter ?>">
+					</div>
+					
+					<div class="form-group">
+						<label for="IDResep">ID Resep</label><br>
+						<input type="normal" name="idresep" class="form-control" id="IDResep" placeholder="ID Resep" value="<?php echo $idresepx ?>">
+					</div>	
+
+					<div class="form-group">
+						<label for="TglResep">Tanggal Resep</label><br>
 						<input type="date" name="tglresep" class="form-control" id="TglResep" placeholder=" ">
 					</div>
+					
+					<br></br>
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary">Save Data Resep</button>
+					</div>
+						</form>
 		</div>
 
 		<div class = "col-md-4">
-			<label for="NamaPasien">ID Pasien</label><br>
-			<input type="normal" disabled name="idpasien" class="form-control" id="NamaPasien" placeholder="<?php echo $idpasien ?>">
-			<div class="form-group">
-				<label for="NamaDokter">ID Dokter</label><br>
-				<input type="normal" disabled name="iddokter" class="form-control" id="NamaDokter" placeholder="<?php echo $iddokter ?>">
-			</div>
-			<br></br>
-			<div class="form-group">
-				<button type="submit" class="btn btn-primary">Save Data Resep</button>
-			</div>
-				</form>
+			
 		</div>
 	
 	</div>
@@ -112,4 +114,24 @@
  				
 			</div>
 	</div>
+</div>
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Resep - ID Pemeriksaan</h4>
+      </div>
+      <div class="modal-body">
+          Pasien Belum Melakukan Pemeriksaan
+      </div>      
+    </div>
+  </div>
 </div>
