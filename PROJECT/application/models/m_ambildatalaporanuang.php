@@ -7,10 +7,38 @@ class M_ambildatalaporanuang extends CI_Model {
         }
 
 		public function getlaporanuang ($tanggal_awal, $tanggal_akhir){
-		$query = $this->db->query("SELECT T.`TOTAL`, DTR.`SUBTOTAL`, DTP.`SUBTOTAL`, DTO.`SUBTOTAL`, T.`TGL_TRANSAKSI`, T.`ID_TRANSAKSI`
-					FROM `TRANSAKSI` AS T, `DETAIL_TRANSAKSI_RAWAT_INAP` AS DTR, `DETAIL_TRANSAKSI_OBAT` AS DTO, `DETAIL_TRANSAKSI_PERIKSA` AS DTP
-                    WHERE T.`ID_TRANSAKSI`= DTR.`ID_TRANSAKSI` AND DTR.`ID_TRANSAKSI`= DTP.`ID_TRANSAKSI` AND DTP.`ID_TRANSAKSI`= DTO.`ID_TRANSAKSI` AND T.`TGL_TRANSAKSI` BETWEEN '".$tanggal_awal."' AND '".$tanggal_akhir."'");
+		$query = $this->db->query("SELECT T.`ID_TRANSAKSI`, K.`NAMA_K`, T.`TGL_TRANSAKSI`, T.`JAM_TRANSAKSI`, T.`TOTAL`
+								   FROM `TRANSAKSI` AS T, `KARYAWAN` AS K
+								   WHERE K.`ID_KARYAWAN` = T.`ID_KASIR` AND T.`TGL_TRANSAKSI` BETWEEN '".$tanggal_awal."' AND '".$tanggal_akhir."'");
 		return $query;
 		}
+
+
+		public function getlaporanuang2 ($jumlah, $urut_berdasarkan){
+		$query = $this->db->query(" SELECT T.`ID_TRANSAKSI`, K.`NAMA_K`, T.`TGL_TRANSAKSI`, T.`JAM_TRANSAKSI`, T.`TOTAL`
+						            FROM `TRANSAKSI` AS T, `KARYAWAN` AS K
+					                WHERE K.`ID_KARYAWAN` = T.`ID_KASIR` AND  TIMESTAMPDIFF(MONTH, TGL_TRANSAKSI, CURDATE()) < '".$jumlah."'
+					                ORDER BY T.`TGL_TRANSAKSI` ".$urut_berdasarkan);
+		return $query;
+		}
+
+		public function getlaporanuang3 ($jumlah, $urut_berdasarkan){
+		$query = $this->db->query(" SELECT T.`ID_TRANSAKSI`, K.`NAMA_K`, T.`TGL_TRANSAKSI`, T.`JAM_TRANSAKSI`, T.`TOTAL`
+						            FROM `TRANSAKSI` AS T, `KARYAWAN` AS K
+					                WHERE K.`ID_KARYAWAN` = T.`ID_KASIR` AND  TIMESTAMPDIFF(DAY, TGL_TRANSAKSI, CURDATE()) < '".$jumlah."'
+					                ORDER BY T.`TGL_TRANSAKSI` ".$urut_berdasarkan);
+		return $query;
+		}
+
+		public function getlaporanuang4 ($jumlah, $urut_berdasarkan){
+		$query = $this->db->query(" SELECT T.`ID_TRANSAKSI`, K.`NAMA_K`, T.`TGL_TRANSAKSI`, T.`JAM_TRANSAKSI`, T.`TOTAL`
+						            FROM `TRANSAKSI` AS T, `KARYAWAN` AS K
+					                WHERE K.`ID_KARYAWAN` = T.`ID_KASIR` AND  TIMESTAMPDIFF(YEAR, TGL_TRANSAKSI, CURDATE()) < '".$jumlah."'
+					                ORDER BY T.`TGL_TRANSAKSI` ".$urut_berdasarkan);
+		return $query;
+		}
+
+
+
 
 }

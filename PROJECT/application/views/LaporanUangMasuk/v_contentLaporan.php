@@ -4,7 +4,7 @@
  
 
         <div class="row">
-          <div class="col-md-5">
+          <div class="col-md-6">
             <?php if ($this->input->get('error')=='null'): ?>
               <div class ="alert alert-danger alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -19,7 +19,7 @@
               <input type="radio" name="rad" id="rad1" value="1" class="rad"/> Jangka Waktu
             </div>
             <div class="col-xs-7">
-              <input type="radio" name="rad" id="rad2" value="2" class="rad"/> n Transaksi Terakhir
+              <input type="radio" name="rad" id="rad2" value="2" class="rad"/> n Periode Laporan Terakhir
             </div>
             </div>
 
@@ -32,20 +32,20 @@
                         <div class="form-group">
                           <label for="tanggal" class="col-sm-4 control-label">Periode Awal</label>
                           <div class="col-sm-8">
-                            <input type="date" name="tanggal_awal" value="" class="form-control" id="tanggal" placeholder="input tanggal">
+                            <input type="date" name="tanggal_awal" value="" class="form-control" id="tanggal" placeholder="input tanggal" style = "width:270px">
                           </div>
                         </div>
                          
                         <div class="form-group">
                           <label for="tanggal" class="col-sm-4 control-label">Periode Akhir</label>
                           <div class="col-sm-8">
-                            <input type="date" name="tanggal_akhir" value="" class="form-control" id="tanggal" placeholder="input tanggal">
+                            <input type="date" name="tanggal_akhir" value="" class="form-control" id="tanggal" placeholder="input tanggal" style = "width:270px">
                           </div>
                         </div>
                     <button type="submit" class="btn btn-info" style = "width:100px">Submit</button>
                     <br></br>
                   </form>
-                  <br></br>         
+                         
                 </div>
             </div>
 
@@ -53,42 +53,35 @@
                 <div class="form-group">
                        <form class="form-horizontal" action="<?php echo base_url(); ?>laporanuang/validasiTransaksi" method="post">
                          <div class="form-group">
-                          <label for="inputPassword3" class="col-sm-6 control-label">Jumlah Transaksi Terakhir</label>
-                          <div class="col-sm-6">
-                            <select class="form-control" style = "width:200px">
-                              <option>- Transaksi Terakhir -</option>
-                              <option>5 Transaksi Terakhir</option>
-                              <option>10 Transaksi Terakhir</option>
-                              <option>15 Transaksi Terakhir</option>
+                          <label for="inputPassword3" class="col-sm-4 control-label">Periode Laporan</label>
+                          <div class="col-sm-4">
+                            <select class="form-control"  name="jumlah_transaksi" style ="margin-left:25px">
+                              <option value="0">- Periode -</option>
+                              <option value="hari">Hari</option>
+                              <option value="bulan">Bulan</option>
+                              <option value="tahun">Tahun</option>
                             </select>
+                          </div>
+                          <div class="col-sm-4">
+                           <input name="jumlah" type="text" class="form-control" style = "width:150px" placeholder="Jumlah">
                           </div>
                         </div>
 
+                        
                         <div class="form-group">
-                          <label for="inputPassword3" class="col-sm-6 control-label">Tampil Berdasarkan</label>
-                          <div class="col-sm-6">
-                            <select class="form-control" style = "width:200px">
-                              <option>- Tampil Berdasarkan -</option>
-                              <option>Tanggal Transaksi</option>
-                              <option>Jumlah Total Biaya</option>
-                            </select>
-                          </div>
-                        </div>
-
-                        <div class="form-group">
-                          <label for="inputPassword3" class="col-sm-6 control-label">Urut Berdasarkan</label>
-                          <div class="col-sm-6">
-                            <select class="form-control" style = "width:200px">
-                              <option>- Urut Berdasarkan -</option>
-                              <option>Dari Yang Terkecil</option>
-                              <option>Dari Yang Terbesar</option>
+                          <label for="inputPassword3" class="col-sm-4 control-label">Urut Berdasarkan</label>
+                          <div class="col-sm-8">
+                            <select class="form-control" name="urut_berdasarkan" style ="margin-left:20px">
+                              <option value="0">- Urut Berdasarkan -</option>
+                              <option value="ASC">Dari Tanggal Yang Terkecil</option>
+                              <option value="DESC">Dari Tanggal Yang Terbesar</option>
                             </select>
                           </div>
                         </div>
                           <button type="submit" class="btn btn-info" style = "width:100px">Submit</button>
                           <br></br>
                       </form>
-                      <br></br>
+                    
                 </div>
             </div>
 
@@ -108,18 +101,24 @@
                   </script>
       </div>
 
-    <div class="col-md-7">  
+    <div class="col-md-6">  
     </div>
 
-          <div class="">
+
+        </div>
+        <br></br>
+
+
+
+        <div class="row">
+          <div class="col-md-7">
             <table class="table table-bordered">
           <tr style="background-color: rgb(226, 246, 245);">
             <td ><center>Tanggal Transaksi</center></td>
             <td ><center>Id Transaksi</center></td>
-            <td ><center>Total Bayar Rawat Inap</center></td>
-            <td ><center>Total Bayar Pemeriksaaan</center></td>
-            <td ><center>Total Bayar Obat</center></td>
-            <td ><center>Total Jumlah Pembayaran</center></td>
+            <td ><center>Nama Kasir</center></td>
+            <td ><center>Waktu Transaksi</center></td>
+            <td ><center>Total Pembayaran</center></td>
           </tr>
 
               <?php if ($dlaporanuang!=null): ?>       
@@ -128,23 +127,27 @@
                        <tr >
                         <td ><?php echo $row->TGL_TRANSAKSI ?></td>
                         <td ><?php echo $row->ID_TRANSAKSI?></td>
-                        <td ><?php echo $row->SUBTOTAL ?></td>
-                        <td ><?php echo $row->SUBTOTAL ?></td>
-                        <td ><?php echo $row->SUBTOTAL ?></td>
+                        <td ><?php echo $row->NAMA_K ?></td>
+                        <td ><?php echo $row->JAM_TRANSAKSI ?></td>
                         <td ><?php echo $row->TOTAL ?></td>
                       </tr>
 
                     <?php } ?>
                     <?php endif ?>
             </table>
-             <button type="submit" class="btn btn-info" style = "width:100px">Cetak</button>
+             <button type="submit" class="btn btn-info" style = "width:100px" href="javascript:printDiv('id-elemen-yang-ingin-di-print');">Cetak</button>
              <button type="submit" class="btn btn-info" style = "width:150px">Tampilkan Grafik</button>
           </div>
 
 
+          <div class="col-md-5">  
           </div>
-        <br></br>
+
+
+
+          </div>
         </div>         
+
 
       </div>
 
