@@ -15,16 +15,43 @@ class Laporanuang extends CI_Controller {
 		$this->load->view("v_footer");	
 	}
 
+	public function testing (){
+		$this->load->library ('unit_test');
+		$this->unit->run($this->inputValidasi("", ""),true, "Test Method Validasi Periode Null");
+		$this->unit->run($this->inputValidasi(2012-01-12, 2012-09-13),true, "Test Method Validasi Periode Awal dan Akhir True");
+		echo $this->unit->report();
+	}
+	public function inputValidasi($tanggal_awal, $tanggal_akhir){
+		if ($tanggal_awal==null || $tanggal_akhir==null ){
+			return "error=null";
+		}
+		else if ($tanggal_awal>$tanggal_akhir) { //untuk symbol
+			return "error=periodefalse";
+		}	
+		else {
+			return "true";
+		}
+	}
+
+
 	public function validasi(){
 		$tanggal_awal = $this->input->post('tanggal_awal');
 		$tanggal_akhir = $this->input->post('tanggal_akhir');
-		
-		if ($tanggal_awal==null || $tanggal_awal=="" || $tanggal_akhir==null || $tanggal_akhir==""){
+		//$this->checktgl($tanggal_awal, $tanggal_akhir);
+		$id2 = $this->inputValidasi($tanggal_awal, $tanggal_akhir);
+
+		// if ($tanggal_awal=="error=null" || $tanggal_akhir=="error=null"){
+		// 	redirect(base_url().'laporanuang?error=null');
+		// }
+		if ($id2=="error=null"){
 			redirect(base_url().'laporanuang?error=null');
 		}
-		else {
-			$this->tampil($tanggal_awal, $tanggal_akhir);
+		else if ($id2=="error=periodefalse"){
+			redirect(base_url().'laporanuang?error=periodefalse');
 			
+		}
+		else if ($id2=="true"){
+			$this->tampil($tanggal_awal, $tanggal_akhir);	
 		}
 	}
 
@@ -140,6 +167,74 @@ class Laporanuang extends CI_Controller {
 		else{ // jika hasil tidak ada
 			redirect(base_url().'laporanuang?error=notfound');
 		}
+	}
+
+
+	public function cetak(){
+		// echo "y6thtrh";\
+		$nama = "Bagus";
+		$html = '
+		<html>
+		<head>
+			<title></title>
+		</head>
+		<body>
+			<img src="'.base_url().'assets/images/header1.png" class="" alt="Responsive image">
+
+			<h1>Laporan Pendapatan Muchy Clinic</h1>
+			<h7>Periode : </h7>
+			<br>
+			</br>
+			<br>
+			<br>
+
+			<table class="table table-bordered">
+          <tr style="background-color: rgb(226, 246, 245);">
+            <td width = "25%"><center>Tanggal Trnsaksi</center></td>
+            <td width = "25%"><center>Id Transaksi</center></td>
+            <td width = "25%"><center>Nama Kasir</center></td>
+            <td width = "25%"><center>Waktu Transaksi</center></td>
+            <td width = "25%"><center>Total Pembayaran</center></td>
+          </tr>
+
+
+          <tr>
+            <td ><center>...</center></td>
+            <td ><center>...</center></td>
+            <td ><center>...</center></td>
+            <td ><center>...</center></td>
+            <td ><center>...</center></td>
+          </tr>
+          <tr>
+            <td ><center>...</center></td>
+            <td ><center>...</center></td>
+            <td ><center>...</center></td>
+            <td ><center>...</center></td>
+            <td ><center>...</center></td>
+          </tr>
+          <tr>
+            <td ><center>...</center></td>
+            <td ><center>...</center></td>
+            <td ><center>...</center></td>
+            <td ><center>...</center></td>
+            <td ><center>...</center></td>
+          </tr>
+        </table>
+
+
+
+		<p>Nama : '.$nama.'</p>
+		</body>
+		</html>
+		';
+		
+
+
+		$this->load->library('pdf');
+	    $pdf = $this->pdf->load();
+	    $pdf->WriteHTML($html); // write the HTML into the PDF
+	    $pdf->Output(); // save to file because we can
+
 	}
 
 
