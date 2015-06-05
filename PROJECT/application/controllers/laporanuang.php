@@ -19,8 +19,15 @@ class Laporanuang extends CI_Controller {
 		$this->load->library ('unit_test');
 		$this->unit->run($this->inputValidasi("", ""),true, "Test Method Validasi Periode Null");
 		$this->unit->run($this->inputValidasi(2012-01-12, 2012-09-13),true, "Test Method Validasi Periode Awal dan Akhir True");
+		$this->unit->run($this->inputValidasitransaksi("","",""),true,  "Test Method Validasi Periode n Transaksi Terakhir Null");
+		$this->unit->run($this->inputValidasitransaksi("hari","10","Urut Dari Yang Terkecil"),true,  "Test Method Validasi Periode n Hari Transaksi Terakhir True");
+		$this->unit->run($this->inputValidasitransaksi("bulan","12","Urut Dari Yang Terbesar"),true, "Test Method Validasi Periode n Bulan Transaksi Terakhir True");
+		$this->unit->run($this->inputValidasitransaksi("tahun","1","Urut Dari Yang Terkecil"),true,  "Test Method Validasi Periode n Tahun Transaksi Terakhir True");
 		echo $this->unit->report();
 	}
+
+	
+
 	public function inputValidasi($tanggal_awal, $tanggal_akhir){
 		if ($tanggal_awal==null || $tanggal_akhir==null ){
 			return "error=null";
@@ -33,16 +40,27 @@ class Laporanuang extends CI_Controller {
 		}
 	}
 
+	public function inputValidasitransaksi($period, $jumlah, $urut_berdasarkan){
+		if ($period=="0" || $jumlah==null || $jumlah=="" || $urut_berdasarkan=="0") {
+			return "error=null";
+		}
+		else if ($period == "hari"){
+			return "true1";
+		}
+		else if ($period == "bulan"){
+			return "true2";
+		}
+		else if ($period == "tahun"){
+			return "true3";
+		}
+	}
+
 
 	public function validasi(){
 		$tanggal_awal = $this->input->post('tanggal_awal');
 		$tanggal_akhir = $this->input->post('tanggal_akhir');
-		//$this->checktgl($tanggal_awal, $tanggal_akhir);
 		$id2 = $this->inputValidasi($tanggal_awal, $tanggal_akhir);
 
-		// if ($tanggal_awal=="error=null" || $tanggal_akhir=="error=null"){
-		// 	redirect(base_url().'laporanuang?error=null');
-		// }
 		if ($id2=="error=null"){
 			redirect(base_url().'laporanuang?error=null');
 		}
@@ -60,17 +78,19 @@ class Laporanuang extends CI_Controller {
 		$period = $this->input->post('jumlah_transaksi');
 		$jumlah = $this->input->post('jumlah');
 		$urut_berdasarkan = $this->input->post('urut_berdasarkan');
+		$id2 = $this->inputValidasitransaksi($period, $jumlah, $urut_berdasarkan);
+		$id3 = $this->inputValidasitransaksi($jumlah, $urut_berdasarkan);
 		
-		if ($period=="0" || $jumlah==null || $jumlah=="" || $urut_berdasarkan=="0") {
+		if ($id2=="error=null"){
 			redirect(base_url().'laporanuang?error=null');
 		}
-		else if ($period == "hari"){
+		else if ($id2 == "true1"){
 			$this->tampilTransaksiHari($jumlah, $urut_berdasarkan);
 		}
-		else if ($period == "bulan"){
+		else if ($id2 == "true2"){
 			$this->tampilTransaksiBulan($jumlah, $urut_berdasarkan);
 		}
-		else if ($period == "tahun"){
+		else if ($id2 == "true3"){
 			$this->tampilTransaksiTahun($jumlah, $urut_berdasarkan);
 		}
 		
