@@ -5,6 +5,8 @@ class Resep extends CI_Controller{
 	function Resep(){
 		parent::__construct();
 		$this->header[0] = "active"; //untuk indikasi active header
+		$this->id_user = "";
+		$this->user = "Izmul Zamroni";
 	}
 	
 	//=================================================OPENING=====================================

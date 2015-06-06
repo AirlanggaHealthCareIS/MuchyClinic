@@ -38,7 +38,7 @@
 
           <div class="text-center" style="margin-bottom:20px">
             <i class="fa fa-user fa-5" style="font-size: 80px; color: #FFFFFF;"></i> 
-            <h4 style="color: #fff;">Ismul Zamroni</h4>
+            <h4 style="color: #fff;"><?php if (isset($this->user)) echo $this->user; ?></h4>
           </div>
 
           <ul class="nav" id="side-menu">
