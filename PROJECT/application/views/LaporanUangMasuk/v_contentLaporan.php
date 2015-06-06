@@ -26,7 +26,7 @@
                              
             <!-- form yang mau ditampilkan-->
             <br></br>
-            <div id="form1" style="display:none">
+            <div id="form1" style ="<?php if ($this->session->flashdata('statusJangkaWaktu')==false){ echo 'display:none;'; } ?>">
                 <div class="form-group">
                      <form class="form-horizontal" action="<?php echo base_url(); ?>laporanuang/validasi" method="post">
                         <div class="form-group">
@@ -49,7 +49,7 @@
                 </div>
             </div>
 
-            <div id="form2" style="display:none">
+            <div id ="form2" style ="<?php if ($this->session->flashdata('statusPeriode')==false){ echo 'display:none;'; } ?>">
                 <div class="form-group">
                        <form class="form-horizontal" action="<?php echo base_url(); ?>laporanuang/validasiTransaksi" method="post">
                          <div class="form-group">
@@ -125,18 +125,21 @@
                    <?php foreach($dlaporanuang->result() as $row) {?>
                     
                        <tr >
-                        <td ><?php echo $row->TGL_TRANSAKSI ?></td>
-                        <td ><?php echo $row->ID_TRANSAKSI?></td>
-                        <td ><?php echo $row->NAMA_K ?></td>
-                        <td ><?php echo $row->JAM_TRANSAKSI ?></td>
-                        <td ><?php echo $row->TOTAL ?></td>
+                        <td ><center><?php echo $row->TGL_TRANSAKSI ?> </center></td>
+                        <td ><center><?php echo $row->ID_TRANSAKSI?>   </center></td>
+                        <td ><center><?php echo $row->NAMA_K ?>        </center></td>
+                        <td ><center><?php echo $row->JAM_TRANSAKSI ?> </center></td>
+                        <td ><p class="text-right"><?php echo $row->TOTAL ?></p></td>
                       </tr>
 
                     <?php } ?>
                     <?php endif ?>
             </table>
-             <button type="submit" class="btn btn-info" style = "width:100px" href="javascript:printDiv('id-elemen-yang-ingin-di-print');">Cetak</button>
+             <form class="form-horizontal" action="<?php echo base_url(); ?>laporanuang/cetak" method="post">
+             <button type="submit" class="btn btn-info" style = "width:100px">Cetak</button>
              <button type="submit" class="btn btn-info" style = "width:150px">Tampilkan Grafik</button>
+             </form>
+
           </div>
 
 
@@ -164,6 +167,22 @@
       </div>
       <div class="modal-body">
           Laporan Keuangan Dengan Periode Tersebut Belum Tersedia.
+      </div>      
+    </div>
+  </div>
+</div>
+
+      <!-- Modal -->
+<div class="modal fade" id="myModal4"tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Laporan Keuangan</h4>
+      </div>
+      <div class="modal-body">
+          Periode Awal dan Periode Akhir Salah (Periode Awal > Periode Akhir)<br>
+          Mohon Periksa dan Isikan Periode Laporan Dengan Benar !
       </div>      
     </div>
   </div>
