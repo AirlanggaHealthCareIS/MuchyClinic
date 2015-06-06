@@ -13,6 +13,19 @@ class M_kasir extends CI_Model {
 	return $query;
 	}
 
+	public function cekidpasien($idpasien){
+	$query4 = $this->db->query("SELECT * FROM 'pasien' WHERE id_pasien='".$idpasien."'");
+	if ($query4->num_rows()>0) {
+		return true;
+	} else {
+		return false;
+		} 
+	}
+	public function getid($id) {
+		$query = $this->db->query("SELECT ID_PASIEN, NAMA_PASIEN FROM 'pasien' WHERE id_pasien='".$idpasien."");
+		return $query->result();
+	}
+
     //cek id pasien dalam tabel rawat inap
     public function checkidKamar($idpasien){
 		$query1 = $this->db->query("SELECT * FROM RAWAT_INAP WHERE id_pasien='".$idpasien."'");
@@ -104,6 +117,16 @@ class M_kasir extends CI_Model {
 			return false;
 		}
 	}
+	public function getcetaktransaksiobat ($id){
+		$query = $this->db->query("SELECT ok.TGL_OBAT_KELUAR, o.NAMA_OBAT, dok.KETERANGAN, dok.QTY, o.HARGA, dok.SUBTOTAL FROM obat_keluar AS ok, obat AS o, detail_obat_keluar AS dok WHERE o.ID_OBAT = dok.ID_OBAT AND dok.ID_OBAT_KELUAR= ok.id_OBAT_KELUAR AND ok.ID_PASIEN = '".$id."'");
+		return $query;
+	}
+		// $query = $this->db->query("SELECT T.`ID_TRANSAKSI`, K.`NAMA_K`, T.`TGL_TRANSAKSI`, T.`JAM_TRANSAKSI`, T.`TOTAL`
+		// 						   FROM `detail_obat_keluar`
+		// 						   WHERE id_pasien='".$idpasien."'");
+		// return $query;
+		// }
+
 	// public function checkidPasienTransaksi2($idpasien){
 	// 	$query = $this->db->query("SELECT * FROM TRANSAKSI WHERE id_pasien='".$idpasien."'");
 	// 	if ($query->num_rows()>0) {

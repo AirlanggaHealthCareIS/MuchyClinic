@@ -3,15 +3,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Kasir extends CI_Controller {
 
+	public function Kasir(){
+		parent::__construct();
+		$this->load->model("m_kasir");
+	}
+
 	public function index($idpasien = "") {
 		
 		if ($idpasien!="") {
 			$this->checkDatabase($idpasien);
 		}
 
+		$data = array("tanggal"=>"", "transaksi"=>"", "keterangan"=>"", "qty"=>"", "harga"=>"", "subtotal"=>"", "dtransaksiobat"=>null); //tampil data di tabel
+
 		$this->load->view("v_header");
 		$this->load->view("kasir/v_contain");
 		$this->load->view("v_footer");
+
+		// $html="bagus";
+		// $_SESSION['cetak2']=$html;
 	}
 
 	public function validation(){
@@ -115,6 +125,8 @@ class Kasir extends CI_Controller {
 			redirect(base_url().'kasir?error=invalidid');
 			return FALSE;
 		}
+
+
 			//redirect(base_url().'kasir');
 	}
 
@@ -253,6 +265,42 @@ class Kasir extends CI_Controller {
 		}
 	}
 
+	public function kembali ($byr, $id) {
+
+		$kembali = 0;
+		$byr=$this->input->post('bayar');
+		$total = $this->gethitung($id);
+
+		// if ($byr>$total && $total==null || $byr>$total && $total==0) {
+		// 	redirect(base_url().'kasir/index/'.$id.'?error=nullidpasien');
+		// }
+
+		if ($byr==$total || $byr>$total) {
+			$kembali = $byr - $total;
+			//redirect(base_url().'kasir/index/'.$id);
+
+		return $kembali;	
+		} 
+	}
+
+	public function bayar ($byr, $id) {
+
+		$kembali = 0;
+		$byr=$this->input->post('bayar');
+		$total = $this->gethitung($id);
+
+		// if ($byr>$total && $total==null || $byr>$total && $total==0) {
+		// 	redirect(base_url().'kasir/index/'.$id.'?error=nullidpasien');
+		// }
+
+		if ($byr==$total || $byr>$total) {
+			$kembali = $byr - $total;
+			//redirect(base_url().'kasir/index/'.$id);
+
+		return $byr;	
+		} 
+	}
+
 	public function saveTransaksi($id) {
 
 		//untuk set tanggal transaksi
@@ -286,5 +334,168 @@ class Kasir extends CI_Controller {
 		}
 
 		echo $id;
+	}
+
+	public function tampil($id) {
+		$this->load->database();
+		$total = 0;
+
+		$this->session->set_flashdata('idpasien', $id);
+		$this->load->model('m_kasir');
+		$query = $this->m_kasir->getcariid($id);
+		// if ($query->num_rows() > 0) {
+		// 	$query = $query->row();
+		// 	$this->storevalue($query->ID_PASIEN, $query->NAMA_PASIEN, $query->JENIS_KELAMIN_PASIEN);
+		// }
+
+		// $query4 = $this->m_kasir->cekidpasien($id);
+		// if ($query4->num_rows() > 0) {
+		// 	$pasien = $this->m_kasir->getid($id);
+
+		// 	$this->session->set_flashdata('detail',$pasien);
+
+		// 	# code...
+		// }
+
+		$query1 = $this->m_kasir->checkidKamar($id);
+		if ($query1==true) {
+			$dkamar = $this->m_kasir->getKamar($id); //get data detail kamar
+
+			foreach ($dkamar as $k) {
+				$total = $total + $k->SUBTOTAL;
+				$this->session->set_flashdata('total', $total);
+			}
+
+			$this->session->set_flashdata('detailkamar', $dkamar);
+
+		}
+
+		$query2 = $this->m_kasir->checkidPemeriksaan($id);
+        if ($query2==true) {
+			$dpemeriksaan = $this->m_kasir->getPemeriksaan($id);
+			
+			foreach ($dpemeriksaan as $p) {
+				$total = $total + $p->SUBTOTAL;
+				$this->session->set_flashdata('total', $total);
+			}
+
+			$this->session->set_flashdata('detailpemeriksaan', $dpemeriksaan);
+
+		}
+
+		$query3 = $this->m_kasir->checkidObat($id);
+		if ($query3==true) {
+			$dobat = $this->m_kasir->getObat($id);
+
+			foreach ($dobat as $o) {
+				$total = $total + $o->SUBTOTAL;
+				$this->session->set_flashdata('total', $total);
+			}
+
+			$this->session->set_flashdata('detailobat', $dobat);
+			//return $total;
+			$total = $this->gethitung($id);
+			$byr = $this->bayar($byr, $id);
+			$kembali = $this->kembali($byr, $id);
+
+
+
+
+			$html = '<html>
+			<head>
+				<title></title>
+			</head>
+			<body>
+
+			<img src="'.base_url().'assets/images/muchy.jpg" class="" alt="Responsive image">
+				<h4><center>Transaksi Pembayaran Muchy Clinic</center></h4>
+
+				
+
+				<table class="">
+					<tr style="background-color: rgb(226, 246, 245);">
+			
+						<td width = "10%"><center>Tanggal</center></td>
+			            <td width = "45%"><center>Transaksi</center></td>
+			            <td width = "15%"><center>Keterangan</center></td>
+			            <td width = "5%"><center>QTY</center></td>
+			            <td width = "10%"><center>Harga</center></td>
+			            <td width = "15%"><center>SubTotal</center></td>
+
+					<tr>
+					';
+
+
+			foreach ($dkamar as $k) {
+				$html = $html.'
+
+              <tr class="active">
+                <td>'.$k->TGL_MASK.'</td>
+                <td>Kamar Rawat Inap : '.$k->NAMA_KAMAR_INAP.'</td>
+                <td>'.$k->KETERANGAN.'</td>
+                <td>'.$k->QTY.'</td>
+                <td>'.$k->TARIF_KMR.'</td>
+                <td>'.$k->SUBTOTAL.'</td>
+              </tr>';
+            }
+
+            foreach ($dpemeriksaan as $p) {
+				$html = $html.'
+
+              <tr class="success">
+                <td>'.$p->TANGGAL_PERIKSA.'</td>
+                <td>Tindakan : '.$p->NAMA_TINDAKAN.'</td>
+                <td>'.$p->KETERANGAN.'</td>
+                <td>'.$p->QTY.' </td>
+                <td>'.$p->TARIF_TINDAKAN.'</td>
+                <td>'.$p->SUBTOTAL.'</td>
+              </tr>';
+            }
+			
+            foreach ($dobat as $o) {
+            	$html = $html.'
+	              <tr class="danger">
+	                <td>'.$o->TGL_OBAT_KELUAR.'</td>
+	                <td>Obat : '.$o->NAMA_OBAT.'</td>
+	                <td>'.$o->KETERANGAN.'</td>
+	                <td>'.$o->QTY.'</td>
+	                <td>'.$o->HARGA.'</td>
+	                <td>'.$o->SUBTOTAL.'</td>
+	              </tr>';
+
+	              
+            }
+				
+			$html = $html.'
+				</table>
+
+				<br>
+				<td width = "100%">Total : '.$total.'</td>
+				<td width = "100%">bayar : '.$byr.'</td>
+				<td width = "100%">kembali : '.$kembali.'</td>
+
+
+			</body>
+			</html>';
+		
+		return $html;
+
+		}
+
+		else { // jika hasil tidak ada
+
+			redirect(base_url().'kasir/cetaktransaksi?error=notfound');
+		}
+	}
+
+	public function cetak() {
+	
+		$html = $this->tampil("P0001");
+
+		$this->load->library('pdf');
+	    $pdf = $this->pdf->load();
+	    $pdf->SetFooter('Muchy Clinic'.'|{PAGENO}|'.date(DATE_RFC822));
+	    $pdf->WriteHTML($html); // write the HTML into the PDF
+	    $pdf->Output(); // save to file because we can
 	}
 }

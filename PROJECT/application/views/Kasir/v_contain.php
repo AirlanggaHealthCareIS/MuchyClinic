@@ -287,10 +287,15 @@
             <br></br>
             <br>
 
+<!--             <table>
+  <tr><td><?php echo $tes;?><td></tr>
+</table> -->
+
             <div class="row">
               <div class="col-md-3"> 
                  <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                <button type="button" class="btn btn-primary">Print</button>
+                 <form class="form-inline" action="<?php echo base_url(); ?>kasir/cetak" method="post">
+                <button type="submit" class="btn btn-primary">Print</button>
               </div>
 
               <div class="col-md-3"> 
