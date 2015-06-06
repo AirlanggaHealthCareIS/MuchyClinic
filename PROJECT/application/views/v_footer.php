@@ -63,6 +63,7 @@
     <script src="<?php echo base_url(); ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- Metis Menu Plugin JavaScript -->
     <script src="<?php echo base_url(); ?>assets/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/obatmasuk.js"></script>
     <!-- Morris Charts JavaScript -->
     <script src="<?php echo base_url(); ?>assets/bower_components/raphael/raphael-min.js"></script>
     <script src="<?php echo base_url(); ?>assets/bower_components/morrisjs/morris.min.js"></script>
