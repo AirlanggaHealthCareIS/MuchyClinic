@@ -1,10 +1,10 @@
 <div class="container-fluid">
-      <div class="container">
+      <div class="">
         <h1>Jadwal</h1>
       </div>
     </div>
     <div class="container-fluid width: 900px">
-      <div class="container">
+      <div class="">
         
         <?php if ($this->input->get('error')=='null'): ?>
           <div class="alert alert-danger" role="alert">
@@ -18,7 +18,7 @@
            
             <form class="form-horizontal" action="<?php echo base_url(); ?>lihatjadwal/validasi" method ="post">
 
-              <div class="form-group">
+              <!-- <div class="form-group">
                 
                     <label for="ID Aktor" class="col-sm-2 control-label">ID Aktor</label>
                     <div class="col-sm-10">
@@ -32,7 +32,7 @@
                       </div>
                     </div>
                 </div>
-
+ -->
                 <div>
                   <table class="table">
                     <tr>
@@ -55,6 +55,8 @@
                       <th class="info">Jam</th>
                     </tr>
 
+                  <?php if ($this->idaaktor == "A"): ?>
+
                   <?php if ($lihatjadwal!=null): ?>
                       
                    <?php foreach($lihatjadwal->result() as $row) {?>
@@ -67,6 +69,47 @@
                     <?php } ?>
 
                     <?php endif ?>
+
+                    <?php endif ?>
+
+
+
+                  <?php if ($this->idaaktor == "D"): ?>
+
+                  <?php if ($lihatjadwal!=null): ?>
+                      
+                   <?php foreach($lihatjadwal->result() as $row) {?>
+                    
+                      <tr>
+                        <td class="active"><?php echo $row->HARI_D ?></td>
+                        <td class="active"><?php echo $row->JAM_D ?></td>
+                      </tr>
+
+                    <?php } ?>
+
+                    <?php endif ?>
+
+                    <?php endif ?>
+
+
+
+                  <?php if ($this->idaaktor == "K"): ?>
+
+                  <?php if ($lihatjadwal!=null): ?>
+                      
+                   <?php foreach($lihatjadwal->result() as $row) {?>
+                    
+                      <tr>
+                        <td class="active"><?php echo $row->HARI_K ?></td>
+                        <td class="active"><?php echo $row->JAM_K ?></td>
+                      </tr>
+
+                    <?php } ?>
+
+                    <?php endif ?>
+
+                    <?php endif ?>
+
                   </table>
                     
                 </div>
