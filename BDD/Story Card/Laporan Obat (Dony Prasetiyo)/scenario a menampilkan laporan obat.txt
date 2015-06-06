@@ -1,6 +1,0 @@
-Feature : Laporan Obat
-
-> Scenario a : Menampilkan obat masuk obat keluar dan sisa obat di inventory obat
-	Given : User telah masuk pada halaman admin
-	When : User memilih menu laporan obat
-	Then : Menampilkan informasi obat masuk, obat keluar dan sisa obat di inventory

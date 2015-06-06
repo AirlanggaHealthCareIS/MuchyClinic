@@ -1,9 +1,13 @@
 US11 Laporan Uang Masuk
-Feature    : Owner dapat mengetahui laporan uang masuk (pendapatan kotor) clinik
-Skenario A : Mengetahui laporan uang masuk
-Given	Owner telah melakukan login
-And	Owner telah berada pada home page Muchy Clinic
-When	Owner memilih menu Laporan Uang Masuk
-Then	Owner seharusnya berada pada Menu Laporan Uang Masuk
-When	Owner menginputkan periode laporan
-Then	Menampilkan laporan uang masuk
+Story		: Laporan Uang Masuk
+Feature		: Owner dapat mengetahui laporan uang masuk (pendapatan kotor) clinik
+Skenario A	: Mengetahui laporan uang masuk
+
+Given	: Owner telah melakukan login
+And	: Owner telah berada pada home page Muchy Clinic
+And	: Owner menekan tombol Laporan Uang Masuk
+And	: Owner menekan radio button Periode Transaksi atau n Transaksi Terakhir
+When	: Owner memilih radio button Periode Transaksi atau n Transaksi Terakhir
+Then	: Owner seharusnya berada pada Menu Periode Transaksi atau n Transaksi Terakhir
+And	: Owner menginputkan periode laporan
+And	: Sistem akan Menampilkan Laporan Uang Masuk sesuai dengan periode yang diinputkan

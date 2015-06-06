@@ -1,0 +1,14 @@
+US12 Laporan Obat Masuk dan Obat Keluar
+Story		: Laporan Obat Masuk dan Obat Keluar
+Feature    	: Owner dapat mengetahui laporan Obat Masuk dan Obat Keluar clinik
+Skenario D	: Owner mengetahui laporan Obat Masuk dan Obat Keluar dan fild laporan Obat Masuk dan Obat Keluar belum terisi
+
+Given	: Owner telah melakukan login
+And	: Owner telah berada pada home page Muchy Clinic
+And	: Owner menekan tombol Laporan Obat
+And	: Owner menekan radio button Obat Masuk atau Obat Keluar
+When	: Owner memilih radio button Obat Masuk atau Obat Keluar
+Then	: Owner seharusnya berada pada Menu Laporan Obat Masuk atau Obat Keluar
+And	: Owner menginputkan periode laporan tetapi Fild Laporan Obat Masuk atau Obat Keluar belum terisi
+And	: Sistem akan Menampilkan pemberitahuan bahwa fild periode laporan Obat Masuk atau Obat Keluar belum terisi
+And	: Owner kembali menginputkan periode laopran.

@@ -1,7 +1,7 @@
 US11 Laporan Uang Masuk
 Story		: Laporan Uang Masuk
 Feature		: Owner dapat mengetahui laporan uang masuk (pendapatan kotor) clinik
-Skenario D	: Owner mengetahui laporan uang masuk dan fild laporan uang masuk belum terisi
+Skenario F	: Melihat Grafik Laporan Pendapatan Clinic
 
 Given	: Owner telah melakukan login
 And	: Owner telah berada pada home page Muchy Clinic
@@ -9,6 +9,7 @@ And	: Owner menekan tombol Laporan Uang Masuk
 And	: Owner menekan radio button Periode Transaksi atau n Transaksi Terakhir
 When	: Owner memilih radio button Periode Transaksi atau n Transaksi Terakhir
 Then	: Owner seharusnya berada pada Menu Periode Transaksi atau n Transaksi Terakhir
-And	: Owner menginputkan periode laporan tetapi Fild Periode Transaksi atau n Transaksi Terakhir belum terisi
-And	: Sistem akan Menampilkan pemberitahuan bahwa Fild Periode Transaksi atau n Transaksi Terakhir belum terisi
-And	: Owner kembali menginputkan periode laopran.
+And	: Owner menginputkan periode laporan
+And	: Sistem akan Menampilkan Laporan Uang Masuk sesuai dengan periode yang diinputkan
+when	: Owner memilih tombol Grafik
+Then	: Sistem akan menampilkan grafik pendapatan clinic sesuai dengan periode yang diinputkan.

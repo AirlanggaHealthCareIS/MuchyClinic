@@ -39,6 +39,24 @@
         </script>
     <?php endif ?>
 
+    <script src="<?php echo base_url(); ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
+    <?php if ($this->input->get('error')=="periodefalse"): ?>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#myModal5').modal('show'); 
+            });
+        </script>
+    <?php endif ?>
+
+    <script src="<?php echo base_url(); ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
+    <?php if ($this->input->get('error')=="notfound"): ?>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#myModal6').modal('show'); 
+            });
+        </script>
+    <?php endif ?>
+
 
 
     <!-- Bootstrap Core JavaScript -->
