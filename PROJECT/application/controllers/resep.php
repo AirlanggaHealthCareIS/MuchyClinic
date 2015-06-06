@@ -1,6 +1,12 @@
 <?php //if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Resep extends CI_Controller{
+
+	function Resep(){
+		parent::__construct();
+		$this->header[0] = "active"; //untuk indikasi active header
+	}
+	
 	//=================================================OPENING=====================================
 	public function index(){
 		$data = array(
@@ -15,7 +21,7 @@ class Resep extends CI_Controller{
 			"iddetailresepx"=>"", 
 			"keluhan"=>"");
 
-		$this->load->view("v_header");
+		$this->load->view("v_header_dokter");
 		$this->load->view("resep/v_content",$data);
 		$this->load->view("v_footer");
 		

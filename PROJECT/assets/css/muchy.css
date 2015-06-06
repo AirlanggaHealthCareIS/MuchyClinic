@@ -1,0 +1,27 @@
+body::-webkit-scrollbar {
+	width: 0.5em;
+}
+
+body::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+	background-color: #27BEC4;
+	outline: 1px solid slategrey;
+}
+
+.tulisan {
+}
+
+#side-menu>li>a {
+	color: #606062;
+}
+
+#side-menu>li>ul>li>a {
+	color: #606062;
+}
+
+.active {
+	background-color: #eee;
+}
