@@ -29,7 +29,7 @@
   <body>
   <div class="wrapper" style="background-color: #27BEC4;">    
     
-<div class="container-fluid text-center" style="background-color: #606062">
+    <div class="container-fluid text-center" style="background-color: #606062">
       <img src="<?php echo base_url(); ?>assets/images/header1.png" class="" alt="Responsive image">
     </div>  
     <div class="" role="navigation" style="margin-bottom: 0">
@@ -51,6 +51,12 @@
                 <li <?php if (isset($this->header[1])) echo "class='active'"; ?>>
                   <a href="<?php echo base_url(); ?>rekammedis"><i class="fa fa-edit fa-fw"></i> Rekam Medis</a>
                 </li>
+                <li <?php if (isset($this->header[2])) echo "class='active'"; ?>>
+                  <a href="<?php echo base_url(); ?>lihatjadwal"><i class="fa fa-edit fa-fw"></i> Lihat Jadwal</a>
+                </li>
+                <li <?php if (isset($this->header[3])) echo "class='active'"; ?>>
+                  <a href="<?php echo base_url(); ?>cabsensi"><i class="fa fa-edit fa-fw"></i> Absensi</a>
+                </li>
               </ul>
             </li>
             
@@ -59,4 +65,4 @@
       </div>
     </div>
 
-    <div id="page-wrapper">
+  <div id="page-wrapper">

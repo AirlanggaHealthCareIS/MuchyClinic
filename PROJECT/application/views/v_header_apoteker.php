@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Muchy Clinic2 | Buat Jadwal</title>
+    <title>Muchy Clinic</title>
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url(); ?>assets/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
@@ -24,45 +24,44 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <style type="text/css">
-      body::-webkit-scrollbar {
-          width: 0.5em;
-      }
-       
-      body::-webkit-scrollbar-track {
-          -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.3);
-      }
-       
-      body::-webkit-scrollbar-thumb {
-        background-color: #27BEC4;
-        outline: 1px solid slategrey;
-      }
-    </style>
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/muchy.css">
   </head>
   <body>
-  <div class="wrapper">    
+  <div class="wrapper" style="background-color: #27BEC4;">    
     
-<div class="container-fluid text-center" style="background-color: #606062">
+    <div class="container-fluid text-center" style="background-color: #606062">
       <img src="<?php echo base_url(); ?>assets/images/header1.png" class="" alt="Responsive image">
     </div>  
     <div class="" role="navigation" style="margin-bottom: 0">
-      <div class="navbar-default sidebar" role="navigation">
+      <div class="navbar-default sidebar" style="background-color: #27BEC4;" role="navigation">
         <div class="sidebar-nav navbar-collapse">
+
+          <div class="text-center" style="margin-bottom:20px">
+            <i class="fa fa-user fa-5" style="font-size: 80px; color: #FFFFFF;"></i> 
+            <h4 style="color: #fff;"><?php if (isset($this->user)) echo $this->user; ?></h4>
+          </div>
+
           <ul class="nav" id="side-menu">
-            <li>
-              <a href="#"><i class="fa fa-user fa-fw"></i> Apoteker<span class="fa arrow"></span></a>
-              <ul class="nav nav-second-level">
-                <li>
+            <li class="" style="border-bottom: 0; background-color: #84E9ED;">
+              <a href="#submenu"><i class="fa fa-user fa-fw"></i> Apoteker<span class="fa arrow"></span></a>
+              <ul class="nav nav-second-level" id="submenu">
+                <li <?php if (isset($this->header[0])) echo "class='active'"; ?>>
                   <a href="<?php echo base_url(); ?>obatkeluarresep"><i class="fa fa-edit fa-fw"></i> Pengambilan Obat</a>
                 </li>
-                <li>
-                  <a href="<?php echo base_url(); ?>inventory"><i class="fa fa-edit fa-fw"></i>  Inventory</a>
+                <li <?php if (isset($this->header[1])) echo "class='active'"; ?>>
+                  <a href="<?php echo base_url(); ?>inventory"><i class="fa fa-edit fa-fw"></i> Inventory</a>
+                </li>
+                <li <?php if (isset($this->header[2])) echo "class='active'"; ?>>
+                  <a href="<?php echo base_url(); ?>lihatjadwal"><i class="fa fa-edit fa-fw"></i> Lihat Jadwal</a>
+                </li>
+                <li <?php if (isset($this->header[3])) echo "class='active'"; ?>>
+                  <a href="<?php echo base_url(); ?>cabsensi"><i class="fa fa-edit fa-fw"></i> Absensi</a>
                 </li>
               </ul>
             </li>
+            
           </ul>
         </div>
       </div>
     </div>
-
-    <div id="page-wrapper">
+  <div id="page-wrapper">

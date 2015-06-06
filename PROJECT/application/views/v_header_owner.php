@@ -24,7 +24,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/muchy.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/muchy.css">
   </head>
   <body>
   <div class="wrapper" style="background-color: #27BEC4;">    
@@ -43,25 +43,13 @@
 
           <ul class="nav" id="side-menu">
             <li class="" style="border-bottom: 0; background-color: #84E9ED;">
-              <a href="#submenu"><i class="fa fa-user fa-fw"></i> Administator<span class="fa arrow"></span></a>
+              <a href="#submenu"><i class="fa fa-user fa-fw"></i> Owner<span class="fa arrow"></span></a>
               <ul class="nav nav-second-level" id="submenu">
                 <li <?php if (isset($this->header[0])) echo "class='active'"; ?>>
-                  <a href="<?php echo base_url(); ?>antri"><i class="fa fa-edit fa-fw"></i> Antrian</a>
+                  <a href="<?php echo base_url(); ?>jadwal"><i class="fa fa-edit fa-fw"></i> Penjadwalan Karyawan</a>
                 </li>
                 <li <?php if (isset($this->header[1])) echo "class='active'"; ?>>
-                  <a href="<?php echo base_url(); ?>pendaftaran"><i class="fa fa-edit fa-fw"></i> Pendaftaran</a>
-                </li>
-                <li <?php if (isset($this->header[2])) echo "class='active'"; ?>>
-                  <a href="<?php echo base_url(); ?>crawatinap"><i class="fa fa-edit fa-fw"></i> Rawat Inap</a>
-                </li>
-                <li <?php if (isset($this->header[3])) echo "class='active'"; ?>>
-                  <a href="<?php echo base_url(); ?>kasir"><i class="fa fa-edit fa-fw"></i> Kasir</a>
-                </li>
-                <li <?php if (isset($this->header[4])) echo "class='active'"; ?>>
-                  <a href="<?php echo base_url(); ?>lihatjadwal"><i class="fa fa-edit fa-fw"></i> Lihat Jadwal</a>
-                </li>
-                <li <?php if (isset($this->header[5])) echo "class='active'"; ?>>
-                  <a href="<?php echo base_url(); ?>cabsensi"><i class="fa fa-edit fa-fw"></i> Absensi</a>
+                  <a href="<?php echo base_url(); ?>laporanuang"><i class="fa fa-edit fa-fw"></i> Laporan Uang</a>
                 </li>
               </ul>
             </li>
