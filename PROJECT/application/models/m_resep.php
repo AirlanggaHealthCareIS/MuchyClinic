@@ -53,6 +53,52 @@ class M_resep extends CI_Model {
                 return $query;
                
         }
+        public function getDR($idresep){
+            $query = $this->db->query
+            ("SELECT * FROM `detail_resep` AS DR , `obat` AS O WHERE DR.`ID_OBAT` = O.`ID_OBAT` AND DR.`ID_RESEP` = '".$idresep."'");
+            return $query;
+        }
+
+        public function insertdetailresep($iddetailresep, $idresep, $idobat, $jmlobat, $ketobat){
+                $query = $this->db->query("INSERT INTO detail_resep (`ID_DETAIL_RESEP`, `ID_OBAT`, `ID_RESEP`, `KET_RESEP` , `QTY_OBAT`) VALUES ('".$iddetailresep."','".$idobat."','".$idresep."','".$ketobat."',".$jmlobat.")");
+                return $query;
+        }
+
+        public function editresep($ketobat,$jmlobat,$iddetailresep){
+            $query = $this->db->query
+            ("UPDATE detail_resep SET `KET_RESEP`='".$ketobat."', `QTY_OBAT`=".$jmlobat." WHERE `ID_DETAIL_RESEP`='".$iddetailresep."'");
+            
+        }
+            
+        
+
+        public function countIDResep(){
+            $query = $this->db->query("SELECT COUNT(*) AS N FROM `resep`");
+
+            if($query->num_rows() > 0){
+                return $query->row()->N;
+            }
+            else {
+                return 0;
+            }
+        }
+
+        public function countIDDetailResep(){
+            $query = $this->db->query("SELECT COUNT(*) AS N FROM `detail_resep`");
+
+            if($query->num_rows() > 0){
+                return $query->row()->N;
+            }
+            else {
+                return 0;
+            }
+        }
+        public function deleteObat($iddetailresep){
+            $query = $this->db->query
+            ("DELETE FROM `detail_resep` WHERE `ID_DETAIL_RESEP` = '".$iddetailresep."'");
+        
+            return $query;
+        }
                 
 
 }

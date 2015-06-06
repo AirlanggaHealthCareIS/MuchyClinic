@@ -1,6 +1,7 @@
 <?php //if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Resep extends CI_Controller{
+	//=================================================OPENING=====================================
 	public function index(){
 		$data = array(
 			"idpemeriksaan"=>" ",
@@ -19,110 +20,80 @@ class Resep extends CI_Controller{
 		$this->load->view("v_footer");
 		
 	}
-	
-	public function index2($idresep = "", $namaobat=null){
-		$this->load->model('m_resep');
-		$query2 = null;
-		if ($namaobat==null) {
+	//=================================================END OF OPENING=====================================
 
-		} else if($namaobat!=null){
-			$query2 =$this->m_resep->getObat($namaobat);
-		}
-		$data = array(
-			"namaobat"=>$namaobat,
-			"idresep"=>$idresep,
-			"iddetailresepx"=>$this->generateIdDetailResep() ,
-			'query2'=>$query2, 
-			'detailresep'=>$this->m_resep->getDR($idresep));
-		$this->load->view("v_header");
-		$this->load->view("resep/v_resep",$data);
-		$this->load->view("v_footer");
-	}
 
-	
 
-	
-	public function index4($idresep = "",$idobat = ""){
-		
-		$data = array(
-			"idresep"=>$idresep,
-			"iddetailresepx"=>$this->generateIdDetailResep() ,
-			"idobat"=>$idobat);
-		$this->load->view("v_header");
-		$this->load->view("resep/v_detailobat",$data);
-		$this->load->view("v_footer");
-	}
-
-	
+	//=================================================SEARCH ID PEMERIKSAAN=====================================
 	public function getidpemeriksaan(){
-		$this->load->helper(array('form','url'));
-		$this->load->library('form_validation');
-		$idpemeriksaan = $this->input->post('idpemeriksaan');
+			$this->load->helper(array('form','url'));
+			$this->load->library('form_validation');
+			$idpemeriksaan = $this->input->post('idpemeriksaan');
 
-		$isValid = $this->inValidIDPemeriksaan($idpemeriksaan);
-		
-		if ($isValid=="error=null") {
-			redirect(base_url().'resep?error=null');
-		}
-		else if ($isValid == "error=symbol"){
-			redirect(base_url().'resep?error=symbol');
-		}
-		else  if ($isValid == "true"){
-			$this->tampilid($idpemeriksaan);		
-		}
-
-	}
-
-	public function inValidIDPemeriksaan($idpemeriksaan){
-		if ($idpemeriksaan == null || $idpemeriksaan == ""){
-			return "error=null";
-		}
-		else if (preg_match('/[^a-z0-9]/i', $idpemeriksaan)){
-			return "error=symbol";
-		}
-		else {
-			return "true";
-		}
-
-	}
-
-	
-
-	public function tampilid($idpemeriksaan){
-		// echo "Jo";
-		$this->load->database();
-		$idpemeriksaan = $this->input->post('idpemeriksaan');
-		$this->load->model('m_resep');
-		$query = $this->m_resep->getcariid($idpemeriksaan);
-		
-		if($query->num_rows() > 0){
-			$ro = $query->row();
-				$data = array(
-					"idresepx"=>$this->generateIdResep(),
-					"idpemeriksaan"=> $ro->ID_PERIKSA, 
-					"idpasien"=> $ro->ID_PASIEN, 
-					"namapasien"=> $ro->NAMA_PASIEN, 
-					"iddokter"=> $ro->ID_DOKTER,
-					"namadokter"=> $ro->NAMA_DOKTER, 
-					"keluhan"=> $ro->KELUHAN);
-		$this->session->idpemeriksaan = $ro->ID_PERIKSA; // --> guna session yaitu di bawa ke method lain
-		$this->session->idpasien = $ro->ID_PASIEN;
-		$this->session->iddokter = $ro->ID_DOKTER;
-		$this->session->keluhan = $ro->KELUHAN;
-
-		$this->load->view("v_header");
-		$this->load->view("resep/v_content",$data);
-		$this->load->view("v_footer");
-		}
-
-		else{
-			redirect(base_url().'resep?error=notfound');
+			$isValid = $this->inValidIDPemeriksaan($idpemeriksaan);
+			
+			if ($isValid=="error=null") {
+				redirect(base_url().'resep?error=null');
+			}
+			else if ($isValid == "error=symbol"){
+				redirect(base_url().'resep?error=symbol');
+			}
+			else  if ($isValid == "true"){
+				$this->tampilid($idpemeriksaan);		
+			}
 
 		}
-		
-	}
-	
-	
+
+		public function inValidIDPemeriksaan($idpemeriksaan){
+			if ($idpemeriksaan == null || $idpemeriksaan == ""){
+				return "error=null";
+			}
+			else if (preg_match('/[^a-z0-9]/i', $idpemeriksaan)){
+				return "error=symbol";
+			}
+			else {
+				return "true";
+			}
+
+		}
+
+
+		public function tampilid($idpemeriksaan){
+			$this->load->database();
+			$idpemeriksaan = $this->input->post('idpemeriksaan');
+			$this->load->model('m_resep');
+			$query = $this->m_resep->getcariid($idpemeriksaan);
+			
+			if($query->num_rows() > 0){
+				$ro = $query->row();
+					$data = array(
+						"idresepx"=>$this->generateIdResep(),
+						"idpemeriksaan"=> $ro->ID_PERIKSA, 
+						"idpasien"=> $ro->ID_PASIEN, 
+						"namapasien"=> $ro->NAMA_PASIEN, 
+						"iddokter"=> $ro->ID_DOKTER,
+						"namadokter"=> $ro->NAMA_DOKTER, 
+						"keluhan"=> $ro->KELUHAN);
+			$this->session->idpemeriksaan = $ro->ID_PERIKSA; // --> guna session yaitu di bawa ke method lain
+			$this->session->idpasien = $ro->ID_PASIEN;
+			$this->session->iddokter = $ro->ID_DOKTER;
+			$this->session->keluhan = $ro->KELUHAN;
+
+			$this->load->view("v_header");
+			$this->load->view("resep/v_content",$data);
+			$this->load->view("v_footer");
+			}
+
+			else{
+				redirect(base_url().'resep?error=notfound');
+
+			}
+			
+		}
+	//=================================================END OF SEARCH ID PEMERIKSAAN=====================================
+
+
+	//=================================================INPUT RESEP=====================================
 	public function input(){
 		$this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
@@ -165,6 +136,47 @@ class Resep extends CI_Controller{
 		}
 	}
 
+	public function index2($idresep = "", $namaobat=null){
+		$this->load->model('m_resep');
+		$query2 = null;
+		if ($namaobat==null) {
+
+		} else if($namaobat!=null){
+			$query2 =$this->m_resep->getObat($namaobat);
+		}
+		$data = array(
+			"namaobat"=>$namaobat,
+			"idresep"=>$idresep,
+			"idobat"=>"",
+			"iddetailresepx"=>$this->generateIdDetailResep() ,
+			'query2'=>$query2, 
+			'detailresep'=>$this->m_resep->getDR($idresep));
+		$this->load->view("v_header");
+		$this->load->view("resep/v_resep",$data);
+		$this->load->view("v_footer");
+	}
+
+
+	//=================================================END OF INPUT RESEP=====================================
+	
+	//=================================================INPUT DETAIL RESEP====================================
+	public function cari_obat($idresep=""){
+		$namaobat = $this->input->post('namaobat');
+		redirect(base_url().'resep/index2/'.$idresep."/".$namaobat);
+		
+	}
+
+	public function index4($idresep = "",$idobat = ""){
+		
+		$data = array(
+			"idresep"=>$idresep,
+			"iddetailresepx"=>$this->generateIdDetailResep() ,
+			"idobat"=>$idobat);
+		$this->load->view("v_header");
+		$this->load->view("resep/v_detailobat",$data);
+		$this->load->view("v_footer");
+	}
+
 	public function inputdr($idresep, $idobat){
 		
 		$this->load->helper(array('form', 'url'));
@@ -204,13 +216,7 @@ class Resep extends CI_Controller{
 			return "true";
 		}
 	}
-	
-	public function cari_obat($idresep=""){
-		// $idresep = $this->input->post('idresep');
-		$namaobat = $this->input->post('namaobat');
-		redirect(base_url().'resep/index2/'.$idresep."/".$namaobat);
-	}
-	
+
 	public function selesai(){
 		$data = array(
 			"idpemeriksaan"=>" ",
@@ -228,6 +234,67 @@ class Resep extends CI_Controller{
 		$this->load->view("resep/v_content",$data);
 		$this->load->view("v_footer");
 	}
+
+	//=================================================END OF DETAIL RESEP==================================
+	
+	//=================================================EDIT RESEP==================================
+	public function index5($iddetailresep = "", $idresep=""){
+		
+		$data = array(
+			"iddetailresep"=>$iddetailresep,
+			"idresep"=>$idresep
+
+			);
+			
+		$this->load->view("v_header");
+		$this->load->view("resep/v_editresep",$data);
+		$this->load->view("v_footer");
+	}
+
+	public function editResep($iddetailresep, $idresep){
+		$this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
+		$this->load->database();
+
+		$jmlobat = $this->input->post('jmlobat');
+		$ketobat = $this->input->post('ketobat');
+
+		$this->load->model('m_resep');
+		$editresep = $this->m_resep->editresep($ketobat,$jmlobat,$iddetailresep);
+		redirect(base_url().'resep/index2/'.$idresep);
+	}
+	
+	//=================================================END OF EDIT RESEP==================================
+	
+
+	//=================================================HAPUS OBAT RESEP==================================
+	public function hapusObat($iddetailresep, $idresep){
+		// $this->load->helper(array('form', 'url'));
+  //       $this->load->library('form_validation');
+
+		$this->load->database();
+
+		// $iddetailresep = $this->input->post('iddetailresep');
+
+		$this->load->model('m_resep');	
+
+		$deleteObat = $this->m_resep->deleteObat($iddetailresep);
+
+		redirect(base_url().'resep/index2/'.$idresep);
+
+	}
+
+	//=================================================END OF HAPUS OBAT RESEP==================================
+
+	
+
+	
+
+	
+	
+	
+	
+	
 
 	public function testing(){
 		$this->load->library("unit_test");

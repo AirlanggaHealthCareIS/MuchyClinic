@@ -1,19 +1,16 @@
 <div class="container" style="">
-	<!-- <div class = "container" style="margin-top: 43px;"> -->
-		<h1>Detail Resep</h1>
-	<!-- <div class = "row"> -->
-		<!-- <div class = "col-md-4" >	 -->		
-			<form class ="form-inline" action="<?php echo base_url(); ?>resep/cari_obat/<?php echo $idresep; ?>" method="post">
-				<div class="form-group">
-					<label for="IDResep">ID Resep</label><br>
-					<input disabled type="normal" name="idresep" class="form-control" id="IDResep" placeholder="ID Resep" value="<?php echo $idresep; ?>">
-				</div>
+	<h1>Detail Resep</h1>
+		<form class ="form-inline" action="<?php echo base_url(); ?>resep/cari_obat/<?php echo $idresep; ?>" method="post">
+			<div class="form-group">
+				<label for="IDResep">ID Resep</label><br>
+				<input disabled type="normal" name="idresep" class="form-control" id="IDResep" placeholder="ID Resep" value="<?php echo $idresep; ?>">
+			</div>
+			<br></br>
+			<div class="form-group">
+				<input type="normal" name="namaobat" class="form-control" id="NamaObat" placeholder="Nama Obat"  value="<?php echo $namaobat; ?>">
+			</div>
+				<button type="submit" class="btn btn-info">Search Obat</button>
 				<br></br>
-				<div class="form-group">
-					<input type="normal" name="namaobat" class="form-control" id="NamaObat" placeholder="Nama Obat"  value="<?php echo $namaobat; ?>">
-				</div>
-					<button type="submit" class="btn btn-info">Search Obat</button>
-					<br></br>
 		<div class = "row">
 			<div class="col-md-6">
 				 <table class="table table-bordered">
@@ -58,8 +55,8 @@
 				            <td ><?php echo $row['NAMA_OBAT']; ?></td>
 				            <td ><?php echo $row['QTY_OBAT']; ?></td>
 				            <td ><?php echo $row['KET_RESEP']; ?></td>
-				            <td ><a href="" class = "btn btn-default"> Edit </a></td>
-				            <td ><a href="" class = "btn btn-default"> Delete </a></td>
+				            <td ><a href="<?php echo base_url(); ?>resep/index5/<?php echo $row['ID_DETAIL_RESEP']; ?>/<?php echo $row['ID_RESEP']; ?>" class = "btn btn-default"> Edit </a></td>
+				            <td ><a href="<?php echo base_url(); ?>resep/hapusObat/<?php echo $row['ID_DETAIL_RESEP']; ?>/<?php echo $row['ID_RESEP']; ?>" class = "btn btn-default"> Delete </a></td>
 				          </tr>
 				          <?php }?>
 				        <?php endif ?>   
@@ -79,20 +76,6 @@
 			<br></br>
 			
 	</div>
-	<!-- <div class = "col-md-4">
-		<form class ="form-inline" action="<?php echo base_url(); ?>resep/inputresep" method="post">
-				<div class="form-group">
-					<input type="normal" name="iddetailresep" class="form-control" id="IDDetailResep" placeholder="ID Detail Resep">
-				</div>
-				<div class="form-group">
-					<input type="normal" name="ketobat" class="form-control" id="KetObat" placeholder="Ket Obat">
-				</div>
-					<button type="submit" class="btn btn-info">Search</button>
-
-			<br></br>
-			 -->
-				
-			
 	</div>
 </div>
 </div>

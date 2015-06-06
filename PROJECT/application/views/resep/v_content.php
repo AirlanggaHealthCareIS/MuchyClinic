@@ -2,14 +2,6 @@
 	<!-- <div class = "container" style="margin-top: 43px;"> -->
 		<h1>Resep</h1>
 				
-						<?php if ($this->input->get('erroidpemeriksaan')=="null"): ?>
-							<div class="alert alert-danger" role="alert">
-							Maaf ID Pemeriksaan belum terinput
-							</div>	
-						<?php endif ?>
-
-	
-
 		                <?php if ($this->input->get('error')=="null"): ?>
 							<div class="alert alert-danger" role="alert">
 							Error! Belum Terinput
@@ -135,3 +127,4 @@
     </div>
   </div>
 </div>
+
