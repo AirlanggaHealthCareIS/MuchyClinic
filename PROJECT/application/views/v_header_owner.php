@@ -46,7 +46,7 @@
               <a href="#submenu"><i class="fa fa-user fa-fw"></i> Owner<span class="fa arrow"></span></a>
               <ul class="nav nav-second-level" id="submenu">
                 <li <?php if (isset($this->header[0])) echo "class='active'"; ?>>
-                  <a href="<?php echo base_url(); ?>jadwal/karyawan"><i class="fa fa-edit fa-fw"></i> Penjadwalan Karyawan</a>
+                  <a href="<?php echo base_url(); ?>laporanuang"><i class="fa fa-edit fa-fw"></i> Laporan Uang</a>
                 </li>
                 <li <?php if (isset($this->header[1])) echo "class='active'"; ?>>
                   <a href="<?php echo base_url(); ?>jadwal/dokter"><i class="fa fa-edit fa-fw"></i> Penjadwalan Dokter</a>
@@ -55,7 +55,16 @@
                   <a href="<?php echo base_url(); ?>jadwal/apoteker"><i class="fa fa-edit fa-fw"></i> Penjadwalan Apoteker</a>
                 </li>
                 <li <?php if (isset($this->header[3])) echo "class='active'"; ?>>
-                  <a href="<?php echo base_url(); ?>laporanuang"><i class="fa fa-edit fa-fw"></i> Laporan Uang</a>
+                  <a href="<?php echo base_url(); ?>jadwal/karyawan"><i class="fa fa-edit fa-fw"></i> Penjadwalan Karyawan</a>
+                </li>
+                <li <?php if (isset($this->header[4])) echo "class='active'"; ?>>
+                  <a href="<?php echo base_url(); ?>backup"><i class="fa fa-edit fa-fw"></i> Backup</a>
+                </li>
+                <li <?php if (isset($this->header[5])) echo "class='active'"; ?>>
+                  <a href="<?php echo base_url(); ?>restore"><i class="fa fa-edit fa-fw"></i> Restore</a>
+                </li>
+                <li <?php if (isset($this->header[6])) echo "class='active'"; ?>>
+                  <a href="<?php echo base_url(); ?>login_owner"><i class="fa fa-edit fa-fw"></i> Logout</a>
                 </li>
               </ul>
             </li>

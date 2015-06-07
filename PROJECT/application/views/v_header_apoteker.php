@@ -57,6 +57,9 @@
                 <li <?php if (isset($this->header[3])) echo "class='active'"; ?>>
                   <a href="<?php echo base_url(); ?>laporanobat"><i class="fa fa-edit fa-fw"></i> Laporan Obat</a>
                 </li>
+                <li <?php if (isset($this->header[4])) echo "class='active'"; ?>>
+                  <a href="<?php echo base_url(); ?>login_apoteker"><i class="fa fa-edit fa-fw"></i> Logout</a>
+                </li>
               </ul>
             </li>
             
