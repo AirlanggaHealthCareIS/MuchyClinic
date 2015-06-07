@@ -14,7 +14,8 @@ class Obatkeluarresep extends CI_Controller {
 	}
 
 	public function index()
-	{
+	{	
+		$this->header[1] = "active"; //untuk indikasi active header
 		$this->load->view('v_header_apoteker');
 		$this->load->view('obatkeluar/v_resep');
 		$this->load->view('v_footer');

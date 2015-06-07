@@ -46,16 +46,16 @@
               <a href="#submenu"><i class="fa fa-user fa-fw"></i> Apoteker<span class="fa arrow"></span></a>
               <ul class="nav nav-second-level" id="submenu">
                 <li <?php if (isset($this->header[0])) echo "class='active'"; ?>>
-                  <a href="<?php echo base_url(); ?>obatkeluarresep"><i class="fa fa-edit fa-fw"></i> Pengambilan Obat</a>
+                  <a href="<?php echo base_url(); ?>lihatjadwal/showapoteker"><i class="fa fa-edit fa-fw"></i> Lihat Jadwal</a>
                 </li>
                 <li <?php if (isset($this->header[1])) echo "class='active'"; ?>>
-                  <a href="<?php echo base_url(); ?>inventory"><i class="fa fa-edit fa-fw"></i> Inventory</a>
+                  <a href="<?php echo base_url(); ?>obatkeluarresep"><i class="fa fa-edit fa-fw"></i> Pengambilan Obat</a>
                 </li>
                 <li <?php if (isset($this->header[2])) echo "class='active'"; ?>>
-                  <a href="<?php echo base_url(); ?>lihatjadwal"><i class="fa fa-edit fa-fw"></i> Lihat Jadwal</a>
+                  <a href="<?php echo base_url(); ?>inventory"><i class="fa fa-edit fa-fw"></i> Inventory</a>
                 </li>
                 <li <?php if (isset($this->header[3])) echo "class='active'"; ?>>
-                  <a href="<?php echo base_url(); ?>cabsensi"><i class="fa fa-edit fa-fw"></i> Absensi</a>
+                  <a href="<?php echo base_url(); ?>laporanobat"><i class="fa fa-edit fa-fw"></i> Laporan Obat</a>
                 </li>
               </ul>
             </li>

@@ -4,11 +4,15 @@ class LaporanObat extends CI_Controller {
 	public function LaporanObat(){
 		parent::__construct();
 		$this->load->model("m_ambildatalaporanobat");
+		$this->header[3] = "active"; //untuk indikasi active header
+		$this->id_user = "";
+		$this->user = "Izmul Zamroni";
+
 	}
 
 	public function index() {
 		$data = array("tanggal"=>"", "id_obat"=>"", "nama_obat"=>"", "nama_apoteker"=>"", "quqntity"=>"", "dlaporanobat"=>null); //tampil data di tabel
-		$this->load->view("v_header");
+		$this->load->view("v_header_apoteker");
 		$this->load->view("LaporanObat/v_contentLaporanObat", $data);
 		$this->load->view("v_footer");	
 	}
@@ -128,7 +132,7 @@ class LaporanObat extends CI_Controller {
 					"dlaporanobat"=>$laporan
 					); //tampil data di tabel dan ambil nilai
 				
-				$this->load->view("v_header");
+				$this->load->view("v_header_apoteker");
 				$htmlcetak = $this->load->view("LaporanObat/v_contentLaporanObat", $data);
 				$this->load->view("v_footer");
 				

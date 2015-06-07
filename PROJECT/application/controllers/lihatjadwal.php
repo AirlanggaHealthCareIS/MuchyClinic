@@ -5,8 +5,14 @@ class Lihatjadwal extends CI_Controller {
 	public function Lihatjadwal(){
 		parent::__construct();
 
+		$this->load->model("m_jadwal");
+		$this->load->model('m_lihatjadwal');
+		$this->load->model('m_getdata');
+
 		$this->id='A0001';
+		//$this->id = "";
 		$this->idaaktor = substr($this->id,0,1);
+		$this->user = "Izmul Zamroni";
 	}
 
 	public function index()
@@ -50,13 +56,14 @@ class Lihatjadwal extends CI_Controller {
 
 		$this->load->model('m_lihatjadwal');
 		$this->load->model('m_getdata');
+		$this->header[0] = "active"; //untuk indikasi active header
 		
 		$query = $this->m_lihatjadwal->getApoteker($this->id); //ambil data
         $ro = $query->row();
 
 		$data = array("idaaktor"=>$this->idaaktor, "ida"=>$ro->ID_APOTEKER, "nama"=>$ro->NAMA_APOTEKER, "lihatjadwal"=>$this->m_lihatjadwal->getDataApoteker($this->id)); //tampil data di tabel dan ambil nilai
 
-		$this->load->view("v_header");
+		$this->load->view("v_header_apoteker");
 		$this->load->view("lihatjadwal/v_content", $data);
 		$this->load->view("v_footer");
        	
