@@ -293,14 +293,13 @@
 
             <div class="row">
               <div class="col-md-3"> 
-                 <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                 <form class="form-inline" action="<?php echo base_url(); ?>kasir/cetak" method="post">
-                <button type="submit" class="btn btn-primary">Print</button>
+                <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+                <a href="<?php echo base_url(); ?>kasir/cetak/<?php echo $this->session->flashdata('idpasien'); ?>" target="_blank" class="btn btn-success">Print</a>
               </div>
 
               <div class="col-md-3"> 
                 <!-- Indicates a successful or positive action -->
-                <form class="form-inline" action="<?php echo base_url(); ?>kasir">
+                <form class="form-inline" action="<?php echo base_url(); ?>kasir" method="post">
                 <button type="submit" class="btn btn-success">New</button>
                 </form>
               </div>

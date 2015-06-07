@@ -14,7 +14,7 @@ class Kasir extends CI_Controller {
 			$this->checkDatabase($idpasien);
 		}
 
-		$data = array("tanggal"=>"", "transaksi"=>"", "keterangan"=>"", "qty"=>"", "harga"=>"", "subtotal"=>"", "dtransaksiobat"=>null); //tampil data di tabel
+	//	$data = array("tanggal"=>"", "transaksi"=>"", "keterangan"=>"", "qty"=>"", "harga"=>"", "subtotal"=>"", "dtransaksiobat"=>null); //tampil data di tabel
 
 		$this->load->view("v_header");
 		$this->load->view("kasir/v_contain");
@@ -78,6 +78,10 @@ class Kasir extends CI_Controller {
 		$total = 0;
 
 		$this->session->set_flashdata('idpasien', $id);
+
+
+		$this->session->set_userdata('idpasien', $id);
+
 		$this->load->model('m_kasir');
 
 		$query = $this->m_kasir->getcariid($id);
@@ -134,6 +138,9 @@ class Kasir extends CI_Controller {
 		$this->session->set_flashdata('idpasien', $idpas);
 		$this->session->set_flashdata('namapas', $namapas);
 		$this->session->set_flashdata('jkpas', $jkpas);
+		$this->session->set_userdata('idpasienpdf', $idpas);
+		$this->session->set_userdata('namapaspdf', $namapas);
+		$this->session->set_userdata('jkpaspdf', $jkpas);
 	}
 
 	public function validationCash($id="") {
@@ -254,6 +261,10 @@ class Kasir extends CI_Controller {
 			$kembali = $byr - $total;
 			$this->session->set_flashdata('kembali', $kembali);
 			$this->session->set_flashdata('bayar', $byr);
+			$this->session->set_userdata('bayarpdf', $byr);
+			$this->session->set_userdata('kembalipdf', $kembali);
+			// $this->session->set_flashdata('bayarpdf', $byr);
+			// $this->session->set_flashdata('kembalipdf', $kembali);
 
 			//redirect(base_url().'kasir/index/'.$id);
 
@@ -265,41 +276,41 @@ class Kasir extends CI_Controller {
 		}
 	}
 
-	public function kembali ($byr, $id) {
+	// public function kembali ($byr, $id) {
 
-		$kembali = 0;
-		$byr=$this->input->post('bayar');
-		$total = $this->gethitung($id);
+	// 	$kembali = 0;
+	// 	$byr=$this->input->post('bayar');
+	// 	$total = $this->gethitung($id);
 
-		// if ($byr>$total && $total==null || $byr>$total && $total==0) {
-		// 	redirect(base_url().'kasir/index/'.$id.'?error=nullidpasien');
-		// }
+	// 	// if ($byr>$total && $total==null || $byr>$total && $total==0) {
+	// 	// 	redirect(base_url().'kasir/index/'.$id.'?error=nullidpasien');
+	// 	// }
 
-		if ($byr==$total || $byr>$total) {
-			$kembali = $byr - $total;
-			//redirect(base_url().'kasir/index/'.$id);
+	// 	if ($byr==$total || $byr>$total) {
+	// 		$kembali = $byr - $total;
+	// 		//redirect(base_url().'kasir/index/'.$id);
 
-		return $kembali;	
-		} 
-	}
+	// 	return $kembali;	
+	// 	} 
+	// }
 
-	public function bayar ($byr, $id) {
+	// public function bayar ($byr, $id) {
 
-		$kembali = 0;
-		$byr=$this->input->post('bayar');
-		$total = $this->gethitung($id);
+	// 	$kembali = 0;
+	// 	$byr=$this->input->post('bayar');
+	// 	$total = $this->gethitung($id);
 
-		// if ($byr>$total && $total==null || $byr>$total && $total==0) {
-		// 	redirect(base_url().'kasir/index/'.$id.'?error=nullidpasien');
-		// }
+	// 	// if ($byr>$total && $total==null || $byr>$total && $total==0) {
+	// 	// 	redirect(base_url().'kasir/index/'.$id.'?error=nullidpasien');
+	// 	// }
 
-		if ($byr==$total || $byr>$total) {
-			$kembali = $byr - $total;
-			//redirect(base_url().'kasir/index/'.$id);
+	// 	if ($byr==$total || $byr>$total) {
+	// 		$kembali = $byr - $total;
+	// 		//redirect(base_url().'kasir/index/'.$id);
 
-		return $byr;	
-		} 
-	}
+	// 	return $byr;	
+	// 	} 
+	// }
 
 	public function saveTransaksi($id) {
 
@@ -342,7 +353,7 @@ class Kasir extends CI_Controller {
 
 		$this->session->set_flashdata('idpasien', $id);
 		$this->load->model('m_kasir');
-		$query = $this->m_kasir->getcariid($id);
+		//$query = $this->m_kasir->getcariid($id);
 		// if ($query->num_rows() > 0) {
 		// 	$query = $query->row();
 		// 	$this->storevalue($query->ID_PASIEN, $query->NAMA_PASIEN, $query->JENIS_KELAMIN_PASIEN);
@@ -395,8 +406,8 @@ class Kasir extends CI_Controller {
 			$this->session->set_flashdata('detailobat', $dobat);
 			//return $total;
 			$total = $this->gethitung($id);
-			$byr = $this->bayar($byr, $id);
-			$kembali = $this->kembali($byr, $id);
+			// $byr = $this->checkHitung($byr);
+			// $kembali = $this->checkHitung($kembali);
 
 
 
@@ -410,8 +421,17 @@ class Kasir extends CI_Controller {
 			<img src="'.base_url().'assets/images/muchy.jpg" class="" alt="Responsive image">
 				<h4><center>Transaksi Pembayaran Muchy Clinic</center></h4>
 
-				
+				<table>
+					<tr>
+						<td width = "100%">Nama Pasien   : '.$this->session->userdata('namapaspdf').' </td>
+					</tr>
+					<tr>
+						<td width = "100%">Jenis Kelamin : '.$this->session->userdata('jkpaspdf').' </td>
+					</tr>
+				</table>
 
+				<br>
+				
 				<table class="">
 					<tr style="background-color: rgb(226, 246, 245);">
 			
@@ -425,6 +445,7 @@ class Kasir extends CI_Controller {
 					<tr>
 					';
 
+		if (isset($dkamar)) {
 
 			foreach ($dkamar as $k) {
 				$html = $html.'
@@ -438,7 +459,8 @@ class Kasir extends CI_Controller {
                 <td>'.$k->SUBTOTAL.'</td>
               </tr>';
             }
-
+		}
+		if (isset($dpemeriksaan)) {
             foreach ($dpemeriksaan as $p) {
 				$html = $html.'
 
@@ -451,7 +473,10 @@ class Kasir extends CI_Controller {
                 <td>'.$p->SUBTOTAL.'</td>
               </tr>';
             }
+		}
 			
+		if (isset($dobat)) {
+			# code...
             foreach ($dobat as $o) {
             	$html = $html.'
 	              <tr class="danger">
@@ -466,14 +491,23 @@ class Kasir extends CI_Controller {
 	              
             }
 				
+		}
 			$html = $html.'
 				</table>
 
 				<br>
-				<td width = "100%">Total : '.$total.'</td>
-				<td width = "100%">bayar : '.$byr.'</td>
-				<td width = "100%">kembali : '.$kembali.'</td>
 
+				<table>
+					<tr>
+						<td width = "100%">Total   : '.$total.' </td>
+					</tr>
+					<tr>
+						<td width = "100%">Bayar   : '.$this->session->userdata('bayarpdf').' </td>
+					</tr>
+					<tr>
+						<td width = "100%">Kembali : '.$this->session->userdata('kembalipdf').' </td>
+					</tr>
+				</table>
 
 			</body>
 			</html>';
@@ -488,9 +522,12 @@ class Kasir extends CI_Controller {
 		}
 	}
 
-	public function cetak() {
+	public function cetak($id = "") {
+
+		//$id = $this->session->userdata('idpasien');
 	
-		$html = $this->tampil("P0001");
+		$html = $this->tampil($id);
+		//$html = $this->tampil($this->session->userdata('idpasien'));
 
 		$this->load->library('pdf');
 	    $pdf = $this->pdf->load();
