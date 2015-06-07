@@ -1,9 +1,6 @@
-Scenario J - Mencatat pembayaran pasien dan Kasir tidak menginputkan ID Pasien kemudian menekan tombol print
+Scenario K - Mencatat pembayaran pasien dan pasien telah melakukan transaksi pembayaran kemudian Kasir menekan tombol print
 Give	: Kasir telah berada pada menu kasir
-When	: Kasir menginputkan ID Pasien dg benar
-Then	: Kasir dapat melihat jumlah total pembayaran yang harus dibayar oleh pasien
-When	: Kasir menginputkan total pembayaran dg benar
-Then	: Kasir menerima pemberitahuan bahwa “Transaksi Pembayaran berhasil”
-When	: Kasir menekan tombol print
-When	: Kasir dapat mencetak detail transaksi
+When	: Kasir telah melakukan transaksi pembayaran
+Then	: Kasir menekan tombol print
+When	: Sistem tidak dapat mencetak detail transaksi
 
