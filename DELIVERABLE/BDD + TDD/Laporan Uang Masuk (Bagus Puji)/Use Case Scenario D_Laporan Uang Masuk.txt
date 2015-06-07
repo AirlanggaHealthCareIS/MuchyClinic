@@ -1,0 +1,20 @@
+US11 Laporan Uang Masuk
+Story		: Laporan Uang Masuk
+Feature		: Owner dapat mengetahui laporan uang masuk (pendapatan kotor) clinik
+Skenario D	: Owner mengetahui laporan uang masuk dan fild laporan uang masuk belum terisi
+
+Given	: Owner telah melakukan login
+And	: Owner telah berada pada home page Muchy Clinic
+And	: Owner menekan tombol Laporan Uang Masuk
+And	: Owner menekan radio button Periode Transaksi atau n Transaksi Terakhir
+And	: Owner memilih radio button Periode Transaksi
+And	: Owner seharusnya berada pada Menu Periode Transaksi
+And	: Owner masuk ke halaman Periode Transaksi melalui controller dengan method index()
+When	: Owner memasukkan Periode Awal dan Periode Akhir
+And	: Owner menekan tombol Submit
+Then	: Sistem Memanggil Method gettransaksi pada tabel transaksi dengan
+	  parameter "" dan ""
+And	: Sistem masuk pada method validasi pada controller "laporanuang"
+And	: periode laporan divaliasi karena Fild periode awal dan periode akhir kosong
+And	: Sistem akan memberikan notifikasi error null
+And	: Owner menginputkan kembali periode laporan dengan benar.

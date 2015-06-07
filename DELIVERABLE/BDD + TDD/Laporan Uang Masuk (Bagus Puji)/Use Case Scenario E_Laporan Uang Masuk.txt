@@ -1,0 +1,107 @@
+US11 Laporan Uang Masuk
+Story		: Laporan Uang Masuk
+Feature		: Owner dapat mengetahui laporan uang masuk (pendapatan kotor) clinik
+Skenario E	: Cetak Laporan Pendapatan Clinic
+
+Given	: Owner telah melakukan login
+And	: Owner telah berada pada home page Muchy Clinic
+And	: Owner menekan tombol Laporan Uang Masuk
+And	: Owner menekan radio button Periode Transaksi atau n Transaksi Terakhir
+When	: Owner memilih radio button Periode Transaksi atau n Transaksi Terakhir
+Then	: Owner seharusnya berada pada Menu Periode Transaksi atau n Transaksi Terakhir
+And	: Owner menginputkan periode laporan
+And	: Sistem akan Menampilkan Laporan Uang Masuk sesuai dengan periode yang diinputkan
+when	: Owner memilih tombol cetak
+Then	: Sistem akan menyimpan laporan tersebut kedalam PDF
+
+
+Given	: Owner telah melakukan login
+And	: Owner telah berada pada home page Muchy Clinic
+And	: Owner menekan tombol Laporan Uang Masuk
+And	: Owner menekan radio button Periode Transaksi atau n Transaksi Terakhir
+And	: Owner memilih radio button Periode Transaksi
+And	: Owner seharusnya berada pada Menu Periode Transaksi
+And	: Owner masuk ke halaman Periode Transaksi melalui controller dengan method index()
+When	: Owner memasukkan Periode Awal "2015-01-21" dan Periode Akhir "2015-12-21"
+And	: Owner menekan tombol Submit
+Then	: Sistem Memanggil Method gettransaksi pada tabel transaksi dengan
+	  parameter "2015-01-21" dan "2015-12-21"
+And	: Sistem masuk pada method validasi pada controller "laporanuang"
+And	: Sistem masuk ke method tampil($tanggal_awal, $tanggal_akhir)
+And 	: Sistem akan memanggil method yang ada pada model 'm_ambildatalaporanuang'
+And 	: ($tanggal_awal, $tanggal_akhir) akan dicari pada method getlaporanuang pada model 'm_ambildatalaporanuang'
+	  yang disimpan pada variabel $query
+And 	: Jika periode laporan yang dimasukkan benar dan data transaksi tersedia maka data transaksi pada periode transaksi yang diinginkan
+	  akan di tampilkan
+And	: Owner menekan tombol cetak
+And	: Sistem Memanggil Method cetak
+And	: Sistem menyimpan dokumen dengan format PDF
+
+
+Given	: Owner telah melakukan login
+And	: Owner telah berada pada home page Muchy Clinic
+And	: Owner menekan tombol Laporan Uang Masuk
+And	: Owner menekan radio button Periode Transaksi atau n Transaksi Terakhir
+And	: Owner memilih radio button n Transaksi Terakhir
+And	: Owner seharusnya berada pada Menu Periode n Transaksi Terakhir
+And	: Owner masuk ke halaman Periode n Transaksi Terakhir melalui controller dengan method index()
+When	: Owner memasukkan Periode Laporan "Hari", Jumlah "15" dan Urut Berdasarkan "Dari Tanggal Yang Terkecil"
+And	: Owner menekan tombol Submit
+Then	: Sistem Memanggil Method gettransaksi pada tabel transaksi dengan
+	  parameter "Hari", "15" dan "Dari Tanggal Yang Terkecil"
+And	: Sistem masuk pada method validasi pada controller "laporanuang"
+And	: Sistem masuk ke method tampilTransaksiHari($jumlah, $urut_berdasarkan)
+And 	: Sistem akan memanggil method yang ada pada model 'm_ambildatalaporanuang'
+And 	: ($jumlah, $urut_berdasarkan) akan dicari pada method getlaporanuang3 pada model 'm_ambildatalaporanuang'
+	  yang disimpan pada variabel $query
+And 	: Jika periode laporan yang dimasukkan benar dan data transaksi tersedia maka data transaksi pada periode transaksi yang diinginkan
+	  akan di tampilkan
+And	: Owner menekan tombol cetak
+And	: Sistem Memanggil Method cetak
+And	: Sistem menyimpan dokumen dengan format PDF
+
+
+Given	: Owner telah melakukan login
+And	: Owner telah berada pada home page Muchy Clinic
+And	: Owner menekan tombol Laporan Uang Masuk
+And	: Owner menekan radio button Periode Transaksi atau n Transaksi Terakhir
+And	: Owner memilih radio button n Transaksi Terakhir
+And	: Owner seharusnya berada pada Menu Periode n Transaksi Terakhir
+And	: Owner masuk ke halaman Periode n Transaksi Terakhir melalui controller dengan method index()
+When	: Owner memasukkan Periode Laporan "Bulan", Jumlah "1" dan Urut Berdasarkan "Dari Tanggal Yang Terkecil"
+And	: Owner menekan tombol Submit
+Then	: Sistem Memanggil Method gettransaksi pada tabel transaksi dengan
+	  parameter "Bulan", "1" dan "Dari Tanggal Yang Terkecil"
+And	: Sistem masuk pada method validasi pada controller "laporanuang"
+And	: Sistem masuk ke method tampilTransaksiBulan($jumlah, $urut_berdasarkan)
+And 	: Sistem akan memanggil method yang ada pada model 'm_ambildatalaporanuang'
+And 	: ($jumlah, $urut_berdasarkan) akan dicari pada method getlaporanuang2 pada model 'm_ambildatalaporanuang'
+	  yang disimpan pada variabel $query
+And 	: Jika periode laporan yang dimasukkan benar dan data transaksi tersedia maka data transaksi pada periode transaksi yang diinginkan
+	  akan di tampilkan
+And	: Owner menekan tombol cetak
+And	: Sistem Memanggil Method cetak
+And	: Sistem menyimpan dokumen dengan format PDF
+
+
+Given	: Owner telah melakukan login
+And	: Owner telah berada pada home page Muchy Clinic
+And	: Owner menekan tombol Laporan Uang Masuk
+And	: Owner menekan radio button Periode Transaksi atau n Transaksi Terakhir
+And	: Owner memilih radio button n Transaksi Terakhir
+And	: Owner seharusnya berada pada Menu Periode n Transaksi Terakhir
+And	: Owner masuk ke halaman Periode n Transaksi Terakhir melalui controller dengan method index()
+When	: Owner memasukkan Periode Laporan "Tahun", Jumlah "1" dan Urut Berdasarkan "Dari Tanggal Yang Terkecil"
+And	: Owner menekan tombol Submit
+Then	: Sistem Memanggil Method gettransaksi pada tabel transaksi dengan
+	  parameter "Tahun", "1" dan "Dari Tanggal Yang Terkecil"
+And	: Sistem masuk pada method validasi pada controller "laporanuang"
+And	: Sistem masuk ke method tampilTransaksiTahun($jumlah, $urut_berdasarkan)
+And 	: Sistem akan memanggil method yang ada pada model 'm_ambildatalaporanuang'
+And 	: ($jumlah, $urut_berdasarkan) akan dicari pada method getlaporanuang4 pada model 'm_ambildatalaporanuang'
+	  yang disimpan pada variabel $query
+And 	: Jika periode laporan yang dimasukkan benar dan data transaksi tersedia maka data transaksi pada periode transaksi yang diinginkan
+	  akan di tampilkan
+And	: Owner menekan tombol cetak
+And	: Sistem Memanggil Method cetak
+And	: Sistem menyimpan dokumen dengan format PDF
