@@ -46,9 +46,15 @@
               <a href="#submenu"><i class="fa fa-user fa-fw"></i> Owner<span class="fa arrow"></span></a>
               <ul class="nav nav-second-level" id="submenu">
                 <li <?php if (isset($this->header[0])) echo "class='active'"; ?>>
-                  <a href="<?php echo base_url(); ?>jadwal"><i class="fa fa-edit fa-fw"></i> Penjadwalan Karyawan</a>
+                  <a href="<?php echo base_url(); ?>jadwal/karyawan"><i class="fa fa-edit fa-fw"></i> Penjadwalan Karyawan</a>
                 </li>
                 <li <?php if (isset($this->header[1])) echo "class='active'"; ?>>
+                  <a href="<?php echo base_url(); ?>jadwal/dokter"><i class="fa fa-edit fa-fw"></i> Penjadwalan Dokter</a>
+                </li>
+                <li <?php if (isset($this->header[2])) echo "class='active'"; ?>>
+                  <a href="<?php echo base_url(); ?>jadwal/apoteker"><i class="fa fa-edit fa-fw"></i> Penjadwalan Apoteker</a>
+                </li>
+                <li <?php if (isset($this->header[3])) echo "class='active'"; ?>>
                   <a href="<?php echo base_url(); ?>laporanuang"><i class="fa fa-edit fa-fw"></i> Laporan Uang</a>
                 </li>
               </ul>
