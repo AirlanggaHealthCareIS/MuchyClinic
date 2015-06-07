@@ -11,7 +11,7 @@ class M_resep extends CI_Model {
         
         public function getcariid ($idpemeriksaan){
         
-                $query = $this->db->query("SELECT P.`ID_PERIKSA` , PA.`ID_PASIEN` , PA.`NAMA_PASIEN` , D.`ID_DOKTER` , D.`NAMA_DOKTER` FROM `PEMERIKSAAN` AS P , `PASIEN` AS PA , `DOKTER` AS D WHERE P.`ID_PASIEN` = PA.`ID_PASIEN` AND P.`ID_DOKTER` = D.`ID_DOKTER` AND P.`ID_PERIKSA` = '".$idpemeriksaan."'");
+                $query = $this->db->query("SELECT P.`ID_PERIKSA` , PA.`ID_PASIEN` , PA.`NAMA_PASIEN` , D.`ID_DOKTER` , D.`NAMA_DOKTER` , P.`KELUHAN` FROM `PEMERIKSAAN` AS P , `PASIEN` AS PA , `DOKTER` AS D WHERE P.`ID_PASIEN` = PA.`ID_PASIEN` AND P.`ID_DOKTER` = D.`ID_DOKTER` AND P.`ID_PERIKSA` = '".$idpemeriksaan."'");
                 return $query;
         }
         
@@ -41,11 +41,11 @@ class M_resep extends CI_Model {
                 return $query;
         }
 
-        public function insertdetailresep($iddetailresep, $idresep, $idobat, $jmlobat, $ketobat){
-                $query = $this->db->query("INSERT INTO detail_resep (`ID_DETAIL_RESEP`, `ID_OBAT`, `ID_RESEP`, `KET_RESEP` , `QTY_OBAT`) VALUES ('".$iddetailresep."','".$idobat."','".$idresep."','".$ketobat."',".$jmlobat.")");
-                return $query;
-        }
-        public function getObat($nobat){
+        // public function insertdetailresep($iddetailresep, $idresep, $idobat, $jmlobat, $ketobat){
+        //         $query = $this->db->query("INSERT INTO detail_resep (`ID_DETAIL_RESEP`, `ID_OBAT`, `ID_RESEP`, `KET_RESEP` , `QTY_OBAT`) VALUES ('".$iddetailresep."','".$idobat."','".$idresep."','".$ketobat."',".$jmlobat.")");
+        //         return $query;
+        // }
+        public function getObat2($nobat){
                 $query = $this->db->query("SELECT * FROM `obat` WHERE `NAMA_OBAT` LIKE '%".$nobat."%'");
                  // $row = $query->row();
 
