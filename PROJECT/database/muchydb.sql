@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2015 at 06:44 PM
+-- Generation Time: Jun 07, 2015 at 06:58 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -5087,6 +5087,25 @@ INSERT INTO `obat_masuk` (`ID_OBAT_MASUK`, `ID_SUPPLIER`, `TGL_MASUK`) VALUES
 ('OM052', 'S0004', '2015-06-06'),
 ('OM053', 'S0004', '2015-06-06'),
 ('OM054', 'S0004', '2015-06-06');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `owner`
+--
+
+CREATE TABLE IF NOT EXISTS `owner` (
+  `ID_OWNER` int(5) NOT NULL,
+  `NAMA_OWNER` varchar(50) NOT NULL,
+  `PASSWORD` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `owner`
+--
+
+INSERT INTO `owner` (`ID_OWNER`, `NAMA_OWNER`, `PASSWORD`) VALUES
+(1, 'abas', 'abaskeren');
 
 -- --------------------------------------------------------
 
