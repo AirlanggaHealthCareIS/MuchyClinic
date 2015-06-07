@@ -8,12 +8,14 @@ class Obatkeluarresep extends CI_Controller {
 		$this->load->model('m_obatkeluar');
 		$this->load->model('m_resep');
 
-		$this->id_apoteker = "A0001"; //user
+		$this->user="Irfan Nur Aulia";
+		$this->id_apoteker = "A0001"; //user apoteker
+		$this->js_to_load[0] = base_url()."assets/js/obatkeluar.js"; //untuk load javascript
 	}
 
 	public function index()
 	{
-		$this->load->view('v_header');
+		$this->load->view('v_header_apoteker');
 		$this->load->view('obatkeluar/v_resep');
 		$this->load->view('v_footer');
 	}
@@ -60,9 +62,9 @@ class Obatkeluarresep extends CI_Controller {
 		} 
 		else if (preg_match('/[^a-z0-9]/i', $id)) { //untuk symbol
 			return "error=symbol";
- 		} else {
- 			return "true";
- 		}
+		} else {
+			return "true";
+		}
 	}
 
 	private function checkDatabase($id, $tgl){ //search ke db
@@ -70,7 +72,6 @@ class Obatkeluarresep extends CI_Controller {
 		$this->session->set_flashdata('idpasien', $id);
 		$this->session->set_flashdata('tanggal', $tgl);
 
-		
 		$query = $this->m_obatkeluar->getResep($id, $tgl); //get data
 		if ($query!=0) { //cek jika hasil ada
 			//simpan data untuk di tampilkan
@@ -105,32 +106,13 @@ class Obatkeluarresep extends CI_Controller {
 	}
 
 	public function saveToKeluar(){
-		// $data["idobat"] = $this->input->post("ada"); 
-		// $data['pasien'] = $this->input->post("pasien"); 
-		// $data['subtotal'] = $this->input->post("subtotal"); 
-		// $idOk = $this->m_obatkeluar->generateIdObatKeluar();
-		// // date_default_timezone_set('Asia/Jakarta');
-		// $tgl = date("Y-m-d");
-		// // $this->m_obatkeluar->insertObatKeluar($idOk, $this->id_apoteker, $data['pasien'], $tgl);
-		
-		// $kotak = explode(" ", $data["idobat"]);
-		// $kotak2 = explode(" ", $data["subtotal"]);
-		// // for ($i=1; $i < count($kotak); $i++) { 
-		// // 	// echo "no idobat ".$kotak[$i];
-		// // 	// echo "subtotal ".$kotak2[$i];
-		// // }
-		// // echo " id pasien = ".$data['pasien'];
-		
-		// // echo "Sukses Insert";
-		// echo $this->m_obatkeluar->insertDetailObatKeluar($data, $idOk);
-
 		//create obat keluar
 		$idOk = $this->m_obatkeluar->generateIdObatKeluar();
 		date_default_timezone_set('Asia/Jakarta');
 		$tgl = date("Y-m-d");
 		$data['pasien'] = $this->input->post("pasien"); 
-		echo $idOk." ".$this->id_apoteker." ".$data['pasien']." ".$tgl;
-		// $this->m_obatkeluar->insertObatKeluar($idOk, $this->id_apoteker, $data['pasien'], $tgl);
+		// echo $idOk." ".$this->id_apoteker." ".$data['pasien']." ".$tgl;
+		$this->m_obatkeluar->insertObatKeluar($idOk, $this->id_apoteker, $data['pasien'], $tgl);
 
 		// create detail obat keluar
 		$detail_resep = array();
@@ -138,18 +120,37 @@ class Obatkeluarresep extends CI_Controller {
 		$kotak = explode(" ", $data["idresep"]);
 		$id_detail_ok = $this->m_obatkeluar->generateBanyakIdDetailObatKeluar(count($kotak)-1);
 		for ($i=1; $i < count($kotak); $i++) { 
-			// echo " Id resep ".$kotak[$i];
 			array_push($detail_resep, $kotak[$i]);
 		}
 		// print_r($id_detail_ok);
 
 		$query = $this->m_obatkeluar->selectDetailObatKeluar($detail_resep);
+		$i = 0;
+		$query2 = "INSERT INTO `detail_obat_keluar`(`ID_DETAIL_OBAT_KELUAR`, `ID_OBAT_KELUAR`, `ID_OBAT`, `QTY`, `KETERANGAN`, `SUBTOTAL`) VALUES ";
 		foreach ($query as $row) {
-			echo " Nama Obat ".$row->NAMA_OBAT;
+			$query2 = $query2.' ("'.$id_detail_ok[$i].'","'.$idOk.'","'.$row->ID_OBAT.'",'.$row->QTY_OBAT.',"'.$row->KET_RESEP.'",'.($row->QTY_OBAT*$row->HARGA).'),';
+			
+			// echo "\n".$id_detail_ok[$i]." ".$idOk." ".$row->ID_OBAT." ".$row->QTY_OBAT." ".$row->KET_RESEP." ".($row->QTY_OBAT*$row->HARGA);
+			$i++;
 		}
-		// print_r($detail_resep);
+		echo $query2;
+		// $query2 
+		// $this->m_obatkeluar->queryDo($query2);
 
+
+		// print_r($detail_resep);
 	}
 
 
+	/*
+	untuk bagus puji santoso
+	Tutorial Grafik
+
+	akses dengan cara -> localhost/psi3/obatkeluar/grafik
+	*/
+	public function grafik(){
+		$this->load->view('v_header_apoteker');
+		$this->load->view('obatkeluar/v_grafik');
+		$this->load->view('v_footer');
+	}
 }

@@ -42,15 +42,6 @@ class M_obatkeluar extends CI_Model {
     }
   }
 
-  // public function generateIdDetailObatKeluar(){
-  //   $id = $this->countDetailObatKeluar() + 1;
-  //   if ($id < 10) $id = "DOK000".$id;
-  //   else if ($id < 100) $id = "DOK00".$id;
-  //   else if ($id < 1000) $id = "DOK0".$id; 
-  //   else if ($id < 10000) $id = "DOK".$id;
-  //   return $id;
-  // }
-
   public function generateBanyakIdDetailObatKeluar($n){
     $id_awal = $this->generateIdObatKeluar();
     $id = $this->countDetailObatKeluar();
@@ -72,7 +63,6 @@ class M_obatkeluar extends CI_Model {
     $this->db->query("INSERT INTO `obat_keluar`(`ID_OBAT_KELUAR`, `ID_APOTEKER`, `ID_PASIEN`, `TGL_OBAT_KELUAR`) VALUES ('".$ID_OBAT_KELUAR."', '".$ID_APOTEKER."', '".$ID_PASIEN."', '".$TGL_OBAT_KELUAR."')");
   }
 
-  // public function insertDetailObatKeluar($ID_DETAIL_OBAT_KELUAR,$ID_OBAT_KELUAR,$ID_OBAT,$QTY,$KETERANGAN,$SUBTOTAL){
   public function selectDetailObatKeluar($detail_resep){
     $query = 'SELECT * FROM `detail_resep` AS dr, obat AS o WHERE dr.ID_OBAT=o.ID_OBAT AND (';
     for ($i=0; $i < count($detail_resep); $i++) { 
@@ -85,6 +75,11 @@ class M_obatkeluar extends CI_Model {
     $query = $query.');';
     $query = $this->db->query($query);
     return $query->result();
+  }
+
+  public function queryDo($query2){
+    $query = $this->db->query($query2);
+    return $query;
   }
 
 }

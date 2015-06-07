@@ -6,7 +6,7 @@
             <div class="box-keluar">
               <div class="row">
                 <div class="col-lg-12">
-                  <h1 class="page-header">Pengambilan Obat</h1>
+                  <h1 class="page-header" id="poobat">Pengambilan Obat</h1>
                 </div>
               </div>        
               <br>
@@ -97,7 +97,7 @@
               <!-- untuk tabel show detail resep -->
               <h4>Resep</h4>
                   <hr>
-              <table class="table table-bordered table-hover">
+              <table class="table table-bordered table-hover" id="kotakkeluar">
                 <thead style="background-color: #337AB7;color: #FFF;">
                   <td>No</td>
                   <td>Id Obat</td>
@@ -123,8 +123,8 @@
                       <td><?php echo $row->KATEGORI_OBAT; ?></td>
                       <td><?php echo $row->QTY_OBAT; ?></td>
                       <td style="text-align:right"><?php echo $row->HARGA; ?></td>
-                      <td><input id="ada" class="ada" type="checkbox" data-ada="<?php echo $row->ID_DETAIL_RESEP; ?>" value="<?php echo $row->ID_DETAIL_RESEP; ?>" name="obatcek"> Ada</td>
-                      <td class="subtotal" type="normal" value="<?php echo ($row->HARGA*$row->QTY_OBAT); ?>" style="text-align:right"><?php echo ($row->HARGA*$row->QTY_OBAT); ?></td>
+                      <td><input class="ada" data-val="<?php echo ($row->HARGA*$row->QTY_OBAT); ?>" type="checkbox" data-ada="<?php echo $row->ID_DETAIL_RESEP; ?>" value="<?php echo $row->ID_DETAIL_RESEP; ?>" name="obatcek"> Ada</td>
+                      <td class="subtotal" type="normal" style="text-align:right"><?php echo ($row->HARGA*$row->QTY_OBAT); ?></td>
                     </tr>
                   <?php endforeach ?>
                 <?php endif ?>
@@ -144,7 +144,7 @@
               </table>
               <?php if ($this->session->flashdata('detailr')!=null): ?>
               <div class="" style="text-align:right">
-                <h3 id="total">Total = <?php echo $total; ?></h3>
+                <h3>Total <input disabled style="text-align:right" type="text" id="total" value="0"></h3>
               </div>
               <?php endif ?>
               <!-- end of tabel detail resep -->
@@ -173,6 +173,24 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
             <button type="button" onclick="return simpan()" class="btn btn-primary">Simpan</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+  <!-- Untuk Pop Up sukses -->
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Berhasil tersimpan</h4>
+          </div>
+          <div class="modal-body" id="papanpopup">
+            Data telah berhasil tersimpan
+          </div>
+          <div class="modal-footer">
+            <button type="button" onclick="return done_obat_keluar()" class="btn btn-primary">Ok</button>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
