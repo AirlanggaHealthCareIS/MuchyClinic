@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.9
+-- version 3.5.2.2
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 06, 2015 at 06:25 PM
--- Server version: 5.6.14
--- PHP Version: 5.5.6
+-- Generation Time: Jun 07, 2015 at 01:11 PM
+-- Server version: 5.5.27
+-- PHP Version: 5.4.7
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -252,7 +252,7 @@ CREATE TABLE IF NOT EXISTS `detail_transaksi_obat` (
   `HARGA` int(11) NOT NULL,
   `SUBTOTAL` int(11) NOT NULL,
   PRIMARY KEY (`NO_O`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `detail_transaksi_obat`
@@ -261,7 +261,14 @@ CREATE TABLE IF NOT EXISTS `detail_transaksi_obat` (
 INSERT INTO `detail_transaksi_obat` (`NO_O`, `ID_TRANSAKSI`, `NAMA_OBAT`, `KETERANGAN`, `QTY`, `HARGA`, `SUBTOTAL`) VALUES
 (1, 15, 'ACETYLCYSTEINE NOVEL 200MG CAP 100S', 'Wenak', 3, 5000, 15000),
 (2, 15, 'A-B VASK 5MG TAB', 'Asekkk', 5, 2500, 12500),
-(3, 16, 'A-B VASK 5MG TAB', 'Asekkk', 5, 2500, 12500);
+(3, 16, 'A-B VASK 5MG TAB', 'Asekkk', 5, 2500, 12500),
+(4, 15, 'ACETYLCYSTEINE NOVEL 200MG CAP 100S', 'Wenak', 3, 5000, 15000),
+(5, 16, 'ACETYLCYSTEINE NOVEL 200MG CAP 100S', 'Wenak', 3, 5000, 15000),
+(6, 17, 'ACETYLCYSTEINE NOVEL 200MG CAP 100S', 'Wenak', 3, 5000, 15000),
+(7, 15, 'A-B VASK 5MG TAB', 'Asekkk', 5, 4512, 12500),
+(8, 16, 'A-B VASK 5MG TAB', 'Asekkk', 5, 4512, 12500),
+(9, 17, 'A-B VASK 5MG TAB', 'Asekkk', 5, 4512, 12500),
+(10, 18, 'A-B VASK 5MG TAB', 'Asekkk', 5, 4512, 12500);
 
 -- --------------------------------------------------------
 
@@ -278,7 +285,7 @@ CREATE TABLE IF NOT EXISTS `detail_transaksi_periksa` (
   `HARGA` int(11) NOT NULL,
   `SUBTOTAL` int(11) NOT NULL,
   PRIMARY KEY (`NO_TP`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `detail_transaksi_periksa`
@@ -286,7 +293,13 @@ CREATE TABLE IF NOT EXISTS `detail_transaksi_periksa` (
 
 INSERT INTO `detail_transaksi_periksa` (`NO_TP`, `ID_TRANSAKSI`, `NAMA_TINDAKAN`, `KETERANGAN`, `QTY`, `HARGA`, `SUBTOTAL`) VALUES
 (1, 15, 'Suntik', '-', 2, 55000, 110000),
-(2, 15, 'Periksa & Kosultasi', '-', 3, 100000, 300000);
+(2, 15, 'Periksa & Kosultasi', '-', 3, 100000, 300000),
+(3, 15, 'Suntik', '-', 2, 55000, 110000),
+(4, 15, 'Periksa & Kosultasi', '-', 3, 100000, 300000),
+(5, 16, 'Suntik', '-', 2, 55000, 110000),
+(6, 16, 'Periksa & Kosultasi', '-', 3, 100000, 300000),
+(7, 17, 'Suntik', '-', 2, 55000, 110000),
+(8, 17, 'Periksa & Kosultasi', '-', 3, 100000, 300000);
 
 -- --------------------------------------------------------
 
@@ -303,14 +316,17 @@ CREATE TABLE IF NOT EXISTS `detail_transaksi_rawat_inap` (
   `HARGA` int(11) NOT NULL,
   `SUBTOTAL` int(11) NOT NULL,
   PRIMARY KEY (`NO_TRI`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `detail_transaksi_rawat_inap`
 --
 
 INSERT INTO `detail_transaksi_rawat_inap` (`NO_TRI`, `ID_TRANSAKSI`, `NAMA_KAMAR_INAP`, `KETERANGAN`, `QTY`, `HARGA`, `SUBTOTAL`) VALUES
-(1, 15, 'Mawar', '3 Hari', 3, 500000, 1500000);
+(1, 15, 'Mawar', '3 Hari', 3, 500000, 1500000),
+(2, 15, 'Mawar', '3 Hari', 3, 500000, 1500000),
+(3, 16, 'Mawar', '3 Hari', 3, 500000, 1500000),
+(4, 17, 'Mawar', '3 Hari', 3, 500000, 1500000);
 
 -- --------------------------------------------------------
 
@@ -5909,16 +5925,9 @@ CREATE TABLE IF NOT EXISTS `transaksi` (
   `TGL_TRANSAKSI` date NOT NULL,
   `JAM_TRANSAKSI` time NOT NULL,
   `TOTAL` int(50) NOT NULL,
+  `ID_PASIEN` varchar(5) NOT NULL,
   PRIMARY KEY (`ID_TRANSAKSI`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
-
---
--- Dumping data for table `transaksi`
---
-
-INSERT INTO `transaksi` (`ID_TRANSAKSI`, `ID_KASIR`, `TGL_TRANSAKSI`, `JAM_TRANSAKSI`, `TOTAL`) VALUES
-(15, 'K0001', '2015-05-29', '14:38:37', 1925000),
-(16, 'K0001', '2015-05-29', '14:40:06', 12500);
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 -- --------------------------------------------------------
 
