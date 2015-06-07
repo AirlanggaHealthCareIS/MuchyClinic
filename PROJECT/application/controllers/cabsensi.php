@@ -39,13 +39,6 @@ class Cabsensi extends CI_Controller {
 			$ketkr='tidak lembur';
 		}
 		}
-		/*$timepkr=date('H:i:s');
-		if($timepkr>='16:00:00'){
-			$ketkr='lembur';
-		}
-		else{
-			$ketkr='tepat';
-		}*/
 		$this->load->model("m_absensi");
 		$inputX = $this->m_absensi->getAbsensiKaryawan($idkr,$timedkr,$datekr,$timepkr,$ketkr);
 		

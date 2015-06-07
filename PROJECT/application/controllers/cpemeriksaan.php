@@ -7,7 +7,7 @@ class Cpemeriksaan extends CI_Controller {
 		$this->load->model("m_pemeriksaan");
 		$this->tperiksa = date('Y-m-d');
 
-		$this->id_dokter = "DI001";
+		$this->id_dokter = "D0001";
 	}
 	public function index()
 	{
@@ -25,29 +25,6 @@ class Cpemeriksaan extends CI_Controller {
 
 	public function validasiPemeriksaan(){
 		
-		// $idp      		= $this->input->post('id_periksa');
-
-		// if($idp=="null"||$idp==""){
-		// 	redirect(base_url().'cpemeriksaan?error=null');
-		// }
-		// else{
-		// 	$in=$this->inputpemeriksaan();
-		// 	redirect(base_url()."cpemeriksaan?status=sukses");
-		// }
-
-		// $idpasien 		= $this->input->post('idpasien');
-		// if($idpasien=="null"||$idpasien==" "){
-		// 	redirect(base_url().'Cpemeriksaan?=null');
-		// }
-		// else{
-		// 	$in=$this->inputpemeriksaan();
-		// 	redirect(base_url()."Cpemeriksaan?=sukses");
-		// }
-
-		// $iddokter 		= $this->input->post('iddokter');
-		// $tglperiksa		= $this->input->post('tanggalpemeriksaan');
-		// $biayaperiksa	= $this->input->post('biayaperiksa');
-
 		$this->load->helper(array('form', 'url'));
 
         $this->load->library('form_validation');
@@ -62,6 +39,9 @@ class Cpemeriksaan extends CI_Controller {
  		} 
 		else if ($isValid == "true"){ // true
 			$this->checkdb($id);
+		}
+		else{
+			redirect(base_url().'cpemeriksaan?succesfully');
 		}
 
 	}
@@ -97,12 +77,16 @@ class Cpemeriksaan extends CI_Controller {
 	}
 	public function insert_periksa(){
 		$this->load->database();
+		$this->load->model("m_pemeriksaan");
 		$id_pas = $this->session->userdata('idpasien3');
-		$id_pemeriksaan = $this->mambildata->generatePemeriksaan();
-		$pnyakit = $this->input->post('penyakit');
+		$id_pemeriksaan = $this->m_pemeriksaan->generatePemeriksaan();
+		$penyakit = $this->input->post('penyakit');
 		$keluhan = $this->input->post('keluhan');
-		$tanggal = $this->tperiksa;
-		$dok = $this->id_dokter;
+		$tanggal = date('Y-m-d');
+		$dok = "D0001";
+		//echo " ".$id_pemeriksaan;
+		$this->m_pemeriksaan->insert($id_pemeriksaan,$dok,$penyakit, $id_pas, $tanggal,$keluhan);
+		redirect(base_url().'cpemeriksaan?succesfully=succesfully');
 
 	}
 	public function inputpemeriksaan(){
