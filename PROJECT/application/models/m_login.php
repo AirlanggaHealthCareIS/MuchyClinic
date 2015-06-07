@@ -10,7 +10,7 @@ class m_login extends CI_Model {
         
         public function getdokter($username,$password)
         {
-                $query = $this->db->query("SELECT * FROM `dokter` WHERE NAMA_DOKTER = '".$username."' OR PASSWORD = '".$password."'");
+                $query = $this->db->query("SELECT * FROM `dokter` WHERE NAMA_DOKTER = '".$username."' AND PASSWORD = '".$password."'");
                 if ($query->num_rows() ==1) {
                         return true;
                 } else {
@@ -23,7 +23,7 @@ class m_login extends CI_Model {
         {
                 // $query = $this->db->query("SELECT * FROM `dokter` WHERE NAMA_DOKTER = '".$username."' OR PASSWORD = '".$password."'");
                 
-                $query = $this->db->query("SELECT * FROM `karyawan` WHERE NAMA_K = '".$username."' OR PASSWORD = '".$password."'");
+                $query = $this->db->query("SELECT * FROM `karyawan` WHERE NAMA_K = '".$username."' AND PASSWORD = '".$password."'");
                 if ($query->num_rows() ==1) {
                         return true;
                 } else {
@@ -37,7 +37,7 @@ class m_login extends CI_Model {
         {
                 // $query = $this->db->query("SELECT * FROM `dokter` WHERE NAMA_DOKTER = '".$username."' OR PASSWORD = '".$password."'");
                 
-                $query = $this->db->query("SELECT * FROM `apoteker` WHERE NAMA_APOTEKER = '".$username."' OR PASSWORD = '".$password."'");
+                $query = $this->db->query("SELECT * FROM `apoteker` WHERE NAMA_APOTEKER = '".$username."' AND PASSWORD = '".$password."'");
                 if ($query->num_rows() ==1) {
                         return true;
                 } else {
@@ -51,7 +51,7 @@ class m_login extends CI_Model {
         {
                 // $query = $this->db->query("SELECT * FROM `dokter` WHERE NAMA_DOKTER = '".$username."' OR PASSWORD = '".$password."'");
                 
-                $query = $this->db->query("SELECT * FROM `owner` WHERE NAMA_OWNER= '".$username."' OR PASSWORD = '".$password."'");
+                $query = $this->db->query("SELECT * FROM `owner` WHERE NAMA_OWNER= '".$username."' AND PASSWORD = '".$password."'");
                 if ($query->num_rows() ==1) {
                         return true;
                 } else {
