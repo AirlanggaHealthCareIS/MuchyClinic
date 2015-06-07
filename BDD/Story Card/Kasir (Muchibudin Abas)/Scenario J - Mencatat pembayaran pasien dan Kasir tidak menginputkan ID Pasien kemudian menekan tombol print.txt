@@ -1,0 +1,6 @@
+Scenario J - Mencatat pembayaran pasien dan Kasir tidak menginputkan ID Pasien kemudian menekan tombol print
+Give	: Kasir telah berada pada menu kasir
+When	: Kasir tidak menginputkan ID Pasien
+Then	: Kasir menekan tombol print
+When	: Kasir tidak dapat mencetak detail transaksi
+
