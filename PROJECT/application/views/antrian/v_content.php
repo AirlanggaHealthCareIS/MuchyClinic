@@ -1,8 +1,9 @@
 <div class="container-fluid">
-      <div class="">
-    <div class="row">
+        <div class="">
+      <div class="row">
       <div class="col-lg-12">
         <h1 class="page-header">Antrian On The Spot</h1>
+      
       </div>
         <div class="row">
           <div class="col-md-6 text-center">
@@ -22,11 +23,11 @@
               document.write(tanggallengkap); 
             </script> 
             </font>
-            <!-- tanggal -->
           </div>
+          <!-- tanggal -->
 
+          <!-- Jam -->
           <div class="col-md-6 text-center">
-            <!-- jam -->
             <style>
                 .jam {
                  font-family : tahoma;
@@ -67,7 +68,7 @@
           </div>
         </div>
 
-
+          <!-- Header -->
           <br>
           <br>
           <div class="row">
@@ -81,12 +82,14 @@
           </div>
           <h1 class="page-header" style="padding-bottom:10px"></h1>
           <br>
+
           <!-- pesan eror -->
           <?php if ($this->input->get('error')=="null"): ?>
             <div class ="alert alert-danger" role="alert">
             Maaf field kosong! Silahkan input ID pasien kembali
             </div>
 
+            <!-- Error input symbol -->
           <?php endif ?>
             <?php if ($this->input->get("error")=="symbol"): ?>
             <div class = "alert alert-danger" role = "alert">
@@ -94,10 +97,10 @@
             </div>  
             <?php endif ?>  
 
-            
+            <!-- Tidak ada pasien -->
             <?php if ($this->input->get("act")=="not_found"): ?>
             <div class = "alert alert-danger" role = "alert">
-              <p>Pasien nya gak ada brooh</p>
+              <p>Pasien tidak ada</p>
             </div>  
             <?php endif ?>
             <?php if ($this->input->get('act')=='succesfully'): ?>
@@ -106,8 +109,8 @@
                 <p>Input Succesfully!!</p>
               </div>
             <?php endif ?>
-            <!-- pesan eror -->
-          
+
+            <!-- validasi -->
             <br>
             <form class="form-horizontal" action = "<?php echo base_url()?>antri/validasi" method = "post">
               <label for="inputEmail3" class="col-sm-2 control-label">ID PASIEN :</label>

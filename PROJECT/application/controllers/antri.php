@@ -7,6 +7,9 @@ class Antri extends CI_Controller {
                 // Call the CI_Model constructor
                 parent::__construct();
                 $this->load->model("m_antrian");
+                $this->header[0] = "active"; //untuk indikasi active header
+				$this->id_user = "";
+				$this->user = "Izmul Zamroni";
         }
 	public function index()
 	{
@@ -18,7 +21,7 @@ class Antri extends CI_Controller {
 		$setAntri2 = ($setAntri+1);
 		$this->nomor_antri = $setAntri2;		
 		$data = array("id_pasien"=> " ", "nama_pasien"=> " ", "no_telp_pas"=> " ", "getdok"=>$dokter);
-		$this->load->view("v_header");
+		$this->load->view("v_header_admin");
 		$this->load->view("antrian/v_content", $data);
 		$this->load->view("v_footer");
 	}
