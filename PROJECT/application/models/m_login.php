@@ -46,6 +46,20 @@ class m_login extends CI_Model {
 
         
         }
+
+        public function getowner($username,$password)
+        {
+                // $query = $this->db->query("SELECT * FROM `dokter` WHERE NAMA_DOKTER = '".$username."' OR PASSWORD = '".$password."'");
+                
+                $query = $this->db->query("SELECT * FROM `owner` WHERE NAMA_OWNER= '".$username."' OR PASSWORD = '".$password."'");
+                if ($query->num_rows() ==1) {
+                        return true;
+                } else {
+                        return false;
+                }
+
+        
+        }
 }
 
  ?>

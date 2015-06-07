@@ -5,7 +5,7 @@ class Laporanuang extends CI_Controller {
 	public function LaporanUang(){
 		parent::__construct();
 		$this->load->model("m_ambildatalaporanuang");
-		$this->header[1] = "active"; //untuk indikasi active header
+		$this->header[0] = "active"; //untuk indikasi active header
 		$this->id_user = "";
 		$this->user = "Izmul Zamroni";
 	}

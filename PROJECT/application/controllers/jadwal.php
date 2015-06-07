@@ -2,6 +2,16 @@
 
 class Jadwal extends CI_Controller{ 
 
+	public function Jadwalapoteker()
+        {
+                // Call the CI_Model constructor
+                parent::__construct();
+                $this->load->model("m_jadwal");
+                //$this->header[2] = "active"; //untuk indikasi active header
+				$this->id_user = "";
+				$this->user = "Izmul Zamroni";
+        }
+
 	public function index()
 	{
 		$this->load->model("m_jadwal");
@@ -18,7 +28,7 @@ class Jadwal extends CI_Controller{
 
         //"lihatjadwalapt"=>$this->m_jadwal->getAllData(),
 
-		$this->load->view("v_header");
+		$this->load->view("v_header_owner");
 		$this->load->view("jadwal/v_content_karyawan", $data);
 		$this->load->view("v_footer");
 
@@ -27,6 +37,8 @@ class Jadwal extends CI_Controller{
     public function karyawan()
 	{
 		$this->load->model("m_jadwal");
+		$this->header[3] = "active"; //untuk indikasi active header
+				
 
         $data = array("ida"=>"", "nama"=>"", 
         "iddokter"=>"", "namadokter"=>"", 
@@ -40,7 +52,7 @@ class Jadwal extends CI_Controller{
 
         //"lihatjadwalapt"=>$this->m_jadwal->getAllData(),
 
-		$this->load->view("v_header");
+		$this->load->view("v_header_owner");
 		$this->load->view("jadwal/v_content_karyawan", $data);
 		$this->load->view("v_footer");
 
@@ -49,6 +61,7 @@ class Jadwal extends CI_Controller{
     public function dokter()
 	{
 		$this->load->model("m_jadwal");
+		$this->header[1] = "active"; //untuk indikasi active header
 
         $data = array("ida"=>"", "nama"=>"", 
         "iddokter"=>"", "namadokter"=>"", 
@@ -62,7 +75,7 @@ class Jadwal extends CI_Controller{
 
         //"lihatjadwalapt"=>$this->m_jadwal->getAllData(),
 
-		$this->load->view("v_header");
+		$this->load->view("v_header_owner");
 		$this->load->view("jadwal/v_content_dokter", $data);
 		$this->load->view("v_footer");
 
@@ -71,6 +84,7 @@ class Jadwal extends CI_Controller{
     public function apoteker()
 	{
 		$this->load->model("m_jadwal");
+		$this->header[2] = "active"; //untuk indikasi active header
 
         $data = array("ida"=>"", "nama"=>"", 
         "iddokter"=>"", "namadokter"=>"", 
@@ -84,7 +98,7 @@ class Jadwal extends CI_Controller{
 
         //"lihatjadwalapt"=>$this->m_jadwal->getAllData(),
 
-		$this->load->view("v_header");
+		$this->load->view("v_header_owner");
 		$this->load->view("jadwal/v_content_apoteker", $data);
 		$this->load->view("v_footer");
 
