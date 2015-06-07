@@ -82,7 +82,12 @@
     <script src="<?php echo base_url(); ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- Metis Menu Plugin JavaScript -->
     <script src="<?php echo base_url(); ?>assets/bower_components/metisMenu/dist/metisMenu.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/obatmasuk.js"></script>
+    <!-- Untuk custom js  -->
+    <?php if (isset($this->js_to_load)): ?>
+        <?php foreach ($this->js_to_load as $url): ?>
+            <script src="<?php echo $url; ?>"></script>
+        <?php endforeach ?>
+    <?php endif ?>
     <script src="<?php echo base_url(); ?>assets/js/rawatinap.js"></script>
     <!-- Morris Charts JavaScript -->
     <script src="<?php echo base_url(); ?>assets/bower_components/raphael/raphael-min.js"></script>
