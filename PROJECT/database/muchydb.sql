@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2015 at 01:11 PM
+-- Generation Time: Jun 07, 2015 at 06:44 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -50,6 +50,7 @@ CREATE TABLE IF NOT EXISTS `absensi` (
 CREATE TABLE IF NOT EXISTS `apoteker` (
   `ID_APOTEKER` varchar(5) NOT NULL,
   `NAMA_APOTEKER` varchar(25) DEFAULT NULL,
+  `PASSWORD` varchar(10) NOT NULL,
   `TMPT_LAHIR_APT` varchar(20) DEFAULT NULL,
   `TGL_LAHIR_APT` date NOT NULL,
   `ALAMAT_APOTEKER` varchar(25) DEFAULT NULL,
@@ -62,9 +63,9 @@ CREATE TABLE IF NOT EXISTS `apoteker` (
 -- Dumping data for table `apoteker`
 --
 
-INSERT INTO `apoteker` (`ID_APOTEKER`, `NAMA_APOTEKER`, `TMPT_LAHIR_APT`, `TGL_LAHIR_APT`, `ALAMAT_APOTEKER`, `NO_TLP_APOTEKER`, `JK_APOTEKER`) VALUES
-('A0001', 'Ani', 'Surabaya', '1980-04-01', 'Surabaya', '081211632432', 'P'),
-('A0002', 'Budi', 'Sidoarjo', '1988-04-16', 'Sidoarjo', '085737098712', 'L');
+INSERT INTO `apoteker` (`ID_APOTEKER`, `NAMA_APOTEKER`, `PASSWORD`, `TMPT_LAHIR_APT`, `TGL_LAHIR_APT`, `ALAMAT_APOTEKER`, `NO_TLP_APOTEKER`, `JK_APOTEKER`) VALUES
+('A0001', 'Ani', '12345', 'Surabaya', '1980-04-01', 'Surabaya', '081211632432', 'P'),
+('A0002', 'Budi', '12345', 'Sidoarjo', '1988-04-16', 'Sidoarjo', '085737098712', 'L');
 
 -- --------------------------------------------------------
 
@@ -203,7 +204,10 @@ CREATE TABLE IF NOT EXISTS `detail_rawat_inap` (
 --
 
 INSERT INTO `detail_rawat_inap` (`ID_DETAIL_RAWAT_INAP`, `ID_RAWAT_INAP`, `ID_PERIKSA`, `KETERANGAN`, `QTY`, `SUBTOTAL`) VALUES
-('DI001', 'RI001', 'PR001', '3 Hari', 3, 1500000);
+('DI001', 'RI001', NULL, 'RAWAT INAP', 0, 0),
+('DI002', 'RI002', NULL, 'RAWAT INAP', 0, 0),
+('DI003', 'RI003', NULL, 'RAWAT INAP', 0, 0),
+('DI004', 'RI004', NULL, 'RAWAT INAP', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -338,6 +342,7 @@ CREATE TABLE IF NOT EXISTS `dokter` (
   `ID_DOKTER` varchar(5) NOT NULL,
   `ID_JENIS_DOKTER` varchar(5) NOT NULL,
   `NAMA_DOKTER` varchar(25) DEFAULT NULL,
+  `PASSWORD` varchar(10) NOT NULL,
   `TMPT_LAHIR_DOKTER` varchar(20) DEFAULT NULL,
   `TGL_LAHIR_DOKTER` date NOT NULL,
   `ALAMAT_DOKTER` varchar(50) DEFAULT NULL,
@@ -351,12 +356,12 @@ CREATE TABLE IF NOT EXISTS `dokter` (
 -- Dumping data for table `dokter`
 --
 
-INSERT INTO `dokter` (`ID_DOKTER`, `ID_JENIS_DOKTER`, `NAMA_DOKTER`, `TMPT_LAHIR_DOKTER`, `TGL_LAHIR_DOKTER`, `ALAMAT_DOKTER`, `NO_TELP_DOKTER`, `JNS_KELAMIN_DOKTER`) VALUES
-('D0001', 'JD001', 'Caca', 'Surabaya', '1990-05-09', 'Darmo', '081345672312', 'P'),
-('D0002', 'JD002', 'Irma', 'Padang', '1987-01-08', 'Surabaya', '081445267165', 'P'),
-('D0003', 'JD003', 'Wahyu', 'Lombok', '1988-08-15', 'Surabaya', '081211633098', 'L'),
-('D0004', 'JD012', 'Dani', 'Palu', '1982-12-10', 'Sidoarjo', '085754345678', 'L'),
-('D0005', 'JD018', 'Anton', 'Jakarta', '1981-06-17', 'Surabaya', '085666723451', 'L');
+INSERT INTO `dokter` (`ID_DOKTER`, `ID_JENIS_DOKTER`, `NAMA_DOKTER`, `PASSWORD`, `TMPT_LAHIR_DOKTER`, `TGL_LAHIR_DOKTER`, `ALAMAT_DOKTER`, `NO_TELP_DOKTER`, `JNS_KELAMIN_DOKTER`) VALUES
+('D0001', 'JD001', 'Caca', '12345', 'Surabaya', '1990-05-09', 'Darmo', '081345672312', 'P'),
+('D0002', 'JD002', 'Irma', '12345', 'Padang', '1987-01-08', 'Surabaya', '081445267165', 'P'),
+('D0003', 'JD003', 'Wahyu', '12345', 'Lombok', '1988-08-15', 'Surabaya', '081211633098', 'L'),
+('D0004', 'JD012', 'Dani', '12345', 'Palu', '1982-12-10', 'Sidoarjo', '085754345678', 'L'),
+('D0005', 'JD018', 'Anton', '12345', 'Jakarta', '1981-06-17', 'Surabaya', '085666723451', 'L');
 
 -- --------------------------------------------------------
 
@@ -562,6 +567,7 @@ CREATE TABLE IF NOT EXISTS `karyawan` (
   `ID_BAGIAN` varchar(5) NOT NULL,
   `ID_JABATAN` varchar(5) NOT NULL,
   `NAMA_K` varchar(25) DEFAULT NULL,
+  `PASSWORD` varchar(10) NOT NULL,
   `TMPT_LAHIR_K` varchar(20) DEFAULT NULL,
   `TGL_LAHIR_K` date NOT NULL,
   `ALAMAT_K` varchar(10) DEFAULT NULL,
@@ -576,12 +582,12 @@ CREATE TABLE IF NOT EXISTS `karyawan` (
 -- Dumping data for table `karyawan`
 --
 
-INSERT INTO `karyawan` (`ID_KARYAWAN`, `ID_BAGIAN`, `ID_JABATAN`, `NAMA_K`, `TMPT_LAHIR_K`, `TGL_LAHIR_K`, `ALAMAT_K`, `NO_TELP_K`, `JENIS_KELAMIN_K`) VALUES
-('K0001', 'BA001', 'J0002', 'Sugiarto', 'Gresik', '1971-04-06', 'Surabaya', '081211543222', 'L'),
-('K0002', 'BA003', 'J0005', 'Amir', 'Pontianak', '1987-05-01', 'Waru', '085676512312', 'L'),
-('K0003', 'BA006', 'J0004', 'Mira', 'Denpasar', '1993-06-10', 'Surabaya', '081211311432', 'P'),
-('K0004', 'BA001', 'J0007', 'Angel', 'Washington', '1991-09-03', 'Surabaya', '081222444543', 'P'),
-('K0005', 'BA008', 'J0003', 'Yani', 'Yogyakarta', '1983-01-29', 'Sidoarjo', '08765456765', 'P');
+INSERT INTO `karyawan` (`ID_KARYAWAN`, `ID_BAGIAN`, `ID_JABATAN`, `NAMA_K`, `PASSWORD`, `TMPT_LAHIR_K`, `TGL_LAHIR_K`, `ALAMAT_K`, `NO_TELP_K`, `JENIS_KELAMIN_K`) VALUES
+('K0001', 'BA001', 'J0002', 'Sugiarto', '12345', 'Gresik', '1971-04-06', 'Surabaya', '081211543222', 'L'),
+('K0002', 'BA003', 'J0005', 'Amir', '12345', 'Pontianak', '1987-05-01', 'Waru', '085676512312', 'L'),
+('K0003', 'BA006', 'J0004', 'Mira', '12345', 'Denpasar', '1993-06-10', 'Surabaya', '081211311432', 'P'),
+('K0004', 'BA001', 'J0007', 'Angel', '12345', 'Washington', '1991-09-03', 'Surabaya', '081222444543', 'P'),
+('K0005', 'BA008', 'J0003', 'Yani', '12345', 'Yogyakarta', '1983-01-29', 'Sidoarjo', '08765456765', 'P');
 
 -- --------------------------------------------------------
 
@@ -5806,10 +5812,10 @@ CREATE TABLE IF NOT EXISTS `rawat_inap` (
 --
 
 INSERT INTO `rawat_inap` (`ID_RAWAT_INAP`, `ID_KAMAR_INAP`, `ID_PASIEN`, `ID_DOKTER`, `TGL_MASK`, `TGL_KELUAR`, `TOTAL_BIAYA_RWT`) VALUES
-('RI001', 'KI001', 'P0001', 'D0001', '2015-04-01', NULL, 0),
-('RI002', 'KI002', 'P0001', 'D0001', '2015-05-28', NULL, 0),
-('RI003', 'KI001', 'P0001', 'D0001', '2015-05-28', NULL, 0),
-('RI005', 'KI002', 'P0001', 'D0004', '2015-05-29', NULL, 0);
+('RI001', 'KI001', 'P0001', 'D0001', '2015-06-01', NULL, 0),
+('RI002', 'KI001', 'P0005', 'D0001', '2015-06-04', NULL, 0),
+('RI003', 'KI001', 'P0004', 'D0001', '2015-06-05', NULL, 0),
+('RI004', 'KI002', 'P0003', 'D0004', '2015-06-02', NULL, 0);
 
 -- --------------------------------------------------------
 
