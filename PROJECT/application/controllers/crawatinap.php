@@ -6,6 +6,9 @@ class Crawatinap extends CI_Controller{
 	{
 		parent::__construct();
 		$this->load->model("mambildata");
+		$this->header[2] = "active"; //untuk indikasi active header
+		$this->id_user = "";
+		$this->user = "Izmul Zamroni";
 	}
 	public function index() // view updateRwtinap
 	{
@@ -13,7 +16,7 @@ class Crawatinap extends CI_Controller{
 		$data['mawar'] = $this->mambildata->dmawar();
 		$data['melati'] = $this->mambildata->dmelati();
 
-		$this->load->view('v_header');
+		$this->load->view('v_header_admin');
 		$this->load->view('rawatinap/updateRwtinap', $data);
 		$this->load->view('v_footer');	
 		
@@ -24,7 +27,7 @@ class Crawatinap extends CI_Controller{
 		$dokter = $this->mambildata->getdokter();
 		$data = array("id_pasien"=> " ", "nama_pasien"=> " ", "no_telp_pas"=> " ", "getkam"=>$kamar, "getdok"=>$dokter);
 
-		$this->load->view('v_header');
+		$this->load->view('v_header_admin');
 		$this->load->view('rawatinap/rawatinap', $data);
 		$this->load->view('v_footer');	
 		
@@ -84,7 +87,6 @@ class Crawatinap extends CI_Controller{
 		$dokter_r = $this->input->post('dokter');
 		$tgl_masuk_r = date('Y-m-d');
 		$qty = 0;
-		$this->load->update_data($tgl_masuk_r, $qty);
 
 		if ($id_pas == null || $kamar_r == null || $dokter_r == null || $tgl_masuk_r == null ) {
 			redirect(base_url().'crawatinap/index2?error=null');
@@ -148,18 +150,52 @@ class Crawatinap extends CI_Controller{
 	}
 	// end testing model // 
 	// update data //
-	public function update_data($tgl_masuk_r, $qty){
+	public function update_data_mawar(){
+		$temp = $this->input->post('ada');
+		$temp_tgl = $this->input->post('tanggal');
+		$temp_kamar = $this->input->post('kamar');
+		
+		$kotak = explode(" ", $temp); // id array
+		$rawat = array();
+		for ($i=1; $i < count($kotak); $i++) { 
+			// echo " Id resep ".$kotak[$i];
+			array_push($rawat, $kotak[$i]);
+		}
+
+		$kotak1 = explode(" ", $temp_tgl); // tgl array
+		$rawat1 = array();
+		for ($i=1; $i < count($kotak1); $i++) { 
+			array_push($rawat1, $kotak1[$i]);
+		}
+
+		foreach ($rawat1 as $tgl_masuk_r) {
+			$tgl_keluar_r = date('Y-m-d');
+			$datetime1 = new DateTime($tgl_masuk_r);
+	  		$datetime2 = new DateTime($tgl_keluar_r);
+	  		$day = $datetime1->diff($datetime2);
+			$qty = $day->days;
+		}
+
+		$kotak3 = explode(" ", $temp_kamar);
+		$kamar_inap = array();
+		for ($i=1; $i < count($kotak3); $i++) { 
+			array_push($kamar_inap, $kotak3[$i]);
+		}
+
+		
+		if ($kamar_inap[0] == 'KI001') {
+			$biaya = $qty*500000;
+		}
+		else {
+			$biaya = $qty*300000;
+		}
+		
+		// echo " ".$rawat1[0];
+		// echo " ".$tgl_keluar_r;
+		
 		$this->load->database();
-		$idr = $this->session->userdata('id_rawat_inap');
-		$tgl_keluar_r = date('Y-m-d');
-		$datetime1 = new DateTime($tgl_masuk_r);
-  		$datetime2 = new DateTime($tgl_keluar_r);
-  		$day = $datetime1->diff($datetime2);
-		//echo "hari = ".$day->days;
-		$qty = $day->days;
-		// hitung kamar
-		$this->mambildata->update_rawat($idr, $qty, $tgl_keluar, $biaya);
+		$this->mambildata->update_rawat($rawat[0], $qty, date('Y-m-d'), $biaya);
 	}
-	// end update data
+	
 }
 	

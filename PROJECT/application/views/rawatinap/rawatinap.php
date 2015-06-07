@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
       <div class="col-lg-12">
-        <h1 class="page-header">Rawat Inap</h1>
+        <h1 class="page-header" id="ri">Rawat Inap</h1>
       </div>
     </div>
     <div class="row">
@@ -23,19 +23,19 @@
                 <?php if ($this->input->get('error')=='null'): ?>
                   <div class="alert alert-danger alert-dismissible" role="alert">
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <p>Field Kosong, Mohon diisi dengan benar</p>
+                    <p>Isian Kosong, Mohon Masukkan ID Pasien dengan Benar</p>
                   </div>
                 <?php endif ?>
                 <?php if ($this->input->get('act')=='not_found'): ?>
                   <div class="alert alert-danger alert-dismissible" role="alert">
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <p>Pasien Tidak Terdaftar</p>
+                    <p>Pasien Yang Anda Masukkan Belum Terdaftar</p>
                   </div>
                 <?php endif ?>
                 <?php if ($this->input->get('error')=='symbol'): ?>
                   <div class="alert alert-danger alert-dismissible" role="alert">
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <p>Mohon tidak memasukan simbol</p>
+                    <p>Mohon Tidak Memasukan Simbol</p>
                   </div>
                 <?php endif ?>
                 <?php if ($this->input->get('act')=='kamar_penuh'): ?>
@@ -47,7 +47,7 @@
                 <?php if ($this->input->get('succesfully')=='succesfully'): ?>
                   <div class="alert alert-success alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <p>Input Succesfully!!</p>
+                    <p>Input ID Pasien Sukses</p>
                   </div>
                 <?php endif ?>
                 <!-- pesan error -->
@@ -107,17 +107,6 @@
                       <option value="<?php echo $row->ID_DOKTER?>"><?php echo $row->NAMA_DOKTER; ?></option>
                   <?php    }?>
                 </select>
-                <!-- <div class="row">
-                  <div class="col-xs-6">
-                    <label for="disabledTextInput">Tanggal masuk</label>
-                      <div class="form-group">
-                          <input type="date" name="tgl_masuk" class="form-control" id="tanggal" placeholder="tanggal masuk">
-                      </div>
-                  </div>
-                  <div class="col-xs-6" style="text-align: left; border-right: #D9EDF7 0.12em solid;">
-                  </div>
-                  
-                </div> -->
                 </div>
             
               <div class="col-md-2" style="padding-top:143px;"><br></br>

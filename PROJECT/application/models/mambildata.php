@@ -106,6 +106,7 @@ class Mambildata extends CI_Model {
 			}
 		public function update_rawat($idr, $qty, $tgl_keluar, $biaya){
 			$query = $this->db->query("UPDATE `RAWAT_INAP` AS R, `detail_rawat_inap` AS D SET R.`TGL_KELUAR`= '".$tgl_keluar."', R.`TOTAL_BIAYA_RWT` = '".$biaya."', D.`QTY` = '".$qty."', D.`SUBTOTAL` = '".$biaya."' WHERE D.`ID_RAWAT_INAP` = R.`ID_RAWAT_INAP` AND R.`ID_RAWAT_INAP` ='".$idr."'");
-			return $query->result();
+			// return "UPDATE `RAWAT_INAP` AS R, `detail_rawat_inap` AS D SET R.`TGL_KELUAR`= '".$tgl_keluar."', R.`TOTAL_BIAYA_RWT` = '".$biaya."', D.`QTY` = '".$qty."', D.`SUBTOTAL` = '".$biaya."' WHERE D.`ID_RAWAT_INAP` = R.`ID_RAWAT_INAP` AND R.`ID_RAWAT_INAP` ='".$idr."'";
+			// return $query->result();
 		}
 }
