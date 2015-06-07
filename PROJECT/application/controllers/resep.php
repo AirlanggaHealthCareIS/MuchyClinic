@@ -1,14 +1,13 @@
 <?php //if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Resep extends CI_Controller{
-
-	function Resep(){
-		parent::__construct();
-		$this->header[0] = "active"; //untuk indikasi active header
+	public function Resep(){
+		parent::construct();
+		$this->load->model("m_resep");
+		$this->header[0] = "active";
 		$this->id_user = "";
-		$this->user = "Izmul Zamroni";
+		$this->user = "Dian Ramadhan";
 	}
-	
 	//=================================================OPENING=====================================
 	public function index(){
 		$data = array(
@@ -87,7 +86,7 @@ class Resep extends CI_Controller{
 			$this->session->iddokter = $ro->ID_DOKTER;
 			$this->session->keluhan = $ro->KELUHAN;
 
-			$this->load->view("v_header");
+			$this->load->view("v_header_dokter");
 			$this->load->view("resep/v_content",$data);
 			$this->load->view("v_footer");
 			}
@@ -147,8 +146,8 @@ class Resep extends CI_Controller{
 	public function index2($idresep = "", $namaobat=null){
 		$this->load->model('m_resep');
 		$query2 = null;
-		if ($namaobat==null) {
-
+		if ($namaobat==null || $namaobat=="") {
+			//redirect(base_url().'resep/index2/'.$idresep.'?error=null');
 		} else if($namaobat!=null){
 			$query2 =$this->m_resep->getObat($namaobat);
 		}
@@ -159,7 +158,7 @@ class Resep extends CI_Controller{
 			"iddetailresepx"=>$this->generateIdDetailResep() ,
 			'query2'=>$query2, 
 			'detailresep'=>$this->m_resep->getDR($idresep));
-		$this->load->view("v_header");
+		$this->load->view("v_header_dokter");
 		$this->load->view("resep/v_resep",$data);
 		$this->load->view("v_footer");
 	}
@@ -180,7 +179,7 @@ class Resep extends CI_Controller{
 			"idresep"=>$idresep,
 			"iddetailresepx"=>$this->generateIdDetailResep() ,
 			"idobat"=>$idobat);
-		$this->load->view("v_header");
+		$this->load->view("v_header_dokter");
 		$this->load->view("resep/v_detailobat",$data);
 		$this->load->view("v_footer");
 	}
@@ -199,27 +198,27 @@ class Resep extends CI_Controller{
 
 		$isValid=$this->inValidObat($iddetailresep,$jmlobat,$ketobat);
 
-		// if ($isValid == null || $isValid ==""){
-		// 	redirect(base_url().'resep?error=null');
-		// }
-		// else if ($isValid == "error=symbol"){
-		// 	redirect(base_url().'resep?error=symbol');
-		// }
+		if ($isValid == null || $isValid ==""){
+			redirect(base_url().'resep?error=null');
+		}
+		else if ($isValid == "error=symbol"){
+			redirect(base_url().'resep?error=symbol');
+		}
 
-		// else if ($isValid == "true"){
+		else if ($isValid == "true"){
 			$this->load->model('m_resep');
 			$input_dr = $this->m_resep->insertdetailresep($iddetailresep, $idresep, $idobat, $jmlobat, $ketobat);
 			redirect(base_url().'resep/index2/'.$idresep);
-		// }
+		}
 	}
 
 	public function inValidObat($iddetailresep,$jmlobat,$ketobat){
-		if ($iddetailresep == null || $iddetailresep == "" || $jmlobat == null || $jmlobat == "" || $ketobat == null || $ketobat == ""){
+		if ($jmlobat == null || $jmlobat == "" || $ketobat == null || $ketobat == ""){
 			return "error=null";
 		}
-		// else if (preg_match('/[^a-z0-9]/i', $iddetailresep, $jmlobat,$ketobat)){
-		// 	return "error=symbol";
-		// }
+		else if (preg_match('/[^a-z0-9]/i', $iddetailresep, $jmlobat,$ketobat)){
+			return "error=symbol";
+		}
 		else {
 			return "true";
 		}
@@ -238,7 +237,7 @@ class Resep extends CI_Controller{
 			"iddetailresepx"=>"", 
 			"keluhan"=>"");
 
-		$this->load->view("v_header");
+		$this->load->view("v_header_dokter");
 		$this->load->view("resep/v_content",$data);
 		$this->load->view("v_footer");
 	}
@@ -254,7 +253,7 @@ class Resep extends CI_Controller{
 
 			);
 			
-		$this->load->view("v_header");
+		$this->load->view("v_header_dokter");
 		$this->load->view("resep/v_editresep",$data);
 		$this->load->view("v_footer");
 	}
@@ -269,7 +268,7 @@ class Resep extends CI_Controller{
 
 		$this->load->model('m_resep');
 		$editresep = $this->m_resep->editresep($ketobat,$jmlobat,$iddetailresep);
-		redirect(base_url().'resep/index2/'.$idresep);
+		redirect(base_url().'resep/index2/'.$idresep.'/?error=sukses-edit');
 	}
 	
 	//=================================================END OF EDIT RESEP==================================
@@ -277,18 +276,15 @@ class Resep extends CI_Controller{
 
 	//=================================================HAPUS OBAT RESEP==================================
 	public function hapusObat($iddetailresep, $idresep){
-		// $this->load->helper(array('form', 'url'));
-  //       $this->load->library('form_validation');
 
 		$this->load->database();
 
-		// $iddetailresep = $this->input->post('iddetailresep');
 
 		$this->load->model('m_resep');	
 
 		$deleteObat = $this->m_resep->deleteObat($iddetailresep);
 
-		redirect(base_url().'resep/index2/'.$idresep);
+		redirect(base_url().'resep/index2/'.$idresep.'?error=sukses');
 
 	}
 

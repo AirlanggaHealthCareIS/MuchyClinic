@@ -1,5 +1,24 @@
 <div class="container" style="">
 	<h1>Detail Resep</h1>
+
+						<?php if ($this->input->get('error')=="null"): ?>
+							<div class="alert alert-danger" role="alert">
+							Error! Belum Terinput
+							</div>	
+						<?php endif ?>
+
+						 <?php if ($this->input->get('errorresep')=="null"): ?>
+							<div class="alert alert-danger" role="alert">
+							Maaf Field Belum Lengkap
+							</div>	
+						<?php endif ?>
+
+						<?php if ($this->input->get('error')=="symbol"): ?>
+							<div class="alert alert-danger" role="alert">
+							Maaf Symbol Tidak Diperbolehkan
+							</div>	
+						<?php endif ?>
+
 		<form class ="form-inline" action="<?php echo base_url(); ?>resep/cari_obat/<?php echo $idresep; ?>" method="post">
 			<div class="form-group">
 				<label for="IDResep">ID Resep</label><br>
@@ -63,7 +82,7 @@
 			          <?php endif ?>
 			     </table>
 			     <form class ="form-inline" action="<?php echo base_url(); ?>resep/selesai" method="post">
-					<a href="<?php echo base_url() ?>resep/selesai"class="btn btn-info">S E L E S A I</a><?php  ?>
+					<a href="<?php echo base_url() ?>resep/selesai"class="btn btn-info">Finish</a>
 
 				</form>
 			</div>
@@ -79,3 +98,33 @@
 	</div>
 </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal10" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Message</h4>
+      </div>
+      <div class="modal-body">
+          Data Berhasil Dihapus
+      </div>      
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="myModal11" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Message</h4>
+      </div>
+      <div class="modal-body">
+          Data Berhasil Diedit
+      </div>      
+    </div>
+  </div>
+</div>
+

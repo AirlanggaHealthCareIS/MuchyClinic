@@ -90,7 +90,7 @@
 					
 					<br></br>
 					<div class="form-group">
-						<button type="submit" class="btn btn-primary">Save Data Resep</button>
+						<button type="submit" class="btn btn-info">Save Data Resep</button>
 					</div>
 						</form>
 		</div>

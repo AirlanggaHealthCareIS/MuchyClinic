@@ -1,6 +1,23 @@
 <h1>Detail Obat</h1>
 <div class="container" >
-	
+	 					<?php if ($this->input->get('error')=="null"): ?>
+							<div class="alert alert-danger" role="alert">
+							Error! Belum Terinput
+							</div>	
+						<?php endif ?>
+
+						 <?php if ($this->input->get('errorresep')=="null"): ?>
+							<div class="alert alert-danger" role="alert">
+							Maaf Field Belum Lengkap
+							</div>	
+						<?php endif ?>
+
+						<?php if ($this->input->get('error')=="symbol"): ?>
+							<div class="alert alert-danger" role="alert">
+							Maaf Symbol Tidak Diperbolehkan
+							</div>	
+						<?php endif ?>
+
 		
 				<form class ="form-inline" action="<?php echo base_url(); ?>resep/inputdr/<?php echo $idresep."/".$idobat; ?>" method="post">
 					<div class="form-group">
