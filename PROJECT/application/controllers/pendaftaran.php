@@ -4,11 +4,18 @@
 class pendaftaran extends CI_Controller { // extends CI_Controller
 
 
+public function pendaftaran()
+	{
+		parent::__construct();
+		$this->header[2] = "active"; //untuk indikasi active header
+		$this->id_user = "";
+		$this->user = "Izmul Zamroni";
+	}
 
 
 	public function index()
 	{
-		$this->load->view('v_header');
+		$this->load->view('v_header_admin');
 		$this->load->view('pendaftaran/v_content');
 		$this->load->view('v_footer');
 	}
@@ -30,7 +37,7 @@ class pendaftaran extends CI_Controller { // extends CI_Controller
 		// $databaru['isidata'] = $newambil;
 		$databaru = array('isidata'=>$newambil);
 
-		$this->load->view('v_header');
+		$this->load->view('v_header_admin');
 		$this->load->view('pendaftaran/v_detail', $databaru);
 		$this->load->view('v_footer');
 		// echo "indra";
@@ -190,7 +197,7 @@ class pendaftaran extends CI_Controller { // extends CI_Controller
 		$databaru['isidata'] = $newambil;
 		
 
-		$this->load->view('v_header');
+		$this->load->view('v_header_admin');
 		$this->load->view('pendaftaran/v_detail', $databaru);
 		$this->load->view('v_footer');
 	}
