@@ -4,6 +4,6 @@ Scenario B : Pasien yang telah mendaftar dan admin salah menginputkan ID pasien
 
 Given 	: Pasien telah mendapatkan ID pasien
 And	: Admin memilih menu Sistem Antri On The Spot
-When 	: Admin salah menginputkan ID pasien
+When 	: Admin menginputkan ID pasien yang salah
 And	: Admin menekan tombol input ID pasien 
-Then 	: Admin menerima pemberitahuan bahwa ÒID pasien salahÓ
+Then 	: Admin menerima pemberitahuan bahwa ÒPasien tidak adaÓ

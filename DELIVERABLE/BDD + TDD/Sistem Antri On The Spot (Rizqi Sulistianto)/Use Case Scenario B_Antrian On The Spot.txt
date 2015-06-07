@@ -7,12 +7,11 @@ And	: Admin berada pada home page Muchy Clinic
 And	: Admin menekan tombol Sistem Antri On The Spot
 And	: Admin berada di halaman Sistem Antri On The Spot
 And	: Admin masuk ke halaman Sistem Antri On The Spot melalui controller dengan method index()
-When	: Admin salah memasukkan ID pasien “02312”
+When	: Admin salah memasukkan ID pasien “P0006”
 And	: Admin menekan tombol Input ID pasien
 Then 	: Sistem menuju controller masuk ke method validasi()
 And	: Sistem akan mengecek apakah nomor ID pasien telah terdaftar
 And	: Sistem mengecek di database ID pasien, nomor ID pasien tidak ada
 And	: Jika nomor pasien tidak terdaftar, maka akan muncul pesan error
-Then	: Kasir menerima pemberitahuan bahwa “ID pasien salah”
-When	: Kasir kembali menginputkan ID Pasien
+Then	: Kasir menerima pemberitahuan bahwa “Pasien tidak ada”
 
