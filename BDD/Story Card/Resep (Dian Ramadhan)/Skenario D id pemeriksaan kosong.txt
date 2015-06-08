@@ -1,5 +1,5 @@
-Feature		: Aktor (dokter membuat resep dan nantinya akan diterima oleh apoteker)
-Skenario B	: Field Id Pemeriksaan kosong
+Feature		: Aktor (dokter membuat resep dan nantinya akan diterima oleh apoteker
+Skenario D	: ID pemeriksaan kosong
 
 Given	dokter berada pada home page Muchy Clinic
 And	dokter sudah melakukan Log In
@@ -8,4 +8,4 @@ And	dokter sudah memilih menu Resep
 And	dokter seharusnya berada pada menu Resep
 When	dokter menginputkan id pemeriksaan ""
 And	dokter klik tombol Search
-Then	dokter seharusnya mendapatkan konfirmasi bahwa "id pemeriksaan tidak terinput"
+Then	dokter seharusnya mendapatkan pesan "Error! Field masih kosong"
