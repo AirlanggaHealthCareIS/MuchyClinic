@@ -1,0 +1,13 @@
+Feature		: Aktor (dokter membuat resep dan nantinya akan diterima oleh apoteker
+Skenario N	: Delete Obat
+
+Given	apoteker berada pada home page Muchy Clinic
+And	apoteker sudah melakukan Log In
+And	apoteker sudah melakukan pemeriksaan pasien
+And	apoteker sudah memilih menu Kelola Obat Masuk
+And	apoteker seharusnya berada pada menu Detail Kelola Obat Masuk
+And	apoteker seharusnya sudah memilih obat
+And	apoteker seharusnya sudah input Detail Obat
+And 	apoteker kembali di page Detail Kelola Obat Masuk
+When	dokter klik button Delete
+Then	dokter mendapatkan pesan bahwa Data Berhasil Di Hapus

@@ -1,0 +1,11 @@
+Feature		: Apoteker menginputkan data obat masuk
+Skenario B	: Data ID Supplier - Field Kosong
+
+Given	apoteker berada pada home page Muchy Clinic
+And	apoteker sudah melakukan Log In
+And	apoteker sudah melakukan pemeriksaan pasien
+And	apoteker sudah memilih menu Kelola Obat Masuk
+And	apoteker seharusnya berada pada menu Kelola Obat Masuk
+When	apoteker menginputkan id Supplier ""
+And 	apoteker klik button Search
+Then	apoteker mendapatkan pesan Error

@@ -1,0 +1,15 @@
+Feature		: Apoteker menginputkan data obat masuk
+Skenario H	: Menu Supplier - Edit Supplier Field Kosong
+
+Given	apoteker berada pada home page Muchy Clinic
+And	apoteker sudah melakukan Log In
+And	apoteker sudah melakukan pemeriksaan pasien
+And	apoteker sudah memilih menu Kelola Obat Masuk
+And	apoteker seharusnya berada pada menu Kelola Obat Masuk
+And	apoteker klik button Menu Supplier
+And	apoteker seharusnya berada pada page Menu Supplier
+And	apoteker mendapatkan daftar-daftar supplier
+When	apoteker klik button Edit
+And	apoteker menginputkan data supplier ""
+And	apoteker klik button Edit
+Then	apoteker seharusnya menerima konfirmasi pesan Error

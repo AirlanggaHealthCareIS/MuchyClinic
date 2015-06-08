@@ -1,0 +1,12 @@
+Feature		: Apoteker menginputkan data obat masuk
+Skenario J	: Data Obat Masuk
+
+Given	apoteker berada pada home page Muchy Clinic
+And	apoteker sudah melakukan Log In
+And	apoteker sudah melakukan pemeriksaan pasien
+And	apoteker sudah memilih menu Kelola Obat Masuk
+And	apoteker seharusnya berada pada menu Kelola Obat Masuk
+And	apoteker sudah meginputkan id supplier
+When	apoteker input tanggal obat masuk "8 Juni 2015"
+And 	apoteker klik button Process
+Then	apoteker seharusnya berada pada Page Detail Obat Masuk
