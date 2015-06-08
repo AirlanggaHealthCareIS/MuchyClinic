@@ -2,6 +2,7 @@
 <div class="container-fluid">
       <div class="">
         <h1>Buat Jadwal Apoteker</h1>
+        <hr>
       </div>
     </div>
     <div class="container-fluid width: 900px">
@@ -71,17 +72,6 @@
                     </div>
               </div>
 
-              <div class="form-group">
-                
-                    <label for="ID Aktor" class="col-sm-2 control-label">ID Jadwal</label>
-                    <div class="col-sm-10">
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <input disabled name="idjadwal" maxlength="5" type="normal" class="form-control" id="inputIDJadwal" placeholder="ID Jadwal" value="<?php echo $idjadwala ?>">    
-                        </div>
-                      </div>
-                    </div>
-                </div>
 
               <div>
                 <table class="table">
@@ -96,6 +86,18 @@
                   </tr>
                 </table>
               </div>
+              
+              <div class="form-group">
+                
+                    <label for="ID Aktor" class="col-sm-2 control-label">ID Jadwal</label>
+                    <div class="col-sm-10">
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <input disabled name="idjadwal" maxlength="5" type="normal" class="form-control" id="inputIDJadwal" placeholder="ID Jadwal" value="<?php echo $idjadwala ?>">    
+                        </div>
+                      </div>
+                    </div>
+                </div>
 
             </form>
 

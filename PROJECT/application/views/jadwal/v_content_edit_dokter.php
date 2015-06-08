@@ -1,6 +1,7 @@
 <div class="container-fluid">
       <div class="">
         <h1>Edit Jadwal Dokter</h1>
+        <hr>
       </div>
     </div>
     <div class="container-fluid width: 900px">

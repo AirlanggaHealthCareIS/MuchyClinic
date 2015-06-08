@@ -1,6 +1,7 @@
 <div class="">
       <div class="">
         <h1>Edit Jadwal Apoteker</h1>
+        <hr>
       </div>
     </div>
     <div class="container-fluid width: 900px">

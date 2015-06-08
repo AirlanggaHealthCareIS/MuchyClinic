@@ -2,6 +2,7 @@
 <div class="container-fluid">
       <div class="">
         <h1>Buat Jadwal Dokter</h1>
+        <hr>
       </div>
     </div>
     <div class="container-fluid width: 900px">
@@ -66,17 +67,6 @@
                     </div>
               </div>
 
-              <div class="form-group">
-                
-                    <label for="ID Aktor" class="col-sm-2 control-label">ID Jadwal</label>
-                    <div class="col-sm-10">
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <input disabled name="idjadwal" maxlength="5" type="normal" class="form-control" id="inputIDJadwal" placeholder="ID Jadwal" value="<?php echo $idjadwald ?>">    
-                        </div>
-                      </div>
-                    </div>
-                </div>
 
               <div>
                 <table class="table">
@@ -90,6 +80,18 @@
                     <td class="info"><?php echo $namadokter; ?></td>
                   </tr>
                 </table>
+              </div>
+
+              <div class="form-group">
+                
+                    <label for="ID Aktor" class="col-sm-2 control-label">ID Jadwal</label>
+                    <div class="col-sm-10">
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <input disabled name="idjadwal" maxlength="5" type="normal" class="form-control" id="inputIDJadwal" placeholder="ID Jadwal" value="<?php echo $idjadwald ?>">    
+                        </div>
+                      </div>
+                    </div>
               </div>
 
               </form> 
@@ -174,9 +176,8 @@
                     <td class="active"><?php echo $row->JAM_D ?></td>
                     <td class="active">
                       <a href="<?php echo base_url() ?>/jadwal/editJadwalDokter/<?php echo $row->ID_JADWAL_DOKTER ?>" class="btn btn-primary">Edit</a><?php ?></td>
-                    </td>
                     <td class="active">
-                      <a href="<?php echo base_url() ?>/jadwal/hapusJadwalDokter/<?php echo $row->ID_JADWAL_DOKTER ?>" class="btn btn-primary">Delete</a><?php  ?></td>
+                      <a href="<?php echo base_url() ?>/jadwal/hapusJadwalDokter/<?php echo $row->ID_JADWAL_DOKTER ?>" class="btn btn-primary">Delete</a><?php ?></td>
                   
                   </tr>
 

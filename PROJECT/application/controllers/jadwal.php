@@ -2,18 +2,19 @@
 
 class Jadwal extends CI_Controller{ 
 
-	public function Jadwalapoteker()
-        {
+	public function Jadwal() {
                 // Call the CI_Model constructor
-                parent::__construct();
-                $this->load->model("m_jadwal");
-                //$this->header[2] = "active"; //untuk indikasi active header
-				$this->id_user = "";
-				$this->user = "Izmul Zamroni";
-        }
+		parent::__construct();
+		$this->load->model("m_jadwal");
+		$this->id_user = "";
+		
+		if (($this->session->userdata('username_owner'))=="" || ($this->session->userdata('username_owner'))==null) {
+		redirect(base_url()."login_owner");
+		}
+		$this->user = $this->session->userdata('username_owner');
+	}
 
-	public function index()
-	{
+	public function index() {
 		$this->load->model("m_jadwal");
 
         $data = array("ida"=>"", "nama"=>"", 
@@ -221,6 +222,7 @@ class Jadwal extends CI_Controller{
 	}
 
 	public function tampilDokter($iddokter){
+		$this->header[1] = "active"; //untuk indikasi active header
 		$this->load->database();
 
 		$iddokter = $this->input->post('iddok');
@@ -241,7 +243,7 @@ class Jadwal extends CI_Controller{
 			$this->session->set_flashdata("iddokter", $ro->ID_DOKTER);
 			// $this->sessiom->idjadwald = $ro->generateIdJadwalD();
 
-			$this->load->view("v_header");
+			$this->load->view("v_header_owner");
 			$this->load->view("jadwal/v_content_dokter", $data);
 			$this->load->view("v_footer");	
 
@@ -252,6 +254,7 @@ class Jadwal extends CI_Controller{
 	}
 
 	private function inputJadwalDokter(){
+		$this->header[1] = "active"; //untuk indikasi active header
 		$this->load->model('m_jadwal');
 
 		$IDJADWALD = $this->generateIdJadwalD();
@@ -266,10 +269,11 @@ class Jadwal extends CI_Controller{
 	}
 
 	public function hapusJadwalDokter($idJadwalD){
+		$this->header[1] = "active"; //untuk indikasi active header
 		$this->load->database();
 		$this->load->model('m_jadwal');
 
-		$idJadwalD = $this->generateIdJadwalD();	
+		//$idJadwalD = $this->generateIdJadwalD();	
 		$IDDOKTER = $this->input->post('iddokter');
 
 		$deleteDokter = $this->m_jadwal->deleteJadwalDokter($idJadwalD);
@@ -278,6 +282,7 @@ class Jadwal extends CI_Controller{
 	}
 
 	public function showJadwalDokter($iddok){
+		$this->header[1] = "active"; //untuk indikasi active header
 		$this->load->database();
 
 		$iddok = $this->input->post('iddokter');
@@ -286,12 +291,14 @@ class Jadwal extends CI_Controller{
 
 		$data= array("iddokter"=>null, "idjadwald"=>null, "namadokter"=>null, "lihatjadwaldok"=>$this->m_jadwal->getDataDokter());
 
-		$this->load->view("v_header");
+		$this->load->view("v_header_owner");
 		$this->load->view("jadwal/v_content_dokter", $data);
 		$this->load->view("v_footer");
 	}
 
 	public function editJadwalDokter($IDJADWALD){
+		$this->header[1] = "active"; //untuk indikasi active header
+
 		 $this->load->database();
 		 $this->load->model('m_jadwal');
 
@@ -303,13 +310,14 @@ class Jadwal extends CI_Controller{
 		 $data['idjadwal2'] = $ro->ID_JADWAL_DOKTER;
 		 $data["lihatjadwaldok"]= $this->m_jadwal->getDataDokter();
 
-		 $this->load->view("v_header");
+		 $this->load->view("v_header_owner");
 		 $this->load->view("jadwal/v_content_edit_dokter", $data);
 		 $this->load->view("v_footer");
 
 	}
 
 	public function updateJadwalD(){
+		$this->header[1] = "active"; //untuk indikasi active header
 		$this->load->model('m_jadwal');
 
 		$IDJADWALD = $this->input->post('idjadwal2');
@@ -397,6 +405,8 @@ class Jadwal extends CI_Controller{
 	}
 
 	public function tampilApoteker($idapt){
+		$this->header[2] = "active"; //untuk indikasi active header
+
 		$this->load->database();
 
 		$idapt = $this->input->post('idapt');
@@ -416,7 +426,7 @@ class Jadwal extends CI_Controller{
 			
 				$this->session->set_flashdata("idapoteker", $ro->ID_APOTEKER);
 
-				$this->load->view("v_header");
+				$this->load->view("v_header_owner");
 				$this->load->view("jadwal/v_content_apoteker", $data);
 				$this->load->view("v_footer");
 		}
@@ -428,6 +438,8 @@ class Jadwal extends CI_Controller{
 	
 
 	private function inputJadwalApoteker(){
+		$this->header[2] = "active"; //untuk indikasi active header
+
 		$this->load->model('m_jadwal');
 
 		//$IDJADWAL = $this->input->post('idjadwal');
@@ -443,6 +455,8 @@ class Jadwal extends CI_Controller{
 	}
 
 	public function hapusJadwalApoteker($idJadwalA){
+		$this->header[2] = "active"; //untuk indikasi active header
+
 		$this->load->database();
 
 		$IDAPOTEKER = $this->input->post('idapoteker');
@@ -455,6 +469,8 @@ class Jadwal extends CI_Controller{
 	}
 
 	public function showJadwalApoteker($idapt){
+		$this->header[2] = "active"; //untuk indikasi active header
+
 		$this->load->database();
 
 		$idapt = $this->input->post('idapoteker');
@@ -463,12 +479,14 @@ class Jadwal extends CI_Controller{
 
 		$data= array("idapoteker"=>null, "idjadwala"=>null, "namaapoteker"=>null, "lihatjadwalapt"=>$this->m_jadwal->getDataApoteker());
 
-		$this->load->view("v_header");
+		$this->load->view("v_header_owner");
 		$this->load->view("jadwal/v_content_apoteker", $data);
 		$this->load->view("v_footer");
 	}
 
 	public function editJadwalApoteker($IDJADWALA){
+		$this->header[2] = "active"; //untuk indikasi active header
+
 		 $this->load->database();
 		 $this->load->model('m_jadwal');
 
@@ -480,13 +498,15 @@ class Jadwal extends CI_Controller{
 		 $data['idjadwal2'] = $ro->ID_JADWAL_APOTKR;
 		 $data["lihatjadwalapt"]= $this->m_jadwal->getDataApoteker();
 
-		 $this->load->view("v_header");
+		 $this->load->view("v_header_owner");
 		 $this->load->view("jadwal/v_content_edit_apoteker", $data);
 		 $this->load->view("v_footer");
 
 	}
 
 	public function updateJadwalA(){
+		$this->header[2] = "active"; //untuk indikasi active header
+
 		$this->load->model('m_jadwal');
 
 		$IDJADWALA = $this->input->post('idjadwal2');
@@ -504,6 +524,7 @@ class Jadwal extends CI_Controller{
 	//=============================================================== K A R Y A W A N ========================================================================
 
 	public function validasiKaryawan(){
+
 
 		$idkar = $this->input->post('idkar');
 
@@ -574,6 +595,8 @@ class Jadwal extends CI_Controller{
 	}
 
 	public function tampilKaryawan($idkar){
+		$this->header[3] = "active"; //untuk indikasi active header
+
 		$this->load->database();
 
 		$idkar = $this->input->post('idkar');
@@ -593,7 +616,7 @@ class Jadwal extends CI_Controller{
 
 				$this->session->set_flashdata("idkaryawan", $ro->ID_KARYAWAN);
 
-				$this->load->view("v_header");
+				$this->load->view("v_header_owner");
 				$this->load->view("jadwal/v_content_karyawan", $data);
 				$this->load->view("v_footer");	
 		}
@@ -604,6 +627,8 @@ class Jadwal extends CI_Controller{
 	}
 
 	private function inputJadwalKaryawan(){
+		$this->header[3] = "active"; //untuk indikasi active header
+
 		$this->load->model('m_jadwal');
 
 		$IDJADWALK = $this->generateIdJadwalK();
@@ -617,6 +642,8 @@ class Jadwal extends CI_Controller{
 	}
 
 	public function showJadwalKaryawan($idkar){
+		$this->header[3] = "active"; //untuk indikasi active header
+
 		$this->load->database();
 		$this->load->model("m_jadwal");
 
@@ -624,25 +651,28 @@ class Jadwal extends CI_Controller{
 
 		$data= array("idkaryawan"=>null, "idjadwalk"=>null,"namakaryawan"=>null, "lihatjadwalkar"=>$this->m_jadwal->getDataKaryawan());		
 
-		$this->load->view("v_header");
+		$this->load->view("v_header_owner");
 		$this->load->view("jadwal/v_content_karyawan", $data);
 		$this->load->view("v_footer");
 	}
 
-	public function hapusJadwalKarywan($idJadwalK){
+	public function hapusJadwalKaryawan($idJadwalK){
+
 		$this->load->database();
 
 		$IDKARYAWAN = $this->input->post('idkaryawan');
 
 		$this->load->model('m_jadwal');	
 
-		$deleteDokter = $this->m_jadwal->deleteJadwalKaryawan($idJadwalK);
+		$deleteKaryawan = $this->m_jadwal->deleteJadwalKaryawan($idJadwalK);
 
 		$this->showJadwalKaryawan($IDKARYAWAN);
 
 	}
 
 	public function editJadwalKaryawan($IDJADWALK){
+		$this->header[3] = "active"; //untuk indikasi active header
+
 		 $this->load->database();
 		 $this->load->model('m_jadwal');
 
@@ -654,13 +684,15 @@ class Jadwal extends CI_Controller{
 		 $data['idjadwal2'] = $ro->ID_JADWAL_KRYN;
 		 $data["lihatjadwalkar"]= $this->m_jadwal->getDataKaryawan();
 
-		 $this->load->view("v_header");
+		 $this->load->view("v_header_owner");
 		 $this->load->view("jadwal/v_content_edit_karyawan", $data);
 		 $this->load->view("v_footer");
 
 	}
 
 	public function updateJadwalK(){
+		$this->header[3] = "active"; //untuk indikasi active header
+
 		$this->load->model('m_jadwal');
 
 		$IDJADWALK = $this->input->post('idjadwal2');

@@ -2,6 +2,7 @@
 <div class="container-fluid">
       <div class="">
         <h1>Buat Jadwal Karyawan</h1>
+        <hr>
       </div>
     </div>
     <div class="container-fluid width: 900px">
@@ -71,18 +72,6 @@
                     </div>
               </div>
 
-              <div class="form-group">
-                
-                    <label for="ID Aktor" class="col-sm-2 control-label">ID Jadwal</label>
-                    <div class="col-sm-10">
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <input disabled name="idjadwal" maxlength="5" type="normal" class="form-control" id="inputIDJadwal" placeholder="ID Jadwal" value="<?php echo $idjadwalk ?>">    
-                        </div>
-                      </div>
-                    </div>
-                </div>
-
               <div>
                 <table class="table">
                   <tr>
@@ -97,9 +86,19 @@
                 </table>
               </div>
 
-              </form> 
+              <div class="form-group">
+                
+                    <label for="ID Aktor" class="col-sm-2 control-label">ID Jadwal</label>
+                    <div class="col-sm-10">
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <input disabled name="idjadwal" maxlength="5" type="normal" class="form-control" id="inputIDJadwal" placeholder="ID Jadwal" value="<?php echo $idjadwalk ?>">    
+                        </div>
+                      </div>
+                    </div>
+                </div>
 
-              <br>  
+              </form> 
 
               <form class="form-horizontal" action="<?php echo base_url(); ?>jadwal/validasiKaryawan2" method ="post">
               
@@ -143,6 +142,7 @@
                 </div>
               </div>
               </div>
+
             </div>
 
             <br>
@@ -183,7 +183,6 @@
                   <td class="active"><?php echo $row->JAM_K ?></td>
                   <td class="active">
                       <a href="<?php echo base_url() ?>/jadwal/editJadwalKaryawan/<?php echo $row->ID_JADWAL_KRYN ?>" class="btn btn-primary">Edit</a>                      <?php ?></td>
-                  </tr>
                   <td class="active">
                       <a href="<?php echo base_url() ?>/jadwal/hapusJadwalKaryawan/<?php echo $row->ID_JADWAL_KRYN ?>" class="btn btn-primary">Delete</a>                      <?php ?></td>
                   </tr>
