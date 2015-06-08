@@ -2,10 +2,10 @@
 -- version 3.5.2.2
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 07, 2015 at 06:58 PM
--- Server version: 5.5.27
--- PHP Version: 5.4.7
+-- Inang: 127.0.0.1
+-- Waktu pembuatan: 08 Jun 2015 pada 15.03
+-- Versi Server: 5.5.27
+-- Versi PHP: 5.4.7
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `muchydb`
+-- Basis data: `muchydb`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `absensi`
+-- Struktur dari tabel `absensi`
 --
 
 CREATE TABLE IF NOT EXISTS `absensi` (
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `absensi` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `apoteker`
+-- Struktur dari tabel `apoteker`
 --
 
 CREATE TABLE IF NOT EXISTS `apoteker` (
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `apoteker` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `apoteker`
+-- Dumping data untuk tabel `apoteker`
 --
 
 INSERT INTO `apoteker` (`ID_APOTEKER`, `NAMA_APOTEKER`, `PASSWORD`, `TMPT_LAHIR_APT`, `TGL_LAHIR_APT`, `ALAMAT_APOTEKER`, `NO_TLP_APOTEKER`, `JK_APOTEKER`) VALUES
@@ -70,7 +70,7 @@ INSERT INTO `apoteker` (`ID_APOTEKER`, `NAMA_APOTEKER`, `PASSWORD`, `TMPT_LAHIR_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bagian`
+-- Struktur dari tabel `bagian`
 --
 
 CREATE TABLE IF NOT EXISTS `bagian` (
@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `bagian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `bagian`
+-- Dumping data untuk tabel `bagian`
 --
 
 INSERT INTO `bagian` (`ID_BAGIAN`, `NAMA_BAGIAN`) VALUES
@@ -96,7 +96,7 @@ INSERT INTO `bagian` (`ID_BAGIAN`, `NAMA_BAGIAN`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detail_obat_keluar`
+-- Struktur dari tabel `detail_obat_keluar`
 --
 
 CREATE TABLE IF NOT EXISTS `detail_obat_keluar` (
@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `detail_obat_keluar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `detail_obat_keluar`
+-- Dumping data untuk tabel `detail_obat_keluar`
 --
 
 INSERT INTO `detail_obat_keluar` (`ID_DETAIL_OBAT_KELUAR`, `ID_OBAT_KELUAR`, `ID_OBAT`, `QTY`, `KETERANGAN`, `SUBTOTAL`) VALUES
@@ -122,7 +122,7 @@ INSERT INTO `detail_obat_keluar` (`ID_DETAIL_OBAT_KELUAR`, `ID_OBAT_KELUAR`, `ID
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detail_obat_masuk`
+-- Struktur dari tabel `detail_obat_masuk`
 --
 
 CREATE TABLE IF NOT EXISTS `detail_obat_masuk` (
@@ -137,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `detail_obat_masuk` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `detail_obat_masuk`
+-- Dumping data untuk tabel `detail_obat_masuk`
 --
 
 INSERT INTO `detail_obat_masuk` (`ID_DETAIL_OBAT_MASUK`, `ID_OBAT`, `ID_OBAT_MASUK`, `QTY_OBAT_MASUK`, `JUMLAH_OBAT_MASUK`) VALUES
@@ -158,7 +158,7 @@ INSERT INTO `detail_obat_masuk` (`ID_DETAIL_OBAT_MASUK`, `ID_OBAT`, `ID_OBAT_MAS
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detail_periksa`
+-- Struktur dari tabel `detail_periksa`
 --
 
 CREATE TABLE IF NOT EXISTS `detail_periksa` (
@@ -174,7 +174,7 @@ CREATE TABLE IF NOT EXISTS `detail_periksa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `detail_periksa`
+-- Dumping data untuk tabel `detail_periksa`
 --
 
 INSERT INTO `detail_periksa` (`ID_DETAIL_PERIKSA`, `ID_PERIKSA`, `ID_TINDAKAN`, `KETERANGAN`, `QTY`, `SUBTOTAL`) VALUES
@@ -184,7 +184,7 @@ INSERT INTO `detail_periksa` (`ID_DETAIL_PERIKSA`, `ID_PERIKSA`, `ID_TINDAKAN`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detail_rawat_inap`
+-- Struktur dari tabel `detail_rawat_inap`
 --
 
 CREATE TABLE IF NOT EXISTS `detail_rawat_inap` (
@@ -200,7 +200,7 @@ CREATE TABLE IF NOT EXISTS `detail_rawat_inap` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `detail_rawat_inap`
+-- Dumping data untuk tabel `detail_rawat_inap`
 --
 
 INSERT INTO `detail_rawat_inap` (`ID_DETAIL_RAWAT_INAP`, `ID_RAWAT_INAP`, `ID_PERIKSA`, `KETERANGAN`, `QTY`, `SUBTOTAL`) VALUES
@@ -212,7 +212,7 @@ INSERT INTO `detail_rawat_inap` (`ID_DETAIL_RAWAT_INAP`, `ID_RAWAT_INAP`, `ID_PE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detail_resep`
+-- Struktur dari tabel `detail_resep`
 --
 
 CREATE TABLE IF NOT EXISTS `detail_resep` (
@@ -227,7 +227,7 @@ CREATE TABLE IF NOT EXISTS `detail_resep` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `detail_resep`
+-- Dumping data untuk tabel `detail_resep`
 --
 
 INSERT INTO `detail_resep` (`ID_DETAIL_RESEP`, `ID_OBAT`, `ID_RESEP`, `KET_RESEP`, `QTY_OBAT`) VALUES
@@ -244,7 +244,7 @@ INSERT INTO `detail_resep` (`ID_DETAIL_RESEP`, `ID_OBAT`, `ID_RESEP`, `KET_RESEP
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detail_transaksi_obat`
+-- Struktur dari tabel `detail_transaksi_obat`
 --
 
 CREATE TABLE IF NOT EXISTS `detail_transaksi_obat` (
@@ -256,10 +256,10 @@ CREATE TABLE IF NOT EXISTS `detail_transaksi_obat` (
   `HARGA` int(11) NOT NULL,
   `SUBTOTAL` int(11) NOT NULL,
   PRIMARY KEY (`NO_O`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
--- Dumping data for table `detail_transaksi_obat`
+-- Dumping data untuk tabel `detail_transaksi_obat`
 --
 
 INSERT INTO `detail_transaksi_obat` (`NO_O`, `ID_TRANSAKSI`, `NAMA_OBAT`, `KETERANGAN`, `QTY`, `HARGA`, `SUBTOTAL`) VALUES
@@ -277,7 +277,7 @@ INSERT INTO `detail_transaksi_obat` (`NO_O`, `ID_TRANSAKSI`, `NAMA_OBAT`, `KETER
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detail_transaksi_periksa`
+-- Struktur dari tabel `detail_transaksi_periksa`
 --
 
 CREATE TABLE IF NOT EXISTS `detail_transaksi_periksa` (
@@ -289,10 +289,10 @@ CREATE TABLE IF NOT EXISTS `detail_transaksi_periksa` (
   `HARGA` int(11) NOT NULL,
   `SUBTOTAL` int(11) NOT NULL,
   PRIMARY KEY (`NO_TP`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
--- Dumping data for table `detail_transaksi_periksa`
+-- Dumping data untuk tabel `detail_transaksi_periksa`
 --
 
 INSERT INTO `detail_transaksi_periksa` (`NO_TP`, `ID_TRANSAKSI`, `NAMA_TINDAKAN`, `KETERANGAN`, `QTY`, `HARGA`, `SUBTOTAL`) VALUES
@@ -308,7 +308,7 @@ INSERT INTO `detail_transaksi_periksa` (`NO_TP`, `ID_TRANSAKSI`, `NAMA_TINDAKAN`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detail_transaksi_rawat_inap`
+-- Struktur dari tabel `detail_transaksi_rawat_inap`
 --
 
 CREATE TABLE IF NOT EXISTS `detail_transaksi_rawat_inap` (
@@ -323,7 +323,7 @@ CREATE TABLE IF NOT EXISTS `detail_transaksi_rawat_inap` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `detail_transaksi_rawat_inap`
+-- Dumping data untuk tabel `detail_transaksi_rawat_inap`
 --
 
 INSERT INTO `detail_transaksi_rawat_inap` (`NO_TRI`, `ID_TRANSAKSI`, `NAMA_KAMAR_INAP`, `KETERANGAN`, `QTY`, `HARGA`, `SUBTOTAL`) VALUES
@@ -335,7 +335,7 @@ INSERT INTO `detail_transaksi_rawat_inap` (`NO_TRI`, `ID_TRANSAKSI`, `NAMA_KAMAR
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dokter`
+-- Struktur dari tabel `dokter`
 --
 
 CREATE TABLE IF NOT EXISTS `dokter` (
@@ -353,7 +353,7 @@ CREATE TABLE IF NOT EXISTS `dokter` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `dokter`
+-- Dumping data untuk tabel `dokter`
 --
 
 INSERT INTO `dokter` (`ID_DOKTER`, `ID_JENIS_DOKTER`, `NAMA_DOKTER`, `PASSWORD`, `TMPT_LAHIR_DOKTER`, `TGL_LAHIR_DOKTER`, `ALAMAT_DOKTER`, `NO_TELP_DOKTER`, `JNS_KELAMIN_DOKTER`) VALUES
@@ -366,7 +366,7 @@ INSERT INTO `dokter` (`ID_DOKTER`, `ID_JENIS_DOKTER`, `NAMA_DOKTER`, `PASSWORD`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jabatan`
+-- Struktur dari tabel `jabatan`
 --
 
 CREATE TABLE IF NOT EXISTS `jabatan` (
@@ -376,7 +376,7 @@ CREATE TABLE IF NOT EXISTS `jabatan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `jabatan`
+-- Dumping data untuk tabel `jabatan`
 --
 
 INSERT INTO `jabatan` (`ID_JABATAN`, `NAMA_JABATAN`) VALUES
@@ -392,7 +392,7 @@ INSERT INTO `jabatan` (`ID_JABATAN`, `NAMA_JABATAN`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jadwal_apoteker`
+-- Struktur dari tabel `jadwal_apoteker`
 --
 
 CREATE TABLE IF NOT EXISTS `jadwal_apoteker` (
@@ -405,7 +405,7 @@ CREATE TABLE IF NOT EXISTS `jadwal_apoteker` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `jadwal_apoteker`
+-- Dumping data untuk tabel `jadwal_apoteker`
 --
 
 INSERT INTO `jadwal_apoteker` (`ID_JADWAL_APOTKR`, `ID_APOTEKER`, `HARI_A`, `JAM_KERJA_A`) VALUES
@@ -417,7 +417,7 @@ INSERT INTO `jadwal_apoteker` (`ID_JADWAL_APOTKR`, `ID_APOTEKER`, `HARI_A`, `JAM
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jadwal_dokter`
+-- Struktur dari tabel `jadwal_dokter`
 --
 
 CREATE TABLE IF NOT EXISTS `jadwal_dokter` (
@@ -430,7 +430,7 @@ CREATE TABLE IF NOT EXISTS `jadwal_dokter` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `jadwal_dokter`
+-- Dumping data untuk tabel `jadwal_dokter`
 --
 
 INSERT INTO `jadwal_dokter` (`ID_JADWAL_DOKTER`, `ID_DOKTER`, `HARI_D`, `JAM_D`) VALUES
@@ -444,7 +444,7 @@ INSERT INTO `jadwal_dokter` (`ID_JADWAL_DOKTER`, `ID_DOKTER`, `HARI_D`, `JAM_D`)
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jadwal_karyawan`
+-- Struktur dari tabel `jadwal_karyawan`
 --
 
 CREATE TABLE IF NOT EXISTS `jadwal_karyawan` (
@@ -457,7 +457,7 @@ CREATE TABLE IF NOT EXISTS `jadwal_karyawan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `jadwal_karyawan`
+-- Dumping data untuk tabel `jadwal_karyawan`
 --
 
 INSERT INTO `jadwal_karyawan` (`ID_JADWAL_KRYN`, `ID_KARYAWAN`, `HARI_K`, `JAM_K`) VALUES
@@ -470,7 +470,7 @@ INSERT INTO `jadwal_karyawan` (`ID_JADWAL_KRYN`, `ID_KARYAWAN`, `HARI_K`, `JAM_K
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jenis_dokter`
+-- Struktur dari tabel `jenis_dokter`
 --
 
 CREATE TABLE IF NOT EXISTS `jenis_dokter` (
@@ -480,7 +480,7 @@ CREATE TABLE IF NOT EXISTS `jenis_dokter` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `jenis_dokter`
+-- Dumping data untuk tabel `jenis_dokter`
 --
 
 INSERT INTO `jenis_dokter` (`ID_JENIS_DOKTER`, `JENIS_DOKTER`) VALUES
@@ -537,7 +537,7 @@ INSERT INTO `jenis_dokter` (`ID_JENIS_DOKTER`, `JENIS_DOKTER`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kamar`
+-- Struktur dari tabel `kamar`
 --
 
 CREATE TABLE IF NOT EXISTS `kamar` (
@@ -549,7 +549,7 @@ CREATE TABLE IF NOT EXISTS `kamar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `kamar`
+-- Dumping data untuk tabel `kamar`
 --
 
 INSERT INTO `kamar` (`ID_KAMAR_INAP`, `NAMA_KAMAR_INAP`, `KAPASITAS_KMR`, `TARIF_KMR`) VALUES
@@ -559,7 +559,7 @@ INSERT INTO `kamar` (`ID_KAMAR_INAP`, `NAMA_KAMAR_INAP`, `KAPASITAS_KMR`, `TARIF
 -- --------------------------------------------------------
 
 --
--- Table structure for table `karyawan`
+-- Struktur dari tabel `karyawan`
 --
 
 CREATE TABLE IF NOT EXISTS `karyawan` (
@@ -579,7 +579,7 @@ CREATE TABLE IF NOT EXISTS `karyawan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `karyawan`
+-- Dumping data untuk tabel `karyawan`
 --
 
 INSERT INTO `karyawan` (`ID_KARYAWAN`, `ID_BAGIAN`, `ID_JABATAN`, `NAMA_K`, `PASSWORD`, `TMPT_LAHIR_K`, `TGL_LAHIR_K`, `ALAMAT_K`, `NO_TELP_K`, `JENIS_KELAMIN_K`) VALUES
@@ -592,7 +592,7 @@ INSERT INTO `karyawan` (`ID_KARYAWAN`, `ID_BAGIAN`, `ID_JABATAN`, `NAMA_K`, `PAS
 -- --------------------------------------------------------
 
 --
--- Table structure for table `obat`
+-- Struktur dari tabel `obat`
 --
 
 CREATE TABLE IF NOT EXISTS `obat` (
@@ -607,7 +607,7 @@ CREATE TABLE IF NOT EXISTS `obat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `obat`
+-- Dumping data untuk tabel `obat`
 --
 
 INSERT INTO `obat` (`ID_OBAT`, `ID_SUPPLIER`, `NAMA_OBAT`, `KATEGORI_OBAT`, `HARGA`, `OBAT_KRITIS`) VALUES
@@ -4994,7 +4994,7 @@ INSERT INTO `obat` (`ID_OBAT`, `ID_SUPPLIER`, `NAMA_OBAT`, `KATEGORI_OBAT`, `HAR
 -- --------------------------------------------------------
 
 --
--- Table structure for table `obat_keluar`
+-- Struktur dari tabel `obat_keluar`
 --
 
 CREATE TABLE IF NOT EXISTS `obat_keluar` (
@@ -5007,7 +5007,7 @@ CREATE TABLE IF NOT EXISTS `obat_keluar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `obat_keluar`
+-- Dumping data untuk tabel `obat_keluar`
 --
 
 INSERT INTO `obat_keluar` (`ID_OBAT_KELUAR`, `ID_APOTEKER`, `ID_PASIEN`, `TGL_OBAT_KELUAR`) VALUES
@@ -5017,7 +5017,7 @@ INSERT INTO `obat_keluar` (`ID_OBAT_KELUAR`, `ID_APOTEKER`, `ID_PASIEN`, `TGL_OB
 -- --------------------------------------------------------
 
 --
--- Table structure for table `obat_masuk`
+-- Struktur dari tabel `obat_masuk`
 --
 
 CREATE TABLE IF NOT EXISTS `obat_masuk` (
@@ -5029,7 +5029,7 @@ CREATE TABLE IF NOT EXISTS `obat_masuk` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `obat_masuk`
+-- Dumping data untuk tabel `obat_masuk`
 --
 
 INSERT INTO `obat_masuk` (`ID_OBAT_MASUK`, `ID_SUPPLIER`, `TGL_MASUK`) VALUES
@@ -5091,7 +5091,7 @@ INSERT INTO `obat_masuk` (`ID_OBAT_MASUK`, `ID_SUPPLIER`, `TGL_MASUK`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `owner`
+-- Struktur dari tabel `owner`
 --
 
 CREATE TABLE IF NOT EXISTS `owner` (
@@ -5101,7 +5101,7 @@ CREATE TABLE IF NOT EXISTS `owner` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `owner`
+-- Dumping data untuk tabel `owner`
 --
 
 INSERT INTO `owner` (`ID_OWNER`, `NAMA_OWNER`, `PASSWORD`) VALUES
@@ -5110,7 +5110,7 @@ INSERT INTO `owner` (`ID_OWNER`, `NAMA_OWNER`, `PASSWORD`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pasien`
+-- Struktur dari tabel `pasien`
 --
 
 CREATE TABLE IF NOT EXISTS `pasien` (
@@ -5127,36 +5127,28 @@ CREATE TABLE IF NOT EXISTS `pasien` (
   `NO_HP` int(15) NOT NULL,
   `HUBUNGAN` varchar(20) NOT NULL,
   `TYPE_PEMBAYARAN` varchar(20) NOT NULL,
-  `KELUHAN_PENYAKIT` varchar(300) NOT NULL,
   `TANGGAL_PENDAFTARAN` date NOT NULL,
   PRIMARY KEY (`ID_PASIEN`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pasien`
+-- Dumping data untuk tabel `pasien`
 --
 
-INSERT INTO `pasien` (`ID_PASIEN`, `NAMA_PASIEN`, `TMPT_LAHIR_PASIEN`, `TGL_LAHIR_PASIEN`, `ALAMAT_PASIEN`, `NO_TLP_PASIEN`, `GOL_DARAH_PASIEN`, `JENIS_KELAMIN_PASIEN`, `PEKERJAAN_PASIEN`, `AGAMA`, `NO_HP`, `HUBUNGAN`, `TYPE_PEMBAYARAN`, `KELUHAN_PENYAKIT`, `TANGGAL_PENDAFTARAN`) VALUES
-('0909', 'donyprasetiyo', 'samarinda', '0000-00-00', 'jncajlajcnalnc', '0541260248', 'ab', 'lak', 'designer', 'Hindu', 2147483647, 'anak kandung', 'Kredit', ' sjvdbvddbsjkvbskjdvb', '0000-00-00'),
-('2522', 'donyprasetiyo', 'samarinda', '0000-00-00', 'jlsnaxlancklanscksanlkacnsk', '0541260248', 'ab', 'lak', 'designer', 'Islam', 2147483647, 'anak kandung', 'Cash', 'bkcbckbkhcd dcka kahbdkca', '0000-00-00'),
-('5656', 'donyprasetiyo', 'samarinda', '0000-00-00', 'jncajlajcnalnc', '0541260248', 'ab', 'lak', 'designer', 'Hindu', 2147483647, 'anak kandung', 'Kredit', ' sjvdbvddbsjkvbskjdvb', '0000-00-00'),
-('7777', 'donyprasetiyo', 'samarinda', '0000-00-00', 'xbajbcjascbkasbcakb', '0541260248', 'ab', 'lak', 'designer', 'Kristen Katolik', 2147483647, 'anak kandung', 'Kredit', 'cbsackbackjakcjbajkcbajcbsabckasjcbskja', '0000-00-00'),
-('8181', 'donyprasetiyo', 'samarinda', '0000-00-00', 'jncajlajcnalnc', '0541260248', 'ab', 'lak', 'designer', 'Hindu', 2147483647, 'anak kandung', 'Kredit', ' sjvdbvddbsjkvbskjdvb', '0000-00-00'),
-('855', 'donyprasetiyo', 'samarinda', '0000-00-00', 'jncajlajcnalnc', '0541260248', 'ab', 'lak', 'designer', 'Hindu', 2147483647, 'anak kandung', 'Kredit', ' sjvdbvddbsjkvbskjdvb', '0000-00-00'),
-('8828', 'donyprasetiyo', 'samarinda', '0000-00-00', 'jncajlajcnalnc', '0541260248', 'ab', 'lak', 'designer', 'Hindu', 2147483647, 'anak kandung', 'Kredit', ' sjvdbvddbsjkvbskjdvb', '0000-00-00'),
-('b001', 'Dony Prasetiyo', 'samarinda', '2001-11-02', 'jnlljlljnljnljnlnlj', '260248', 'ab', 'Kri', 'designer', 'Kristen Katolik', 2147483647, 'anak kandung', 'Kredit', 'njlnlnljn', '2015-11-02'),
-('dp01', 'Dony Prasetiyo', 'samarinda', '1995-11-30', 'nxlanxanxlanxklsa', '0541260248', 'ab', 'Kristen Katolik', 'designer', 'Kristen Katolik', 2147483647, 'anak kandung', 'Kredit', 'cnlsncklnsklcslkcsl', '2016-11-02'),
-('hu12', '', 'samarinda', '2015-05-02', 'jalan bungtomo gang reel rt 19 no 14 samarinda', '0541260248', 'ab', 'lak', 'designer', 'Islam', 2147483647, 'anak kandung', 'Cash', 'pusing batuk pilek asma bengek kanker', '0000-00-00'),
-('P0001', 'Mulia', 'Surabaya', '1999-04-07', 'Surabaya', '085321456481', 'A', 'P', 'Pelajar', '', 0, '', '', '', '0000-00-00'),
-('P0002', 'Satya', 'Jombang', '1990-02-18', 'Sidoarjo', '081267233890', 'B', 'L', 'Pegawai', '', 0, '', '', '', '0000-00-00'),
-('P0003', 'Bulan', 'Banyuwangi', '1989-08-28', 'Waru', '085777334561', 'AB', 'P', 'Karyawan', '', 0, '', '', '', '0000-00-00'),
-('P0004', 'Indah', 'Surabaya', '1993-10-15', 'Surabaya', '081667889234', 'O', 'P', 'Mahasiswa', '', 0, '', '', '', '0000-00-00'),
-('P0005', 'Toni', 'Gresik', '1990-03-10', 'Surabaya', '0876555423789', 'O', 'L', 'Wirausaha', '', 0, '', '', '', '0000-00-00');
+INSERT INTO `pasien` (`ID_PASIEN`, `NAMA_PASIEN`, `TMPT_LAHIR_PASIEN`, `TGL_LAHIR_PASIEN`, `ALAMAT_PASIEN`, `NO_TLP_PASIEN`, `GOL_DARAH_PASIEN`, `JENIS_KELAMIN_PASIEN`, `PEKERJAAN_PASIEN`, `AGAMA`, `NO_HP`, `HUBUNGAN`, `TYPE_PEMBAYARAN`, `TANGGAL_PENDAFTARAN`) VALUES
+('P0001', 'Mulia', 'Surabaya', '1999-04-07', 'Surabaya', '085321456481', 'A', 'P', 'Pelajar', '', 0, '', '', '0000-00-00'),
+('P0002', 'Satya', 'Jombang', '1990-02-18', 'Sidoarjo', '081267233890', 'B', 'L', 'Pegawai', '', 0, '', '', '0000-00-00'),
+('P0003', 'Bulan', 'Banyuwangi', '1989-08-28', 'Waru', '085777334561', 'AB', 'P', 'Karyawan', '', 0, '', '', '0000-00-00'),
+('P0004', 'Indah', 'Surabaya', '1993-10-15', 'Surabaya', '081667889234', 'O', 'P', 'Mahasiswa', '', 0, '', '', '0000-00-00'),
+('P0005', 'Toni', 'Gresik', '1990-03-10', 'Surabaya', '0876555423789', 'O', 'L', 'Wirausaha', '', 0, '', '', '0000-00-00'),
+('P0006', 'Frynanda Septyani', 'Surabaya', '1995-09-04', 'Jalan Girilaya Gang 7 Surabaya Jawa Timur', '031 272727', 'AB', 'Laki laki', 'Mahasiswa', 'Islam', 899633716, 'Anak kandung', 'Cash', '2015-06-07'),
+('P0007', 'Dony Prasetiyo', 'Samarinda', '1995-04-12', 'Jalan bungtomo gang reel rt 19 no 14 Samarinda ', '0541260248', 'A', 'Laki laki', 'Designer', 'Islam', 2147483647, 'Anak Kandung', 'Kredit', '2015-06-08'),
+('P0008', 'Abas muchy', 'Surabaya', '1994-11-30', 'Jalan bunga asri timur', '0875552', 'A', 'Laki laki', 'Mahasiswa', 'Islam', 2147483647, 'isnia', 'Kredit', '0000-00-00');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pemeriksaan`
+-- Struktur dari tabel `pemeriksaan`
 --
 
 CREATE TABLE IF NOT EXISTS `pemeriksaan` (
@@ -5173,7 +5165,7 @@ CREATE TABLE IF NOT EXISTS `pemeriksaan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pemeriksaan`
+-- Dumping data untuk tabel `pemeriksaan`
 --
 
 INSERT INTO `pemeriksaan` (`ID_PERIKSA`, `ID_DOKTER`, `ID_PENYAKIT`, `ID_PASIEN`, `TANGGAL_PERIKSA`, `KELUHAN`) VALUES
@@ -5187,7 +5179,7 @@ INSERT INTO `pemeriksaan` (`ID_PERIKSA`, `ID_DOKTER`, `ID_PENYAKIT`, `ID_PASIEN`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `penyakit`
+-- Struktur dari tabel `penyakit`
 --
 
 CREATE TABLE IF NOT EXISTS `penyakit` (
@@ -5197,7 +5189,7 @@ CREATE TABLE IF NOT EXISTS `penyakit` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `penyakit`
+-- Dumping data untuk tabel `penyakit`
 --
 
 INSERT INTO `penyakit` (`ID_PENYAKIT`, `NAMA_PENYAKIT`) VALUES
@@ -5809,7 +5801,7 @@ INSERT INTO `penyakit` (`ID_PENYAKIT`, `NAMA_PENYAKIT`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rawat_inap`
+-- Struktur dari tabel `rawat_inap`
 --
 
 CREATE TABLE IF NOT EXISTS `rawat_inap` (
@@ -5827,7 +5819,7 @@ CREATE TABLE IF NOT EXISTS `rawat_inap` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rawat_inap`
+-- Dumping data untuk tabel `rawat_inap`
 --
 
 INSERT INTO `rawat_inap` (`ID_RAWAT_INAP`, `ID_KAMAR_INAP`, `ID_PASIEN`, `ID_DOKTER`, `TGL_MASK`, `TGL_KELUAR`, `TOTAL_BIAYA_RWT`) VALUES
@@ -5853,7 +5845,7 @@ CREATE TABLE IF NOT EXISTS `rekam_medis` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `resep`
+-- Struktur dari tabel `resep`
 --
 
 CREATE TABLE IF NOT EXISTS `resep` (
@@ -5869,7 +5861,7 @@ CREATE TABLE IF NOT EXISTS `resep` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `resep`
+-- Dumping data untuk tabel `resep`
 --
 
 INSERT INTO `resep` (`ID_RESEP`, `ID_PASIEN`, `ID_DOKTER`, `ID_PERIKSA`, `TGL_RESEP`) VALUES
@@ -5885,7 +5877,7 @@ INSERT INTO `resep` (`ID_RESEP`, `ID_PASIEN`, `ID_DOKTER`, `ID_PERIKSA`, `TGL_RE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `supplier`
+-- Struktur dari tabel `supplier`
 --
 
 CREATE TABLE IF NOT EXISTS `supplier` (
@@ -5897,7 +5889,7 @@ CREATE TABLE IF NOT EXISTS `supplier` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `supplier`
+-- Dumping data untuk tabel `supplier`
 --
 
 INSERT INTO `supplier` (`ID_SUPPLIER`, `NAMA_SUPPLIER`, `ALAMAT_SUPPLIER`, `NO_TELP_SUPPLIER`) VALUES
@@ -5912,7 +5904,7 @@ INSERT INTO `supplier` (`ID_SUPPLIER`, `NAMA_SUPPLIER`, `ALAMAT_SUPPLIER`, `NO_T
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tindakan`
+-- Struktur dari tabel `tindakan`
 --
 
 CREATE TABLE IF NOT EXISTS `tindakan` (
@@ -5923,7 +5915,7 @@ CREATE TABLE IF NOT EXISTS `tindakan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tindakan`
+-- Dumping data untuk tabel `tindakan`
 --
 
 INSERT INTO `tindakan` (`ID_TINDAKAN`, `NAMA_TINDAKAN`, `TARIF_TINDAKAN`) VALUES
@@ -5941,7 +5933,7 @@ INSERT INTO `tindakan` (`ID_TINDAKAN`, `NAMA_TINDAKAN`, `TARIF_TINDAKAN`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transaksi`
+-- Struktur dari tabel `transaksi`
 --
 
 CREATE TABLE IF NOT EXISTS `transaksi` (
@@ -5952,12 +5944,12 @@ CREATE TABLE IF NOT EXISTS `transaksi` (
   `TOTAL` int(50) NOT NULL,
   `ID_PASIEN` varchar(5) NOT NULL,
   PRIMARY KEY (`ID_TRANSAKSI`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `waiting_list`
+-- Struktur dari tabel `waiting_list`
 --
 
 CREATE TABLE IF NOT EXISTS `waiting_list` (
@@ -5972,7 +5964,7 @@ CREATE TABLE IF NOT EXISTS `waiting_list` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `waiting_list`
+-- Dumping data untuk tabel `waiting_list`
 --
 
 INSERT INTO `waiting_list` (`ID_ANTRI`, `ID_PASIEN`, `ID_DOKTER`, `NO_ANTRI`, `TGL_ANTRI`) VALUES
@@ -5984,18 +5976,18 @@ INSERT INTO `waiting_list` (`ID_ANTRI`, `ID_PASIEN`, `ID_DOKTER`, `NO_ANTRI`, `T
 -- --------------------------------------------------------
 
 --
--- Structure for view `rekam_medis`
+-- Struktur untuk view `rekam_medis`
 --
 DROP TABLE IF EXISTS `rekam_medis`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `rekam_medis` AS select `p`.`ID_PASIEN` AS `ID_PASIEN`,`p`.`ID_PERIKSA` AS `ID_PERIKSA`,`p`.`TANGGAL_PERIKSA` AS `TANGGAL_PERIKSA`,`d`.`NAMA_DOKTER` AS `NAMA_DOKTER`,`pn`.`NAMA_PENYAKIT` AS `NAMA_PENYAKIT`,`o`.`NAMA_OBAT` AS `NAMA_OBAT`,`t`.`NAMA_TINDAKAN` AS `NAMA_TINDAKAN` from ((((((((`pemeriksaan` `p` join `pasien` `ps`) join `dokter` `d`) join `penyakit` `pn`) join `obat` `o`) join `detail_resep` `dr`) join `resep` `r`) join `tindakan` `t`) join `detail_periksa` `dp`) where ((`ps`.`ID_PASIEN` = `p`.`ID_PASIEN`) and (`p`.`ID_DOKTER` = `d`.`ID_DOKTER`) and (`p`.`ID_PENYAKIT` = `pn`.`ID_PENYAKIT`) and (`p`.`ID_PERIKSA` = `r`.`ID_PERIKSA`) and (`r`.`ID_RESEP` = `dr`.`ID_RESEP`) and (`dr`.`ID_OBAT` = `o`.`ID_OBAT`) and (`dp`.`ID_TINDAKAN` = `t`.`ID_TINDAKAN`));
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `absensi`
+-- Ketidakleluasaan untuk tabel `absensi`
 --
 ALTER TABLE `absensi`
   ADD CONSTRAINT `FK_38` FOREIGN KEY (`ID_KARYAWAN`) REFERENCES `karyawan` (`ID_KARYAWAN`),
@@ -6003,85 +5995,85 @@ ALTER TABLE `absensi`
   ADD CONSTRAINT `FK_40` FOREIGN KEY (`ID_APOTEKER`) REFERENCES `apoteker` (`ID_APOTEKER`);
 
 --
--- Constraints for table `detail_obat_keluar`
+-- Ketidakleluasaan untuk tabel `detail_obat_keluar`
 --
 ALTER TABLE `detail_obat_keluar`
   ADD CONSTRAINT `FK_21` FOREIGN KEY (`ID_OBAT`) REFERENCES `obat` (`ID_OBAT`),
   ADD CONSTRAINT `FK_27` FOREIGN KEY (`ID_OBAT_KELUAR`) REFERENCES `obat_keluar` (`ID_OBAT_KELUAR`);
 
 --
--- Constraints for table `detail_obat_masuk`
+-- Ketidakleluasaan untuk tabel `detail_obat_masuk`
 --
 ALTER TABLE `detail_obat_masuk`
   ADD CONSTRAINT `FK_18` FOREIGN KEY (`ID_OBAT_MASUK`) REFERENCES `obat_masuk` (`ID_OBAT_MASUK`),
   ADD CONSTRAINT `FK_20` FOREIGN KEY (`ID_OBAT`) REFERENCES `obat` (`ID_OBAT`);
 
 --
--- Constraints for table `detail_periksa`
+-- Ketidakleluasaan untuk tabel `detail_periksa`
 --
 ALTER TABLE `detail_periksa`
   ADD CONSTRAINT `FK_3` FOREIGN KEY (`ID_PERIKSA`) REFERENCES `pemeriksaan` (`ID_PERIKSA`),
   ADD CONSTRAINT `FK_8` FOREIGN KEY (`ID_TINDAKAN`) REFERENCES `tindakan` (`ID_TINDAKAN`);
 
 --
--- Constraints for table `detail_rawat_inap`
+-- Ketidakleluasaan untuk tabel `detail_rawat_inap`
 --
 ALTER TABLE `detail_rawat_inap`
   ADD CONSTRAINT `FK_30` FOREIGN KEY (`ID_RAWAT_INAP`) REFERENCES `rawat_inap` (`ID_RAWAT_INAP`),
   ADD CONSTRAINT `FK_42` FOREIGN KEY (`ID_PERIKSA`) REFERENCES `pemeriksaan` (`ID_PERIKSA`);
 
 --
--- Constraints for table `detail_resep`
+-- Ketidakleluasaan untuk tabel `detail_resep`
 --
 ALTER TABLE `detail_resep`
   ADD CONSTRAINT `FK_16` FOREIGN KEY (`ID_RESEP`) REFERENCES `resep` (`ID_RESEP`),
   ADD CONSTRAINT `FK_17` FOREIGN KEY (`ID_OBAT`) REFERENCES `obat` (`ID_OBAT`);
 
 --
--- Constraints for table `dokter`
+-- Ketidakleluasaan untuk tabel `dokter`
 --
 ALTER TABLE `dokter`
   ADD CONSTRAINT `FK_9` FOREIGN KEY (`ID_JENIS_DOKTER`) REFERENCES `jenis_dokter` (`ID_JENIS_DOKTER`);
 
 --
--- Constraints for table `jadwal_apoteker`
+-- Ketidakleluasaan untuk tabel `jadwal_apoteker`
 --
 ALTER TABLE `jadwal_apoteker`
   ADD CONSTRAINT `FK_28` FOREIGN KEY (`ID_APOTEKER`) REFERENCES `apoteker` (`ID_APOTEKER`);
 
 --
--- Constraints for table `jadwal_dokter`
+-- Ketidakleluasaan untuk tabel `jadwal_dokter`
 --
 ALTER TABLE `jadwal_dokter`
   ADD CONSTRAINT `FK_10` FOREIGN KEY (`ID_DOKTER`) REFERENCES `dokter` (`ID_DOKTER`);
 
 --
--- Constraints for table `jadwal_karyawan`
+-- Ketidakleluasaan untuk tabel `jadwal_karyawan`
 --
 ALTER TABLE `jadwal_karyawan`
   ADD CONSTRAINT `FK_33` FOREIGN KEY (`ID_KARYAWAN`) REFERENCES `karyawan` (`ID_KARYAWAN`);
 
 --
--- Constraints for table `karyawan`
+-- Ketidakleluasaan untuk tabel `karyawan`
 --
 ALTER TABLE `karyawan`
   ADD CONSTRAINT `FK_34` FOREIGN KEY (`ID_JABATAN`) REFERENCES `jabatan` (`ID_JABATAN`),
   ADD CONSTRAINT `FK_44` FOREIGN KEY (`ID_BAGIAN`) REFERENCES `bagian` (`ID_BAGIAN`);
 
 --
--- Constraints for table `obat`
+-- Ketidakleluasaan untuk tabel `obat`
 --
 ALTER TABLE `obat`
   ADD CONSTRAINT `obat_ibfk_1` FOREIGN KEY (`ID_SUPPLIER`) REFERENCES `supplier` (`ID_SUPPLIER`);
 
 --
--- Constraints for table `obat_keluar`
+-- Ketidakleluasaan untuk tabel `obat_keluar`
 --
 ALTER TABLE `obat_keluar`
   ADD CONSTRAINT `FK_25` FOREIGN KEY (`ID_APOTEKER`) REFERENCES `apoteker` (`ID_APOTEKER`);
 
 --
--- Constraints for table `pemeriksaan`
+-- Ketidakleluasaan untuk tabel `pemeriksaan`
 --
 ALTER TABLE `pemeriksaan`
   ADD CONSTRAINT `FK_2` FOREIGN KEY (`ID_PASIEN`) REFERENCES `pasien` (`ID_PASIEN`),
@@ -6089,7 +6081,7 @@ ALTER TABLE `pemeriksaan`
   ADD CONSTRAINT `FK_7` FOREIGN KEY (`ID_PENYAKIT`) REFERENCES `penyakit` (`ID_PENYAKIT`);
 
 --
--- Constraints for table `rawat_inap`
+-- Ketidakleluasaan untuk tabel `rawat_inap`
 --
 ALTER TABLE `rawat_inap`
   ADD CONSTRAINT `FK_29` FOREIGN KEY (`ID_PASIEN`) REFERENCES `pasien` (`ID_PASIEN`),
@@ -6097,7 +6089,7 @@ ALTER TABLE `rawat_inap`
   ADD CONSTRAINT `FK_32` FOREIGN KEY (`ID_KAMAR_INAP`) REFERENCES `kamar` (`ID_KAMAR_INAP`);
 
 --
--- Constraints for table `resep`
+-- Ketidakleluasaan untuk tabel `resep`
 --
 ALTER TABLE `resep`
   ADD CONSTRAINT `FK_12` FOREIGN KEY (`ID_DOKTER`) REFERENCES `dokter` (`ID_DOKTER`),
@@ -6105,7 +6097,7 @@ ALTER TABLE `resep`
   ADD CONSTRAINT `FK_15` FOREIGN KEY (`ID_PERIKSA`) REFERENCES `pemeriksaan` (`ID_PERIKSA`);
 
 --
--- Constraints for table `waiting_list`
+-- Ketidakleluasaan untuk tabel `waiting_list`
 --
 ALTER TABLE `waiting_list`
   ADD CONSTRAINT `FK_1` FOREIGN KEY (`ID_PASIEN`) REFERENCES `pasien` (`ID_PASIEN`),
