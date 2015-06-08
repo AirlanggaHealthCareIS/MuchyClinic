@@ -67,6 +67,7 @@ class Resep extends CI_Controller{
 
 
 		public function tampilid($idpemeriksaan){
+			$this->header[2] = "active"; //untuk indikasi active header
 			$this->load->database();
 			$idpemeriksaan = $this->input->post('idpemeriksaan');
 			$this->load->model('m_resep');
@@ -145,6 +146,7 @@ class Resep extends CI_Controller{
 	}
 
 	public function index2($idresep = "", $namaobat=null){
+		$this->header[2] = "active"; //untuk indikasi active header
 		$this->load->model('m_resep');
 		
 		$query2 = null;
@@ -178,6 +180,7 @@ class Resep extends CI_Controller{
 	}
 
 	public function index4($idresep = "",$idobat = ""){
+		$this->header[2] = "active"; //untuk indikasi active header
 		
 		$data = array(
 			"idresep"=>$idresep,
@@ -230,6 +233,7 @@ class Resep extends CI_Controller{
 	}
 
 	public function selesai(){
+		$this->header[2] = "active"; //untuk indikasi active header
 		$data = array(
 			"idpemeriksaan"=>" ",
 			"idpasien"=>" ",
@@ -251,6 +255,7 @@ class Resep extends CI_Controller{
 	
 	//=================================================EDIT RESEP==================================
 	public function index5($iddetailresep = "", $idresep=""){
+		$this->header[2] = "active"; //untuk indikasi active header
 		
 		$data = array(
 			"iddetailresep"=>$iddetailresep,
