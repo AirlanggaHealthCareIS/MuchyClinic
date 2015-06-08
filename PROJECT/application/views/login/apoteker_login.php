@@ -63,7 +63,7 @@
             </div>  
             <?php endif ?>
 
-              <form class="form-horizontal"action="<?php echo base_url(); ?>welcome_apoteker/validasi " method="post">
+              <form class="form-horizontal"action="<?php echo base_url(); ?>login_apoteker/validasi " method="post">
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Username</label>
                   <div class="col-sm-10">

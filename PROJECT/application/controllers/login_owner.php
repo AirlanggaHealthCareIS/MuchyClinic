@@ -65,7 +65,8 @@ class Login_owner extends CI_Controller {
 		$this->load->model('m_login');
 		$login = $this->m_login->getowner($username,$password);
 		if ($login==true) {
-			redirect(base_url().'laporanuang#submenu');
+			$this->session->set_userdata('username_owner', $username);
+			redirect(base_url().'laporanuang');
 		} else {
 
 			redirect(base_url().'Login_owner?error=m_login');

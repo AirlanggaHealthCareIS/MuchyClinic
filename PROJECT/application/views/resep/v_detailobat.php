@@ -1,4 +1,6 @@
+<br>
 <h1>Detail Obat</h1>
+<hr>
 <div class="container" >
 	 					<?php if ($this->input->get('error')=="null"): ?>
 							<div class="alert alert-danger" role="alert">
@@ -21,6 +23,7 @@
 		
 				<form class ="form-inline" action="<?php echo base_url(); ?>resep/inputdr/<?php echo $idresep."/".$idobat; ?>" method="post">
 					<div class="form-group">
+						<br>
 						<label for="IDDetailResep" >ID Detail Resep</label>
 					</div>
 					<br>
@@ -60,5 +63,9 @@
 						<input type="normal" name="ketobat" class="form-control" id="KetObat" placeholder="Keterangan Obat" value="">
 					</div>
 					<button type="submit" class="btn btn-info">Lanjut</button>
+					<br>
+					<br>
 			
 </div>
+
+

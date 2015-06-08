@@ -1,4 +1,4 @@
-// <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Lihatjadwal extends CI_Controller {
 
@@ -13,6 +13,7 @@ class Lihatjadwal extends CI_Controller {
 		$this->id_user = "";
 		//$this->id = "";
 		$this->idaaktor = substr($this->id,0,1);
+		$this->idaaktor_k = substr($this->id,0,1);
 	//	$this->user = "Izmul Zamroni";
 
 		// if (($this->session->userdata('username_apoteker'))=="" || ($this->session->userdata('username_apoteker'))==null) {
@@ -133,17 +134,17 @@ class Lihatjadwal extends CI_Controller {
 		
 		$this->load->model('m_lihatjadwal');
 		$this->load->model('m_getdata');
-		$this->id_user = "";
+		$this->header[0] = "active"; //untuk indikasi active header
 		
 		if (($this->session->userdata('username_admin'))=="" || ($this->session->userdata('username_admin'))==null) {
 			redirect(base_url()."login_admin");
 		}
 		$this->user = $this->session->userdata('username_admin');
 
-		$query = $this->m_lihatjadwal->getKaryawan($this->id); //ambil data
+		$query = $this->m_lihatjadwal->getKaryawan($this->user); //ambil data
 		$ro = $query->row();
 
-		$data = array("idaaktor"=>$this->user, "ida"=>$ro->ID_KARYAWAN, "nama"=>$ro->NAMA_K, "lihatjadwal"=>$this->m_lihatjadwal->getDataKaryawan($this->id)); //tampil data di tabel dan ambil nilai
+		$data = array("idaaktor"=>$this->idaaktor_k, "ida"=>$ro->ID_KARYAWAN, "nama"=>$ro->NAMA_K, "lihatjadwal"=>$this->m_lihatjadwal->getDataKaryawan($ro->ID_KARYAWAN)); //tampil data di tabel dan ambil nilai
 
 		$this->load->view("v_header");
 		$this->load->view("lihatjadwal/v_content", $data);

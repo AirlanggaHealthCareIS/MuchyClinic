@@ -2,10 +2,30 @@
 
 class Rekammedis extends CI_Controller {
 
+	public function Rekammedis()
+	{
+		parent::__construct();
+		// $this->load->model("mambildata");
+		$this->header[3] = "active"; //untuk indikasi active header
+		$this->id_user = "";
+		
+		if (($this->session->userdata('username_dokter'))=="" || ($this->session->userdata('username_dokter'))==null) {
+			redirect(base_url()."login_dokter");
+		}
+		$this->user = $this->session->userdata('username_dokter');
+
+	}
+
+	public function logout(){
+		$this->session->unset_userdata('username_dokter');
+		redirect(base_url()."login_dokter");
+
+	}
+
 	public function index() {
 		$data = array("id_pasien"=>"", "nama"=>"", "golongan_darah"=>"", "jenis_kelamin"=>"", "drekammedis"=>null); //tampil data di tabel
 
-		$this->load->view("v_header");
+		$this->load->view("v_header_dokter");
 		$this->load->view("RekamMedis/v_content", $data);
 		$this->load->view("v_footer");	
 	}
@@ -43,12 +63,15 @@ class Rekammedis extends CI_Controller {
 
 
 	public function validasi(){
+		$this->load->helper(array('form', 'url'));
+
+        $this->load->library('form_validation');
 		$id = $this->input->post('id_pasien');
 		$id2=$this->inputValidasi($id);
-		if ($id2=="eror=null"){
+		if ($id2=="error=null"){
 			redirect(base_url().'rekammedis?error=null');
 		}
-		else if ($id2=="eror=symbol"){
+		else if ($id2=="error=symbol"){
 			redirect(base_url().'rekammedis?error=symbol');
 		}	
 		else if ($id2=="true"){

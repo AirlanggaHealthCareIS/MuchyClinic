@@ -65,7 +65,8 @@ class Login_apoteker extends CI_Controller {
 		$this->load->model('m_login');
 		$login = $this->m_login->getapoteker($username,$password);
 		if ($login==true) {
-			redirect(base_url().'lihatjadwal#submenu');
+			$this->session->set_userdata('username_apoteker', $username);
+			redirect(base_url().'lihatjadwal');
 		} else {
 
 			redirect(base_url().'Login_apoteker?error=m_login');

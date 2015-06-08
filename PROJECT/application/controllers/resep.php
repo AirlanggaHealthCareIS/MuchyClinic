@@ -2,8 +2,8 @@
 
 class Resep extends CI_Controller{
 	public function Resep(){
-		parent::construct();
-		$this->load->model("m_resep");
+		parent::__construct();
+		// $this->load->model("m_resep");
 		$this->header[0] = "active";
 		$this->id_user = "";
 		$this->user = "Dian Ramadhan";
@@ -145,11 +145,10 @@ class Resep extends CI_Controller{
 
 	public function index2($idresep = "", $namaobat=null){
 		$this->load->model('m_resep');
+		
 		$query2 = null;
-		if ($namaobat==null || $namaobat=="") {
-			//redirect(base_url().'resep/index2/'.$idresep.'?error=null');
-		} else if($namaobat!=null){
-			$query2 =$this->m_resep->getObat($namaobat);
+		if($namaobat!=null){
+			$query2 =$this->m_resep->getObat2($namaobat);
 		}
 		$data = array(
 			"namaobat"=>$namaobat,
@@ -169,7 +168,11 @@ class Resep extends CI_Controller{
 	//=================================================INPUT DETAIL RESEP====================================
 	public function cari_obat($idresep=""){
 		$namaobat = $this->input->post('namaobat');
-		redirect(base_url().'resep/index2/'.$idresep."/".$namaobat);
+		if ($namaobat==null || $namaobat=="") {
+			redirect(base_url().'resep/index2/'.$idresep.'/?error=null');
+		}
+		$this->index2($idresep, $namaobat);
+
 		
 	}
 
@@ -180,7 +183,7 @@ class Resep extends CI_Controller{
 			"iddetailresepx"=>$this->generateIdDetailResep() ,
 			"idobat"=>$idobat);
 		$this->load->view("v_header_dokter");
-		$this->load->view("resep/v_detailobat",$data);
+		$this->load->view("resep/v_detailobat", $data);
 		$this->load->view("v_footer");
 	}
 
@@ -196,16 +199,17 @@ class Resep extends CI_Controller{
 		$jmlobat = $this->input->post('jmlobat');
 		$ketobat = $this->input->post('ketobat');
 
-		$isValid=$this->inValidObat($iddetailresep,$jmlobat,$ketobat);
+		//$isValid=$this->inValidObat($iddetailresep,$jmlobat,$ketobat);
 
-		if ($isValid == null || $isValid ==""){
-			redirect(base_url().'resep?error=null');
-		}
-		else if ($isValid == "error=symbol"){
-			redirect(base_url().'resep?error=symbol');
-		}
 
-		else if ($isValid == "true"){
+		if ($iddetailresep == null || $iddetailresep =="" || $jmlobat == null || $jmlobat =="" || $ketobat == null || $ketobat ==""){
+			redirect(base_url().'resep/index4/'.$idresep.'/'.$idobat.'?error=null');
+		}
+		// else if ($isValid == "error=symbol"){
+		// 	redirect(base_url().'resep?error=symbol');
+		// }
+
+		else {
 			$this->load->model('m_resep');
 			$input_dr = $this->m_resep->insertdetailresep($iddetailresep, $idresep, $idobat, $jmlobat, $ketobat);
 			redirect(base_url().'resep/index2/'.$idresep);
@@ -213,12 +217,12 @@ class Resep extends CI_Controller{
 	}
 
 	public function inValidObat($iddetailresep,$jmlobat,$ketobat){
-		if ($jmlobat == null || $jmlobat == "" || $ketobat == null || $ketobat == ""){
+		if ($iddetailresep == null || $iddetailresep == "" || $jmlobat == null || $jmlobat == "" || $ketobat == null || $ketobat == ""){
 			return "error=null";
 		}
-		else if (preg_match('/[^a-z0-9]/i', $iddetailresep, $jmlobat,$ketobat)){
-			return "error=symbol";
-		}
+		// else if (preg_match('/[^a-z0-9]/i', $iddetailresep, $jmlobat,$ketobat)){
+		// 	return "error=symbol";
+		// }
 		else {
 			return "true";
 		}
@@ -266,9 +270,18 @@ class Resep extends CI_Controller{
 		$jmlobat = $this->input->post('jmlobat');
 		$ketobat = $this->input->post('ketobat');
 
+
+
+
+		if ($jmlobat == null || $jmlobat == "" || $ketobat == null || $ketobat ==""){
+			redirect(base_url().'resep/index5/'.$iddetailresep.'/'.$idresep.'?error=null');
+		}
+
+		else { 
 		$this->load->model('m_resep');
 		$editresep = $this->m_resep->editresep($ketobat,$jmlobat,$iddetailresep);
-		redirect(base_url().'resep/index2/'.$idresep.'/?error=sukses-edit');
+		redirect(base_url().'resep/index2/'.$idresep.'/?error=sukses=edit');
+	}
 	}
 	
 	//=================================================END OF EDIT RESEP==================================

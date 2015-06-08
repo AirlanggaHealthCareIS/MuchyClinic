@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <title>Muchy Clinic2 | Buat Jadwal</title>
+  <title>Muchy Clinic</title>
   <!-- Bootstrap Core CSS -->
   <link href="<?php echo base_url(); ?>assets/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- MetisMenu CSS -->

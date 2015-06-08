@@ -1,5 +1,25 @@
+<br>
 <h1>Edit Resep</h1>
+<hr>
 <div class="container" >
+
+	 <?php if ($this->input->get('error')=="null"): ?>
+							<div class="alert alert-danger" role="alert">
+							Error! Belum Terinput
+							</div>	
+						<?php endif ?>
+
+						 <?php if ($this->input->get('errorresep')=="null"): ?>
+							<div class="alert alert-danger" role="alert">
+							Maaf Field Belum Lengkap
+							</div>	
+						<?php endif ?>
+
+						<?php if ($this->input->get('error')=="symbol"): ?>
+							<div class="alert alert-danger" role="alert">
+							Maaf Symbol Tidak Diperbolehkan
+							</div>	
+						<?php endif ?>
 	
 		
 				<form class ="form-inline" action="<?php echo base_url(); ?>resep/editResep/<?php echo $iddetailresep.'/'.$idresep; ?>" method="post">

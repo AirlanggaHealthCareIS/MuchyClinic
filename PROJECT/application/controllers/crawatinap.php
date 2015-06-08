@@ -6,10 +6,22 @@ class Crawatinap extends CI_Controller{
 	{
 		parent::__construct();
 		$this->load->model("mambildata");
-		$this->header[2] = "active"; //untuk indikasi active header
+		$this->header[4] = "active"; //untuk indikasi active header
 		$this->id_user = "";
-		$this->user = "Izmul Zamroni";
+		
+		if (($this->session->userdata('username_admin'))=="" || ($this->session->userdata('username_admin'))==null) {
+			redirect(base_url()."login_admin");
+		}
+		$this->user = $this->session->userdata('username_admin');
+
 	}
+
+	public function logout(){
+		$this->session->unset_userdata('username_admin');
+		redirect(base_url()."login_admin");
+
+	}
+
 	public function index() // view updateRwtinap
 	{
 		$this->load->database();
@@ -29,6 +41,7 @@ class Crawatinap extends CI_Controller{
 
 		$this->load->view('v_header_admin');
 		$this->load->view('rawatinap/rawatinap', $data);
+
 		$this->load->view('v_footer');	
 		
 	}

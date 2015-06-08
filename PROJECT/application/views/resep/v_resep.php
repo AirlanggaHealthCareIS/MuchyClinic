@@ -1,6 +1,7 @@
+<br>
+<h1>Resep</h1>
+<hr>
 <div class="container" style="">
-	<h1>Detail Resep</h1>
-
 						<?php if ($this->input->get('error')=="null"): ?>
 							<div class="alert alert-danger" role="alert">
 							Error! Belum Terinput
@@ -100,7 +101,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal10" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModal25" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -114,7 +115,7 @@
   </div>
 </div>
 
-<div class="modal fade" id="myModal11" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModal26" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -122,7 +123,21 @@
         <h4 class="modal-title" id="myModalLabel">Message</h4>
       </div>
       <div class="modal-body">
-          Data Berhasil Diedit
+          Data Berhasil Tersimpan
+      </div>      
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="myModal13" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Message</h4>
+      </div>
+      <div class="modal-body">
+          Field Masih Kosong
       </div>      
     </div>
   </div>

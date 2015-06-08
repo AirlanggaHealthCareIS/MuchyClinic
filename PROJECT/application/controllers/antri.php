@@ -1,4 +1,5 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php 
+// if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Antri extends CI_Controller {
 
@@ -7,9 +8,13 @@ class Antri extends CI_Controller {
                 // Call the CI_Model constructor
                 parent::__construct();
                 $this->load->model("m_antrian");
-                $this->header[0] = "active"; //untuk indikasi active header
+                $this->header[3] = "active"; //untuk indikasi active header
 				$this->id_user = "";
-				$this->user = "Izmul Zamroni";
+		
+				if (($this->session->userdata('username_admin'))=="" || ($this->session->userdata('username_admin'))==null) {
+					redirect(base_url()."login_admin");
+				}
+				$this->user = $this->session->userdata('username_admin');
         }
 	public function index()
 	{

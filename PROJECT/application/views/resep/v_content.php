@@ -1,7 +1,7 @@
-<div class="container">
-	<!-- <div class = "container" style="margin-top: 43px;"> -->
-		<h1>Resep</h1>
-				
+<br>
+<h1>Resep</h1>
+<hr>
+<div class="container">				
 		                <?php if ($this->input->get('error')=="null"): ?>
 							<div class="alert alert-danger" role="alert">
 							Error! Belum Terinput

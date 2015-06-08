@@ -1,11 +1,18 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+// defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Kasir extends CI_Controller {
 
 	public function Kasir(){
 		parent::__construct();
 		$this->load->model("m_kasir");
+		$this->header[5] = "active";
+		$this->id_user = "";
+		
+		if (($this->session->userdata('username_admin'))=="" || ($this->session->userdata('username_admin'))==null) {
+			redirect(base_url()."login_admin");
+		}
+		$this->user = $this->session->userdata('username_admin');
 	}
 
 	public function index($idpasien = "") {
@@ -16,7 +23,7 @@ class Kasir extends CI_Controller {
 
 	//	$data = array("tanggal"=>"", "transaksi"=>"", "keterangan"=>"", "qty"=>"", "harga"=>"", "subtotal"=>"", "dtransaksiobat"=>null); //tampil data di tabel
 
-		$this->load->view("v_header");
+		$this->load->view("v_header_admin");
 		$this->load->view("kasir/v_contain");
 		$this->load->view("v_footer");
 
@@ -26,7 +33,7 @@ class Kasir extends CI_Controller {
 
 	public function validation(){
 		$this->load->helper(array('form', 'url'));
-        $this->load->library('form_validation');
+		$this->load->library('form_validation');
 
 		$id = $this->input->post("idpasien");
 		if ($id==null || $id=="") {
@@ -145,8 +152,8 @@ class Kasir extends CI_Controller {
 
 	public function validationCash($id="") {
 		$this->load->helper(array('form', 'url'));
-        $this->load->library('form_validation');
-        $this->load->model('m_kasir');
+		$this->load->library('form_validation');
+		$this->load->model('m_kasir');
 
 		$byr = $this->input->post("bayar");
 		if ($byr==null || $byr=="") {
@@ -160,9 +167,9 @@ class Kasir extends CI_Controller {
 				$query = $this->m_kasir->checkidPasienTransaksi($id);
 				if ($query==true) {
 					redirect(base_url().'kasir/index/'.$id.'?success=pasienlunas');
-					} else {
-						$this->checkHitung($byr, $id);
-					}
+				} else {
+					$this->checkHitung($byr, $id);
+				}
 			}
 		}
 	}
@@ -269,7 +276,7 @@ class Kasir extends CI_Controller {
 			//redirect(base_url().'kasir/index/'.$id);
 
 			$this->saveTransaksi($id);
-		    redirect(base_url().'kasir/index/'.$id.'?success=sukses');
+			redirect(base_url().'kasir/index/'.$id.'?success=sukses');
 			
 		} else {
 			redirect(base_url().'kasir/index/'.$id.'?error=invalidcash');
@@ -326,7 +333,7 @@ class Kasir extends CI_Controller {
 
 		//echo " id transaksi = ".$idtransaksi." idkasir ".$idkasir." tgltransaksi ".$tgltransaksi." timetransaksi ".$timetransaksi." total ".$total;
 		//save data transaksi
-			
+
 		$query = $this->m_kasir->setTransaksi($idtransaksi, $idkasir, $tgltransaksi, $timetransaksi, $total, $idpasien);
 
 		$query1 = $this->m_kasir->checkidKamar($id);
@@ -382,7 +389,7 @@ class Kasir extends CI_Controller {
 		}
 
 		$query2 = $this->m_kasir->checkidPemeriksaan($id);
-        if ($query2==true) {
+		if ($query2==true) {
 			$dpemeriksaan = $this->m_kasir->getPemeriksaan($id);
 			
 			foreach ($dpemeriksaan as $p) {
@@ -414,105 +421,105 @@ class Kasir extends CI_Controller {
 
 			$html = '<html>
 			<head>
-				<title></title>
+			<title></title>
 			</head>
 			<body>
 
 			<img src="'.base_url().'assets/images/muchy.jpg" class="" alt="Responsive image">
-				<h4><center>Transaksi Pembayaran Muchy Clinic</center></h4>
+			<h4><center>Transaksi Pembayaran Muchy Clinic</center></h4>
 
-				<table>
-					<tr>
-						<td width = "100%">Nama Pasien   : '.$this->session->userdata('namapaspdf').' </td>
-					</tr>
-					<tr>
-						<td width = "100%">Jenis Kelamin : '.$this->session->userdata('jkpaspdf').' </td>
-					</tr>
-				</table>
+			<table>
+			<tr>
+			<td width = "100%">Nama Pasien   : '.$this->session->userdata('namapaspdf').' </td>
+			</tr>
+			<tr>
+			<td width = "100%">Jenis Kelamin : '.$this->session->userdata('jkpaspdf').' </td>
+			</tr>
+			</table>
 
-				<br>
-				
-				<table class="">
-					<tr style="background-color: rgb(226, 246, 245);">
+			<br>
+
+			<table class="">
+			<tr style="background-color: rgb(226, 246, 245);">
 			
-						<td width = "10%"><center>Tanggal</center></td>
-			            <td width = "45%"><center>Transaksi</center></td>
-			            <td width = "15%"><center>Keterangan</center></td>
-			            <td width = "5%"><center>QTY</center></td>
-			            <td width = "10%"><center>Harga</center></td>
-			            <td width = "15%"><center>SubTotal</center></td>
+			<td width = "10%"><center>Tanggal</center></td>
+			<td width = "45%"><center>Transaksi</center></td>
+			<td width = "15%"><center>Keterangan</center></td>
+			<td width = "5%"><center>QTY</center></td>
+			<td width = "10%"><center>Harga</center></td>
+			<td width = "15%"><center>SubTotal</center></td>
 
-					<tr>
-					';
+			<tr>
+			';
 
-		if (isset($dkamar)) {
+			if (isset($dkamar)) {
 
-			foreach ($dkamar as $k) {
-				$html = $html.'
+				foreach ($dkamar as $k) {
+					$html = $html.'
 
-              <tr class="active">
-                <td>'.$k->TGL_MASK.'</td>
-                <td>Kamar Rawat Inap : '.$k->NAMA_KAMAR_INAP.'</td>
-                <td>'.$k->KETERANGAN.'</td>
-                <td>'.$k->QTY.'</td>
-                <td>'.$k->TARIF_KMR.'</td>
-                <td>'.$k->SUBTOTAL.'</td>
-              </tr>';
-            }
-		}
-		if (isset($dpemeriksaan)) {
-            foreach ($dpemeriksaan as $p) {
-				$html = $html.'
+					<tr class="active">
+					<td>'.$k->TGL_MASK.'</td>
+					<td>Kamar Rawat Inap : '.$k->NAMA_KAMAR_INAP.'</td>
+					<td>'.$k->KETERANGAN.'</td>
+					<td>'.$k->QTY.'</td>
+					<td>'.$k->TARIF_KMR.'</td>
+					<td>'.$k->SUBTOTAL.'</td>
+					</tr>';
+				}
+			}
+			if (isset($dpemeriksaan)) {
+				foreach ($dpemeriksaan as $p) {
+					$html = $html.'
 
-              <tr class="success">
-                <td>'.$p->TANGGAL_PERIKSA.'</td>
-                <td>Tindakan : '.$p->NAMA_TINDAKAN.'</td>
-                <td>'.$p->KETERANGAN.'</td>
-                <td>'.$p->QTY.' </td>
-                <td>'.$p->TARIF_TINDAKAN.'</td>
-                <td>'.$p->SUBTOTAL.'</td>
-              </tr>';
-            }
-		}
+					<tr class="success">
+					<td>'.$p->TANGGAL_PERIKSA.'</td>
+					<td>Tindakan : '.$p->NAMA_TINDAKAN.'</td>
+					<td>'.$p->KETERANGAN.'</td>
+					<td>'.$p->QTY.' </td>
+					<td>'.$p->TARIF_TINDAKAN.'</td>
+					<td>'.$p->SUBTOTAL.'</td>
+					</tr>';
+				}
+			}
 			
-		if (isset($dobat)) {
+			if (isset($dobat)) {
 			# code...
-            foreach ($dobat as $o) {
-            	$html = $html.'
-	              <tr class="danger">
-	                <td>'.$o->TGL_OBAT_KELUAR.'</td>
-	                <td>Obat : '.$o->NAMA_OBAT.'</td>
-	                <td>'.$o->KETERANGAN.'</td>
-	                <td>'.$o->QTY.'</td>
-	                <td>'.$o->HARGA.'</td>
-	                <td>'.$o->SUBTOTAL.'</td>
-	              </tr>';
+				foreach ($dobat as $o) {
+					$html = $html.'
+					<tr class="danger">
+					<td>'.$o->TGL_OBAT_KELUAR.'</td>
+					<td>Obat : '.$o->NAMA_OBAT.'</td>
+					<td>'.$o->KETERANGAN.'</td>
+					<td>'.$o->QTY.'</td>
+					<td>'.$o->HARGA.'</td>
+					<td>'.$o->SUBTOTAL.'</td>
+					</tr>';
 
-	              
-            }
+
+				}
 				
-		}
+			}
 			$html = $html.'
-				</table>
+			</table>
 
-				<br>
+			<br>
 
-				<table>
-					<tr>
-						<td width = "100%">Total   : '.$total.' </td>
-					</tr>
-					<tr>
-						<td width = "100%">Bayar   : '.$this->session->userdata('bayarpdf').' </td>
-					</tr>
-					<tr>
-						<td width = "100%">Kembali : '.$this->session->userdata('kembalipdf').' </td>
-					</tr>
-				</table>
+			<table>
+			<tr>
+			<td width = "100%">Total   : '.$total.' </td>
+			</tr>
+			<tr>
+			<td width = "100%">Bayar   : '.$this->session->userdata('bayarpdf').' </td>
+			</tr>
+			<tr>
+			<td width = "100%">Kembali : '.$this->session->userdata('kembalipdf').' </td>
+			</tr>
+			</table>
 
 			</body>
 			</html>';
-		
-		return $html;
+
+			return $html;
 
 		}
 
@@ -525,13 +532,13 @@ class Kasir extends CI_Controller {
 	public function cetak($id = "") {
 
 		//$id = $this->session->userdata('idpasien');
-	
+
 		$html = $this->tampil($id);
 		//$html = $this->tampil($this->session->userdata('idpasien'));
 
 		$this->load->library('pdf');
-	    $pdf = $this->pdf->load();
-	    $pdf->SetFooter('Muchy Clinic'.'|{PAGENO}|'.date(DATE_RFC822));
+		$pdf = $this->pdf->load();
+		$pdf->SetFooter('Muchy Clinic'.'|{PAGENO}|'.date(DATE_RFC822));
 	    $pdf->WriteHTML($html); // write the HTML into the PDF
 	    $pdf->Output(); // save to file because we can
 	}
