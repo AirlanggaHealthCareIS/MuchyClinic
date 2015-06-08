@@ -1,0 +1,15 @@
+Feature		: Aktor (apoteker membuat resep dan nantinya akan diterima oleh apoteker
+Skenario V	: Pilih Obat
+
+Given	apoteker berada pada home page Muchy Clinic
+And	apoteker sudah melakukan Log In
+And	apoteker sudah melakukan pemeriksaan pasien
+And	apoteker sudah memilih menu Kelola Obat Masuk
+And	apoteker seharusnya berada pada menu Detail Kelola Obat Masuk
+When	apoteker menginputkan nama obat "acid"
+And	apoteker klik tombol Search
+And	apoteker sudah mendapatkan list obat berkata "Acid"
+And	apoteker klik tombol Pilih di salah satu Obat
+And	apoteker seharusnya menginputkan detail obat
+And	apoteker klik tombol Save
+Then	apoteker menerima tampilan obat yang dipilih

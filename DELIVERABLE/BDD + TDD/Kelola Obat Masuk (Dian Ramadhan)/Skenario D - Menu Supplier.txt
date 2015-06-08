@@ -1,0 +1,10 @@
+Feature		: Apoteker menginputkan data obat masuk
+Skenario D	: Menu Supplier 
+
+Given	dokter berada pada home page Muchy Clinic
+And	dokter sudah melakukan Log In
+And	dokter sudah melakukan pemeriksaan pasien
+And	dokter sudah memilih menu Kelola Obat Masuk
+And	dokter seharusnya berada pada menu Kelola Obat Masuk
+When	dokter klik button Menu Supplier
+Then 	sistem memanggil method index5()

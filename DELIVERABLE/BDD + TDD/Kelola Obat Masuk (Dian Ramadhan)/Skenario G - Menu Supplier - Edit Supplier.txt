@@ -1,0 +1,17 @@
+Feature		: Apoteker menginputkan data obat masuk
+Skenario G	: Menu Supplier - Edit Supplier
+
+Given	apoteker berada pada home page Muchy Clinic
+And	apoteker sudah melakukan Log In
+And	apoteker sudah melakukan pemeriksaan pasien
+And	apoteker sudah memilih menu Kelola Obat Masuk
+And	apoteker seharusnya berada pada menu Kelola Obat Masuk
+And	apoteker klik button Menu Supplier
+And	apoteker seharusnya berada pada page Menu Supplier
+And	apoteker mendapatkan daftar-daftar supplier
+When	apoteker klik button Edit
+And	apoteker menginputkan data supplier
+And	apoteker klik button Edit
+Then	sistem memanggil method index7()
+And	sistem memanggil method editSupp dengan parameter id supplier
+And	sistem memanggil query editSupp pada models

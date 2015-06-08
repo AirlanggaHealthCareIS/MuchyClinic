@@ -1,0 +1,17 @@
+Feature		: Aktor (apoteker membuat resep dan nantinya akan diterima oleh apoteker
+Skenario W	: Edit Detail Obat
+
+Given	apoteker berada pada home page Muchy Clinic
+And	apoteker sudah melakukan Log In
+And	apoteker sudah melakukan pemeriksaan pasien
+And	apoteker sudah memilih menu Kelola Obat Masuk
+And	apoteker seharusnya berada pada menu Detail Kelola Obat Masuk
+And	apoteker seharusnya sudah memilih obat
+And	apoteker seharusnya sudah input Detail Obat
+And 	apoteker kembali di page Detail Kelola Obat Masuk
+When	apoteker klik button Edit 
+And 	apoteker sudah berada pada page Edit 
+And	apoteker menginputkan Jumlah Obat dan Keterangan Obat
+And 	apoteker klik buttin Edit dalam page Edit
+Then	apoteker seharusnya kembali pada page Detail Kelola Obat Masuk
+And	apoteker seharusnya mendapatkan pesan bahwa Data Berhasil Diedit

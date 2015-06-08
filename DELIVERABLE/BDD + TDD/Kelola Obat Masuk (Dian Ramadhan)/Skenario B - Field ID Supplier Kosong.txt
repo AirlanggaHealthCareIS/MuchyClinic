@@ -1,0 +1,14 @@
+Feature		: Apoteker menginputkan data obat masuk
+Skenario B	: Data ID Supplier - Field Kosong
+
+Given	apoteker berada pada home page Muchy Clinic
+And	apoteker sudah melakukan Log In
+And	apoteker sudah melakukan pemeriksaan pasien
+And	apoteker sudah memilih menu Kelola Obat Masuk
+And	apoteker seharusnya berada pada menu Kelola Obat Masuk
+When	apoteker menginputkan id Supplier ""
+And 	apoteker klik button Search
+Then	sistem memanggil method index()
+And	sistem memanggil method getidapoteker()
+And	sistem memanggil method inValidIDApoteker
+And	sistem redirect(base_url().'kelolaobatmasuk?error=null'

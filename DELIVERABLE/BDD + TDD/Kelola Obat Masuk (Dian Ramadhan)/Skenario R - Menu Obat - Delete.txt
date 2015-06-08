@@ -1,0 +1,13 @@
+Feature		: Apoteker menginputkan data obat masuk
+Skenario R	: Menu obat - Delete
+
+Given	apoteker berada pada home page Muchy Clinic
+And	apoteker sudah melakukan Log In
+And	apoteker sudah melakukan pemeriksaan pasien
+And	apoteker sudah memilih menu Kelola Obat Masuk
+And	apoteker seharusnya berada pada menu Detail Kelola Obat Masuk
+And	apoteker klik button Menu obat
+And	apoteker seharusnya berada pada page Menu obat
+And	apoteker mendapatkan daftar-daftar obat
+When	apoteker klik button Delete
+Then	apoteker seharusnya menerima konfirmasi Data Berhasil Di Hapus

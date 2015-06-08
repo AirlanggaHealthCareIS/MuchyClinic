@@ -1,0 +1,14 @@
+Feature		: Apoteker menginputkan data obat masuk
+Skenario A	: Data ID Supplier
+
+Given	apoteker berada pada home page Muchy Clinic
+And	apoteker sudah melakukan Log In
+And	apoteker sudah melakukan pemeriksaan pasien
+And	apoteker sudah memilih menu Kelola Obat Masuk
+And	apoteker seharusnya berada pada menu Kelola Obat Masuk
+When	apoteker menginputkan id Supplier "S0001"
+And 	apoteker klik button Search
+Then	sistem memanggil method index()
+And	sistem memanggil method getidapoteker()
+And	sistem memanggil method tampilid dengan parameter id supplier untuk menampilkna
+	id supplier dan nama supplier
