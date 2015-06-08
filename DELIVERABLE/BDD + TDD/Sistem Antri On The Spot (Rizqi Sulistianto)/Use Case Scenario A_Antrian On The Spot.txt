@@ -1,20 +1,34 @@
 Story		: Antrian On The Spot
 Feature		: Pasien mendapatkan nomor antrian
-Skenario A	: Pasien yang telah mendaftar dan admin menginputkan ID pasien dengan benar lalu pasien mendapat nomor antrian
+Skenario A	: Pasien yang telah mendaftar dan admin menginputkan ID Pasien dengan benar lalu pasien mendapat nomor antrian
+
+Given	: Pasien telah melakukan pendaftaran dan menyerahkan ID Pasien kepada Admin
+And	: Admin berada pada home page Muchy Clinic
+And	: Admin menekan tombol Sistem Antri On The Spot
+And	: Admin berada di halaman Sistem Antri On The Spot
+And	: Admin masuk ke halaman Sistem Antri On The Spot melalui controller dengan method index()
+When	: Admin memasukkan ID Pasien "P0001"
+And	: Admin menekan tombol Search
+And	: Admin ingin mengecek ID Pasien “P0001” pada database pasien
+Then	: Sistem Memanggil Method getId_pasien pada tabel pasien dengan
+	  parameter "P0001"
+And	: Sistem masuk pada method validasi pada controller “antri”
+And	: Sistem masuk ke method ‘checkdb’
+And	: $id akan disimpan pada method ‘getAntri’
+And 	: Sistem akan memanggil method yang ada pada model 'm_antrian’
+And 	: $id akan dicari pada method ‘getAntri’ pada model ‘m_antrian’ yang disimpan pada variabel $query
+Then 	: Jika id pasien yang dimasukkan benar maka informasi data pasien seperti ID pasien, nama pasien,dan no telpon akan ditampilkan
+
 
 Given	: Pasien telah melakukan pendaftaran dan menyerahkan Id Pasien kepada Admin
 And	: Admin berada pada home page Muchy Clinic
 And	: Admin menekan tombol Sistem Antri On The Spot
 And	: Admin berada di halaman Sistem Antri On The Spot
 And	: Admin masuk ke halaman Sistem Antri On The Spot melalui controller dengan method index()
-When	: Admin memasukkan Id_pasien "P0001"
-And	: Admin menekan tombol Input Id pasien
+When	: Admin memasukkan ID Pasien “P0001”
+And	: Admin menekan tombol Input ID Pasien
 Then	: Sistem Memanggil Method getId_pasien pada tabel pasien dengan
 	  parameter "P0001"
-And	: Sistem masuk pada method validasi pada controller “antrian”
-And	: Sistem masuk ke method tampil($id)
-And	: $id akan disimpan pada method set_userdata , karena akan digunakan nanti
-And 	: Sistem akan memanggil method yang ada pada model 'm_ambildata'
-And 	: $id akan dicari pada method getantrian pada model ‘m_antrian’ yang disimpan pada variabel $query
-And 	: Jika id pasien yang dimasukkan benar maka pasien mendapat nomor antrian
+And 	: $id akan dicari pada method ‘getAntri’ pada model ‘m_antrian’ yang disimpan pada variabel $query
+Then	: $setAntri2 pada method index akan bertambah 1, artinya pasien dengan ID pasien “P0001” telah mendapat nomor antrian 1
 

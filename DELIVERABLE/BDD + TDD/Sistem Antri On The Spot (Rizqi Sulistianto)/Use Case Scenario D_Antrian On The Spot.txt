@@ -9,9 +9,9 @@ And	: Admin berada di halaman Sistem Antri On The Spot
 And	: Admin masuk ke halaman Sistem Antri On The Spot melalui controller dengan method index()
 When	: Admin menginputkan ID pasien dengan memasukkan simbol seperti “!@#$%^&*()”
 And	: Admin menekan tombol Input ID pasien
-Then 	: Sistem menuju controller masuk ke method validasi()
+Then 	: Sistem menuju controller masuk ke method ‘validasi’
 And	: Sistem akan mengecek apakah terdapat simbol seperti “!@#$%^&*()”
 And	: Jika terdapat simbol, maka akan muncul pesan error
-Then	: Admin menerima pemberitahuan bahwa “ID pasien hanya berisi angka dan huruf”
+Then	: Admin menerima pemberitahuan bahwa “Don’t input symbol, Please enter a valid ID Pasien”
 When	: Admin kembali menginputkan ID Pasien
 
