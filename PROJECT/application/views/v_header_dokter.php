@@ -46,7 +46,7 @@
               <a href="#submenu"><i class="fa fa-user fa-fw"></i> Dokter<span class="fa arrow"></span></a>
               <ul class="nav nav-second-level" id="submenu">
                 <li <?php if (isset($this->header[0])) echo "class='active'"; ?>>
-                  <a href="<?php echo base_url(); ?>jadwal/dokter"><i class="fa fa-edit fa-fw"></i> Lihat Jadwal</a>
+                  <a href="<?php echo base_url(); ?>lihatjadwal/showdokter"><i class="fa fa-edit fa-fw"></i> Lihat Jadwal</a>
                 </li>
                 <li <?php if (isset($this->header[1])) echo "class='active'"; ?>>
                   <a href="<?php echo base_url(); ?>cpemeriksaan"><i class="fa fa-edit fa-fw"></i> Pemeriksaan</a>
@@ -58,7 +58,7 @@
                   <a href="<?php echo base_url(); ?>rekammedis"><i class="fa fa-edit fa-fw"></i> Rekam Medis</a>
                 </li>
                 <li <?php if (isset($this->header[4])) echo "class='active'"; ?>>
-                  <a href="<?php echo base_url(); ?>rekammedis/logout"><i class="fa fa-edit fa-fw"></i> Log Out</a>
+                  <a href="<?php echo base_url(); ?>lihatjadwal/logoutdokter"><i class="fa fa-edit fa-fw"></i> Log Out</a>
                 </li>
               </ul>
             </li>

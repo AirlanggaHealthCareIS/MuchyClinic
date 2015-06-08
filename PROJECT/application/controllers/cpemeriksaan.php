@@ -11,12 +11,13 @@ class Cpemeriksaan extends CI_Controller {
 	}
 	public function index()
 	{
+		$this->header[1] = "active"; //untuk indikasi active header
 		// $this->load->model('m_pemeriksaan');
 		$penyakit = $this->m_pemeriksaan->getPenyakit();
 		$data = array("id_pasien"=> " ", "nama_pasien"=> " ", "no_telp_pas"=> " ", "getpeny" => $penyakit);
 
 
-		$this->load->view('v_header');
+		$this->load->view('v_header_dokter');
 		$this->load->view('pemeriksaan/v_pemeriksaan',$data);
 		$this->load->view('v_footer');	
 

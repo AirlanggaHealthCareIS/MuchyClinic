@@ -8,7 +8,7 @@ class pendaftaran extends CI_Controller {
 	function pendaftaran()
 	{
 		parent::__construct();
-		$this->header[1] = "active"; //untuk indikasi active header
+		
 		$this->id_user = "";
 		
 		if (($this->session->userdata('username_admin'))=="" || ($this->session->userdata('username_admin'))==null) {
@@ -22,6 +22,7 @@ class pendaftaran extends CI_Controller {
 
 	public function index()
 	{
+		$this->header[1] = "active"; //untuk indikasi active header
 		$this->load->view('v_header_admin');
 		$this->load->view('pendaftaran/v_content');
 		$this->load->view('v_footer');
@@ -30,6 +31,7 @@ class pendaftaran extends CI_Controller {
 
 	public function index2()
 	{
+		$this->header[2] = "active"; //untuk indikasi active header
 		$this->load->database();
 		$daftarpasien = $this->input->post('carinama');
 		$this->load->model('m_pendaftaranpasien');
@@ -190,6 +192,7 @@ class pendaftaran extends CI_Controller {
 
 		public function tampil()
 		{
+			$this->header[2] = "active"; //untuk indikasi active header
 			$this->load->database();
 
 			$this->load->model('m_pendaftaranpasien');

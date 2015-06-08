@@ -10,6 +10,7 @@ class Resep extends CI_Controller{
 	}
 	//=================================================OPENING=====================================
 	public function index(){
+		$this->header[2] = "active"; //untuk indikasi active header
 		$data = array(
 			"idpemeriksaan"=>" ",
 			"idpasien"=>" ",

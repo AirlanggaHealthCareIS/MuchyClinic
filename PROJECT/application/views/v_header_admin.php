@@ -46,7 +46,7 @@
               <a href="#submenu"><i class="fa fa-user fa-fw"></i> Administator<span class="fa arrow"></span></a>
               <ul class="nav nav-second-level" id="submenu">
                 <li <?php if (isset($this->header[0])) echo "class='active'"; ?>>
-                  <a href="<?php echo base_url(); ?>jadwal/karyawan"><i class="fa fa-edit fa-fw"></i> Lihat Jadwal</a>
+                  <a href="<?php echo base_url(); ?>lihatjadwal/showkaryawan"><i class="fa fa-edit fa-fw"></i> Lihat Jadwal</a>
                 </li>
                 <li <?php if (isset($this->header[1])) echo "class='active'"; ?>>
                   <a href="<?php echo base_url(); ?>pendaftaran"><i class="fa fa-edit fa-fw"></i> Pendaftaran</a>
@@ -63,8 +63,11 @@
                 <li <?php if (isset($this->header[5])) echo "class='active'"; ?>>
                   <a href="<?php echo base_url(); ?>kasir"><i class="fa fa-edit fa-fw"></i> Kasir</a>
                 </li>
-                <li <?php if (isset($this->header[6])) echo "class='active'"; ?>>
+<!--                 <li <?php if (isset($this->header[6])) echo "class='active'"; ?>>
                   <a href="<?php echo base_url(); ?>crawatinap/logout"><i class="fa fa-edit fa-fw"></i> Log Out</a>
+                </li> -->
+                <li <?php if (isset($this->header[6])) echo "class='active'"; ?>>
+                  <a href="<?php echo base_url(); ?>lihatjadwal/logoutadmin"><i class="fa fa-edit fa-fw"></i> Log Out</a>
                 </li>
               </ul>
             </li>

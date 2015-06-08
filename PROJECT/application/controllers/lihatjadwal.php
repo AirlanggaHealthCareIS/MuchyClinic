@@ -145,7 +145,7 @@ class Lihatjadwal extends CI_Controller {
 
 		$data = array("idaaktor"=>$this->idaaktor, "ida"=>$ro->ID_KARYAWAN, "nama"=>$ro->NAMA_K, "lihatjadwal"=>$this->m_lihatjadwal->getDataKaryawan($ro->ID_KARYAWAN)); //tampil data di tabel dan ambil nilai
 
-		$this->load->view("v_header");
+		$this->load->view("v_header_admin");
 		$this->load->view("lihatjadwal/v_content", $data);
 		$this->load->view("v_footer");
 
