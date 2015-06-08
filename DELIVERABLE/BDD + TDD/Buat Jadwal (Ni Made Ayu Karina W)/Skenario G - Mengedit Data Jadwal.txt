@@ -2,16 +2,43 @@ Feature: User (Dokter, Apoteker, dan Karyawan) dapat melihat jadwal kerjanya mas
 Skenario G: Mengedit data jadwal
 
 Given	: saya telah melakukan login sebagai owner
-And 	: saya telah memilih menu jadwal
-And 	: saya telah memilih submenu Buat Jadwal
-And 	: saya berada di halaman Buat Jadwal
-And	: saya masuk ke halaman Buat Jadwal melalui controller dengan method index()
+And 	: saya telah memilih menu Penjadwalan Dokter
+And 	: saya berada di halaman Buat Jadwal Dokter
+And	: saya masuk ke halaman Buat Jadwal melalui controller dengan method dokter()
 And	: sistem menampilkan semua data jadwal dokter
 When	: saya memilih salah satu jadwal
 And	: saya menekan tombol edit
 And	: saya mengisi data hari dan jam yang baru
 And	: saya menekan tombol OK
-And	: data hari masuk pada variabel $haridn dan jam masuk pada variabel $jamdn
+And	: data hari masuk pada variabel $harid dan jam masuk pada variabel $jamdn
 Then	: sistem akan masuk pada method gantiJadwalDokter dengan parameter $iddokter
-And	: sistem akan memanggil method gantiJadwalDoter yang ada pada model m_jadwal dengan parameter $iddokter
+And	: sistem akan memanggil method gantiJadwalDoter yang ada pada model m_jadwal dengan parameter $idjadwaldokter
+And	: data yang lama telah berganti dengan data yang baru
+
+Given	: saya telah melakukan login sebagai owner
+And 	: saya telah memilih menu Penjadwalan Apoteker
+And 	: saya berada di halaman Buat Jadwal Apoteker
+And	: saya masuk ke halaman Buat Jadwal melalui controller dengan method apoteker()
+And	: sistem menampilkan semua data jadwal apoteker
+When	: saya memilih salah satu jadwal
+And	: saya menekan tombol edit
+And	: saya mengisi data hari dan jam yang baru
+And	: saya menekan tombol OK
+And	: data hari masuk pada variabel $harid dan jam masuk pada variabel $jamdn
+Then	: sistem akan masuk pada method gantiJadwalApoteker dengan parameter $iddokter
+And	: sistem akan memanggil method gantiJadwalApoteker yang ada pada model m_jadwal dengan parameter $idjadwalapt
+And	: data yang lama telah berganti dengan data yang baru
+
+Given	: saya telah melakukan login sebagai owner
+And 	: saya telah memilih menu Penjadwalan Karyawan
+And 	: saya berada di halaman Buat Jadwal Karyawna
+And	: saya masuk ke halaman Buat Jadwal melalui controller dengan method karyawan()
+And	: sistem menampilkan semua data jadwal karyawan
+When	: saya memilih salah satu jadwal
+And	: saya menekan tombol edit
+And	: saya mengisi data hari dan jam yang baru
+And	: saya menekan tombol OK
+And	: data hari masuk pada variabel $harid dan jam masuk pada variabel $jamdn
+Then	: sistem akan masuk pada method gantiJadwalKaryawan dengan parameter $idkar
+And	: sistem akan memanggil method gantiJadwalDoter yang ada pada model m_jadwal dengan parameter $idjawalkar
 And	: data yang lama telah berganti dengan data yang baru

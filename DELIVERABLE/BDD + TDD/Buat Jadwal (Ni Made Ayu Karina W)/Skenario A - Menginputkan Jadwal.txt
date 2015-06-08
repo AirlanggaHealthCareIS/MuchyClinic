@@ -3,19 +3,52 @@ Feature : User (Owner) dapat menginputkan jadwal karyawan, dokter, dan apoteker
 Skenario A : Menginputkan jadwal dokter
 
 Given	: saya telah melakukan login sebagai owner
-And 	: saya telah memilih menu jadwal
-And 	: saya telah memilih submenu Buat Jadwal
-And 	: saya berada di halaman Buat Jadwal
-And	: saya masuk ke halaman Buat Jadwal melalui controller dengan method index()
+And 	: saya telah memilih menu Penjadwalan Dokter
+And 	: saya berada di halaman Buat Jadwal Dokter
+And	: saya masuk ke halaman Buat Jadwal melalui controller dengan method dokter()
 When 	: saya memasukkan ID Dokter "D0001"
 And	: saya menekan tombol search
 Then	: sistem masuk pada method validasiDokter pada controller jadwal
 And	: sistem memanggil method tampilDokter dengan parameter "D0001"
 And	: sistem memanggil method getDokter yang ada pada model m_jadwal
 And	: Field Id Dokter dan Nama akan otomatis terisi pada field yang disediakan
-When	: saya mengisi field ID Jadwal, hari, tanggal
+When	: saya memilih combo box hari, tanggal
 And 	: saya menekan tombol add
 Then	: sistem masuk pada method validasiDokter2
 Then	: sistem memanggil method inputJadwalDokter
 And	: sistem memanggil method getDokter yang ada pada model m_ jadwal dengan parameter IDJADWALD, IDDOKTER, HARID, JAMD
+And	: Jika semua inputan saya benar, maka data akan tersimpan dalam database
+
+Given	: saya telah melakukan login sebagai owner
+And 	: saya telah memilih menu Penjadwalan Apoteker
+And 	: saya berada di halaman Buat Jadwal Apoteker
+And	: saya masuk ke halaman Buat Jadwal melalui controller dengan method apoteker()
+When 	: saya memasukkan ID Apoteker "A0001"
+And	: saya menekan tombol search
+Then	: sistem masuk pada method validasiApoteker pada controller jadwal
+And	: sistem memanggil method tampilApoteker dengan parameter "A0001"
+And	: sistem memanggil method getApoteker yang ada pada model m_jadwal
+And	: Field Id Apoteker dan Nama akan otomatis terisi pada field yang disediakan
+When	: saya memilih combo box hari, tanggal
+And 	: saya menekan tombol add
+Then	: sistem masuk pada method validasiApoteker2
+Then	: sistem memanggil method inputJadwalApoteker
+And	: sistem memanggil method getApoteker yang ada pada model m_ jadwal dengan parameter IDJADWALA, IDAPOTEKER, HARIA, JAMA
+And	: Jika semua inputan saya benar, maka data akan tersimpan dalam database
+
+Given	: saya telah melakukan login sebagai owner
+And 	: saya telah memilih menu Penjadwalan Karyawan
+And 	: saya berada di halaman Buat Jadwal Karyawan
+And	: saya masuk ke halaman Buat Jadwal melalui controller dengan method karyawan()
+When 	: saya memasukkan ID Karyawan "K0001"
+And	: saya menekan tombol search
+Then	: sistem masuk pada method validasiKaryawan pada controller jadwal
+And	: sistem memanggil method tampilKaryawan dengan parameter "K0001"
+And	: sistem memanggil method getKaryawan yang ada pada model m_jadwal
+And	: Field Id Karyawan dan Nama akan otomatis terisi pada field yang disediakan
+When	: saya memilih combo box hari, tanggal
+And 	: saya menekan tombol add
+Then	: sistem masuk pada method validasiKaryawan2
+Then	: sistem memanggil method inputJadwalkaryawan
+And	: sistem memanggil method getApoteker yang ada pada model m_ jadwal dengan parameter IDJADWALK, IDKARYAWAN, HARIK, JAMK
 And	: Jika semua inputan saya benar, maka data akan tersimpan dalam database

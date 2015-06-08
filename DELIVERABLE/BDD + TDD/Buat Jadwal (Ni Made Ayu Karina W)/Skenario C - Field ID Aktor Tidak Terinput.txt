@@ -2,12 +2,28 @@ Feature : User (Owner) dapat menginputkan jadwal karyawan, dokter, dan apoteker
 Skenario C: Field ID Aktor tidak terinput
 
 Given	: saya telah melakukan login sebagai owner
-And 	: saya telah memilih menu jadwal
-And 	: saya telah memilih submenu Buat Jadwal
-And 	: saya berada di halaman Buat Jadwal
-And	: saya masuk ke halaman Buat Jadwal melalui controller dengan method index()
-When 	: saya memasukkan ID Dokter "D0001"
-And	: saya menekan tombol search
+And 	: saya telah memilih menu Penjadwalan Dokter
+And 	: saya berada di halaman Buat Jadwal Dokter
+And	: saya masuk ke halaman Buat Jadwal melalui controller dengan method dokter()
+When	: saya menekan tombol search
 Then	: sistem masuk pada method validasiDokter pada controller jadwal
 And	: sistem akan memunculkan peringatan bahwa Field Id Dokter masih kosong
 And	: saya harus mengisi field ID Dokter
+
+Given	: saya telah melakukan login sebagai owner
+And 	: saya telah memilih menu Penjadwalan Apoteker
+And 	: saya berada di halaman Buat Jadwal Apoteker
+And	: saya masuk ke halaman Buat Jadwal melalui controller dengan method apoteker()
+When	: saya menekan tombol search
+Then	: sistem masuk pada method validasiApoteker pada controller jadwal
+And	: sistem akan memunculkan peringatan bahwa Field Id Dokter masih kosong
+And	: saya harus mengisi field ID Apoteker
+
+Given	: saya telah melakukan login sebagai owner
+And 	: saya telah memilih menu Penjadwalan Karyawan
+And 	: saya berada di halaman Buat Jadwal Karyawan
+And	: saya masuk ke halaman Buat Jadwal melalui controller dengan method karyawan()
+When	: saya menekan tombol search
+Then	: sistem masuk pada method validasiDokter pada controller jadwal
+And	: sistem akan memunculkan peringatan bahwa Field Id Dokter masih kosong
+And	: saya harus mengisi field ID Karyawan

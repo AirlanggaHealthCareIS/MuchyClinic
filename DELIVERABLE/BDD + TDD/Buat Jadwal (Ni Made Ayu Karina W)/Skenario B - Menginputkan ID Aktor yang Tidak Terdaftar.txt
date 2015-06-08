@@ -2,10 +2,9 @@ Feature : User (Owner) dapat menginputkan jadwal karyawan, dokter, dan apoteker
 Skenario B: Menginputkan ID aktor yang tidak terdaftar
 
 Given	: saya telah melakukan login sebagai owner
-And 	: saya telah memilih menu jadwal
-And 	: saya telah memilih submenu Buat Jadwal
-And 	: saya berada di halaman Buat Jadwal
-And	: saya masuk ke halaman Buat Jadwal melalui controller dengan method index()
+And 	: saya telah memilih menu Penjadwalan Dokter
+And 	: saya berada di halaman Buat Jadwal Dokter
+And	: saya masuk ke halaman Buat Jadwal melalui controller dengan method dokter()
 When 	: saya memasukkan ID Dokter "D0001"
 And	: saya menekan tombol search
 Then	: sistem akan masuk pada method validasiDokter pada controller jadwal
@@ -13,3 +12,27 @@ And	: sistem memanggil method tampilDokter dengan parameter "D0001"
 And	: sistem memanggil method getDokter yang ada pada model m_jadwal
 And	: muncul peringatan bahwa ID yang diinputkan tidak ada dalam database
 And	: saya harus mengisi kembali ID Dokter
+
+Given	: saya telah melakukan login sebagai owner
+And 	: saya telah memilih menu Penjadwalan Apoteker
+And 	: saya berada di halaman Buat Jadwal Dokter Apoteker
+And	: saya masuk ke halaman Buat Jadwal melalui controller dengan method apoteker()
+When 	: saya memasukkan ID Apoteker "A0001"
+And	: saya menekan tombol search
+Then	: sistem akan masuk pada method validasiApoteker pada controller jadwal
+And	: sistem memanggil method tampilApoteker dengan parameter "A0001"
+And	: sistem memanggil method getApoteker yang ada pada model m_jadwal
+And	: muncul peringatan bahwa ID yang diinputkan tidak ada dalam database
+And	: saya harus mengisi kembali ID Apoteker
+
+Given	: saya telah melakukan login sebagai owner
+And 	: saya telah memilih menu Penjadwalan Karyawan
+And 	: saya berada di halaman Buat Jadwal Karyawan
+And	: saya masuk ke halaman Buat Jadwal melalui controller dengan method karyawan()
+When 	: saya memasukkan ID Karyawan "K0001"
+And	: saya menekan tombol search
+Then	: sistem akan masuk pada method validasiKaryawan pada controller jadwal
+And	: sistem memanggil method tampilKaryawan dengan parameter "K0001"
+And	: sistem memanggil method getKaryawan yang ada pada model m_jadwal
+And	: muncul peringatan bahwa ID yang diinputkan tidak ada dalam database
+And	: saya harus mengisi kembali ID Karyawan
