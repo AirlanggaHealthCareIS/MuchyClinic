@@ -42,10 +42,11 @@
             <!-- <td >No</td> -->
             <th style="color: white;background-color: rgb(39, 190, 196);">Id Pasien</th>
             <th style="color: white;background-color: rgb(39, 190, 196);">Nama Pasien</th>
-            <th style="color: white;background-color: rgb(39, 190, 196);">Keluhan_Penyakit</th>
+            <th style="color: white;background-color: rgb(39, 190, 196);">Alamat Pasien</th>
+            <th style="color: white;background-color: rgb(39, 190, 196);">Golongan Darah</th>
+            <th style="color: white;background-color: rgb(39, 190, 196);">No Hp</th>                       
             <th style="color: white;background-color: rgb(39, 190, 196);">Tanggal Pendaftaran</th>
-                       
- 
+
           </tr>
 
 
@@ -55,7 +56,9 @@
             <!-- <td >  </td> -->
             <td > <?php echo $newisi->ID_PASIEN;  ?>  </td>
             <td > <?php echo $newisi->NAMA_PASIEN;  ?>  </td>
-            <td > <?php echo $newisi->KELUHAN_PENYAKIT;  ?> </td>
+            <td > <?php echo $newisi->ALAMAT_PASIEN;  ?> </td>
+            <td > <?php echo $newisi->GOL_DARAH_PASIEN;  ?> </td>
+            <td > <?php echo $newisi->NO_HP;  ?> </td>
             <td > <?php echo $newisi->TANGGAL_PENDAFTARAN;  ?> </td>
                       
           </tr>

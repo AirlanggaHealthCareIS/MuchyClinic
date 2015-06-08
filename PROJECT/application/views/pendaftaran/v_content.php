@@ -1,79 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
- 
-    <title>Muchy Clinic | Pendaftaran</title>
 
-    <!-- Bootstrap -->
-    <!-- <link href ="assets/css/bootstrap.min.css" rel="stylesheet"> -->
-    <link href="assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
-     <!-- <link href="assets/css/style2.css" rel="stylesheet" type="text/css" media="all" /> -->
-	<link href="<?php echo base_url (); ?>assets/css/bootstrap1.css" rel="stylesheet" type="text/css" media="all" />
-
-    
-  </head>
-  <body>
-   
-
-
-   <!-- dari sini  -->
-
-
-					
-
-
-<div id="pendaftaran" class="pendaftaran" >
-	<div class="container-fluid" style="margin-bottom:50px;">
-     
-        <!-- <img src="images/logo2.png"> -->
-
-		        <!-- <div class="container-fluid text-center" style="background-color: #606062"> -->
-		                <h1 style="text-align: center;font-weight: 600;color: #4b4b4d;">Pendaftaran</h1>
-
-		      	<!-- <img src="<?php echo base_url(); ?>assets/image/header1.png" class="" alt="Responsive image"> -->
-		    	<!-- </div> -->
-
-        <br></br>
-
-
-       <!--  <div class="row">
-
-			<div class="row">
-			<div class="col-md-4">
-			
-			<div class="alert alert-danger" role="alert">
-				maaf anda harus melengkapi terlebih dahulu
-				</div>
-
-			</div>
-			</div>
-
-			<div class="row">
-			<div class="col-md-4">
-				
-				<div class="alert alert-danger" role="alert">
-				maaf anda harus melengkapi terlebih dahulu
-				</div>
-
-			</div>
-			</div>
-
-			<div class="row">
-			<div class="col-md4">
-			<div class="alert alert-danger" role="alert">
-				maaf anda harus melengkapi terlebih dahulu
-				</div>
-			</div>
-			</div>
-
-		</div> -->
-
-
-		
-
+<br>
+<h2>Pendaftaran Pasien Baru</h2>
+<hr>
+	<p>isi dan lengkapi form dengan benar</p>
+	
 	<div class="row">
 
 		<div class="row">
@@ -105,10 +35,10 @@
   				<br>
   				<div class="row">
 	  				<div class="col-md-5">
-		  				ID Pasien
+		  				ID Pasien 
 		  			</div>
 		  			<div class="col-md-3">
-						<input type="text" name="id_pasien" maxlength="30" size="20" />
+						<input type="text" name="id_pasien" maxlength="30" size="20" value="<?php echo $this->id_genarate; ?>" />
 		  			</div>
 	  			</div>
 
@@ -124,8 +54,8 @@
 						<!-- <input type="radio" name="perempuan" value="Wanita" />  Perempuan  -->
 						<select name="jenis_kelamin" id="jenis_kelamin">
 							<option value="-1">jenis_kelamin</option>
-							<option value="Islam">Laki-laki</option>
-							<option value="Kristen Katolik">Perempuan</option>
+							<option value="Laki laki">Laki-laki</option>
+							<option value="Perempuan">Perempuan</option>
 						</select>
 		  			</div>
 	  			</div>
@@ -146,7 +76,7 @@
 		  				Alamat
 		  			</div>
 		  			<div class="col-md-3">
-						<textarea name="alamat" rows="1" cols="73"></textarea>
+						<textarea name="alamat" rows="1" cols="84"></textarea>
 		  			</div>
 	  			</div>	  			
 
@@ -209,7 +139,7 @@
 		  				Tanggal Pendaftaran
 		  			</div>
 		  			<div class="col-md-3">
-						<input type="date" name="tanggal_pendaftaran" maxlength="30" size="16" />
+						<input type="date" name="tanggal_pendaftaran" maxlength="30" size="16" style="width: 167px;"/>
 		  			</div>
 	  			</div>
 
@@ -245,7 +175,7 @@
 		  				Tanggal Lahir
 		  			</div>
 		  			<div class="col-md-5">
-						<input type="date" name="tanggal_lahir" maxlength="70" size="70" />
+						<input type="date" name="tanggal_lahir" maxlength="70" size="71" style="width: 167px;"/>
 		  			</div>
 	  			</div>
 
@@ -280,7 +210,7 @@
 	  			</div>
 
 	  			<br><br>
-	  			<div class="row">
+	  			<!-- <div class="row">
 
 	  				<div class="col-md-6">
 	  					Keluhan Penyakit
@@ -288,7 +218,7 @@
 		  			<div class="col-md-3">
 						<textarea name="keluhan" rows="5" cols="22"></textarea>
 		  			</div>
-	  			</div>
+	  			</div> -->
 
 	  		<br><br><br>	
 	  		<div class="row">
@@ -301,7 +231,7 @@
 				 <button type="submit" class="btn btn-primary">Simpan</button>
 
 
-				 <button type="reset" class="btn btn-primary" action="<?php session_destroy(); ?>">Batal</button>
+				 <button type="reset" class="btn btn-primary" onclick="return (location.reload())">Batal</button>
 			</div>
 
 
@@ -310,28 +240,8 @@
 	  	</div>
 
 </form>
-
-  	</div>
-
-  				</div>
-  		
-
-	</div>        
-
-</div>
-</div>
-</div>
+  				
+</body>
 
 
-	<!-- sampe sini -->
-
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-  </body>
-
-
-
-</html>
+<!-- coba diatas -->
