@@ -83,14 +83,36 @@ class M_resep extends CI_Model {
             }
         }
 
+        public function generateBanyakIdDetailResep($n){
+                $id_awal = $this->generateIdDetailResep();
+                $id = $this->countIDDetailResep();
+                $kotak_id = array();
+                for ($i=0; $i < $n; $i++) { 
+                  $id = $id + 1;
+                  $temp = "";
+                  if ($id < 10) $temp = "DR000".$id;
+                  else if ($id < 100) $temp = "DR00".$id;
+                  else if ($id < 1000) $temp = "DR0".$id; 
+                  else if ($id < 10000) $temp = "DR".$id;
+
+                  array_push($kotak_id, $temp);
+                }
+                return $kotak_id;
+  }
+
         public function countIDDetailResep(){
-            $query = $this->db->query("SELECT COUNT(*) AS N FROM `detail_resep`");
+            // $query = $this->db->query("SELECT COUNT(*) AS N FROM `detail_resep`");
+            $query = $this->db->query("SELECT MAX(ID_DETAIL_RESEP) AS MAX FROM `detail_resep`");
+
 
             if($query->num_rows() > 0){
-                return $query->row()->N;
+                $query = $query->row();
+                $t = $query->MAX;
+                $t = substr($t, 2); 
+                return $t;
             }
             else {
-                return 0;
+                return 1;
             }
         }
         public function deleteObat($iddetailresep){

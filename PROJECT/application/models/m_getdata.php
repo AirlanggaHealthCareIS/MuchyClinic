@@ -13,6 +13,12 @@ class M_getdata extends CI_Model {
                  return $query;
                 // return $row;
         }
+        public function getDataAktor_K($id){
+                $query = $this->db->query("SELECT `HARI_K`, `JAM_K` FROM `jadwal_karyawan` WHERE `ID_KARYAWAN` = '".$id."'");
+
+                 return $query;
+                // return $row;
+        }
 
 }
  ?>
