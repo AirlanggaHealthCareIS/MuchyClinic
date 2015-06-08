@@ -2,12 +2,23 @@
 
 class Laporanuang extends CI_Controller {
 
-	public function LaporanUang(){
+	public function Laporanuang(){
 		parent::__construct();
 		$this->load->model("m_ambildatalaporanuang");
 		$this->header[0] = "active"; //untuk indikasi active header
 		$this->id_user = "";
-		$this->user = "Izmul Zamroni";
+
+		if (($this->session->userdata('username_owner'))=="" || ($this->session->userdata('username_owner'))==null) {
+		redirect(base_url()."login_owner");
+		}
+		$this->user = $this->session->userdata('username_owner');
+
+	}
+
+	public function logout(){
+		$this->session->unset_userdata('username_owner');
+		redirect(base_url()."login_owner");
+
 	}
 
 
