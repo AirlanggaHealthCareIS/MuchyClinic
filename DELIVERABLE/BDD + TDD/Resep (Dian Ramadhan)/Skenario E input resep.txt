@@ -1,0 +1,13 @@
+Feature		: Aktor (dokter membuat resep dan nantinya akan diterima oleh apoteker
+Skenario E	: Input Resep 
+
+Given	dokter berada pada home page Muchy Clinic
+And	dokter sudah melakukan Log In
+And	dokter sudah melakukan pemeriksaan pasien
+And	dokter sudah memilih menu Resep
+And	dokter seharusnya berada pada menu Resep
+And	dokter sudah mendapatkan informasi id pemeriksaan
+When	dokter menginputkan tgl resep "01 Juni 2014"
+And	dokter klik tombol Save Data Resep
+Then	sistem akan memanggil method input pada controllers
+And	sistem akan memanggil method index2() untuk ke page selanjutnya

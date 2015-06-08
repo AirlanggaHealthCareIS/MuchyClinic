@@ -1,0 +1,21 @@
+Feature		: Aktor (dokter membuat resep dan nantinya akan diterima oleh apoteker
+Skenario L	: Edit Detail Obat - Field Kosong
+
+Given	dokter berada pada home page Muchy Clinic
+And	dokter sudah melakukan Log In
+And	dokter sudah melakukan pemeriksaan pasien
+And	dokter sudah memilih menu Resep
+And	dokter seharusnya berada pada menu Resep
+And	dokter sudah mendapatkan informasi id pemeriksaan
+And 	dokter sudah menyimpan data resep
+And 	dokter seharusnya sudah berada pada page Detail Resep
+And	dokter seharusnya sudah memilih obat
+And	dokter seharusnya sudah input Detail Obat
+And 	dokter kembali di page Detail Resep
+When	dokter klik button Edit 
+And 	dokter sudah berada pada page Edit 
+And	dokter menginputkan Jumlah Obat dan Keterangan Obat = ""
+And 	dokter klik button Edit dalam page Edit
+Then	sistem memanggil method index5
+And	sistem memanggil method editResep dengan parameter id detail resep dan id resep
+And	sistem redirect redirect(base_url().'resep/index5/'.$iddetailresep.'/'.$idresep.'?error=null')

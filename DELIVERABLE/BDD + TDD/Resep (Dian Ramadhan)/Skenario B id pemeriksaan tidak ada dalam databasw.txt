@@ -1,0 +1,15 @@
+Feature		: Aktor (dokter membuat resep dan nantinya akan diterima oleh apoteker
+Skenario B	: ID pemeriksaan tidak terdaftar di database
+
+Given	dokter berada pada home page Muchy Clinic
+And	dokter sudah melakukan Log In
+And	dokter sudah melakukan pemeriksaan pasien
+And	dokter sudah memilih menu Resep
+And	dokter seharusnya berada pada menu Resep
+When	dokter menginputkan id pemeriksaan "PR100"
+And	dokter klik tombol Search
+Then	sistem memanggil method getidpemeriksaan() pada controller
+And	sistem memanggil kondisi 
+And	sistem memanggil method query getcariid pada models dengan parameter id pemeriksaan "PR100"
+And	sistem memanggil method tampilid pada controller dengan parameter id pemeriksaan "PR100"
+And	sistem redirect redirect(base_url().'resep?error=notfound')

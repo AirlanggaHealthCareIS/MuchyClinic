@@ -1,0 +1,18 @@
+Feature		: Aktor (dokter membuat resep dan nantinya akan diterima oleh apoteker
+Skenario I	: Pilih Obat
+
+Given	dokter berada pada home page Muchy Clinic
+And	dokter sudah melakukan Log In
+And	dokter sudah melakukan pemeriksaan pasien
+And	dokter sudah memilih menu Resep
+And	dokter seharusnya berada pada menu Resep
+And	dokter sudah mendapatkan informasi id pemeriksaan
+And 	dokter sudah menyimpan data resep
+And 	dokter seharusnya sudah berada pada page Detail Resep
+When	dokter menginputkan nama obat "acid"
+And	dokter klik tombol Search
+And	dokter sudah mendapatkan list obat berkata "Acid"
+And	dokter klik tombol Pilih di salah satu Obat
+Then	sistem harusnya memanggil query getObat2pada models
+And	sistem harusnya memanggil method cari_obat
+And 	sistem harusnya memanggil method index4 untuk menampilkan page Detail Obat

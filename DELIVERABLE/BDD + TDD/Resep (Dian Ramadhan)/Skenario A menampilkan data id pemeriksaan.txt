@@ -1,5 +1,4 @@
-Story		: Resep
-Feature		: Aktor (dokter membuat resep dan nantinya akan diterima oleh apoteker)
+Feature		: Aktor (dokter membuat resep dan nantinya akan diterima oleh apoteker
 Skenario A	: Menampilkan data dari input id pemeriksaan
 
 Given	dokter berada pada home page Muchy Clinic
@@ -7,10 +6,10 @@ And	dokter sudah melakukan Log In
 And	dokter sudah melakukan pemeriksaan pasien
 And	dokter sudah memilih menu Resep
 And	dokter seharusnya berada pada menu Resep
-When	dokter menginputkan id pemeriksaan "R004"
+When	dokter menginputkan id pemeriksaan "PR001"
 And	dokter klik tombol Search
 Then	sistem memanggil method getidpemeriksaan() pada controller
-And	sistem memanggil method query getcariid pada models dengan parameter id pemeriksaan "R004"
-And	sistem memanggil method tampilid pada controller dengan parameter id pemeriksaan "R004"
+And	sistem memanggil method query getcariid pada models dengan parameter id pemeriksaan "PR001"
+And	sistem memanggil method tampilid pada controller dengan parameter id pemeriksaan "PR001"
 And	sistem memanggil method index() untuk menampilkan dara id pemeriksaan
-	yaitu: idpemeriksaan, idpasien, nama pasien, id dokter, dan nama dokter
+	yaitu: idpemeriksaan, idpasien, nama pasien, id dokter, nama dokter, dan keluhan
