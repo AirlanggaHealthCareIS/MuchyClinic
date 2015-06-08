@@ -11,6 +11,13 @@ class Obatkeluarresep extends CI_Controller {
 		$this->user="Irfan Nur Aulia";
 		$this->id_apoteker = "A0001"; //user apoteker
 		$this->js_to_load[0] = base_url()."assets/js/obatkeluar.js"; //untuk load javascript
+	
+		if (($this->session->userdata('username_apoteker'))=="" || ($this->session->userdata('username_apoteker'))==null) {
+		redirect(base_url()."login_apoteker");
+		}
+		$this->user = $this->session->userdata('username_apoteker');
+
+	
 	}
 
 	public function index()

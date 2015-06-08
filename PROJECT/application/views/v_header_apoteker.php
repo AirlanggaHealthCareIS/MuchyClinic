@@ -52,13 +52,16 @@
                   <a href="<?php echo base_url(); ?>obatkeluarresep"><i class="fa fa-edit fa-fw"></i> Pengambilan Obat</a>
                 </li>
                 <li <?php if (isset($this->header[2])) echo "class='active'"; ?>>
-                  <a href="<?php echo base_url(); ?>inventory"><i class="fa fa-edit fa-fw"></i> Inventory</a>
+                  <a href="<?php echo base_url(); ?>kelolaobatmasuk"><i class="fa fa-edit fa-fw"></i> Kelola Obat Masuk</a>
                 </li>
                 <li <?php if (isset($this->header[3])) echo "class='active'"; ?>>
-                  <a href="<?php echo base_url(); ?>laporanobat"><i class="fa fa-edit fa-fw"></i> Laporan Obat</a>
+                  <a href="<?php echo base_url(); ?>inventory"><i class="fa fa-edit fa-fw"></i> Inventory</a>
                 </li>
                 <li <?php if (isset($this->header[4])) echo "class='active'"; ?>>
-                  <a href="<?php echo base_url(); ?>login_apoteker"><i class="fa fa-edit fa-fw"></i> Logout</a>
+                  <a href="<?php echo base_url(); ?>laporanobat"><i class="fa fa-edit fa-fw"></i> Laporan Obat</a>
+                </li>
+                <li <?php if (isset($this->header[5])) echo "class='active'"; ?>>
+                  <a href="<?php echo base_url(); ?>lihatjadwal/logout"><i class="fa fa-edit fa-fw"></i> Logout</a>
                 </li>
               </ul>
             </li>

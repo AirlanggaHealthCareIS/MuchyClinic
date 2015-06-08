@@ -4,12 +4,16 @@ class LaporanObat extends CI_Controller {
 	public function LaporanObat(){
 		parent::__construct();
 		$this->load->model("m_ambildatalaporanobat");
-		$this->header[3] = "active"; //untuk indikasi active header
+		$this->header[4] = "active"; //untuk indikasi active header
 		$this->id_user = "";
-		$this->user = "Izmul Zamroni";
+		
+		if (($this->session->userdata('username_apoteker'))=="" || ($this->session->userdata('username_apoteker'))==null) {
+		redirect(base_url()."login_apoteker");
+		}
+		$this->user = $this->session->userdata('username_apoteker');
 
+	
 	}
-
 	public function index() {
 		$data = array("tanggal"=>"", "id_obat"=>"", "nama_obat"=>"", "nama_apoteker"=>"", "quqntity"=>"", "dlaporanobat"=>null); //tampil data di tabel
 		$this->load->view("v_header_apoteker");
@@ -20,6 +24,8 @@ class LaporanObat extends CI_Controller {
 	public function validasiObatKeluar(){
 		$tanggal_awal = $this->input->post('tanggal_awal');
 		$tanggal_akhir = $this->input->post('tanggal_akhir');
+
+		$this->header[4] = "active"; //untuk indikasi active header
 
 		if ($tanggal_awal=="" || $tanggal_awal == null || $tanggal_akhir =="" || $tanggal_akhir == null){
 			redirect(base_url().'laporanobat?error=null');
@@ -37,6 +43,8 @@ class LaporanObat extends CI_Controller {
 		$tanggal_awal = $this->input->post('tanggal_awal');
 		$tanggal_akhir = $this->input->post('tanggal_akhir');
 
+		$this->header[4] = "active"; //untuk indikasi active header
+
 		if ($tanggal_awal=="" || $tanggal_awal == null || $tanggal_akhir =="" || $tanggal_akhir == null){
 			redirect(base_url().'laporanobat?error=null');
 		}
@@ -51,6 +59,7 @@ class LaporanObat extends CI_Controller {
 
 	
 	public function tampilObatKeluar($tanggal_awal, $tanggal_akhir) {
+		
 		// session_start();
 		$this->load->database();
 		$query = $this->m_ambildatalaporanobat->getlaporanobatkeluar($tanggal_awal, $tanggal_akhir); //ambil data

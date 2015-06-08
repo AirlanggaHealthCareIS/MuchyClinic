@@ -64,7 +64,7 @@
                   <a href="<?php echo base_url(); ?>restore"><i class="fa fa-edit fa-fw"></i> Restore</a>
                 </li>
                 <li <?php if (isset($this->header[6])) echo "class='active'"; ?>>
-                  <a href="<?php echo base_url(); ?>login_owner"><i class="fa fa-edit fa-fw"></i> Logout</a>
+                  <a href="<?php echo base_url(); ?>laporanuang/logout"><i class="fa fa-edit fa-fw"></i> Logout</a>
                 </li>
               </ul>
             </li>

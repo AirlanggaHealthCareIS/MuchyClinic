@@ -1,21 +1,25 @@
 <?php  
 class Inventory extends CI_Controller{
 
-	public function Inventory()
-        {
-                // Call the CI_Model constructor
-                parent::__construct();
-                $this->load->model("m_jadwal");
-                //$this->header[2] = "active"; //untuk indikasi active header
-				$this->id_user = "";
-				$this->user = "Izmul Zamroni";
-        }
+	public function Inventory() {
+        // Call the CI_Model constructor
+        parent::__construct();
+        $this->load->model("m_jadwal");
+        //$this->header[2] = "active"; //untuk indikasi active header
+		$this->id_user = "";
+
+		if (($this->session->userdata('username_apoteker'))=="" || ($this->session->userdata('username_apoteker'))==null) {
+		redirect(base_url()."login_apoteker");
+		}
+		$this->user = $this->session->userdata('username_apoteker');
+	
+	}
 
 	public function index()
 	{
 		$data = array("idobat"=>"", "nama_obat"=>"", "kategori"=>" ", "harga"=>" ", "obat_kritis"=>"", "query2"=>null); 
 
-		$this->header[2] = "active"; //untuk indikasi active header
+		$this->header[3] = "active"; //untuk indikasi active header
 
       	$this->load->view('v_header_apoteker');
 	    $this->load->view('inventory/v_conten', $data);
@@ -36,7 +40,7 @@ class Inventory extends CI_Controller{
 	{
 		$data = array("idobat"=>"", "nama_obat"=>"", "kategori"=>" ", "harga"=>" ", "obat_kritis"=>"", "query2"=>null); 
 
-		$this->header[2] = "active"; //untuk indikasi active header
+		$this->header[3] = "active"; //untuk indikasi active header
 
       	$this->load->view('v_header_apoteker');
 	    $this->load->view('inventory/v_contenkritis', $data);
@@ -70,7 +74,7 @@ class Inventory extends CI_Controller{
 	{
 		$data = array("idobat"=>"", "nama_obat"=>"", "harga"=>" ", "obat_kritis"=>"", "query2"=>null); 
 
-		$this->header[2] = "active"; //untuk indikasi active header
+		$this->header[3] = "active"; //untuk indikasi active header
 
       	$this->load->view('v_header_apoteker');
 	    $this->load->view('inventory/v_contenkritis', $data);
@@ -129,7 +133,7 @@ class Inventory extends CI_Controller{
 		$this->load->model("m_inventory");
 		$query = $this->m_inventory->getObat($nama_obat);
 
-		$this->header[2] = "active"; //untuk indikasi active header
+		$this->header[3] = "active"; //untuk indikasi active header
 
 		// $data = array("idobat"=>$ro->ID_OBAT, "nama_obat"=>$ro->NAMA_OBAT, "kategori"=>$ro->KATEGORI_OBAT, "harga"=>$ro->HARGA, "obat_kritis"=>$ro->OBAT_KRITIS); 
 			$data = array('query2'=>$query);

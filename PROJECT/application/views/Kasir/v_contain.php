@@ -85,14 +85,8 @@
           </div>
           
           <div class="col-md-4">
-
-            <table class="" style="border: 0px currentColor; border-image: none;">
-              <tr>
-              <td>Kasir</td>
-              <td style="width:43%">Irfan Nur Aulia</td>
-              </tr>
-            </table>
             <br>
+            <br></br>
 
             <h3>TOTAL</h3>
             <?php if ($this->session->flashdata('total')) {
@@ -278,7 +272,6 @@
               </div>
             <?php endif ?>
 
-
             <br></br>
             <br></br>
             <br></br>
@@ -287,32 +280,28 @@
             <br></br>
             <br>
 
-<!--             <table>
-  <tr><td><?php echo $tes;?><td></tr>
-</table> -->
-
             <div class="row">
-              <div class="col-md-3"> 
+              <div class="col-md-4"> 
+              </div>
+              <div class="col-md-2"> 
                 <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                <a href="<?php echo base_url(); ?>kasir/cetak/<?php echo $this->session->flashdata('idpasien'); ?>" target="_blank" class="btn btn-success">Print</a>
+                <a href="<?php echo base_url(); ?>kasir/cetak/<?php echo $this->session->flashdata('idpasien'); ?>" target="_blank" class="btn btn-primary">Print</a>
               </div>
 
-              <div class="col-md-3"> 
+              <div class="col-md-2"> 
                 <!-- Indicates a successful or positive action -->
                 <form class="form-inline" action="<?php echo base_url(); ?>kasir" method="post">
                 <button type="submit" class="btn btn-success">New</button>
                 </form>
+
+                <br></br>
+                <br></br>
+                <br></br>
               </div>
-            
-            <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-   <!--          <button type="button" class="btn btn-primary">Print</button>
-            Indicates a successful or positive action
-            <form class="form-inline" action="<?php echo base_url(); ?>kasir">
-            <button type="submit" class="btn btn-success">New</button>
-            </form> -->
+              <div class="col-md-4"> 
+              </div>
 
             </div>
-
           </div>
           <div class="col-md-4">
           </div>
