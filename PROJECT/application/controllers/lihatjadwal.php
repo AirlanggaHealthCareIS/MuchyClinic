@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+ <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Lihatjadwal extends CI_Controller {
 
@@ -13,25 +13,22 @@ class Lihatjadwal extends CI_Controller {
 		$this->id_user = "";
 		//$this->id = "";
 		$this->idaaktor = substr($this->id,0,1);
-		$this->idaaktor_k = substr($this->id,0,1);
-	//	$this->user = "Izmul Zamroni";
-
-		// if (($this->session->userdata('username_apoteker'))=="" || ($this->session->userdata('username_apoteker'))==null) {
-		// 	redirect(base_url()."login_apoteker");
-		// }
-		// $this->user = $this->session->userdata('username_apoteker');
-
-		// if (($this->session->userdata('username_admin'))=="" || ($this->session->userdata('username_admin'))==null) {
-		// 	redirect(base_url()."login_admin");
-		// }
-		// $this->user = $this->session->userdata('username_admin');
-
 
 	}
 
-	public function logout(){
+	public function logoutapoteker(){
 		$this->session->unset_userdata('username_apoteker');
 		redirect(base_url()."login_apoteker");
+
+	}
+	public function logoutdokter(){
+		$this->session->unset_userdata('username_dokter');
+		redirect(base_url()."login_dokter");
+
+	}
+	public function logoutadmin(){
+		$this->session->unset_userdata('username_admin');
+		redirect(base_url()."login_admin");
 
 	}
 
@@ -74,6 +71,8 @@ class Lihatjadwal extends CI_Controller {
 		
 		$this->load->database();
 
+		$this->idaaktor = "A";
+
 		$this->load->model('m_lihatjadwal');
 		$this->load->model('m_getdata');
 		$this->header[0] = "active"; //untuk indikasi active header
@@ -83,12 +82,9 @@ class Lihatjadwal extends CI_Controller {
 		}
 		$this->user = $this->session->userdata('username_apoteker');
 
-
 		$query = $this->m_lihatjadwal->getApoteker($this->user); //ambil data
 		$ro = $query->row();
-
 		// echo $ro->ID_APOTEKER;
-
 		$data = array(
 			"idaaktor"=>$this->idaaktor, "ida"=>$ro->ID_APOTEKER, "nama"=>$ro->NAMA_APOTEKER, "lihatjadwal"=>$this->m_lihatjadwal->getDataApoteker($ro->ID_APOTEKER)
 		); //tampil data di tabel dan ambil nilai
@@ -100,25 +96,25 @@ class Lihatjadwal extends CI_Controller {
 	}
 
 	public function showDokter() {
-		$this->header[0] = "active"; //untuk indikasi active header
-		
-		
 		$this->load->database();
 
-		//$id = $this->input->post('id_aktor');
+		$this->idaaktor = "D";
 		
 		$this->load->model('m_lihatjadwal');
 		$this->load->model('m_getdata');
+		$this->header[0] = "active"; //untuk indikasi active header	
 		
 		if (($this->session->userdata('username_dokter'))=="" || ($this->session->userdata('username_dokter'))==null) {
 			redirect(base_url()."login_dokter");
 		}
 		$this->user = $this->session->userdata('username_dokter');
 
-		$query = $this->m_lihatjadwal->getDokter($this->id); //ambil data
+		$query = $this->m_lihatjadwal->getDokter($this->user); //ambil data
 		$ro = $query->row();
 
-		$data = array("idaaktor"=>$this->idaaktor, "ida"=>$ro->ID_DOKTER, "nama"=>$ro->NAMA_DOKTER, "lihatjadwal"=>$this->m_lihatjadwal->getDataDokter($this->id)); //tampil data di tabel dan ambil nilai
+		$data = array(
+			"idaaktor"=>$this->idaaktor, "ida"=>$ro->ID_DOKTER, "nama"=>$ro->NAMA_DOKTER, "lihatjadwal"=>$this->m_lihatjadwal->getDataDokter($ro->ID_DOKTER)
+			); //tampil data di tabel dan ambil nilai
 
 		$this->load->view("v_header_dokter");
 		$this->load->view("lihatjadwal/v_content", $data);
@@ -127,6 +123,9 @@ class Lihatjadwal extends CI_Controller {
 	}
 
 	public function showKaryawan() {
+		$this->header[0] = "active"; //untuk indikasi active header
+
+		$this->idaaktor = "K";
 		
 		$this->load->database();
 
@@ -134,7 +133,7 @@ class Lihatjadwal extends CI_Controller {
 		
 		$this->load->model('m_lihatjadwal');
 		$this->load->model('m_getdata');
-		$this->header[0] = "active"; //untuk indikasi active header
+		$this->id_user = "";
 		
 		if (($this->session->userdata('username_admin'))=="" || ($this->session->userdata('username_admin'))==null) {
 			redirect(base_url()."login_admin");
@@ -144,7 +143,7 @@ class Lihatjadwal extends CI_Controller {
 		$query = $this->m_lihatjadwal->getKaryawan($this->user); //ambil data
 		$ro = $query->row();
 
-		$data = array("idaaktor"=>$this->idaaktor_k, "ida"=>$ro->ID_KARYAWAN, "nama"=>$ro->NAMA_K, "lihatjadwal"=>$this->m_lihatjadwal->getDataKaryawan($ro->ID_KARYAWAN)); //tampil data di tabel dan ambil nilai
+		$data = array("idaaktor"=>$this->idaaktor, "ida"=>$ro->ID_KARYAWAN, "nama"=>$ro->NAMA_K, "lihatjadwal"=>$this->m_lihatjadwal->getDataKaryawan($ro->ID_KARYAWAN)); //tampil data di tabel dan ambil nilai
 
 		$this->load->view("v_header");
 		$this->load->view("lihatjadwal/v_content", $data);

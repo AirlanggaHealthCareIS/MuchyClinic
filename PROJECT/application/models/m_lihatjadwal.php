@@ -7,23 +7,18 @@ class M_lihatjadwal extends CI_Model {
                 parent::__construct();  
         }
 
-        public function getApoteker($id){
-                $query = $this->db->query("SELECT * FROM `jadwal_apoteker` AS A, `apoteker` AS P WHERE A.`ID_APOTEKER`= P.
-                    `ID_APOTEKER` AND P.`ID_APOTEKER`= '".$id."'");
-
+        public function getApoteker($username){
+                $query = $this->db->query("SELECT * FROM `apoteker` WHERE `NAMA_APOTEKER`= '".$username."'");
                  return $query;
         }
 
-        public function getDokter($id){
-                $query = $this->db->query("SELECT * FROM `jadwal_dokter` AS D, `dokter` AS P 
-                    WHERE D.`ID_DOKTER`= P.`ID_DOKTER` AND P.`ID_DOKTER`= '".$id."'");
-
+        public function getDokter($username){
+                $query = $this->db->query("SELECT * FROM `dokter` WHERE `NAMA_DOKTER`= '".$username."'");
                 return $query;
         }
 
-        public function getKaryawan($id){
-                $query = $this->db->query("SELECT * FROM `jadwal_karyawan` AS K, `karyawan` AS P 
-                    WHERE K.`ID_KARYAWAN`= P.`ID_KARYAWAN` AND P.`ID_KARYAWAN`= '".$id."'");
+        public function getKaryawan($username){
+                $query = $this->db->query("SELECT * FROM `karyawan` WHERE `NAMA_K`= '".$username."'");
 
                 return $query;
         }        
