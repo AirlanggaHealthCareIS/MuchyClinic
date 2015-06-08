@@ -3,11 +3,7 @@ Skenario C: Field ID Aktor tidak terinput
 
 Given saya telah melakukan login sebagai owner
 When saya memilih menu jadwal
-And saya memilih submenu Buat Jadwal
 Then saya seharusnya ada di halaman Buat Jadwal
-When saya memilih aktor
-And saya memilih Hari
-And saya memilih Jam
-And saya menekan tombol Add
+When saya menekan tombol search
 Then muncul peringatan bahwa ada field yang belum terisi
 And saya menginputkan field yang belum terisi yaitu ID Aktor

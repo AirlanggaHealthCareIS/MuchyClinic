@@ -3,9 +3,8 @@ Skenario F: User menginputkan karakter yang tidak sesuai pada text field
 
 Given saya telah melakukan login sebagai owner
 When saya meilih menu jadwal
-And saya memilih submenu Jadwal
 Then saya seharusnya berada di halaman Buat Jadwal
-When saya meimilih Aktor dan Bagian
-And saya menginputkan karakter yang tidak sesuai seperti $#@%* pada text field Id Aktor
+When saya menginputkan karakter yang tidak sesuai seperti $#@%* pada text field Id Aktor
+And saya menekan tombol search
 Then seharusnya muncul peringatan bahwa data yang diinputkan tidak sesuai
 And saya menginputkan lagi text field Id Aktor dengan inputan yang sesuai
