@@ -1,0 +1,12 @@
+Feature		: Aktor (dokter membuat resep dan nantinya akan diterima oleh apoteker
+Skenario f	: Input Resep - TANGGAL RESEP tidak dipilih
+
+Given	dokter berada pada home page Muchy Clinic
+And	dokter sudah melakukan Log In
+And	dokter sudah melakukan pemeriksaan pasien
+And	dokter sudah memilih menu Resep
+And	dokter seharusnya berada pada menu Resep
+And	dokter sudah mendapatkan informasi id pemeriksaan
+When	dokter menginputkan tgl resep ""
+And	dokter klik tombol Save Data Resep
+Then	dokter seharusnya menerima pesan error
