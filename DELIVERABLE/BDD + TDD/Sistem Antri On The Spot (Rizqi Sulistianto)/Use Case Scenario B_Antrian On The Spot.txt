@@ -1,0 +1,20 @@
+Story		: Antrian On The Spot
+Feature		: Pasien mendapatkan nomor antrian
+Skenario B	: Pasien telah mendaftar lalu memberikan ID pasien yang salah dan admin menginputkan ID pasien dengan benar, ID pasien tidak ada di database
+
+Given	: Pasien telah melakukan pendaftaran dan menyerahkan ID Pasien kepada Admin
+And	: Admin berada pada home page Muchy Clinic
+And	: Admin menekan tombol Sistem Antri On The Spot
+And	: Admin berada di halaman Sistem Antri On The Spot
+And	: Admin masuk ke halaman Sistem Antri On The Spot melalui controller dengan method index()
+When	: Admin memasukkan ID pasien “P0006”
+And	: Admin menekan tombol Search
+And	: Admin ingin mengecek ID Pasien “P0006” pada database pasien
+Then	: Sistem Memanggil Method getId_pasien pada tabel pasien dengan
+	  parameter "P0006”
+And	: Sistem masuk pada method validasi pada controller “antri”
+And	: Sistem masuk ke method ‘checkdb’
+And	: $id akan disimpan pada method ‘getAntri’
+And 	: Sistem akan memanggil method yang ada pada model 'm_antrian’
+And 	: $id akan dicari pada method ‘getAntri’ pada model ‘m_antrian’ yang disimpan pada variabel $query
+Then 	: Jika id pasien yang dimasukkan tidak benar, maka akan muncul pesan error “Pasien tidak ada”
