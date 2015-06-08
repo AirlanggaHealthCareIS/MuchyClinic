@@ -1,0 +1,16 @@
+Feature		: Aktor (dokter membuat resep dan nantinya akan diterima oleh apoteker)
+Skenario D	: Input detail resep
+
+Given	dokter berada pada home page Muchy Clinic
+And	dokter sudah melakukan Log In
+And	dokter sudah melakukan pemeriksaan pasien
+And	dokter sudah memilih menu Resep
+And	dokter seharusnya berada pada menu Resep
+And	dokter sudah berhasil menginputkan id pemeriksaan
+And 	dokter sudah berhasil menyimpat data resep pada tabel resep
+And	dokter sudah berada pada form Detail Resep
+When	dokter menginputkan id detail resep "DRO01"
+And	dokter menginputkan nama obat "amoxicilin"
+And	dokter menginputkan keterangan obat "3x1 sehari"
+And	dokter klik button Save
+Then	data seharusnya berhasil tersimpan dalam tabel detail resep
